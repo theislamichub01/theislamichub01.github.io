@@ -127,12 +127,11 @@
             color: #666;
             line-height: 1.9;
             font-size: 1.2rem;
-            margin-bottom: 1rem;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin-bottom: 2rem;
         }
@@ -145,11 +144,14 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.2);
             text-align: center;
             transition: all 0.3s;
+            cursor: pointer;
+            border: 3px solid transparent;
         }
 
         .feature-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 12px 48px rgba(0,0,0,0.3);
+            border-color: #1a4d2e;
         }
 
         .feature-icon {
@@ -168,104 +170,233 @@
             line-height: 1.8;
         }
 
-        .coming-soon-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #ff9f43 0%, #ff6b6b 100%);
+        .btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 100%);
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
             margin-top: 1rem;
-            font-weight: bold;
+            font-weight: 600;
         }
 
-        .topics-section {
-            background: rgba(255, 255, 255, 0.95);
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(26, 77, 46, 0.5);
+        }
+
+        .btn-back {
+            background: linear-gradient(135deg, #666 0%, #444 100%);
+            margin-bottom: 2rem;
+        }
+
+        .section-content {
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
-            padding: 2.5rem;
-            border-radius: 15px;
+            padding: 3rem;
+            border-radius: 20px;
             box-shadow: 0 8px 32px rgba(0,0,0,0.2);
             margin-bottom: 2rem;
         }
 
-        .topics-section h3 {
+        .section-content h2 {
             color: #1a4d2e;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             text-align: center;
-            font-size: 1.8rem;
+            font-size: 2rem;
         }
 
-        .topic-item {
-            padding: 1.5rem;
-            margin: 1rem 0;
+        .post-form {
             background: #f9f9f9;
-            border-radius: 12px;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #1a4d2e;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .posts-list {
+            margin-top: 2rem;
+        }
+
+        .post-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
             border-left: 5px solid #1a4d2e;
-            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .topic-item:hover {
-            background: #f0f7f0;
-            transform: translateX(5px);
-        }
-
-        .topic-header {
+        .post-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .topic-title {
+        .post-author {
             color: #1a4d2e;
-            font-size: 1.3rem;
             font-weight: bold;
+            font-size: 1.1rem;
         }
 
-        .topic-stats {
-            color: #666;
+        .post-date {
+            color: #999;
             font-size: 0.9rem;
         }
 
-        .topic-description {
-            color: #666;
-            line-height: 1.7;
+        .post-category {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: #1a4d2e;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85rem;
         }
 
-        .guidelines-section {
-            background: rgba(255, 243, 205, 0.98);
-            backdrop-filter: blur(10px);
+        .post-title {
+            color: #333;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.8rem;
+        }
+
+        .post-content {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .post-action-btn {
+            padding: 0.5rem 1.2rem;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .post-action-btn:hover {
+            background: #1a4d2e;
+            color: white;
+        }
+
+        .reminder-card {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
             padding: 2.5rem;
             border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-            border: 3px solid #ff9f43;
             margin-bottom: 2rem;
-        }
-
-        .guidelines-section h3 {
-            color: #e65100;
-            margin-bottom: 1.5rem;
+            border: 3px solid #1a4d2e;
             text-align: center;
+        }
+
+        .reminder-card h3 {
+            color: #1a4d2e;
             font-size: 1.8rem;
+            margin-bottom: 1.5rem;
         }
 
-        .guidelines-section ul {
-            list-style: none;
-            padding: 0;
+        .reminder-text {
+            color: #333;
+            font-size: 1.3rem;
+            line-height: 2;
+            margin-bottom: 1rem;
         }
 
-        .guidelines-section li {
-            padding: 1rem;
-            margin: 0.8rem 0;
+        .reminder-source {
+            color: #666;
+            font-style: italic;
+            margin-top: 1rem;
+        }
+
+        .course-card {
             background: white;
-            border-radius: 10px;
-            border-left: 4px solid #ff9f43;
-            color: #555;
-            line-height: 1.7;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid #1a4d2e;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .guidelines-section li strong {
-            color: #e65100;
+        .course-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .course-title {
+            color: #1a4d2e;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .course-level {
+            padding: 0.4rem 1rem;
+            background: #ff9f43;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .course-description {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .course-details {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .course-detail {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .hidden {
+            display: none;
         }
 
         footer {
@@ -317,195 +448,447 @@
     </header>
 
     <div class="container">
-        <h1 class="page-title">💬 Islamic Community</h1>
+        <h1 class="page-title">💬 Islamic Community Hub</h1>
 
-        <div class="welcome-section">
-            <h2>Welcome to Our Community! 🤝</h2>
-            <p>
-                Assalamu Alaikum! Connect with Muslims from around the world, share knowledge, 
-                ask questions, and support each other on the path to Allah.
-            </p>
-            <p style="color: #1a4d2e; font-weight: bold; margin-top: 1rem;">
-                "The believers are but brothers, so make peace between your brothers." - Quran 49:10
-            </p>
-        </div>
-
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">📚</div>
-                <h3>Study Circles</h3>
+        <!-- Main Menu -->
+        <div id="mainMenu">
+            <div class="welcome-section">
+                <h2>Welcome to Our Community! 🤝</h2>
                 <p>
-                    Join online study circles to learn Quran, Hadith, and Islamic knowledge together. 
-                    Learn from scholars and fellow students in a supportive environment.
+                    Assalamu Alaikum! Connect with Muslims from around the world, share knowledge, 
+                    ask questions, and support each other on the path to Allah.
                 </p>
-                <div class="coming-soon-badge">Coming Soon</div>
             </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">❓</div>
-                <h3>Q&A Forum</h3>
-                <p>
-                    Ask questions about Islam and get answers from knowledgeable community members 
-                    and verified Islamic scholars. Learn and grow together.
-                </p>
-                <div class="coming-soon-badge">Coming Soon</div>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">🌍</div>
-                <h3>Global Connect</h3>
-                <p>
-                    Connect with Muslims from different countries, cultures, and backgrounds. 
-                    Share experiences and build lasting friendships in faith.
-                </p>
-                <div class="coming-soon-badge">Coming Soon</div>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">🎓</div>
-                <h3>Islamic Courses</h3>
-                <p>
-                    Access free online Islamic courses covering Aqeedah, Fiqh, Arabic, and more. 
-                    Learn at your own pace with structured lessons and resources.
-                </p>
-                <div class="coming-soon-badge">Coming Soon</div>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">💡</div>
-                <h3>Daily Reminders</h3>
-                <p>
-                    Receive daily Islamic reminders, motivational quotes, and spiritual guidance. 
-                    Stay connected to your faith throughout the day.
-                </p>
-                <div class="coming-soon-badge">Coming Soon</div>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">🤲</div>
-                <h3>Dua Requests</h3>
-                <p>
-                    Share your dua requests with the community and pray for others. 
-                    Support each other through prayers in times of need.
-                </p>
-                <div class="coming-soon-badge">Coming Soon</div>
-            </div>
-        </div>
-
-        <div class="topics-section">
-            <h3>📋 Popular Discussion Topics</h3>
-
-            <div class="topic-item">
-                <div class="topic-header">
-                    <div class="topic-title">🕌 Prayer & Worship</div>
-                    <div class="topic-stats">Coming Soon</div>
+            <div class="features-grid">
+                <div class="feature-card" onclick="showSection('globalConnect')">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Global Connect</h3>
+                    <p>Connect with Muslims from different countries and cultures. Share experiences and build friendships.</p>
+                    <button class="btn">Enter →</button>
                 </div>
-                <div class="topic-description">
-                    Discuss Salah, fasting, Hajj, and other acts of worship. Share tips and ask questions 
-                    about perfecting your ibadah.
-                </div>
-            </div>
 
-            <div class="topic-item">
-                <div class="topic-header">
-                    <div class="topic-title">📖 Quran & Tafsir</div>
-                    <div class="topic-stats">Coming Soon</div>
+                <div class="feature-card" onclick="showSection('qaForum')">
+                    <div class="feature-icon">❓</div>
+                    <h3>Q&A Forum</h3>
+                    <p>Ask questions about Islam and get answers from knowledgeable community members.</p>
+                    <button class="btn">Enter →</button>
                 </div>
-                <div class="topic-description">
-                    Explore the meanings of Quranic verses, share reflections, and learn from tafsir scholars. 
-                    Deepen your understanding of Allah's words.
-                </div>
-            </div>
 
-            <div class="topic-item">
-                <div class="topic-header">
-                    <div class="topic-title">💼 Islamic Finance</div>
-                    <div class="topic-stats">Coming Soon</div>
+                <div class="feature-card" onclick="showSection('studyCircles')">
+                    <div class="feature-icon">📚</div>
+                    <h3>Study Circles</h3>
+                    <p>Join online study circles to learn Quran, Hadith, and Islamic knowledge together.</p>
+                    <button class="btn">Enter →</button>
                 </div>
-                <div class="topic-description">
-                    Learn about halal income, Islamic banking, avoiding riba, and managing wealth according 
-                    to Islamic principles.
-                </div>
-            </div>
 
-            <div class="topic-item">
-                <div class="topic-header">
-                    <div class="topic-title">💑 Marriage & Family</div>
-                    <div class="topic-stats">Coming Soon</div>
+                <div class="feature-card" onclick="showSection('duaRequests')">
+                    <div class="feature-icon">🤲</div>
+                    <h3>Dua Requests</h3>
+                    <p>Share your dua requests and pray for others. Support each other through prayers.</p>
+                    <button class="btn">Enter →</button>
                 </div>
-                <div class="topic-description">
-                    Discuss marriage, parenting, family relationships, and building a strong Muslim household 
-                    based on Islamic values.
-                </div>
-            </div>
 
-            <div class="topic-item">
-                <div class="topic-header">
-                    <div class="topic-title">🎓 New Muslims Support</div>
-                    <div class="topic-stats">Coming Soon</div>
+                <div class="feature-card" onclick="showSection('dailyReminders')">
+                    <div class="feature-icon">💡</div>
+                    <h3>Daily Reminders</h3>
+                    <p>Receive daily Islamic reminders, quotes, and spiritual guidance to strengthen your faith.</p>
+                    <button class="btn">Enter →</button>
                 </div>
-                <div class="topic-description">
-                    A special space for new Muslims (reverts) to ask questions, find support, and connect 
-                    with mentors on their Islamic journey.
-                </div>
-            </div>
 
-            <div class="topic-item">
-                <div class="topic-header">
-                    <div class="topic-title">🌍 Living as a Muslim</div>
-                    <div class="topic-stats">Coming Soon</div>
-                </div>
-                <div class="topic-description">
-                    Share experiences about practicing Islam in non-Muslim countries, dealing with challenges, 
-                    and maintaining your faith.
+                <div class="feature-card" onclick="showSection('courses')">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Islamic Courses</h3>
+                    <p>Access free online Islamic courses covering Aqeedah, Fiqh, Arabic, and more.</p>
+                    <button class="btn">Enter →</button>
                 </div>
             </div>
         </div>
 
-        <div class="guidelines-section">
-            <h3>📜 Community Guidelines</h3>
-            <ul>
-                <li>
-                    <strong>Respect & Kindness:</strong> Treat all members with respect and kindness. 
-                    Disagree with ideas, not people. Remember, we're all brothers and sisters in Islam.
-                </li>
-                <li>
-                    <strong>Authentic Knowledge:</strong> When sharing Islamic knowledge, always provide 
-                    sources from Quran, Hadith, or verified scholars. Avoid sharing unverified information.
-                </li>
-                <li>
-                    <strong>No Sectarian Disputes:</strong> Focus on what unites us as Muslims. Avoid 
-                    heated debates about sectarian differences. We're here to learn, not to argue.
-                </li>
-                <li>
-                    <strong>Protect Privacy:</strong> Never share personal information about yourself or 
-                    others. Keep discussions focused on knowledge and support.
-                </li>
-                <li>
-                    <strong>Seek Scholars:</strong> For serious religious questions, consult qualified 
-                    scholars. Community discussions are for learning, not issuing fatwas.
-                </li>
-                <li>
-                    <strong>Report Issues:</strong> If you see inappropriate content or behavior, report it 
-                    to moderators immediately. Help us keep this space pure and beneficial.
-                </li>
-                <li>
-                    <strong>Good Character:</strong> Represent Islam beautifully through your words and 
-                    actions. Your behavior here is your dawah to others.
-                </li>
-            </ul>
+        <!-- Global Connect Section -->
+        <div id="globalConnect" class="section-content hidden">
+            <button class="btn btn-back" onclick="backToMenu()">← Back to Menu</button>
+            <h2>🌍 Global Connect</h2>
+            
+            <div class="post-form">
+                <h3 style="color: #1a4d2e; margin-bottom: 1rem;">Introduce Yourself</h3>
+                <div class="form-group">
+                    <label>Your Name (or nickname)</label>
+                    <input type="text" id="connectName" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label>Country</label>
+                    <input type="text" id="connectCountry" placeholder="Enter your country">
+                </div>
+                <div class="form-group">
+                    <label>Share your message</label>
+                    <textarea id="connectMessage" placeholder="Introduce yourself, share your Islamic journey, or just say Salam!"></textarea>
+                </div>
+                <button class="btn" onclick="addConnectPost()">Post Message</button>
+            </div>
+
+            <div class="posts-list" id="connectPosts">
+                <div class="post-item">
+                    <div class="post-header">
+                        <div>
+                            <div class="post-author">Ahmed from Egypt 🇪🇬</div>
+                            <div class="post-date">2 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Assalamu Alaikum everyone! I'm Ahmed from Cairo. Recently started memorizing the Quran and would love to connect with others on the same journey. May Allah make it easy for all of us!
+                    </div>
+                    <div class="post-actions">
+                        <button class="post-action-btn">🤲 Make Dua</button>
+                        <button class="post-action-btn">💬 Reply</button>
+                    </div>
+                </div>
+
+                <div class="post-item">
+                    <div class="post-header">
+                        <div>
+                            <div class="post-author">Fatima from USA 🇺🇸</div>
+                            <div class="post-date">5 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Salam! I'm a revert to Islam from New York. This community has been so helpful in my journey. Looking forward to learning and growing with you all!
+                    </div>
+                    <div class="post-actions">
+                        <button class="post-action-btn">🤲 Make Dua</button>
+                        <button class="post-action-btn">💬 Reply</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="welcome-section">
-            <h2>📬 Stay Updated</h2>
-            <p>
-                Our community platform is currently under development. We're working hard to bring you 
-                an amazing space to connect, learn, and grow together!
-            </p>
-            <p style="margin-top: 1rem; color: #666;">
-                Want to be notified when we launch? Follow us on social media or check back regularly 
-                for updates. JazakAllahu Khayran for your patience!
-            </p>
+        <!-- Q&A Forum Section -->
+        <div id="qaForum" class="section-content hidden">
+            <button class="btn btn-back" onclick="backToMenu()">← Back to Menu</button>
+            <h2>❓ Questions & Answers Forum</h2>
+            
+            <div class="post-form">
+                <h3 style="color: #1a4d2e; margin-bottom: 1rem;">Ask a Question</h3>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="qaCategory">
+                        <option>Prayer & Worship</option>
+                        <option>Quran & Tafsir</option>
+                        <option>Hadith</option>
+                        <option>Fiqh (Islamic Law)</option>
+                        <option>Aqeedah (Belief)</option>
+                        <option>Family & Marriage</option>
+                        <option>Finance & Zakat</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Your Question</label>
+                    <input type="text" id="qaTitle" placeholder="Write your question title">
+                </div>
+                <div class="form-group">
+                    <label>Details (optional)</label>
+                    <textarea id="qaDetails" placeholder="Add more details about your question"></textarea>
+                </div>
+                <button class="btn" onclick="addQAPost()">Post Question</button>
+            </div>
+
+            <div class="posts-list" id="qaPosts">
+                <div class="post-item">
+                    <div class="post-header">
+                        <div>
+                            <div class="post-author">Ali K.</div>
+                            <div class="post-date">1 hour ago</div>
+                        </div>
+                        <div class="post-category">Prayer & Worship</div>
+                    </div>
+                    <div class="post-title">What is the best time to pray Tahajjud?</div>
+                    <div class="post-content">
+                        I want to start praying Tahajjud regularly but I'm not sure what the best time is. Should it be right after midnight or closer to Fajr?
+                    </div>
+                    <div class="post-actions">
+                        <button class="post-action-btn">💬 3 Answers</button>
+                        <button class="post-action-btn">📚 Answer</button>
+                    </div>
+                </div>
+
+                <div class="post-item">
+                    <div class="post-header">
+                        <div>
+                            <div class="post-author">Sara M.</div>
+                            <div class="post-date">3 hours ago</div>
+                        </div>
+                        <div class="post-category">Quran & Tafsir</div>
+                    </div>
+                    <div class="post-title">What does Surah Al-Asr teach us?</div>
+                    <div class="post-content">
+                        I've been reading Surah Al-Asr and would love to understand its deeper meanings. Can someone explain the main lessons?
+                    </div>
+                    <div class="post-actions">
+                        <button class="post-action-btn">💬 7 Answers</button>
+                        <button class="post-action-btn">📚 Answer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Study Circles Section -->
+        <div id="studyCircles" class="section-content hidden">
+            <button class="btn btn-back" onclick="backToMenu()">← Back to Menu</button>
+            <h2>📚 Online Study Circles</h2>
+            
+            <div class="post-form">
+                <h3 style="color: #1a4d2e; margin-bottom: 1rem;">Create a Study Circle</h3>
+                <div class="form-group">
+                    <label>Study Topic</label>
+                    <select id="studyTopic">
+                        <option>Quran Memorization</option>
+                        <option>Quran Tafsir</option>
+                        <option>Hadith Study</option>
+                        <option>Arabic Language</option>
+                        <option>Fiqh (Islamic Law)</option>
+                        <option>Aqeedah (Belief)</option>
+                        <option>Seerah (Prophet's Life)</option>
+                        <option>Islamic History</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Circle Name</label>
+                    <input type="text" id="circleName" placeholder="e.g., Juz Amma Memorization Group">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="circleDescription" placeholder="Describe what your study circle will focus on"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Meeting Schedule</label>
+                    <input type="text" id="circleSchedule" placeholder="e.g., Every Saturday 8PM EST">
+                </div>
+                <button class="btn" onclick="addStudyCircle()">Create Study Circle</button>
+            </div>
+
+            <div class="posts-list" id="studyCirclesList">
+                <div class="post-item">
+                    <div class="post-header">
+                        <div>
+                            <div class="post-author">Quran Memorization Group</div>
+                            <div class="post-date">Started by Yusuf A.</div>
+                        </div>
+                        <div class="post-category">Quran Memorization</div>
+                    </div>
+                    <div class="post-title">Memorizing Juz 30 Together</div>
+                    <div class="post-content">
+                        Weekly sessions to memorize and review Juz Amma. We go through one Surah per week with tajweed corrections and tips. Beginners welcome!
+                        <br><br>
+                        <strong>📅 Schedule:</strong> Every Friday 7PM GMT<br>
+                        <strong>👥 Members:</strong> 23 active learners
+                    </div>
+                    <div class="post-actions">
+                        <button class="post-action-btn">✅ Join Circle</button>
+                        <button class="post-action-btn">💬 Message</button>
+                    </div>
+                </div>
+
+                <div class="post-item">
+                    <div class="post-header">
+                        <div>
+                            <div class="post-author">Seerah Study Group</div>
+                            <div class="post-date">Started by Aisha K.</div>
+                        </div>
+                        <div class="post-category">Seerah</div>
+                    </div>
+                    <div class="post-title">Journey Through the Life of Prophet Muhammad ﷺ</div>
+                    <div class="post-content">
+                        Deep dive into the Seerah using authentic sources. Each week we cover a different phase of the Prophet's ﷺ life with discussions and reflections.
+                        <br><br>
+                        <strong>📅 Schedule:</strong> Every Sunday 9PM EST<br>
+                        <strong>👥 Members:</strong> 45 active learners
+                    </div>
+                    <div class="post-actions">
+                        <button class="post-action-btn">✅ Join Circle</button>
+                        <button class="post-action-btn">💬 Message</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dua Requests Section -->
+        <div id="duaRequests" class="section-content hidden">
+            <button class="btn btn-back" onclick="backToMenu()">← Back to Menu</button>
+            <h2>🤲 Dua Requests</h2>
+            
+            <div class="post-form">
+                <h3 style="color: #1a4d2e; margin-bottom: 1rem;">Request a Dua</h3>
+                <p style="color: #666; margin-bottom: 1rem;">Share what you need duas for. The community will make dua for you.</p>
+                <div class="form-group">
+                    <label>Your Name (optional - can be anonymous)</label>
+                    <input type="text" id="duaName" placeholder="Enter your name or leave blank">
+                </div>
+                <div class="form-group">
+                    <label>Dua Request</label>
+                    <textarea id="duaRequest" placeholder="What would you like us to make dua for? (Keep it respectful and appropriate)"></textarea>
+                </div>
+                <button class="btn" onclick="addDuaRequest()">Submit Request</button>
+            </div>
+
+            <div class="posts-list" id="duaRequestsList">
+                <div class="post-item">
+                    <div class="post-header">
+                        <div>
+                            <div class="post-author">Anonymous</div>
+                            <div class="post-date">30 minutes ago</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Please make dua for my mother. She's undergoing surgery tomorrow. May Allah grant her a successful operation and quick recovery. Ameen.
+                    </div>
+                    <div class="post-actions">
+                        <button class="post-action-btn" onclick="makeDua(this)">🤲 I Made Dua (0)</button>
+                    </div>
+                </div>
+
+                <div class="post-item">
+                    <div class="post-header">
+                        <div>
+                            <div class="post-author">Brother Abdullah</div>
+                            <div class="post-date">2 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Please make dua for me to find a good job. I've been struggling for months and need to support my family. May Allah provide for all of us. Ameen.
+                    </div>
+                    <div class="post-actions">
+                        <button class="post-action-btn" onclick="makeDua(this)">🤲 I Made Dua (47)</button>
+                    </div>
+                </div>
+
+                <div class="post-item">
+                    <div class="post-header">
+                        <div>
+                            <div class="post-author">Sister Maryam</div>
+                            <div class="post-date">5 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Please make dua for my friend who is considering Islam. May Allah guide her heart and make it easy for her. Ameen.
+                    </div>
+                    <div class="post-actions">
+                        <button class="post-action-btn" onclick="makeDua(this)">🤲 I Made Dua (89)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Daily Reminders Section -->
+        <div id="dailyReminders" class="section-content hidden">
+            <button class="btn btn-back" onclick="backToMenu()">← Back to Menu</button>
+            <h2>💡 Daily Islamic Reminders</h2>
+            
+            <div id="reminderContent"></div>
+        </div>
+
+        <!-- Islamic Courses Section -->
+        <div id="courses" class="section-content hidden">
+            <button class="btn btn-back" onclick="backToMenu()">← Back to Menu</button>
+            <h2>🎓 Free Islamic Courses</h2>
+            
+            <div class="posts-list">
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="course-title">📖 Quran Reading with Tajweed</div>
+                        <div class="course-level">Beginner</div>
+                    </div>
+                    <div class="course-description">
+                        Learn to read the Quran correctly with proper pronunciation and tajweed rules. Perfect for beginners who want to improve their recitation.
+                    </div>
+                    <div class="course-details">
+                        <div class="course-detail">⏱️ 8 weeks</div>
+                        <div class="course-detail">📚 24 lessons</div>
+                        <div class="course-detail">👥 Self-paced</div>
+                    </div>
+                    <button class="btn">Start Course →</button>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="course-title">🕌 Fiqh of Salah</div>
+                        <div class="course-level">Beginner</div>
+                    </div>
+                    <div class="course-description">
+                        Master the rulings and conditions of prayer. Learn about wudu, prayer times, different positions, and common mistakes to avoid.
+                    </div>
+                    <div class="course-details">
+                        <div class="course-detail">⏱️ 6 weeks</div>
+                        <div class="course-detail">📚 18 lessons</div>
+                        <div class="course-detail">👥 Self-paced</div>
+                    </div>
+                    <button class="btn">Start Course →</button>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="course-title">🌙 Understanding Ramadan</div>
+                        <div class="course-level">All Levels</div>
+                    </div>
+                    <div class="course-description">
+                        Comprehensive guide to Ramadan - fasting rules, spiritual practices, night prayers, and maximizing the blessings of this holy month.
+                    </div>
+                    <div class="course-details">
+                        <div class="course-detail">⏱️ 4 weeks</div>
+                        <div class="course-detail">📚 12 lessons</div>
+                        <div class="course-detail">👥 Self-paced</div>
+                    </div>
+                    <button class="btn">Start Course →</button>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="course-title">📚 Arabic for Beginners</div>
+                        <div class="course-level">Beginner</div>
+                    </div>
+                    <div class="course-description">
+                        Start your Arabic journey from scratch. Learn the alphabet, basic vocabulary, and simple sentences to help you understand Islamic texts.
+                    </div>
+                    <div class="course-details">
+                        <div class="course-detail">⏱️ 12 weeks</div>
+                        <div class="course-detail">📚 36 lessons</div>
+                        <div class="course-detail">👥 Self-paced</div>
+                    </div>
+                    <button class="btn">Start Course →</button>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="course-title">⭐ The Life of Prophet Muhammad ﷺ</div>
+                        <div class="course-level">All Levels</div>
+                    </div>
+                    <div class="course-description">
+                        Complete Seerah course covering the entire life of Prophet Muhammad ﷺ from birth to his final days. Learn lessons from his blessed life.
+                    </div>
+                    <div class="course-details">
+                        <div class="course-detail">⏱️ 16 weeks</div>
+                        <div class="course-detail">📚 48 lessons</div>
+                        <div class="course-detail">👥 Self-paced</div>
+                    </div>
+                    <button class="btn">Start Course →</button>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="course-title">💍 Islamic Marriage & Family</div>
+                        <div class="course-level">Intermediate</div>
+                    </div>
+                    <div class="course-description">
+                        Learn about marriage in Islam - rights and responsibilities, building a strong Muslim home, raising children, and maintaining family bonds.
+                    </div>
+                    <div class="course-details">
+                        <div class="course-detail">⏱️ 8 weeks</div>
+                        <div class="course-detail">📚 24 lessons</div>
+                        <div class="course-detail">👥 Self-paced</div>
+                    </div>
+                    <button class="btn">Start Course →</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -517,6 +900,274 @@
     <script>
         function toggleMenu() {
             document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        function showSection(sectionId) {
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.getElementById(sectionId).classList.remove('hidden');
+            
+            if (sectionId === 'dailyReminders') {
+                loadDailyReminder();
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function backToMenu() {
+            document.querySelectorAll('.section-content').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById('mainMenu').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function addConnectPost() {
+            const name = document.getElementById('connectName').value.trim();
+            const country = document.getElementById('connectCountry').value.trim();
+            const message = document.getElementById('connectMessage').value.trim();
+            
+            if (!name || !country || !message) {
+                alert('Please fill in all fields!');
+                return;
+            }
+            
+            const postHTML = `
+                <div class="post-item">
+                    <div class="post-header">
+                        <div>
+                            <div class="post-author">${name} from ${country}</div>
+                            <div class="post-date">Just now</div>
+                        </div>
+                    </div>
+                    <div class="post-content">${message}</div>
+                    <div class="post-actions">
+                        <button class="post-action-btn">🤲 Make Dua</button>
+                        <button class="post-action-btn">💬 Reply</button>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('connectPosts').insertAdjacentHTML('afterbegin', postHTML);
+            document.getElementById('connectName').value = '';
+            document.getElementById('connectCountry').value = '';
+            document.getElementById('connectMessage').value = '';
+            
+            alert('✅ Your message has been posted! JazakAllahu Khayran!');
+        }
+
+        function addQAPost() {
+            const category = document.getElementById('qaCategory').value;
+            const title = document.getElementById('qaTitle').value.trim();
+            const details = document.getElementById('qaDetails').value.trim();
+            
+            if (!title) {
+                alert('Please write your question!');
+                return;
+            }
+            
+            const postHTML = `
+                <div class="post-item">
+                    <div class="post-header">
+                        <div>
+                            <div class="post-author">You</div>
+                            <div class="post-date">Just now</div>
+                        </div>
+                        <div class="post-category">${category}</div>
+                    </div>
+                    <div class="post-title">${title}</div>
+                    <div class="post-content">${details || 'No additional details provided.'}</div>
+                    <div class="post-actions">
+                        <button class="post-action-btn">💬 0 Answers</button>
+                        <button class="post-action-btn">📚 Answer</button>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('qaPosts').insertAdjacentHTML('afterbegin', postHTML);
+            document.getElementById('qaTitle').value = '';
+            document.getElementById('qaDetails').value = '';
+            
+            alert('✅ Your question has been posted! The community will answer soon insha\'Allah!');
+        }
+
+        function addStudyCircle() {
+            const topic = document.getElementById('studyTopic').value;
+            const name = document.getElementById('circleName').value.trim();
+            const description = document.getElementById('circleDescription').value.trim();
+            const schedule = document.getElementById('circleSchedule').value.trim();
+            
+            if (!name || !description || !schedule) {
+                alert('Please fill in all fields!');
+                return;
+            }
+            
+            const postHTML = `
+                <div class="post-item">
+                    <div class="post-header">
+                        <div>
+                            <div class="post-author">${name}</div>
+                            <div class="post-date">Started by You</div>
+                        </div>
+                        <div class="post-category">${topic}</div>
+                    </div>
+                    <div class="post-title">${name}</div>
+                    <div class="post-content">
+                        ${description}
+                        <br><br>
+                        <strong>📅 Schedule:</strong> ${schedule}<br>
+                        <strong>👥 Members:</strong> 1 active learner (you!)
+                    </div>
+                    <div class="post-actions">
+                        <button class="post-action-btn">✅ Join Circle</button>
+                        <button class="post-action-btn">💬 Message</button>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('studyCirclesList').insertAdjacentHTML('afterbegin', postHTML);
+            document.getElementById('circleName').value = '';
+            document.getElementById('circleDescription').value = '';
+            document.getElementById('circleSchedule').value = '';
+            
+            alert('✅ Your study circle has been created! May Allah bless your learning journey!');
+        }
+
+        function addDuaRequest() {
+            const name = document.getElementById('duaName').value.trim() || 'Anonymous';
+            const request = document.getElementById('duaRequest').value.trim();
+            
+            if (!request) {
+                alert('Please write your dua request!');
+                return;
+            }
+            
+            const postHTML = `
+                <div class="post-item">
+                    <div class="post-header">
+                        <div>
+                            <div class="post-author">${name}</div>
+                            <div class="post-date">Just now</div>
+                        </div>
+                    </div>
+                    <div class="post-content">${request}</div>
+                    <div class="post-actions">
+                        <button class="post-action-btn" onclick="makeDua(this)">🤲 I Made Dua (0)</button>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('duaRequestsList').insertAdjacentHTML('afterbegin', postHTML);
+            document.getElementById('duaName').value = '';
+            document.getElementById('duaRequest').value = '';
+            
+            alert('✅ Your dua request has been shared! May Allah accept all our duas!');
+        }
+
+        function makeDua(button) {
+            const currentCount = parseInt(button.textContent.match(/\d+/)[0]);
+            button.textContent = `🤲 I Made Dua (${currentCount + 1})`;
+            button.style.background = '#1a4d2e';
+            button.style.color = 'white';
+        }
+
+        const reminders = [
+            {
+                text: "The Prophet ﷺ said: 'The most beloved deed to Allah is the most regular and constant even if it were little.'",
+                source: "Sahih Bukhari"
+            },
+            {
+                text: "Remember Allah in times of ease, and He will remember you in times of hardship.",
+                source: "Islamic Wisdom"
+            },
+            {
+                text: "The best form of worship is dua. Never underestimate the power of your conversations with Allah.",
+                source: "At-Tirmidhi"
+            },
+            {
+                text: "Whoever reads a letter from the Book of Allah will receive a hasanah (good deed) from it, and the hasanah is multiplied by ten.",
+                source: "At-Tirmidhi"
+            },
+            {
+                text: "Be in this world as if you were a stranger or a traveler passing through.",
+                source: "Sahih Bukhari"
+            },
+            {
+                text: "The strong person is not the one who can wrestle someone else down. The strong person is the one who can control himself when he is angry.",
+                source: "Sahih Bukhari"
+            },
+            {
+                text: "Whoever believes in Allah and the Last Day should speak good or keep silent.",
+                source: "Sahih Bukhari"
+            },
+            {
+                text: "A good word is charity.",
+                source: "Sahih Bukhari & Muslim"
+            }
+        ];
+
+        function loadDailyReminder() {
+            const today = new Date();
+            const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+            const reminder = reminders[dayOfYear % reminders.length];
+            
+            const reminderHTML = `
+                <div class="reminder-card">
+                    <h3>💡 Today's Reminder</h3>
+                    <div class="reminder-text">"${reminder.text}"</div>
+                    <div class="reminder-source">— ${reminder.source}</div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="btn" onclick="loadRandomReminder()">🔄 Get Another Reminder</button>
+                </div>
+                
+                <div style="margin-top: 3rem;">
+                    <h3 style="color: #1a4d2e; margin-bottom: 1.5rem; text-align: center;">📬 Subscribe for Daily Reminders</h3>
+                    <div class="post-form">
+                        <p style="color: #666; margin-bottom: 1rem; text-align: center;">
+                            Get beautiful Islamic reminders sent to your inbox every morning!
+                        </p>
+                        <div class="form-group">
+                            <input type="email" placeholder="Enter your email address">
+                        </div>
+                        <button class="btn" onclick="alert('✅ Thank you! You will start receiving daily reminders insha\'Allah!')">Subscribe</button>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('reminderContent').innerHTML = reminderHTML;
+        }
+
+        function loadRandomReminder() {
+            const randomIndex = Math.floor(Math.random() * reminders.length);
+            const reminder = reminders[randomIndex];
+            
+            const reminderHTML = `
+                <div class="reminder-card">
+                    <h3>💡 Islamic Reminder</h3>
+                    <div class="reminder-text">"${reminder.text}"</div>
+                    <div class="reminder-source">— ${reminder.source}</div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="btn" onclick="loadRandomReminder()">🔄 Get Another Reminder</button>
+                </div>
+                
+                <div style="margin-top: 3rem;">
+                    <h3 style="color: #1a4d2e; margin-bottom: 1.5rem; text-align: center;">📬 Subscribe for Daily Reminders</h3>
+                    <div class="post-form">
+                        <p style="color: #666; margin-bottom: 1rem; text-align: center;">
+                            Get beautiful Islamic reminders sent to your inbox every morning!
+                        </p>
+                        <div class="form-group">
+                            <input type="email" placeholder="Enter your email address">
+                        </div>
+                        <button class="btn" onclick="alert('✅ Thank you! You will start receiving daily reminders insha\'Allah!')">Subscribe</button>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('reminderContent').innerHTML = reminderHTML;
         }
     </script>
 </body>
