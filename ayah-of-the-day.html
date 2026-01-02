@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayah of the Day - Islamic Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 25%, #4a7c59 50%, #6b9c7d 75%, #8bbca0 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 20s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            background: rgba(26, 77, 46, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .page-title {
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .ayah-card {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+            margin-bottom: 2rem;
+        }
+
+        .ayah-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 3px solid #1a4d2e;
+        }
+
+        .ayah-title {
+            color: #1a4d2e;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .ayah-arabic {
+            font-size: 2.5rem;
+            line-height: 3;
+            text-align: right;
+            direction: rtl;
+            color: #1a4d2e;
+            margin: 2.5rem 0;
+            padding: 3rem;
+            background: linear-gradient(135deg, #f9f9f9 0%, #f0f7f0 100%);
+            border-radius: 15px;
+            border-right: 6px solid #1a4d2e;
+            font-family: 'Traditional Arabic', 'Times New Roman', serif;
+        }
+
+        .ayah-transliteration {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: #555;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #fef9e7;
+            border-radius: 10px;
+            border-left: 4px solid #f39c12;
+            font-style: italic;
+        }
+
+        .ayah-translation {
+            font-size: 1.4rem;
+            line-height: 2.2;
+            color: #333;
+            margin: 2rem 0;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-radius: 15px;
+            border-left: 6px solid #1a4d2e;
+            font-weight: 500;
+        }
+
+        .ayah-reference {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #ddd;
+        }
+
+        .reference-text {
+            color: #1a4d2e;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .ayah-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(26, 77, 46, 0.5);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #666 0%, #444 100%);
+        }
+
+        .loading {
+            text-align: center;
+            color: #666;
+            padding: 4rem;
+            font-style: italic;
+            font-size: 1.3rem;
+        }
+
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .info-section {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .info-section h3 {
+            color: #1a4d2e;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: rgba(26, 77, 46, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 968px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            .nav-links.active { display: flex; }
+            .ayah-arabic { font-size: 1.8rem; }
+            .ayah-translation { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <header>
+        <nav>
+            <div class="nav-top">
+                <div class="logo">☪ Islamic Hub</div>
+                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">🏠 Home</a></li>
+                <li><a href="prayer-tools.html">🕌 Prayer</a></li>
+                <li><a href="quran.html">📕 Quran</a></li>
+                <li><a href="daily-hadith.html">📖 Hadith</a></li>
+                <li><a href="ayah-of-the-day.html">🌟 Ayah</a></li>
+                <li><a href="dua-of-the-day.html">🤲 Dua</a></li>
+                <li><a href="calendar.html">📅 Calendar</a></li>
+                <li><a href="zakat-calculator.html">💰 Zakat</a></li>
+                <li><a href="kids-stories.html">👶 Kids</a></li>
+                <li><a href="dawah.html">📢 Dawah</a></li>
+                <li><a href="community.html">💬 Community</a></li>
+                <li><a href="halal-games.html">🎮 Games</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">🌟 Ayah of the Day</h1>
+
+        <div class="info-section">
+            <h3>About Ayah of the Day</h3>
+            <p>
+                Every day, receive a beautiful verse from the Holy Quran with its translation and transliteration. 
+                Reflect on Allah's words and gain spiritual guidance for your day.
+            </p>
+        </div>
+
+        <div id="ayahContainer">
+            <div class="loading">Loading today's Ayah...</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
+        <p>May Allah guide us all 🤲</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        window.onload = function() {
+            loadDailyAyah();
+        };
+
+        function getDailyAyahNumber() {
+            const today = new Date();
+            const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+            const surah = (dayOfYear % 114) + 1;
+            const ayah = (dayOfYear % 50) + 1;
+            return { surah, ayah };
+        }
+
+        async function loadDailyAyah() {
+            const container = document.getElementById('ayahContainer');
+            container.innerHTML = '<div class="loading">Loading today\'s Ayah...</div>';
+            
+            try {
+                const { surah, ayah } = getDailyAyahNumber();
+                
+                const response = await fetch(`https://api.alquran.cloud/v1/ayah/${surah}:${ayah}/editions/quran-unicode,en.sahih,en.transliteration`);
+                const data = await response.json();
+                
+                if (data.code === 200) {
+                    const ayahs = data.data;
+                    displayAyah(ayahs);
+                } else {
+                    throw new Error('Failed to load ayah');
+                }
+            } catch (error) {
+                container.innerHTML = '<div class="error">Unable to load today\'s Ayah. Please try again later.</div>';
+            }
+        }
+
+        async function loadRandomAyah() {
+            const container = document.getElementById('ayahContainer');
+            container.innerHTML = '<div class="loading">Loading Ayah...</div>';
+            
+            try {
+                const surah = Math.floor(Math.random() * 114) + 1;
+                const ayah = Math.floor(Math.random() * 50) + 1;
+                
+                const response = await fetch(`https://api.alquran.cloud/v1/ayah/${surah}:${ayah}/editions/quran-unicode,en.sahih,en.transliteration`);
+                const data = await response.json();
+                
+                if (data.code === 200) {
+                    const ayahs = data.data;
+                    displayAyah(ayahs);
+                } else {
+                    throw new Error('Failed');
+                }
+            } catch (error) {
+                container.innerHTML = '<div class="error">Unable to load Ayah. Please try again.</div>';
+            }
+        }
+
+        function displayAyah(ayahs) {
+            const arabic = ayahs[0];
+            const translation = ayahs[1];
+            const transliteration = ayahs[2];
+            
+            const container = document.getElementById('ayahContainer');
+            
+            container.innerHTML = `
+                <div class="ayah-card">
+                    <div class="ayah-header">
+                        <div class="ayah-title">🌟 Verse of the Day</div>
+                    </div>
+                    
+                    <div class="ayah-arabic">${arabic.text}</div>
+                    
+                    <div class="ayah-transliteration">
+                        <strong>Transliteration:</strong><br>
+                        ${transliteration.text}
+                    </div>
+                    
+                    <div class="ayah-translation">
+                        ${translation.text}
+                    </div>
+                    
+                    <div class="ayah-reference">
+                        <div class="reference-text">
+                            📖 Surah ${arabic.surah.englishName} (${arabic.surah.name}) - Ayah ${arabic.numberInSurah}
+                        </div>
+                    </div>
+                    
+                    <div class="ayah-actions">
+                        <button class="btn" onclick="loadRandomAyah()">
+                            🔄 Get Another Ayah
+                        </button>
+                        <button class="btn btn-secondary" onclick="shareAyah()">
+                            📤 Share Ayah
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function shareAyah() {
+            const arabic = document.querySelector('.ayah-arabic')?.textContent || '';
+            const translation = document.querySelector('.ayah-translation')?.textContent || '';
+            const reference = document.querySelector('.reference-text')?.textContent || '';
+            
+            const shareText = `🌟 Ayah of the Day:\n\n${arabic}\n\n${translation}\n\n${reference}\n\n🌐 Islamic Hub: https://theislamichub04.github.io`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Ayah of the Day',
+                    text: shareText
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('✅ Ayah copied to clipboard!');
+                }).catch(() => {});
+            }
+        }
+    </script>
+</body>
+</html>
