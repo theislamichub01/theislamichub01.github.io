@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community - Islamic Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 25%, #4a7c59 50%, #6b9c7d 75%, #8bbca0 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 20s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            background: rgba(26, 77, 46, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .page-title {
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .welcome-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .welcome-section h2 {
+            color: #1a4d2e;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .welcome-section p {
+            color: #666;
+            line-height: 1.9;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 48px rgba(0,0,0,0.3);
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #1a4d2e;
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .coming-soon-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff9f43 0%, #ff6b6b 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        .topics-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .topics-section h3 {
+            color: #1a4d2e;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .topic-item {
+            padding: 1.5rem;
+            margin: 1rem 0;
+            background: #f9f9f9;
+            border-radius: 12px;
+            border-left: 5px solid #1a4d2e;
+            transition: all 0.3s;
+        }
+
+        .topic-item:hover {
+            background: #f0f7f0;
+            transform: translateX(5px);
+        }
+
+        .topic-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .topic-title {
+            color: #1a4d2e;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .topic-stats {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .topic-description {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .guidelines-section {
+            background: rgba(255, 243, 205, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            border: 3px solid #ff9f43;
+            margin-bottom: 2rem;
+        }
+
+        .guidelines-section h3 {
+            color: #e65100;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .guidelines-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .guidelines-section li {
+            padding: 1rem;
+            margin: 0.8rem 0;
+            background: white;
+            border-radius: 10px;
+            border-left: 4px solid #ff9f43;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .guidelines-section li strong {
+            color: #e65100;
+        }
+
+        footer {
+            background: rgba(26, 77, 46, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 968px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            .nav-links.active { display: flex; }
+            .features-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <header>
+        <nav>
+            <div class="nav-top">
+                <div class="logo">☪ Islamic Hub</div>
+                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">🏠 Home</a></li>
+                <li><a href="prayer-tools.html">🕌 Prayer</a></li>
+                <li><a href="quran.html">📕 Quran</a></li>
+                <li><a href="daily-hadith.html">📖 Hadith</a></li>
+                <li><a href="ayah-of-the-day.html">🌟 Ayah</a></li>
+                <li><a href="dua-of-the-day.html">🤲 Dua</a></li>
+                <li><a href="calendar.html">📅 Calendar</a></li>
+                <li><a href="zakat-calculator.html">💰 Zakat</a></li>
+                <li><a href="kids-stories.html">👶 Kids</a></li>
+                <li><a href="dawah.html">📢 Dawah</a></li>
+                <li><a href="community.html">💬 Community</a></li>
+                <li><a href="halal-games.html">🎮 Games</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">💬 Islamic Community</h1>
+
+        <div class="welcome-section">
+            <h2>Welcome to Our Community! 🤝</h2>
+            <p>
+                Assalamu Alaikum! Connect with Muslims from around the world, share knowledge, 
+                ask questions, and support each other on the path to Allah.
+            </p>
+            <p style="color: #1a4d2e; font-weight: bold; margin-top: 1rem;">
+                "The believers are but brothers, so make peace between your brothers." - Quran 49:10
+            </p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3>Study Circles</h3>
+                <p>
+                    Join online study circles to learn Quran, Hadith, and Islamic knowledge together. 
+                    Learn from scholars and fellow students in a supportive environment.
+                </p>
+                <div class="coming-soon-badge">Coming Soon</div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">❓</div>
+                <h3>Q&A Forum</h3>
+                <p>
+                    Ask questions about Islam and get answers from knowledgeable community members 
+                    and verified Islamic scholars. Learn and grow together.
+                </p>
+                <div class="coming-soon-badge">Coming Soon</div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>Global Connect</h3>
+                <p>
+                    Connect with Muslims from different countries, cultures, and backgrounds. 
+                    Share experiences and build lasting friendships in faith.
+                </p>
+                <div class="coming-soon-badge">Coming Soon</div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎓</div>
+                <h3>Islamic Courses</h3>
+                <p>
+                    Access free online Islamic courses covering Aqeedah, Fiqh, Arabic, and more. 
+                    Learn at your own pace with structured lessons and resources.
+                </p>
+                <div class="coming-soon-badge">Coming Soon</div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💡</div>
+                <h3>Daily Reminders</h3>
+                <p>
+                    Receive daily Islamic reminders, motivational quotes, and spiritual guidance. 
+                    Stay connected to your faith throughout the day.
+                </p>
+                <div class="coming-soon-badge">Coming Soon</div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🤲</div>
+                <h3>Dua Requests</h3>
+                <p>
+                    Share your dua requests with the community and pray for others. 
+                    Support each other through prayers in times of need.
+                </p>
+                <div class="coming-soon-badge">Coming Soon</div>
+            </div>
+        </div>
+
+        <div class="topics-section">
+            <h3>📋 Popular Discussion Topics</h3>
+
+            <div class="topic-item">
+                <div class="topic-header">
+                    <div class="topic-title">🕌 Prayer & Worship</div>
+                    <div class="topic-stats">Coming Soon</div>
+                </div>
+                <div class="topic-description">
+                    Discuss Salah, fasting, Hajj, and other acts of worship. Share tips and ask questions 
+                    about perfecting your ibadah.
+                </div>
+            </div>
+
+            <div class="topic-item">
+                <div class="topic-header">
+                    <div class="topic-title">📖 Quran & Tafsir</div>
+                    <div class="topic-stats">Coming Soon</div>
+                </div>
+                <div class="topic-description">
+                    Explore the meanings of Quranic verses, share reflections, and learn from tafsir scholars. 
+                    Deepen your understanding of Allah's words.
+                </div>
+            </div>
+
+            <div class="topic-item">
+                <div class="topic-header">
+                    <div class="topic-title">💼 Islamic Finance</div>
+                    <div class="topic-stats">Coming Soon</div>
+                </div>
+                <div class="topic-description">
+                    Learn about halal income, Islamic banking, avoiding riba, and managing wealth according 
+                    to Islamic principles.
+                </div>
+            </div>
+
+            <div class="topic-item">
+                <div class="topic-header">
+                    <div class="topic-title">💑 Marriage & Family</div>
+                    <div class="topic-stats">Coming Soon</div>
+                </div>
+                <div class="topic-description">
+                    Discuss marriage, parenting, family relationships, and building a strong Muslim household 
+                    based on Islamic values.
+                </div>
+            </div>
+
+            <div class="topic-item">
+                <div class="topic-header">
+                    <div class="topic-title">🎓 New Muslims Support</div>
+                    <div class="topic-stats">Coming Soon</div>
+                </div>
+                <div class="topic-description">
+                    A special space for new Muslims (reverts) to ask questions, find support, and connect 
+                    with mentors on their Islamic journey.
+                </div>
+            </div>
+
+            <div class="topic-item">
+                <div class="topic-header">
+                    <div class="topic-title">🌍 Living as a Muslim</div>
+                    <div class="topic-stats">Coming Soon</div>
+                </div>
+                <div class="topic-description">
+                    Share experiences about practicing Islam in non-Muslim countries, dealing with challenges, 
+                    and maintaining your faith.
+                </div>
+            </div>
+        </div>
+
+        <div class="guidelines-section">
+            <h3>📜 Community Guidelines</h3>
+            <ul>
+                <li>
+                    <strong>Respect & Kindness:</strong> Treat all members with respect and kindness. 
+                    Disagree with ideas, not people. Remember, we're all brothers and sisters in Islam.
+                </li>
+                <li>
+                    <strong>Authentic Knowledge:</strong> When sharing Islamic knowledge, always provide 
+                    sources from Quran, Hadith, or verified scholars. Avoid sharing unverified information.
+                </li>
+                <li>
+                    <strong>No Sectarian Disputes:</strong> Focus on what unites us as Muslims. Avoid 
+                    heated debates about sectarian differences. We're here to learn, not to argue.
+                </li>
+                <li>
+                    <strong>Protect Privacy:</strong> Never share personal information about yourself or 
+                    others. Keep discussions focused on knowledge and support.
+                </li>
+                <li>
+                    <strong>Seek Scholars:</strong> For serious religious questions, consult qualified 
+                    scholars. Community discussions are for learning, not issuing fatwas.
+                </li>
+                <li>
+                    <strong>Report Issues:</strong> If you see inappropriate content or behavior, report it 
+                    to moderators immediately. Help us keep this space pure and beneficial.
+                </li>
+                <li>
+                    <strong>Good Character:</strong> Represent Islam beautifully through your words and 
+                    actions. Your behavior here is your dawah to others.
+                </li>
+            </ul>
+        </div>
+
+        <div class="welcome-section">
+            <h2>📬 Stay Updated</h2>
+            <p>
+                Our community platform is currently under development. We're working hard to bring you 
+                an amazing space to connect, learn, and grow together!
+            </p>
+            <p style="margin-top: 1rem; color: #666;">
+                Want to be notified when we launch? Follow us on social media or check back regularly 
+                for updates. JazakAllahu Khayran for your patience!
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
+        <p>Building a strong Muslim community together 🤲</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
