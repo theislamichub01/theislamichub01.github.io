@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prayer Tools - Islamic Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 25%, #4a7c59 50%, #6b9c7d 75%, #8bbca0 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 20s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            background: rgba(26, 77, 46, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .page-title {
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .tool-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        .tool-card h2 {
+            color: #1a4d2e;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .location-input {
+            margin-bottom: 1.5rem;
+        }
+
+        .location-input input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .location-input input:focus {
+            outline: none;
+            border-color: #1a4d2e;
+        }
+
+        .location-input small {
+            display: block;
+            margin-top: 0.5rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(26, 77, 46, 0.5);
+        }
+
+        .prayer-times {
+            margin-top: 1.5rem;
+        }
+
+        .prayer-time-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border-left: 4px solid #1a4d2e;
+        }
+
+        .prayer-name {
+            font-weight: bold;
+            color: #1a4d2e;
+        }
+
+        .prayer-time {
+            color: #666;
+            font-weight: 600;
+        }
+
+        .islamic-date {
+            text-align: center;
+            padding: 1rem;
+            background: #1a4d2e;
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .qibla-compass {
+            width: 250px;
+            height: 250px;
+            margin: 2rem auto;
+            border: 3px solid #1a4d2e;
+            border-radius: 50%;
+            position: relative;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .compass-arrow {
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 100px solid #1a4d2e;
+            position: absolute;
+            transition: transform 0.5s;
+        }
+
+        .qibla-direction {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            color: #1a4d2e;
+            font-weight: bold;
+        }
+
+        .loading {
+            text-align: center;
+            color: #666;
+            padding: 2rem;
+            font-style: italic;
+        }
+
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        footer {
+            background: rgba(26, 77, 46, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 968px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            .nav-links.active { display: flex; }
+            .tools-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <header>
+        <nav>
+            <div class="nav-top">
+                <div class="logo">☪ Islamic Hub</div>
+                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">🏠 Home</a></li>
+                <li><a href="prayer-tools.html">🕌 Prayer</a></li>
+                <li><a href="quran.html">📕 Quran</a></li>
+                <li><a href="daily-hadith.html">📖 Hadith</a></li>
+                <li><a href="ayah-of-the-day.html">🌟 Ayah</a></li>
+                <li><a href="dua-of-the-day.html">🤲 Dua</a></li>
+                <li><a href="calendar.html">📅 Calendar</a></li>
+                <li><a href="zakat-calculator.html">💰 Zakat</a></li>
+                <li><a href="kids-stories.html">👶 Kids</a></li>
+                <li><a href="dawah.html">📢 Dawah</a></li>
+                <li><a href="community.html">💬 Community</a></li>
+                <li><a href="halal-games.html">🎮 Games</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">🕌 Prayer Times & Qibla Finder</h1>
+
+        <div class="tools-grid">
+            <div class="tool-card">
+                <h2>🕌 Prayer Times</h2>
+                
+                <div class="location-input">
+                    <input type="text" id="cityInput" placeholder="Enter your city (e.g., London, Dubai, Cairo)">
+                    <small>Enter any major city worldwide</small>
+                </div>
+                
+                <button class="btn" onclick="getPrayerTimes()">Get Prayer Times</button>
+                
+                <div id="prayerTimesResult"></div>
+            </div>
+
+            <div class="tool-card">
+                <h2>🧭 Qibla Direction Finder</h2>
+                
+                <p style="text-align: center; color: #666; margin-bottom: 1rem;">
+                    Click below to find the Qibla direction from your current location
+                </p>
+                
+                <button class="btn" onclick="findQibla()">Find Qibla Direction</button>
+                
+                <div id="qiblaResult"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
+        <p>May Allah guide us all 🤲</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        async function getPrayerTimes() {
+            const city = document.getElementById('cityInput').value.trim();
+            const resultDiv = document.getElementById('prayerTimesResult');
+            
+            if (!city) {
+                resultDiv.innerHTML = '<div class="error">Please enter a city name</div>';
+                return;
+            }
+            
+            resultDiv.innerHTML = '<div class="loading">Loading prayer times...</div>';
+            
+            try {
+                let response = await fetch(`https://api.aladhan.com/v1/timingsByCity?city=${encodeURIComponent(city)}&country=&method=2`);
+                let data = await response.json();
+                
+                if (data.code !== 200) {
+                    const geoResponse = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=en&format=json`);
+                    const geoData = await geoResponse.json();
+                    
+                    if (geoData.results && geoData.results.length > 0) {
+                        const lat = geoData.results[0].latitude;
+                        const lon = geoData.results[0].longitude;
+                        response = await fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=2`);
+                        data = await response.json();
+                    }
+                }
+                
+                if (data.code === 200) {
+                    const timings = data.data.timings;
+                    const date = data.data.date;
+                    
+                    resultDiv.innerHTML = `
+                        <div class="islamic-date">
+                            ${date.hijri.day} ${date.hijri.month.en} ${date.hijri.year} AH
+                        </div>
+                        <div class="prayer-times">
+                            <div class="prayer-time-item">
+                                <span class="prayer-name">Fajr</span>
+                                <span class="prayer-time">${timings.Fajr}</span>
+                            </div>
+                            <div class="prayer-time-item">
+                                <span class="prayer-name">Sunrise</span>
+                                <span class="prayer-time">${timings.Sunrise}</span>
+                            </div>
+                            <div class="prayer-time-item">
+                                <span class="prayer-name">Dhuhr</span>
+                                <span class="prayer-time">${timings.Dhuhr}</span>
+                            </div>
+                            <div class="prayer-time-item">
+                                <span class="prayer-name">Asr</span>
+                                <span class="prayer-time">${timings.Asr}</span>
+                            </div>
+                            <div class="prayer-time-item">
+                                <span class="prayer-name">Maghrib</span>
+                                <span class="prayer-time">${timings.Maghrib}</span>
+                            </div>
+                            <div class="prayer-time-item">
+                                <span class="prayer-name">Isha</span>
+                                <span class="prayer-time">${timings.Isha}</span>
+                            </div>
+                        </div>
+                        <p style="text-align: center; margin-top: 1rem; color: #666;">
+                            <small>Location: ${city}</small>
+                        </p>
+                    `;
+                } else {
+                    resultDiv.innerHTML = '<div class="error">City not found. Please try a different city.</div>';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = '<div class="error">Error loading prayer times. Please try again.</div>';
+            }
+        }
+
+        function findQibla() {
+            const resultDiv = document.getElementById('qiblaResult');
+            
+            if (!navigator.geolocation) {
+                resultDiv.innerHTML = '<div class="error">Geolocation not supported by your browser</div>';
+                return;
+            }
+            
+            resultDiv.innerHTML = '<div class="loading">Getting your location...</div>';
+            
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    
+                    const makkahLat = 21.4225;
+                    const makkahLon = 39.8262;
+                    
+                    const phiK = makkahLat * Math.PI / 180.0;
+                    const lambdaK = makkahLon * Math.PI / 180.0;
+                    const phi = lat * Math.PI / 180.0;
+                    const lambda = lon * Math.PI / 180.0;
+                    const psi = 180.0 / Math.PI * Math.atan2(Math.sin(lambdaK - lambda), Math.cos(phi) * Math.tan(phiK) - Math.sin(phi) * Math.cos(lambdaK - lambda));
+                    
+                    const qiblaDirection = Math.round((psi + 360) % 360);
+                    
+                    resultDiv.innerHTML = `
+                        <div class="qibla-compass">
+                            <div class="compass-arrow" style="transform: rotate(${qiblaDirection}deg)"></div>
+                        </div>
+                        <div class="qibla-direction">
+                            Qibla Direction: ${qiblaDirection}° from North
+                        </div>
+                        <p style="text-align: center; color: #666; margin-top: 1rem;">
+                            Point your device in this direction to face the Kaaba
+                        </p>
+                    `;
+                },
+                (error) => {
+                    resultDiv.innerHTML = '<div class="error">Unable to get your location. Please enable location services.</div>';
+                }
+            );
+        }
+    </script>
+</body>
+</html>
