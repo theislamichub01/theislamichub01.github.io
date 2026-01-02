@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Calendar - Islamic Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 25%, #4a7c59 50%, #6b9c7d 75%, #8bbca0 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 20s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            background: rgba(26, 77, 46, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .page-title {
+            text-align: center;
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .date-display {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        .hijri-date {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .gregorian-date {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        .islamic-month-name {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .converter-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .converter-card h2 {
+            color: #1a4d2e;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .converter-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.8rem 2rem;
+            background: #f0f0f0;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 100%);
+            color: white;
+            border-color: #1a4d2e;
+        }
+
+        .converter-input {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .converter-input input {
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            max-width: 300px;
+            margin: 1rem auto;
+            display: block;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(26, 77, 46, 0.5);
+        }
+
+        .converter-result {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: #f0f7f0;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.2rem;
+            color: #1a4d2e;
+            font-weight: bold;
+        }
+
+        .events-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .events-section h2 {
+            color: #1a4d2e;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .event-card {
+            padding: 1.5rem;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border-left: 4px solid #1a4d2e;
+            transition: transform 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .event-date {
+            color: #1a4d2e;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .info-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .info-section h3 {
+            color: #1a4d2e;
+            margin-bottom: 1rem;
+        }
+
+        .loading {
+            text-align: center;
+            color: #666;
+            padding: 2rem;
+            font-style: italic;
+        }
+
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        footer {
+            background: rgba(26, 77, 46, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 968px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            .nav-links.active { display: flex; }
+            .page-title { font-size: 2rem; }
+            .hijri-date { font-size: 1.8rem; }
+            .converter-input { flex-direction: column; }
+            .events-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <header>
+        <nav>
+            <div class="nav-top">
+                <div class="logo">☪ Islamic Hub</div>
+                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">🏠 Home</a></li>
+                <li><a href="prayer-tools.html">🕌 Prayer</a></li>
+                <li><a href="quran.html">📕 Quran</a></li>
+                <li><a href="daily-hadith.html">📖 Hadith</a></li>
+                <li><a href="ayah-of-the-day.html">🌟 Ayah</a></li>
+                <li><a href="dua-of-the-day.html">🤲 Dua</a></li>
+                <li><a href="calendar.html">📅 Calendar</a></li>
+                <li><a href="zakat-calculator.html">💰 Zakat</a></li>
+                <li><a href="kids-stories.html">👶 Kids</a></li>
+                <li><a href="dawah.html">📢 Dawah</a></li>
+                <li><a href="community.html">💬 Community</a></li>
+                <li><a href="halal-games.html">🎮 Games</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">📅 Islamic Calendar</h1>
+        <p class="page-subtitle">Hijri Calendar & Important Islamic Dates</p>
+
+        <div class="date-display" id="currentDate">
+            <div class="loading">Loading current date...</div>
+        </div>
+
+        <div class="converter-card">
+            <h2>🔄 Date Converter</h2>
+            
+            <div class="converter-tabs">
+                <button class="tab-btn active" onclick="switchTab('gregorian')">Gregorian to Hijri</button>
+                <button class="tab-btn" onclick="switchTab('hijri')">Hijri to Gregorian</button>
+            </div>
+
+            <div id="gregorianConverter">
+                <div class="converter-input">
+                    <input type="number" id="gDay" placeholder="Day (1-31)" min="1" max="31">
+                    <input type="number" id="gMonth" placeholder="Month (1-12)" min="1" max="12">
+                    <input type="number" id="gYear" placeholder="Year" min="1900" max="2100">
+                </div>
+                <button class="btn" onclick="convertGregorianToHijri()">Convert to Hijri</button>
+                <div id="gregorianResult"></div>
+            </div>
+
+            <div id="hijriConverter" class="hidden">
+                <div class="converter-input">
+                    <input type="number" id="hDay" placeholder="Day (1-30)" min="1" max="30">
+                    <input type="number" id="hMonth" placeholder="Month (1-12)" min="1" max="12">
+                    <input type="number" id="hYear" placeholder="Year" min="1400" max="1500">
+                </div>
+                <button class="btn" onclick="convertHijriToGregorian()">Convert to Gregorian</button>
+                <div id="hijriResult"></div>
+            </div>
+        </div>
+
+        <div class="events-section">
+            <h2>🌙 Important Islamic Dates</h2>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-date">1 Muharram</div>
+                    <div class="event-name">Islamic New Year</div>
+                    <div class="event-description">
+                        The first day of the Islamic calendar, marking the Hijrah of Prophet Muhammad ﷺ from Makkah to Madinah.
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">10 Muharram</div>
+                    <div class="event-name">Day of Ashura</div>
+                    <div class="event-description">
+                        A day of fasting recommended by Prophet Muhammad ﷺ, commemorating when Allah saved Prophet Musa.
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">12 Rabi' al-Awwal</div>
+                    <div class="event-name">Mawlid al-Nabi</div>
+                    <div class="event-description">
+                        Birth of Prophet Muhammad ﷺ. Celebrated by many Muslims with gatherings and recitations.
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">27 Rajab</div>
+                    <div class="event-name">Isra and Mi'raj</div>
+                    <div class="event-description">
+                        The Night Journey and Ascension of Prophet Muhammad ﷺ from Makkah to Jerusalem and the heavens.
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">15 Sha'ban</div>
+                    <div class="event-name">Mid-Sha'ban</div>
+                    <div class="event-description">
+                        The night of the 15th of Sha'ban, considered by many as a blessed night for worship.
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">1-30 Ramadan</div>
+                    <div class="event-name">Ramadan</div>
+                    <div class="event-description">
+                        The holy month of fasting, prayer, and spiritual reflection. The month the Quran was revealed.
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">27 Ramadan (approx)</div>
+                    <div class="event-name">Laylat al-Qadr</div>
+                    <div class="event-description">
+                        The Night of Power when the Quran was first revealed. Better than a thousand months.
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">1 Shawwal</div>
+                    <div class="event-name">Eid al-Fitr</div>
+                    <div class="event-description">
+                        The Festival of Breaking the Fast, celebrated after Ramadan with prayers and celebration.
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">8-13 Dhul Hijjah</div>
+                    <div class="event-name">Hajj Season</div>
+                    <div class="event-description">
+                        The annual pilgrimage to Makkah, one of the five pillars of Islam.
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">9 Dhul Hijjah</div>
+                    <div class="event-name">Day of Arafah</div>
+                    <div class="event-description">
+                        The most important day of Hajj. Fasting on this day expiates sins of two years.
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">10 Dhul Hijjah</div>
+                    <div class="event-name">Eid al-Adha</div>
+                    <div class="event-description">
+                        The Festival of Sacrifice, commemorating Prophet Ibrahim's willingness to sacrifice his son.
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">1-10 Dhul Hijjah</div>
+                    <div class="event-name">First Ten Days</div>
+                    <div class="event-description">
+                        The most blessed days of the year. Good deeds are more beloved to Allah than any other days.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3>About the Islamic Calendar</h3>
+            <p>
+                The Islamic calendar (Hijri calendar) is a lunar calendar consisting of 12 months in a year of 354 or 355 days. 
+                It is used to determine Islamic holidays and rituals.
+            </p>
+            <p style="margin-top: 1rem;">
+                The calendar began in 622 CE during the Hijrah of Prophet Muhammad ﷺ from Makkah to Madinah. 
+                Each month begins with the sighting of the new moon.
+            </p>
+            <p style="margin-top: 1rem;">
+                <strong>The 12 Islamic Months:</strong> Muharram, Safar, Rabi' al-Awwal, Rabi' al-Thani, Jumada al-Awwal, 
+                Jumada al-Thani, Rajab, Sha'ban, Ramadan, Shawwal, Dhul Qi'dah, Dhul Hijjah.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
+        <p>May Allah guide us all 🤲</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        window.onload = function() {
+            loadCurrentDate();
+        };
+
+        async function loadCurrentDate() {
+            const dateDisplay = document.getElementById('currentDate');
+            
+            try {
+                const today = new Date();
+                const day = today.getDate();
+                const month = today.getMonth() + 1;
+                const year = today.getFullYear();
+                
+                const response = await fetch(`https://api.aladhan.com/v1/gToH/${day}-${month}-${year}`);
+                const data = await response.json();
+                
+                if (data.code === 200) {
+                    const hijri = data.data.hijri;
+                    const gregorian = data.data.gregorian;
+                    
+                    dateDisplay.innerHTML = `
+                        <div class="hijri-date">
+                            ${hijri.day} ${hijri.month.en} ${hijri.year} AH
+                        </div>
+                        <div class="islamic-month-name">
+                            ${hijri.month.en}
+                        </div>
+                        <div class="gregorian-date">
+                            Corresponding to: ${gregorian.day} ${gregorian.month.en} ${gregorian.year} CE
+                        </div>
+                    `;
+                } else {
+                    throw new Error('Failed');
+                }
+            } catch (error) {
+                dateDisplay.innerHTML = '<div class="error">Unable to load current date</div>';
+            }
+        }
+
+        function switchTab(tab) {
+            const gregorianConverter = document.getElementById('gregorianConverter');
+            const hijriConverter = document.getElementById('hijriConverter');
+            const tabs = document.querySelectorAll('.tab-btn');
+            
+            tabs.forEach(btn => btn.classList.remove('active'));
+            
+            if (tab === 'gregorian') {
+                gregorianConverter.classList.remove('hidden');
+                hijriConverter.classList.add('hidden');
+                tabs[0].classList.add('active');
+            } else {
+                gregorianConverter.classList.add('hidden');
+                hijriConverter.classList.remove('hidden');
+                tabs[1].classList.add('active');
+            }
+        }
+
+        async function convertGregorianToHijri() {
+            const day = document.getElementById('gDay').value;
+            const month = document.getElementById('gMonth').value;
+            const year = document.getElementById('gYear').value;
+            const resultDiv = document.getElementById('gregorianResult');
+            
+            if (!day || !month || !year) {
+                resultDiv.innerHTML = '<div class="error">Please enter all date fields</div>';
+                return;
+            }
+            
+            resultDiv.innerHTML = '<div class="loading">Converting...</div>';
+            
+            try {
+                const response = await fetch(`https://api.aladhan.com/v1/gToH/${day}-${month}-${year}`);
+                const data = await response.json();
+                
+                if (data.code === 200) {
+                    const hijri = data.data.hijri;
+                    resultDiv.innerHTML = `
+                        <div class="converter-result">
+                            📅 ${hijri.day} ${hijri.month.en} ${hijri.year} AH
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = '<div class="error">Invalid date</div>';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = '<div class="error">Error converting date</div>';
+            }
+        }
+
+        async function convertHijriToGregorian() {
+            const day = document.getElementById('hDay').value;
+            const month = document.getElementById('hMonth').value;
+            const year = document.getElementById('hYear').value;
+            const resultDiv = document.getElementById('hijriResult');
+            
+            if (!day || !month || !year) {
+                resultDiv.innerHTML = '<div class="error">Please enter all date fields</div>';
+                return;
+            }
+            
+            resultDiv.innerHTML = '<div class="loading">Converting...</div>';
+            
+            try {
+                const response = await fetch(`https://api.aladhan.com/v1/hToG/${day}-${month}-${year}`);
+                const data = await response.json();
+                
+                if (data.code === 200) {
+                    const gregorian = data.data.gregorian;
+                    resultDiv.innerHTML = `
+                        <div class="converter-result">
+                            📅 ${gregorian.day} ${gregorian.month.en} ${gregorian.year} CE
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = '<div class="error">Invalid date</div>';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = '<div class="error">Error converting date</div>';
+            }
+        }
+    </script>
+</body>
+</html>
