@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids' Stories - Islamic Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 20s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            background: rgba(25, 84, 123, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .page-title {
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+            font-size: 3rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .story-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .story-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 12px 48px rgba(0,0,0,0.3);
+            border-color: #19547b;
+        }
+
+        .story-icon {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .story-title {
+            color: #19547b;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .story-preview {
+            color: #666;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .story-content {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .story-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .story-full-title {
+            color: #19547b;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .story-text {
+            font-size: 1.3rem;
+            line-height: 2.2;
+            color: #333;
+            margin: 2rem 0;
+        }
+
+        .story-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .moral-box {
+            background: linear-gradient(135deg, #ffd89b 0%, #ffc371 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            border: 3px solid #ff9f43;
+        }
+
+        .moral-box h3 {
+            color: #19547b;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .moral-box p {
+            color: #333;
+            font-size: 1.2rem;
+            line-height: 1.9;
+            text-align: center;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #19547b 0%, #0d2f4a 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            display: block;
+            margin: 2rem auto;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(25, 84, 123, 0.5);
+        }
+
+        footer {
+            background: rgba(25, 84, 123, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 968px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            .nav-links.active { display: flex; }
+            .page-title { font-size: 2rem; }
+            .stories-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <header>
+        <nav>
+            <div class="nav-top">
+                <div class="logo">☪ Islamic Hub</div>
+                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">🏠 Home</a></li>
+                <li><a href="prayer-tools.html">🕌 Prayer</a></li>
+                <li><a href="quran.html">📕 Quran</a></li>
+                <li><a href="daily-hadith.html">📖 Hadith</a></li>
+                <li><a href="ayah-of-the-day.html">🌟 Ayah</a></li>
+                <li><a href="dua-of-the-day.html">🤲 Dua</a></li>
+                <li><a href="calendar.html">📅 Calendar</a></li>
+                <li><a href="zakat-calculator.html">💰 Zakat</a></li>
+                <li><a href="kids-stories.html">👶 Kids</a></li>
+                <li><a href="dawah.html">📢 Dawah</a></li>
+                <li><a href="community.html">💬 Community</a></li>
+                <li><a href="halal-games.html">🎮 Games</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">👶 Islamic Stories for Kids</h1>
+
+        <div id="storiesGrid" class="stories-grid"></div>
+
+        <div id="storyContent" class="hidden"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
+        <p>Teaching the next generation about Islam 🤲</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        const stories = [
+            {
+                id: 1,
+                icon: "🐘",
+                title: "The Elephant and the Kaaba",
+                preview: "How Allah protected His sacred house from the army with elephants",
+                content: `
+                    <p>Long, long ago, there was a powerful king named Abraha who ruled Yemen. He built a huge, beautiful church and wanted everyone to visit it instead of the Kaaba in Makkah.</p>
+                    
+                    <p>But people still loved visiting the Kaaba, the sacred house built by Prophet Ibrahim (Abraham) peace be upon him. This made King Abraha very angry!</p>
+                    
+                    <p>King Abraha decided to destroy the Kaaba. He gathered a huge army with many elephants - the biggest and strongest animals anyone had ever seen. The biggest elephant was named Mahmud.</p>
+                    
+                    <p>When the people of Makkah saw this huge army coming, they were very scared. They had no army to fight back! But they trusted Allah and prayed for His help.</p>
+                    
+                    <p>As the army got closer to Makkah, something amazing happened! The elephant Mahmud suddenly sat down and refused to move toward the Kaaba, no matter how hard the soldiers tried!</p>
+                    
+                    <p>Then, Allah sent thousands of small birds carrying tiny stones. These birds flew over the army and dropped the stones. Even though the stones were small, they were very powerful!</p>
+                    
+                    <p>The army of elephants ran away in fear, and King Abraha and his soldiers were defeated. Allah protected His sacred house without any human army!</p>
+                    
+                    <p>This amazing story is told in Surah Al-Fil (The Elephant) in the Quran. It happened in the same year that Prophet Muhammad ﷺ was born.</p>
+                `,
+                moral: "Allah is the Most Powerful and He protects those who trust in Him. Even the smallest creatures can be used by Allah to defeat the strongest enemies. Always put your trust in Allah!"
+            },
+            {
+                id: 2,
+                icon: "🐪",
+                title: "Prophet Saleh and the She-Camel",
+                preview: "The miraculous camel that tested a whole nation",
+                content: `
+                    <p>Long ago, there was a tribe called Thamud who lived in beautiful homes carved into mountains. They were very rich and powerful, but they forgot to thank Allah.</p>
+                    
+                    <p>Allah sent Prophet Saleh to remind them to worship only Allah. But the people didn't want to listen. They said, "Show us a miracle, and then we'll believe you!"</p>
+                    
+                    <p>Prophet Saleh prayed to Allah, and Allah performed an amazing miracle. From a huge rock, a beautiful she-camel appeared! It was unlike any other camel - it was special and belonged to Allah.</p>
+                    
+                    <p>Prophet Saleh told the people, "This camel is a sign from Allah. She will drink from the well one day, and you can drink the next day. Do not harm her, or Allah will punish you!"</p>
+                    
+                    <p>For a while, the people followed this rule. But some evil people in the tribe became jealous of the camel. They didn't like sharing the water.</p>
+                    
+                    <p>One day, these evil people killed the she-camel, even though Prophet Saleh had warned them. Prophet Saleh was very sad and told them, "You have three more days to repent and ask Allah for forgiveness."</p>
+                    
+                    <p>But the people laughed and didn't believe anything would happen. After three days, a terrible earthquake struck, and the entire tribe
