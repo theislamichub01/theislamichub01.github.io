@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zakat Calculator - Islamic Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 25%, #4a7c59 50%, #6b9c7d 75%, #8bbca0 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 20s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            background: rgba(26, 77, 46, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .page-title {
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .info-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .info-section h3 {
+            color: #1a4d2e;
+            margin-bottom: 1rem;
+        }
+
+        .info-section p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .info-section ul {
+            margin-left: 2rem;
+            color: #666;
+        }
+
+        .info-section li {
+            margin: 0.5rem 0;
+        }
+
+        .calculator-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .calculator-card h2 {
+            color: #1a4d2e;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .calculator-intro {
+            background: #f0f7f0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #1a4d2e;
+        }
+
+        .calculator-intro p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            color: #1a4d2e;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #1a4d2e;
+        }
+
+        .input-group small {
+            display: block;
+            color: #666;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(26, 77, 46, 0.5);
+        }
+
+        .result-box {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 100%);
+            color: white;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(26, 77, 46, 0.3);
+        }
+
+        .result-box h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .result-amount {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .result-details {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .result-details p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background: rgba(26, 77, 46, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 968px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            .nav-links.active { display: flex; }
+            .page-title { font-size: 2rem; }
+            .calculator-card { padding: 1.5rem; }
+            .result-amount { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <header>
+        <nav>
+            <div class="nav-top">
+                <div class="logo">☪ Islamic Hub</div>
+                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">🏠 Home</a></li>
+                <li><a href="prayer-tools.html">🕌 Prayer</a></li>
+                <li><a href="quran.html">📕 Quran</a></li>
+                <li><a href="daily-hadith.html">📖 Hadith</a></li>
+                <li><a href="ayah-of-the-day.html">🌟 Ayah</a></li>
+                <li><a href="dua-of-the-day.html">🤲 Dua</a></li>
+                <li><a href="calendar.html">📅 Calendar</a></li>
+                <li><a href="zakat-calculator.html">💰 Zakat</a></li>
+                <li><a href="kids-stories.html">👶 Kids</a></li>
+                <li><a href="dawah.html">📢 Dawah</a></li>
+                <li><a href="community.html">💬 Community</a></li>
+                <li><a href="halal-games.html">🎮 Games</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">💰 Zakat Calculator</h1>
+
+        <div class="info-section">
+            <h3>What is Zakat?</h3>
+            <p>
+                Zakat is one of the five pillars of Islam. It is an obligatory charity that Muslims must pay annually 
+                on their wealth and assets that have been in their possession for a full lunar year.
+            </p>
+            <p>
+                <strong>The standard Zakat rate is 2.5%</strong> of your total qualifying wealth.
+            </p>
+            <p><strong>Who must pay Zakat?</strong></p>
+            <ul>
+                <li>Adult Muslims who are sane</li>
+                <li>Free (not slaves)</li>
+                <li>In possession of the minimum amount of wealth (Nisab) for one lunar year</li>
+            </ul>
+            <p style="margin-top: 1rem;">
+                <strong>Nisab:</strong> The minimum amount of wealth required before Zakat is due. It is equivalent to 
+                85 grams of gold or 595 grams of silver.
+            </p>
+        </div>
+
+        <div class="calculator-card">
+            <h2>💰 Calculate Your Zakat</h2>
+            
+            <div class="calculator-intro">
+                <p>
+                    <strong>How to use this calculator:</strong> Enter the total value of your assets that have been 
+                    in your possession for one full lunar year. The calculator will determine if you meet the Nisab 
+                    threshold and calculate your Zakat obligation.
+                </p>
+            </div>
+
+            <div class="input-group">
+                <label>Cash in Hand & Bank Accounts ($)</label>
+                <input type="number" id="cash" placeholder="Enter amount" min="0" step="0.01">
+                <small>Include all cash, savings, and checking accounts</small>
+            </div>
+
+            <div class="input-group">
+                <label>Gold & Silver ($)</label>
+                <input type="number" id="gold" placeholder="Enter value" min="0" step="0.01">
+                <small>Current market value of your gold and silver</small>
+            </div>
+
+            <div class="input-group">
+                <label>Business Assets & Merchandise ($)</label>
+                <input type="number" id="business" placeholder="Enter value" min="0" step="0.01">
+                <small>Value of stock and merchandise intended for sale</small>
+            </div>
+
+            <div class="input-group">
+                <label>Investments & Stocks ($)</label>
+                <input type="number" id="investments" placeholder="Enter value" min="0" step="0.01">
+                <small>Stocks, bonds, investment certificates, etc.</small>
+            </div>
+
+            <div class="input-group">
+                <label>Money Owed to You ($)</label>
+                <input type="number" id="receivables" placeholder="Enter amount" min="0" step="0.01">
+                <small>Debts people owe you that you expect to get back</small>
+            </div>
+
+            <div class="input-group">
+                <label>Other Assets ($)</label>
+                <input type="number" id="other" placeholder="Enter value" min="0" step="0.01">
+                <small>Any other zakatable assets</small>
+            </div>
+
+            <div class="input-group">
+                <label>Debts & Liabilities ($)</label>
+                <input type="number" id="debts" placeholder="Enter amount" min="0" step="0.01">
+                <small>Money you owe that is due within the year</small>
+            </div>
+
+            <div class="input-group">
+                <label>Current Gold Price per Gram ($)</label>
+                <input type="number" id="goldPrice" placeholder="e.g., 65" min="0" step="0.01" value="65">
+                <small>Nisab threshold: 85 grams of gold</small>
+            </div>
+
+            <button class="btn" onclick="calculateZakat()">Calculate Zakat</button>
+
+            <div id="result" class="hidden"></div>
+        </div>
+
+        <div class="info-section">
+            <h3>Important Notes</h3>
+            <p>
+                <strong>This calculator provides an estimate.</strong> For precise calculations and specific situations, 
+                please consult with a qualified Islamic scholar or your local mosque.
+            </p>
+            <p>
+                <strong>Assets NOT subject to Zakat:</strong>
+            </p>
+            <ul>
+                <li>Your primary residence</li>
+                <li>Personal car(s) for transportation</li>
+                <li>Household furniture and appliances</li>
+                <li>Personal clothing and jewelry worn regularly</li>
+                <li>Tools and equipment needed for your profession</li>
+            </ul>
+            <p style="margin-top: 1rem;">
+                <strong>When to pay Zakat:</strong> Zakat should be paid as soon as it becomes due. You can calculate 
+                your Zakat date based on when you first became eligible or use a fixed date like Ramadan each year.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
+        <p>May Allah accept your Zakat 🤲</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        function calculateZakat() {
+            const cash = parseFloat(document.getElementById('cash').value) || 0;
+            const gold = parseFloat(document.getElementById('gold').value) || 0;
+            const business = parseFloat(document.getElementById('business').value) || 0;
+            const investments = parseFloat(document.getElementById('investments').value) || 0;
+            const receivables = parseFloat(document.getElementById('receivables').value) || 0;
+            const other = parseFloat(document.getElementById('other').value) || 0;
+            const debts = parseFloat(document.getElementById('debts').value) || 0;
+            const goldPrice = parseFloat(document.getElementById('goldPrice').value) || 65;
+
+            const totalAssets = cash + gold + business + investments + receivables + other;
+            const netWealth = totalAssets - debts;
+
+            const nisab = 85 * goldPrice;
+
+            const zakatAmount = netWealth * 0.025;
+
+            const resultDiv = document.getElementById('result');
+            
+            if (netWealth >= nisab) {
+                resultDiv.innerHTML = `
+                    <div class="result-box">
+                        <h3>✅ Zakat is Due</h3>
+                        <div class="result-amount">$${zakatAmount.toFixed(2)}</div>
+                        <p style="font-size: 1.1rem;">This is the amount you need to pay in Zakat</p>
+                        
+                        <div class="result-details">
+                            <p><strong>Total Assets:</strong> $${totalAssets.toFixed(2)}</p>
+                            <p><strong>Minus Debts:</strong> -$${debts.toFixed(2)}</p>
+                            <p><strong>Net Wealth:</strong> $${netWealth.toFixed(2)}</p>
+                            <p><strong>Nisab Threshold:</strong> $${nisab.toFixed(2)}</p>
+                            <p style="margin-top: 1rem; font-size: 0.95rem; opacity: 0.9;">
+                                Since your net wealth ($${netWealth.toFixed(2)}) exceeds the Nisab ($${nisab.toFixed(2)}), 
+                                you are obligated to pay Zakat at 2.5% of your net wealth.
+                            </p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `
+                    <div class="result-box">
+                        <h3>ℹ️ Zakat is Not Due</h3>
+                        <p style="font-size: 1.2rem; margin: 1rem 0;">
+                            Your net wealth is below the Nisab threshold
+                        </p>
+                        
+                        <div class="result-details">
+                            <p><strong>Your Net Wealth:</strong> $${netWealth.toFixed(2)}</p>
+                            <p><strong>Nisab Threshold:</strong> $${nisab.toFixed(2)}</p>
+                            <p style="margin-top: 1rem; font-size: 0.95rem; opacity: 0.9;">
+                                You are not currently obligated to pay Zakat as your wealth is below the Nisab. 
+                                However, you can still give voluntary charity (Sadaqah) to earn rewards from Allah.
+                            </p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            resultDiv.classList.remove('hidden');
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>
