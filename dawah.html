@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dawah Resources - Islamic Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 25%, #4a7c59 50%, #6b9c7d 75%, #8bbca0 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 20s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            background: rgba(26, 77, 46, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .page-title {
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .intro-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .intro-section h2 {
+            color: #1a4d2e;
+            margin-bottom: 1rem;
+        }
+
+        .intro-section p {
+            color: #666;
+            line-height: 1.9;
+            font-size: 1.1rem;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .resource-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        .resource-card h3 {
+            color: #1a4d2e;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .resource-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .resource-card li {
+            padding: 1rem;
+            margin: 0.8rem 0;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border-left: 4px solid #1a4d2e;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .resource-card li strong {
+            color: #1a4d2e;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .tips-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .tips-section h3 {
+            color: #1a4d2e;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .tip-item {
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-radius: 12px;
+            border-left: 5px solid #1a4d2e;
+        }
+
+        .tip-item h4 {
+            color: #1a4d2e;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .tip-item p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        footer {
+            background: rgba(26, 77, 46, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 968px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            .nav-links.active { display: flex; }
+            .resources-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <header>
+        <nav>
+            <div class="nav-top">
+                <div class="logo">☪ Islamic Hub</div>
+                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">🏠 Home</a></li>
+                <li><a href="prayer-tools.html">🕌 Prayer</a></li>
+                <li><a href="quran.html">📕 Quran</a></li>
+                <li><a href="daily-hadith.html">📖 Hadith</a></li>
+                <li><a href="ayah-of-the-day.html">🌟 Ayah</a></li>
+                <li><a href="dua-of-the-day.html">🤲 Dua</a></li>
+                <li><a href="calendar.html">📅 Calendar</a></li>
+                <li><a href="zakat-calculator.html">💰 Zakat</a></li>
+                <li><a href="kids-stories.html">👶 Kids</a></li>
+                <li><a href="dawah.html">📢 Dawah</a></li>
+                <li><a href="community.html">💬 Community</a></li>
+                <li><a href="halal-games.html">🎮 Games</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">📢 Dawah Resources</h1>
+
+        <div class="intro-section">
+            <h2>What is Dawah?</h2>
+            <p>
+                Dawah means inviting others to understand Islam. It's about sharing the beautiful message of Islam 
+                with kindness, wisdom, and good character. Prophet Muhammad ﷺ said: "Convey from me, even if it is one verse."
+            </p>
+        </div>
+
+        <div class="resources-grid">
+            <div class="resource-card">
+                <h3>📚 Common Questions About Islam</h3>
+                <ul>
+                    <li>
+                        <strong>Who is Allah?</strong>
+                        Allah is the One and Only God, the Creator of everything. He has no partners, no children, and nothing is like Him.
+                    </li>
+                    <li>
+                        <strong>Who was Prophet Muhammad?</strong>
+                        He was the final messenger of Allah, sent as a mercy to all mankind. His life is a perfect example for us to follow.
+                    </li>
+                    <li>
+                        <strong>What is the Quran?</strong>
+                        The Quran is the word of Allah revealed to Prophet Muhammad. It's perfectly preserved and contains guidance for all humanity.
+                    </li>
+                    <li>
+                        <strong>What do Muslims believe?</strong>
+                        Muslims believe in One God, His angels, His books, His messengers, the Day of Judgment, and divine destiny.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="resource-card">
+                <h3>🌟 Basic Pillars of Islam</h3>
+                <ul>
+                    <li>
+                        <strong>1. Shahada (Faith)</strong>
+                        Testifying that there is no god but Allah and Muhammad is His messenger.
+                    </li>
+                    <li>
+                        <strong>2. Salah (Prayer)</strong>
+                        Praying five times daily to maintain connection with Allah.
+                    </li>
+                    <li>
+                        <strong>3. Zakat (Charity)</strong>
+                        Giving 2.5% of wealth annually to help the needy.
+                    </li>
+                    <li>
+                        <strong>4. Sawm (Fasting)</strong>
+                        Fasting during the month of Ramadan from dawn to sunset.
+                    </li>
+                    <li>
+                        <strong>5. Hajj (Pilgrimage)</strong>
+                        Making pilgrimage to Makkah once in a lifetime if able.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="resource-card">
+                <h3>❤️ Beautiful Aspects of Islam</h3>
+                <ul>
+                    <li>
+                        <strong>Justice for All</strong>
+                        Islam teaches equality regardless of race, color, or status. All humans are equal before Allah.
+                    </li>
+                    <li>
+                        <strong>Women's Rights</strong>
+                        Islam gave women rights to education, property, inheritance, and respect 1400 years ago.
+                    </li>
+                    <li>
+                        <strong>Environmental Care</strong>
+                        Islam commands us to protect nature, be kind to animals, and preserve the Earth.
+                    </li>
+                    <li>
+                        <strong>Peace & Mercy</strong>
+                        Islam means "peace" and teaches mercy, forgiveness, and kindness to all creation.
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tips-section">
+            <h3>💡 Tips for Effective Dawah</h3>
+
+            <div class="tip-item">
+                <h4>1. Lead by Example</h4>
+                <p>
+                    Your character and behavior are your strongest dawah. Be honest, kind, generous, and respectful. 
+                    People are attracted to good character before they're attracted to words.
+                </p>
+            </div>
+
+            <div class="tip-item">
+                <h4>2. Learn Before You Teach</h4>
+                <p>
+                    Make sure you have correct knowledge before sharing Islam with others. Study the Quran, Hadith, 
+                    and Islamic teachings from authentic sources. It's okay to say "I don't know" and promise to find out.
+                </p>
+            </div>
+
+            <div class="tip-item">
+                <h4>3. Be Patient and Kind</h4>
+                <p>
+                    Never force Islam on anyone. Allah says in the Quran: "There is no compulsion in religion." (2:256)
+                    Share with wisdom, kindness, and beautiful preaching, just as Allah commanded.
+                </p>
+            </div>
+
+            <div class="tip-item">
+                <h4>4. Listen More Than You Speak</h4>
+                <p>
+                    Understand the person's background, concerns, and questions. Listen actively and address their 
+                    specific doubts with patience and wisdom. Everyone's journey to truth is unique.
+                </p>
+            </div>
+
+            <div class="tip-item">
+                <h4>5. Use Modern Tools</h4>
+                <p>
+                    Share Islamic content on social media, recommend good books and videos, and use technology to 
+                    spread the message. But always ensure your sources are authentic and reliable.
+                </p>
+            </div>
+
+            <div class="tip-item">
+                <h4>6. Make Dua</h4>
+                <p>
+                    Always make dua (supplication) for guidance - both for yourself and for those you're speaking to. 
+                    Only Allah can guide hearts. Our job is just to convey the message with sincerity.
+                </p>
+            </div>
+
+            <div class="tip-item">
+                <h4>7. Focus on Core Beliefs First</h4>
+                <p>
+                    Start with the most important beliefs: belief in One God, His Prophets, and the Day of Judgment. 
+                    Don't overwhelm people with detailed rules. Let them understand the foundations first.
+                </p>
+            </div>
+
+            <div class="tip-item">
+                <h4>8. Never Argue or Insult</h4>
+                <p>
+                    Avoid heated arguments and never insult other faiths. Allah says: "Invite to the way of your Lord 
+                    with wisdom and good instruction, and argue with them in a way that is best." (16:125)
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
+        <p>May Allah guide us in sharing His message 🤲</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
