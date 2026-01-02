@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holy Quran - Islamic Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 25%, #4a7c59 50%, #6b9c7d 75%, #8bbca0 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 20s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            background: rgba(26, 77, 46, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .page-title {
+            text-align: center;
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .bismillah {
+            text-align: center;
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-family: 'Times New Roman', serif;
+        }
+
+        .search-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .search-section h3 {
+            color: #1a4d2e;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .search-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-controls select,
+        .search-controls input {
+            flex: 1;
+            min-width: 200px;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(26, 77, 46, 0.5);
+        }
+
+        .surah-list {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .surah-list h3 {
+            color: #1a4d2e;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .surah-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .surah-item {
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border-left: 4px solid #1a4d2e;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .surah-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background: #f0f7f0;
+        }
+
+        .surah-number {
+            color: #1a4d2e;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .surah-name-arabic {
+            font-size: 1.5rem;
+            color: #1a4d2e;
+            margin: 0.5rem 0;
+            text-align: right;
+        }
+
+        .surah-name-english {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .surah-info {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .surah-content {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .surah-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 3px solid #1a4d2e;
+        }
+
+        .surah-title {
+            color: #1a4d2e;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .ayah-item {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: #f9f9f9;
+            border-radius: 15px;
+            border-left: 5px solid #1a4d2e;
+        }
+
+        .ayah-number {
+            display: inline-block;
+            background: #1a4d2e;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .ayah-arabic {
+            font-size: 2rem;
+            line-height: 3;
+            text-align: right;
+            direction: rtl;
+            color: #1a4d2e;
+            margin: 1.5rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            font-family: 'Traditional Arabic', 'Times New Roman', serif;
+        }
+
+        .ayah-translation {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: #333;
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: #e8f5e9;
+            border-radius: 10px;
+        }
+
+        .loading {
+            text-align: center;
+            color: #666;
+            padding: 3rem;
+            font-style: italic;
+            font-size: 1.2rem;
+        }
+
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .back-btn {
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            background: rgba(26, 77, 46, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 968px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            .nav-links.active { display: flex; }
+            .search-controls { flex-direction: column; }
+            .surah-grid { grid-template-columns: 1fr; }
+            .ayah-arabic { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <header>
+        <nav>
+            <div class="nav-top">
+                <div class="logo">☪ Islamic Hub</div>
+                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">🏠 Home</a></li>
+                <li><a href="prayer-tools.html">🕌 Prayer</a></li>
+                <li><a href="quran.html">📕 Quran</a></li>
+                <li><a href="daily-hadith.html">📖 Hadith</a></li>
+                <li><a href="ayah-of-the-day.html">🌟 Ayah</a></li>
+                <li><a href="dua-of-the-day.html">🤲 Dua</a></li>
+                <li><a href="calendar.html">📅 Calendar</a></li>
+                <li><a href="zakat-calculator.html">💰 Zakat</a></li>
+                <li><a href="kids-stories.html">👶 Kids</a></li>
+                <li><a href="dawah.html">📢 Dawah</a></li>
+                <li><a href="community.html">💬 Community</a></li>
+                <li><a href="halal-games.html">🎮 Games</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">📕 The Holy Quran</h1>
+        <div class="bismillah">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+
+        <div class="search-section">
+            <h3>Read the Quran</h3>
+            <div class="search-controls">
+                <select id="surahSelect">
+                    <option value="">Select a Surah...</option>
+                </select>
+                <button class="btn" onclick="loadSelectedSurah()">Read Surah</button>
+            </div>
+        </div>
+
+        <div id="surahListSection" class="surah-list">
+            <h3>All Surahs (Chapters)</h3>
+            <div class="surah-grid" id="surahGrid">
+                <div class="loading">Loading Surahs...</div>
+            </div>
+        </div>
+
+        <div id="surahContentSection" class="hidden">
+            <button class="btn back-btn" onclick="showSurahList()">← Back to Surah List</button>
+            <div id="surahContent"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
+        <p>May Allah guide us through His words 🤲</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        let allSurahs = [];
+
+        window.onload = function() {
+            loadSurahList();
+        };
+
+        async function loadSurahList() {
+            try {
+                const response = await fetch('https://api.alquran.cloud/v1/surah');
+                const data = await response.json();
+                
+                if (data.code === 200) {
+                    allSurahs = data.data;
+                    displaySurahList(allSurahs);
+                    populateSurahSelect(allSurahs);
+                }
+            } catch (error) {
+                document.getElementById('surahGrid').innerHTML = 
+                    '<div class="error">Unable to load Surahs. Please refresh the page.</div>';
+            }
+        }
+
+        function displaySurahList(surahs) {
+            const grid = document.getElementById('surahGrid');
+            
+            grid.innerHTML = surahs.map(surah => `
+                <div class="surah-item" onclick="loadSurah(${surah.number})">
+                    <div class="surah-number">${surah.number}.</div>
+                    <div class="surah-name-arabic">${surah.name}</div>
+                    <div class="surah-name-english">${surah.englishName}</div>
+                    <div class="surah-info">
+                        ${surah.englishNameTranslation} • ${surah.numberOfAyahs} verses • ${surah.revelationType}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function populateSurahSelect(surahs) {
+            const select = document.getElementById('surahSelect');
+            
+            surahs.forEach(surah => {
+                const option = document.createElement('option');
+                option.value = surah.number;
+                option.textContent = `${surah.number}. ${surah.englishName} (${surah.name})`;
+                select.appendChild(option);
+            });
+        }
+
+        function loadSelectedSurah() {
+            const select = document.getElementById('surahSelect');
+            const surahNumber = select.value;
+            
+            if (surahNumber) {
+                loadSurah(parseInt(surahNumber));
+            }
+        }
+
+        async function loadSurah(surahNumber) {
+            const contentSection = document.getElementById('surahContentSection');
+            const listSection = document.getElementById('surahListSection');
+            const content = document.getElementById('surahContent');
+            
+            listSection.classList.add('hidden');
+            contentSection.classList.remove('hidden');
+            content.innerHTML = '<div class="loading">Loading Surah...</div>';
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            try {
+                const [arabicRes, translationRes] = await Promise.all([
+                    fetch(`https://api.alquran.cloud/v1/surah/${surahNumber}`),
+                    fetch(`https://api.alquran.cloud/v1/surah/${surahNumber}/en.sahih`)
+                ]);
+                
+                const arabicData = await arabicRes.json();
+                const translationData = await translationRes.json();
+                
+                if (arabicData.code === 200 && translationData.code === 200) {
+                    displaySurah(arabicData.data, translationData.data);
+                } else {
+                    throw new Error('Failed to load');
+                }
+            } catch (error) {
+                content.innerHTML = '<div class="error">Unable to load Surah. Please try again.</div>';
+            }
+        }
+
+        function displaySurah(arabic, translation) {
+            const content = document.getElementById('surahContent');
+            const surah = arabic;
+            
+            let ayahsHTML = '';
+            
+            for (let i = 0; i < surah.ayahs.length; i++) {
+                const arabicAyah = surah.ayahs[i];
+                const translatedAyah = translation.ayahs[i];
+                
+                // Skip Bismillah for all surahs except Al-Fatihah and At-Tawbah
+                if (i === 0 && surah.number !== 1 && surah.number !== 9) {
+                    continue;
+                }
+                
+                ayahsHTML += `
+                    <div class="ayah-item">
+                        <div class="ayah-number">Verse ${arabicAyah.numberInSurah}</div>
+                        <div class="ayah-arabic">${arabicAyah.text}</div>
+                        <div class="ayah-translation">${translatedAyah.text}</div>
+                    </div>
+                `;
+            }
+            
+            content.innerHTML = `
+                <div class="surah-content">
+                    <div class="surah-header">
+                        <div class="surah-title">
+                            ${surah.englishName} (${surah.name})
+                        </div>
+                        <div style="color: #666; font-size: 1.1rem;">
+                            ${surah.englishNameTranslation} • ${surah.numberOfAyahs} verses • ${surah.revelationType}
+                        </div>
+                    </div>
+                    ${ayahsHTML}
+                </div>
+            `;
+        }
+
+        function showSurahList() {
+            document.getElementById('surahContentSection').classList.add('hidden');
+            document.getElementById('surahListSection').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
