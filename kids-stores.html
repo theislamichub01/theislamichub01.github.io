@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids' Stories - Islamic Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 20s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            background: rgba(25, 84, 123, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .page-title {
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+            font-size: 3rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .story-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .story-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 12px 48px rgba(0,0,0,0.3);
+            border-color: #19547b;
+        }
+
+        .story-icon {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .story-title {
+            color: #19547b;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .story-preview {
+            color: #666;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .story-content {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .story-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .story-full-title {
+            color: #19547b;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .story-text {
+            font-size: 1.3rem;
+            line-height: 2.2;
+            color: #333;
+            margin: 2rem 0;
+        }
+
+        .story-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .moral-box {
+            background: linear-gradient(135deg, #ffd89b 0%, #ffc371 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            border: 3px solid #ff9f43;
+        }
+
+        .moral-box h3 {
+            color: #19547b;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .moral-box p {
+            color: #333;
+            font-size: 1.2rem;
+            line-height: 1.9;
+            text-align: center;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #19547b 0%, #0d2f4a 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            display: block;
+            margin: 2rem auto;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(25, 84, 123, 0.5);
+        }
+
+        footer {
+            background: rgba(25, 84, 123, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 968px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            .nav-links.active { display: flex; }
+            .page-title { font-size: 2rem; }
+            .stories-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <header>
+        <nav>
+            <div class="nav-top">
+                <div class="logo">☪ Islamic Hub</div>
+                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">🏠 Home</a></li>
+                <li><a href="prayer-tools.html">🕌 Prayer</a></li>
+                <li><a href="quran.html">📕 Quran</a></li>
+                <li><a href="daily-hadith.html">📖 Hadith</a></li>
+                <li><a href="ayah-of-the-day.html">🌟 Ayah</a></li>
+                <li><a href="dua-of-the-day.html">🤲 Dua</a></li>
+                <li><a href="calendar.html">📅 Calendar</a></li>
+                <li><a href="zakat-calculator.html">💰 Zakat</a></li>
+                <li><a href="kids-stories.html">👶 Kids</a></li>
+                <li><a href="dawah.html">📢 Dawah</a></li>
+                <li><a href="community.html">💬 Community</a></li>
+                <li><a href="halal-games.html">🎮 Games</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">👶 Islamic Stories for Kids</h1>
+
+        <div id="storiesGrid" class="stories-grid"></div>
+
+        <div id="storyContent" class="hidden"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
+        <p>Teaching the next generation about Islam 🤲</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        const stories = [
+            {
+                id: 1,
+                icon: "🐘",
+                title: "The Elephant and the Kaaba",
+                preview: "How Allah protected His sacred house from the army with elephants",
+                content: `
+                    <p>Long, long ago, there was a powerful king named Abraha who ruled Yemen. He built a huge, beautiful church and wanted everyone to visit it instead of the Kaaba in Makkah.</p>
+                    
+                    <p>But people still loved visiting the Kaaba, the sacred house built by Prophet Ibrahim (Abraham) peace be upon him. This made King Abraha very angry!</p>
+                    
+                    <p>King Abraha decided to destroy the Kaaba. He gathered a huge army with many elephants - the biggest and strongest animals anyone had ever seen. The biggest elephant was named Mahmud.</p>
+                    
+                    <p>When the people of Makkah saw this huge army coming, they were very scared. They had no army to fight back! But they trusted Allah and prayed for His help.</p>
+                    
+                    <p>As the army got closer to Makkah, something amazing happened! The elephant Mahmud suddenly sat down and refused to move toward the Kaaba, no matter how hard the soldiers tried!</p>
+                    
+                    <p>Then, Allah sent thousands of small birds carrying tiny stones. These birds flew over the army and dropped the stones. Even though the stones were small, they were very powerful!</p>
+                    
+                    <p>The army of elephants ran away in fear, and King Abraha and his soldiers were defeated. Allah protected His sacred house without any human army!</p>
+                    
+                    <p>This amazing story is told in Surah Al-Fil (The Elephant) in the Quran. It happened in the same year that Prophet Muhammad ﷺ was born.</p>
+                `,
+                moral: "Allah is the Most Powerful and He protects those who trust in Him. Even the smallest creatures can be used by Allah to defeat the strongest enemies. Always put your trust in Allah!"
+            },
+            {
+                id: 2,
+                icon: "🐪",
+                title: "Prophet Saleh and the She-Camel",
+                preview: "The miraculous camel that tested a whole nation",
+                content: `
+                    <p>Long ago, there was a tribe called Thamud who lived in beautiful homes carved into mountains. They were very rich and powerful, but they forgot to thank Allah.</p>
+                    
+                    <p>Allah sent Prophet Saleh to remind them to worship only Allah. But the people didn't want to listen. They said, "Show us a miracle, and then we'll believe you!"</p>
+                    
+                    <p>Prophet Saleh prayed to Allah, and Allah performed an amazing miracle. From a huge rock, a beautiful she-camel appeared! It was unlike any other camel - it was special and belonged to Allah.</p>
+                    
+                    <p>Prophet Saleh told the people, "This camel is a sign from Allah. She will drink from the well one day, and you can drink the next day. Do not harm her, or Allah will punish you!"</p>
+                    
+                    <p>For a while, the people followed this rule. But some evil people in the tribe became jealous of the camel. They didn't like sharing the water.</p>
+                    
+                    <p>One day, these evil people killed the she-camel, even though Prophet Saleh had warned them. Prophet Saleh was very sad and told them, "You have three more days to repent and ask Allah for forgiveness."</p>
+                    
+                    <p>But the people laughed and didn't believe anything would happen. After three days, a terrible earthquake struck, and the entire tribe was destroyed, except for Prophet Saleh and those who believed in Allah.</p>
+                    
+                    <p>Today, you can still see the ruins of their homes carved in the rocks in a place called Madain Saleh in Saudi Arabia.</p>
+                `,
+                moral: "Always obey Allah's commands and be kind to all of His creations. When Allah gives us a warning, we should listen and change our ways. Never harm innocent creatures, as Allah sees everything we do!"
+            },
+            {
+                id: 3,
+                icon: "🐟",
+                title: "Prophet Yunus and the Whale",
+                preview: "The prophet who was swallowed by a giant fish",
+                content: `
+                    <p>Prophet Yunus (Jonah) was sent by Allah to the people of Nineveh to teach them about Islam. He tried very hard, but the people didn't want to listen.</p>
+                    
+                    <p>Prophet Yunus became sad and frustrated. He decided to leave the city without waiting for Allah's permission. He got on a ship to sail away.</p>
+                    
+                    <p>While the ship was sailing, a terrible storm started! The waves were huge, and the ship was about to sink. The sailors thought the ship was too heavy, so they decided someone had to jump into the sea.</p>
+                    
+                    <p>They drew lots to see who would jump, and Prophet Yunus was chosen. He knew this was happening because he had left without Allah's permission. So he jumped into the dark, stormy sea.</p>
+                    
+                    <p>Suddenly, an enormous whale appeared and swallowed Prophet Yunus whole! But Allah protected him, and he was safe inside the whale's belly.</p>
+                    
+                    <p>Inside the dark belly of the whale, Prophet Yunus realized his mistake. He prayed to Allah with all his heart: "La ilaha illa anta, subhanaka, inni kuntu minaz-zhalimeen" (There is no god but You, glory be to You! I have been one of the wrongdoers!)</p>
+                    
+                    <p>Allah heard his sincere prayer and forgave him. The whale brought him to the shore and released him safely on the beach.</p>
+                    
+                    <p>Prophet Yunus went back to his people, and guess what? They had all started believing in Allah! The whole city became Muslim, and Allah was pleased with them.</p>
+                `,
+                moral: "Never give up on people, and always ask Allah for help and forgiveness when you make a mistake. Allah is Most Merciful and always listens to sincere prayers. This special dua of Prophet Yunus is one of the most powerful duas you can make when you're in trouble!"
+            },
+            {
+                id: 4,
+                icon: "🌙",
+                title: "The Boy Who Split the Moon",
+                preview: "When Prophet Muhammad showed a great miracle",
+                content: `
+                    <p>When Prophet Muhammad ﷺ was teaching people about Islam in Makkah, some people didn't believe he was a real prophet. They wanted to see a miracle!</p>
+                    
+                    <p>One night, the leaders of Makkah came to Prophet Muhammad ﷺ and said, "If you're really a prophet, show us a miracle! Split the moon in half!"</p>
+                    
+                    <p>Prophet Muhammad ﷺ raised his finger and pointed to the moon in the sky. Then, an amazing thing happened!</p>
+                    
+                    <p>Right before everyone's eyes, the moon split into two halves! One half appeared on one side of the mountain, and the other half on the other side. Everyone could see it clearly!</p>
+                    
+                    <p>The believers became even stronger in their faith. They knew this was a true miracle from Allah.</p>
+                    
+                    <p>But do you know what happened to some of the disbelievers? They said, "This is magic! Muhammad has tricked our eyes!" They didn't want to believe, even after seeing such an amazing miracle.</p>
+                    
+                    <p>Other disbelievers said, "Let's wait and ask travelers who come from other places. If they saw it too, then it's real!" And when travelers came, they all said they had seen the moon split!</p>
+                    
+                    <p>Still, some people refused to believe. This shows us that some people don't want to believe in the truth, no matter how many proofs they see.</p>
+                    
+                    <p>This miracle is mentioned in the Quran in Surah Al-Qamar (The Moon), which begins: "The Hour has drawn near, and the moon has been split."</p>
+                `,
+                moral: "True faith comes from the heart. When Allah shows us signs and miracles, we should believe and be grateful. Don't be stubborn like those who refuse to see the truth, even when it's right in front of them!"
+            },
+            {
+                id: 5,
+                icon: "🏜️",
+                title: "The Kind Boy and the Thirsty Dog",
+                preview: "How a simple act of kindness earned Paradise",
+                content: `
+                    <p>Once upon a time, there was a young boy walking through the hot desert. The sun was burning hot, and he was very, very thirsty.</p>
+                    
+                    <p>He searched and searched until he finally found a well. He was so happy! He climbed down into the well, drank some cool water, and felt much better.</p>
+                    
+                    <p>As he climbed back up, he saw a dog near the well. The poor dog was so thirsty that its tongue was hanging out, and it was licking the sand, desperately looking for water!</p>
+                    
+                    <p>The boy felt very sorry for the dog. He thought, "This dog is as thirsty as I was! I must help it!"</p>
+                    
+                    <p>But there was no bucket or rope to bring water up from the well. What could he do?</p>
+                    
+                    <p>The clever boy had an idea! He took off his leather sock, filled it with water from the well, held it carefully in his mouth, and climbed back up.</p>
+                    
+                    <p>He gave the water to the thirsty dog, who drank it all gratefully. The dog was so happy and thankful!</p>
+                    
+                    <p>Do you know what Allah did? Allah was so pleased with this boy's kindness to the dog that He forgave all his sins and promised him Paradise!</p>
+                    
+                    <p>Prophet Muhammad ﷺ told us this story to teach us that being kind to animals is very important in Islam. Every living creature deserves our kindness and mercy.</p>
+                `,
+                moral: "Be kind to all of Allah's creatures - people AND animals! Even small acts of kindness are seen by Allah, and He rewards them greatly. Never ignore someone (or some animal) who needs your help, because helping them might earn you Paradise!"
+            },
+            {
+                id: 6,
+                icon: "🌟",
+                title: "The Spider That Saved a Prophet",
+                preview: "How a tiny spider protected Prophet Muhammad",
+                content: `
+                    <p>When Prophet Muhammad ﷺ and his best friend Abu Bakr were leaving Makkah to go to Madinah, the bad people of Makkah wanted to catch them!</p>
+                    
+                    <p>The Prophet ﷺ and Abu Bakr hid in a cave called the Cave of Thawr. They stayed very quiet inside, hoping the enemies wouldn't find them.</p>
+                    
+                    <p>The enemies followed their footsteps all the way to the cave! Abu Bakr was very worried. He whispered, "O Messenger of Allah! If they look down, they will see us!"</p>
+                    
+                    <p>But Prophet Muhammad ﷺ smiled calmly and said, "Don't worry! Allah is with us."</p>
+                    
+                    <p>And then, Allah performed a beautiful miracle! A little spider quickly spun a web across the entrance of the cave. And a pigeon came and made a nest right there!</p>
+                    
+                    <p>When the enemies reached the cave and saw the complete spider web and the pigeon's nest, they said, "Look! No one could have entered this cave recently. The spider web is perfect and the bird is sitting peacefully. They must be somewhere else!"</p>
+                    
+                    <p>The enemies went away, and the Prophet ﷺ and Abu Bakr were safe! Allah used the tiniest creatures - a spider and a pigeon - to protect His beloved Prophet ﷺ.</p>
+                    
+                    <p>After three days, they safely continued their journey to Madinah, where the people welcomed them with great joy!</p>
+                `,
+                moral: "Allah can use the smallest, weakest creatures to protect those who believe in Him. Never underestimate Allah's power, and always trust that He will protect you. Just like Prophet Muhammad ﷺ said, 'Allah is with us!'"
+            }
+        ];
+
+        window.onload = function() {
+            displayStories();
+        };
+
+        function displayStories() {
+            const grid = document.getElementById('storiesGrid');
+            
+            grid.innerHTML = stories.map(story => `
+                <div class="story-card" onclick="showStory(${story.id})">
+                    <div class="story-icon">${story.icon}</div>
+                    <div class="story-title">${story.title}</div>
+                    <div class="story-preview">${story.preview}</div>
+                </div>
+            `).join('');
+        }
+
+        function showStory(storyId) {
+            const story = stories.find(s => s.id === storyId);
+            const grid = document.getElementById('storiesGrid');
+            const contentDiv = document.getElementById('storyContent');
+            
+            grid.classList.add('hidden');
+            contentDiv.classList.remove('hidden');
+            
+            contentDiv.innerHTML = `
+                <div class="story-content">
+                    <div class="story-header">
+                        <div class="story-icon">${story.icon}</div>
+                        <div class="story-full-title">${story.title}</div>
+                    </div>
+                    
+                    <div class="story-text">
+                        ${story.content}
+                    </div>
+                    
+                    <div class="moral-box">
+                        <h3>📚 What We Learn:</h3>
+                        <p>${story.moral}</p>
+                    </div>
+                    
+                    <button class="btn" onclick="backToStories()">← Back to All Stories</button>
+                </div>
+            `;
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function backToStories() {
+            document.getElementById('storiesGrid').classList.remove('hidden');
+            document.getElementById('storyContent').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>v
