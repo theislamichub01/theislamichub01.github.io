@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Hadith - Islamic Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 25%, #4a7c59 50%, #6b9c7d 75%, #8bbca0 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 20s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            background: rgba(26, 77, 46, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .page-title {
+            text-align: center;
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* CRITICAL DISCLAIMER */
+        .disclaimer {
+            background: rgba(255, 243, 205, 0.98);
+            backdrop-filter: blur(10px);
+            border: 4px solid #856404;
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .disclaimer-title {
+            color: #856404;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .disclaimer-content {
+            color: #856404;
+            font-size: 1.1rem;
+            line-height: 2;
+        }
+
+        .disclaimer ul {
+            margin: 1.5rem 0;
+            padding-left: 2.5rem;
+        }
+
+        .disclaimer li {
+            margin: 1rem 0;
+        }
+
+        .disclaimer-highlight {
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: block;
+            margin-top: 1.5rem;
+            text-align: center;
+            padding: 1rem;
+            background: rgba(133, 100, 4, 0.1);
+            border-radius: 10px;
+        }
+
+        .external-links {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .external-links h3 {
+            color: #1a4d2e;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .external-link {
+            display: block;
+            padding: 1rem;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 100%);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 10px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .external-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(26, 77, 46, 0.5);
+        }
+
+        .hadith-card {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .hadith-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 3px solid #1a4d2e;
+        }
+
+        .hadith-number {
+            color: #1a4d2e;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .authenticity-badge {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            margin-top: 0.8rem;
+            font-weight: 600;
+        }
+
+        .hadith-arabic {
+            font-size: 2rem;
+            line-height: 2.8;
+            text-align: right;
+            direction: rtl;
+            color: #1a4d2e;
+            margin: 2rem 0;
+            padding: 2.5rem;
+            background: #f9f9f9;
+            border-radius: 15px;
+            border-right: 5px solid #1a4d2e;
+        }
+
+        .hadith-english {
+            font-size: 1.3rem;
+            line-height: 2;
+            color: #333;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: #f0f7f0;
+            border-radius: 15px;
+            border-left: 5px solid #1a4d2e;
+        }
+
+        .hadith-reference {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #ddd;
+        }
+
+        .reference-title {
+            color: #1a4d2e;
+            font-weight: bold;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .hadith-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(26, 77, 46, 0.5);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #666 0%, #444 100%);
+        }
+
+        .loading {
+            text-align: center;
+            color: #666;
+            padding: 3rem;
+            font-style: italic;
+            font-size: 1.2rem;
+        }
+
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .info-section {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .info-section h3 {
+            color: #1a4d2e;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .info-section p {
+            color: #666;
+            line-height: 1.9;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: rgba(26, 77, 46, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 968px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            .nav-links.active { display: flex; }
+            .page-title { font-size: 2rem; }
+            .hadith-card { padding: 1.5rem; }
+            .hadith-arabic { font-size: 1.5rem; }
+            .hadith-english { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <header>
+        <nav>
+            <div class="nav-top">
+                <div class="logo">☪ Islamic Hub</div>
+                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">🏠 Home</a></li>
+                <li><a href="prayer-tools.html">🕌 Prayer</a></li>
+                <li><a href="quran.html">📕 Quran</a></li>
+                <li><a href="daily-hadith.html">📖 Hadith</a></li>
+                <li><a href="ayah-of-the-day.html">🌟 Ayah</a></li>
+                <li><a href="dua-of-the-day.html">🤲 Dua</a></li>
+                <li><a href="calendar.html">📅 Calendar</a></li>
+                <li><a href="zakat-calculator.html">💰 Zakat</a></li>
+                <li><a href="kids-stories.html">👶 Kids</a></li>
+                <li><a href="dawah.html">📢 Dawah</a></li>
+                <li><a href="community.html">💬 Community</a></li>
+                <li><a href="halal-games.html">🎮 Games</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">📖 Daily Hadith</h1>
+        <p class="page-subtitle">Authentic sayings of Prophet Muhammad ﷺ</p>
+
+        <!-- CRITICAL DISCLAIMER -->
+        <div class="disclaimer">
+            <div class="disclaimer-title">⚠️ IMPORTANT DISCLAIMER - READ CAREFULLY ⚠️</div>
+            <div class="disclaimer-content">
+                <p><strong>PLEASE READ THIS BEFORE VIEWING ANY HADITH:</strong></p>
+                <ul>
+                    <li><strong>SOURCE AUTHENTICATION:</strong> This website displays Hadiths EXCLUSIVELY from <strong>Sahih al-Bukhari</strong> and <strong>Sahih Muslim</strong> - the two most authentic Hadith collections in Islam, unanimously accepted by all Islamic scholars.</li>
+                    
+                    <li><strong>TRANSLATION DISCLAIMER:</strong> While these collections are authentic, translations may vary in accuracy and nuance. The original Arabic is the only authoritative source.</li>
+                    
+                    <li><strong>CONTEXT IS CRITICAL:</strong> Hadiths must be understood within their proper context, including the circumstances of revelation, related Hadiths, and scholarly commentary (sharh).</li>
+                    
+                    <li><strong>NOT A SUBSTITUTE FOR SCHOLARS:</strong> This website is for educational purposes only. Always verify religious rulings and guidance with qualified Islamic scholars or your local Imam.</li>
+                    
+                    <li><strong>RESPONSIBILITY:</strong> You are responsible for verifying all religious information before acting upon it. Do not make life decisions based solely on this website.</li>
+                </ul>
+                <span class="disclaimer-highlight">
+                    📚 FOR VERIFIED AUTHENTIC HADITHS WITH SCHOLARLY COMMENTARY:<br>
+                    PLEASE VISIT SUNNAH.COM - THE GOLD STANDARD FOR HADITH RESEARCH
+                </span>
+            </div>
+        </div>
+
+        <!-- EXTERNAL TRUSTED SOURCES -->
+        <div class="external-links">
+            <h3>🔗 TRUSTED HADITH SOURCES (STRONGLY RECOMMENDED)</h3>
+            <p style="text-align: center; color: #666; margin-bottom: 1rem; font-size: 1.1rem;">
+                For verified, authentic Hadiths with full scholarly commentary and chain of narration:
+            </p>
+            <div class="link-grid">
+                <a href="https://sunnah.com" target="_blank" class="external-link">
+                    📚 Sunnah.com (Best Resource)
+                </a>
+                <a href="https://www.islamweb.net/en/" target="_blank" class="external-link">
+                    🌐 IslamWeb
+                </a>
+                <a href="https://islamqa.info/en" target="_blank" class="external-link">
+                    ❓ Islam Q&A
+                </a>
+                <a href="https://aboutislam.net/" target="_blank" class="external-link">
+                    📖 About Islam
+                </a>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3>About These Hadiths</h3>
+            <p>
+                <strong>Sahih al-Bukhari:</strong> Compiled by Imam Muhammad al-Bukhari (810-870 CE). 
+                Contains approximately 7,563 Hadiths (with repetitions), selected from over 600,000 Hadiths 
+                through the most rigorous authentication process in Islamic history.
+            </p>
+            <p>
+                <strong>Sahih Muslim:</strong> Compiled by Imam Muslim ibn al-Hajjaj (821-875 CE). 
+                Contains approximately 12,000 Hadiths (with repetitions), selected from 300,000 Hadiths 
+                using extremely strict criteria for authentication.
+            </p>
+            <p>
+                <strong>Why These Two Only?</strong> These are the only two Hadith collections that ALL Islamic scholars 
+                across ALL schools of thought accept as 100% authentic (Sahih). While other collections exist, 
+                they may contain weak (Da'if) Hadiths, so we limit ourselves to these two for maximum authenticity.
+            </p>
+        </div>
+
+        <div id="hadithContainer">
+            <div class="loading">Loading today's Hadith...</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
+        <p>May Allah guide us all 🤲</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        const hadithCollections = ['bukhari', 'muslim'];
+        
+        window.onload = function() {
+            loadDailyHadith();
+        };
+
+        function getDailyHadithNumber() {
+            const today = new Date();
+            const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+            return dayOfYear % 300 + 1;
+        }
+
+        async function loadDailyHadith() {
+            const container = document.getElementById('hadithContainer');
+            container.innerHTML = '<div class="loading">Loading today\'s Hadith...</div>';
+            
+            try {
+                const hadithNumber = getDailyHadithNumber();
+                const collectionIndex = new Date().getDate() % 2;
+                const collection = hadithCollections[collectionIndex];
+                
+                const response = await fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions/eng-${collection}/${hadithNumber}.json`);
+                
+                if (!response.ok) throw new Error('Failed to load hadith');
+                
+                const data = await response.json();
+                const hadith = data.hadiths[0];
+                
+                let arabicText = '';
+                try {
+                    const arabicResponse = await fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions/ara-${collection}/${hadithNumber}.json`);
+                    if (arabicResponse.ok) {
+                        const arabicData = await arabicResponse.json();
+                        arabicText = arabicData.hadiths[0].text;
+                    }
+                } catch (e) {}
+                
+                displayHadith(hadith, arabicText, collection);
+                
+            } catch (error) {
+                container.innerHTML = `
+                    <div class="error">
+                        <p><strong>Unable to load today's Hadith.</strong></p>
+                        <p>Please visit Sunnah.com for authentic Hadiths</p>
+                        <a href="https://sunnah.com" target="_blank" class="btn" style="margin-top: 1rem; display: inline-block; text-decoration: none;">
+                            Visit Sunnah.com
+                        </a>
+                    </div>
+                `;
+            }
+        }
+
+        async function loadRandomHadith() {
+            const container = document.getElementById('hadithContainer');
+            container.innerHTML = '<div class="loading">Loading Hadith...</div>';
+            
+            try {
+                const randomCollection = hadithCollections[Math.floor(Math.random() * 2)];
+                const randomNumber = Math.floor(Math.random() * 300) + 1;
+                
+                const response = await fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions/eng-${randomCollection}/${randomNumber}.json`);
+                
+                if (!response.ok) throw new Error('Failed');
+                
+                const data = await response.json();
+                const hadith = data.hadiths[0];
+                
+                let arabicText = '';
+                try {
+                    const arabicResponse = await fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions/ara-${randomCollection}/${randomNumber}.json`);
+                    if (arabicResponse.ok) {
+                        const arabicData = await arabicResponse.json();
+                        arabicText = arabicData.hadiths[0].text;
+                    }
+                } catch (e) {}
+                
+                displayHadith(hadith, arabicText, randomCollection);
+                
+            } catch (error) {
+                container.innerHTML = '<div class="error">Unable to load Hadith. Please visit Sunnah.com</div>';
+            }
+        }
+
+        function displayHadith(hadith, arabicText, collection) {
+            const container = document.getElementById('hadithContainer');
+            
+            const collectionNames = {
+                'bukhari': 'Sahih al-Bukhari',
+                'muslim': 'Sahih Muslim'
+            };
+            
+            const arabicSection = arabicText ? `<div class="hadith-arabic">${arabicText}</div>` : '';
+            
+            container.innerHTML = `
+                <div class="hadith-card">
+                    <div class="hadith-header">
+                        <div class="hadith-number">📖 Hadith of the Day</div>
+                        <div class="authenticity-badge">✓ AUTHENTIC (SAHIH)</div>
+                    </div>
+                    
+                    ${arabicSection}
+                    
+                    <div class="hadith-english">${hadith.text}</div>
+                    
+                    <div class="hadith-reference">
+                        <div class="reference-title">📚 Reference:</div>
+                        <div style="font-size: 1.1rem; color: #666; margin: 0.5rem 0;">
+                            ${collectionNames[collection]} - Hadith ${hadith.hadithnumber || 'N/A'}
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <a href="https://sunnah.com/${collection}" target="_blank" 
+                               style="color: #1a4d2e; font-weight: 600; text-decoration: underline;">
+                                🔗 Verify on Sunnah.com →
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="hadith-actions">
+                        <button class="btn" onclick="loadRandomHadith()">
+                            🔄 Get Another Hadith
+                        </button>
+                        <button class="btn btn-secondary" onclick="shareHadith()">
+                            📤 Share Hadith
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function shareHadith() {
+            const hadithText = document.querySelector('.hadith-english')?.textContent || '';
+            const hadithRef = document.querySelector('.reference-title')?.nextElementSibling?.textContent || '';
+            const shareText = `📖 Daily Hadith from Islamic Hub:\n\n${hadithText}\n\n${hadithRef}\n\n✅ Verify at: https://sunnah.com\n🌐 Visit: https://theislamichub04.github.io`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Daily Hadith - Islamic Hub',
+                    text: shareText
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('✅ Hadith copied to clipboard! You can now paste and share it.');
+                }).catch(() => {
+                    alert('Unable to copy. Please select and copy the text manually.');
+                });
+            }
+        }
+    </script>
+</body>
+</html>
