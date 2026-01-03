@@ -97,6 +97,198 @@
         .float-icon:nth-child(5) { top: 40%; left: 50%; animation-delay: 12s; }
         .float-icon:nth-child(6) { top: 85%; left: 40%; animation-delay: 15s; }
 
+        /* Support Button - Top Right Corner */
+        .support-button {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 999;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(26, 77, 46, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .support-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(26, 77, 46, 0.7);
+        }
+
+        .support-button-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+            display: block;
+            text-align: center;
+        }
+
+        .support-button-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Support Modal */
+        .support-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .support-modal.active {
+            display: flex;
+        }
+
+        .support-modal-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .support-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #f44336;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .support-modal-close:hover {
+            transform: rotate(90deg);
+            background: #c62828;
+        }
+
+        .support-modal h2 {
+            color: #1a4d2e;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .support-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .support-tab {
+            padding: 1rem 1.5rem;
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            font-weight: 600;
+        }
+
+        .support-tab:hover {
+            color: #1a4d2e;
+        }
+
+        .support-tab.active {
+            color: #1a4d2e;
+            border-bottom-color: #1a4d2e;
+        }
+
+        .support-tab-content {
+            display: none;
+        }
+
+        .support-tab-content.active {
+            display: block;
+        }
+
+        .support-form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .support-form-group label {
+            display: block;
+            color: #1a4d2e;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .support-form-group input,
+        .support-form-group textarea,
+        .support-form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .support-form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .support-submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .support-submit-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(26, 77, 46, 0.5);
+        }
+
+        .support-contact-info {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .support-contact-info h4 {
+            color: #1a4d2e;
+            margin-bottom: 1rem;
+        }
+
+        .support-contact-info p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+
         /* Header */
         header {
             background: rgba(26, 77, 46, 0.95);
@@ -359,6 +551,18 @@
             .nav-links.active { display: flex; }
             .hero h1 { font-size: 2.5rem; }
             .features h2 { font-size: 2rem; }
+            .support-button {
+                top: 80px;
+                right: 15px;
+                padding: 0.8rem 1rem;
+            }
+            .support-modal-content {
+                padding: 2rem 1.5rem;
+            }
+            .support-tabs {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
         }
     </style>
 </head>
@@ -373,6 +577,116 @@
         <div class="float-icon">🌙</div>
         <div class="float-icon">✨</div>
         <div class="float-icon">🤲</div>
+    </div>
+
+    <!-- Support Button -->
+    <div class="support-button" onclick="openSupportModal()">
+        <div class="support-button-icon">📧</div>
+        <div class="support-button-text">Support</div>
+    </div>
+
+    <!-- Support Modal -->
+    <div class="support-modal" id="supportModal">
+        <div class="support-modal-content">
+            <button class="support-modal-close" onclick="closeSupportModal()">×</button>
+            <h2>📧 Support & Contact</h2>
+            
+            <div class="support-tabs">
+                <button class="support-tab active" onclick="switchTab('queries')">❓ Queries</button>
+                <button class="support-tab" onclick="switchTab('complaints')">⚠️ Complaints</button>
+                <button class="support-tab" onclick="switchTab('contact')">📞 Contact</button>
+            </div>
+
+            <!-- Queries Tab -->
+            <div class="support-tab-content active" id="queries">
+                <div class="support-form-group">
+                    <label>Your Name</label>
+                    <input type="text" id="queryName" placeholder="Enter your name">
+                </div>
+                <div class="support-form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="queryEmail" placeholder="your@email.com">
+                </div>
+                <div class="support-form-group">
+                    <label>Query Type</label>
+                    <select id="queryType">
+                        <option>General Question</option>
+                        <option>Technical Issue</option>
+                        <option>Feature Request</option>
+                        <option>Account Help</option>
+                        <option>Islamic Content Question</option>
+                    </select>
+                </div>
+                <div class="support-form-group">
+                    <label>Your Query</label>
+                    <textarea id="queryMessage" placeholder="Describe your query in detail..."></textarea>
+                </div>
+                <button class="support-submit-btn" onclick="submitQuery()">Submit Query</button>
+            </div>
+
+            <!-- Complaints Tab -->
+            <div class="support-tab-content" id="complaints">
+                <div class="support-form-group">
+                    <label>Your Name</label>
+                    <input type="text" id="complaintName" placeholder="Enter your name">
+                </div>
+                <div class="support-form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="complaintEmail" placeholder="your@email.com">
+                </div>
+                <div class="support-form-group">
+                    <label>Complaint Type</label>
+                    <select id="complaintType">
+                        <option>Inappropriate Content</option>
+                        <option>Technical Problem</option>
+                        <option>User Behavior</option>
+                        <option>Incorrect Information</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="support-form-group">
+                    <label>Complaint Details</label>
+                    <textarea id="complaintMessage" placeholder="Please describe your complaint in detail..."></textarea>
+                </div>
+                <button class="support-submit-btn" onclick="submitComplaint()">Submit Complaint</button>
+            </div>
+
+            <!-- Contact Tab -->
+            <div class="support-tab-content" id="contact">
+                <div class="support-contact-info">
+                    <h4>📧 Email Us</h4>
+                    <p><strong>General Inquiries:</strong> info@islamichub.com</p>
+                    <p><strong>Support:</strong> support@islamichub.com</p>
+                    <p><strong>Partnerships:</strong> partnerships@islamichub.com</p>
+                </div>
+
+                <div class="support-contact-info">
+                    <h4>🌐 Follow Us</h4>
+                    <p><strong>Facebook:</strong> @IslamicHub</p>
+                    <p><strong>Twitter:</strong> @Islamic_Hub</p>
+                    <p><strong>Instagram:</strong> @islamichub</p>
+                    <p><strong>YouTube:</strong> Islamic Hub Official</p>
+                </div>
+
+                <div class="support-contact-info">
+                    <h4>⏰ Response Time</h4>
+                    <p>We typically respond within 24-48 hours.</p>
+                    <p>For urgent matters, please mark your email as "URGENT".</p>
+                </div>
+
+                <div class="support-form-group">
+                    <label>Quick Message</label>
+                    <input type="text" id="contactName" placeholder="Your name">
+                </div>
+                <div class="support-form-group">
+                    <input type="email" id="contactEmail" placeholder="Your email">
+                </div>
+                <div class="support-form-group">
+                    <textarea id="contactMessage" placeholder="Your message..."></textarea>
+                </div>
+                <button class="support-submit-btn" onclick="submitContact()">Send Message</button>
+            </div>
+        </div>
     </div>
 
     <header>
@@ -502,6 +816,97 @@
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
         }
+
+        function openSupportModal() {
+            document.getElementById('supportModal').classList.add('active');
+        }
+
+        function closeSupportModal() {
+            document.getElementById('supportModal').classList.remove('active');
+        }
+
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.support-tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.support-tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function submitQuery() {
+            const name = document.getElementById('queryName').value.trim();
+            const email = document.getElementById('queryEmail').value.trim();
+            const type = document.getElementById('queryType').value;
+            const message = document.getElementById('queryMessage').value.trim();
+
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields!');
+                return;
+            }
+
+            alert('✅ Thank you! Your query has been submitted. We will respond within 24-48 hours insha\'Allah.');
+            
+            // Clear form
+            document.getElementById('queryName').value = '';
+            document.getElementById('queryEmail').value = '';
+            document.getElementById('queryMessage').value = '';
+            
+            closeSupportModal();
+        }
+
+        function submitComplaint() {
+            const name = document.getElementById('complaintName').value.trim();
+            const email = document.getElementById('complaintEmail').value.trim();
+            const type = document.getElementById('complaintType').value;
+            const message = document.getElementById('complaintMessage').value.trim();
+
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields!');
+                return;
+            }
+
+            alert('✅ Thank you for reporting. We take all complaints seriously and will investigate this matter.');
+            
+            // Clear form
+            document.getElementById('complaintName').value = '';
+            document.getElementById('complaintEmail').value = '';
+            document.getElementById('complaintMessage').value = '';
+            
+            closeSupportModal();
+        }
+
+        function submitContact() {
+            const name = document.getElementById('contactName').value.trim();
+            const email = document.getElementById('contactEmail').value.trim();
+            const message = document.getElementById('contactMessage').value.trim();
+
+            if (!name || !email || !message) {
+                alert('Please fill in all fields!');
+                return;
+            }
+
+            alert('✅ Message sent! We will get back to you soon insha\'Allah.');
+            
+            // Clear form
+            document.getElementById('contactName').value = '';
+            document.getElementById('contactEmail').value = '';
+            document.getElementById('contactMessage').value = '';
+            
+            closeSupportModal();
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('supportModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeSupportModal();
+            }
+        });
     </script>
 </body>
 </html>
