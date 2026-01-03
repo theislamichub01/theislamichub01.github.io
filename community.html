@@ -392,6 +392,36 @@
             font-family: inherit;
         }
 
+        .reminder-card {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            border: 4px solid #1a4d2e;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        .reminder-card h3 {
+            color: #1a4d2e;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .reminder-text {
+            color: #333;
+            font-size: 1.5rem;
+            line-height: 2.2;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .reminder-source {
+            color: #666;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
         .hidden {
             display: none;
         }
@@ -498,6 +528,20 @@
                     <div class="feature-icon">🤲</div>
                     <h3>Dua Requests</h3>
                     <p>Share and pray for each other</p>
+                    <button class="btn">Enter →</button>
+                </div>
+
+                <div class="feature-card" onclick="showSection('dailyReminders')">
+                    <div class="feature-icon">💡</div>
+                    <h3>Daily Reminders</h3>
+                    <p>Islamic reminders and quotes</p>
+                    <button class="btn">Enter →</button>
+                </div>
+
+                <div class="feature-card" onclick="showSection('courses')">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Islamic Courses</h3>
+                    <p>Free online Islamic courses</p>
                     <button class="btn">Enter →</button>
                 </div>
             </div>
@@ -615,6 +659,128 @@
 
             <div class="posts-list" id="duaRequestsList"></div>
         </div>
+
+        <!-- Daily Reminders Section -->
+        <div id="dailyReminders" class="section-content hidden">
+            <button class="btn btn-back" onclick="backToMenu()">← Back to Menu</button>
+            <h2>💡 Daily Islamic Reminders</h2>
+            
+            <div id="reminderContent"></div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="btn" onclick="loadRandomReminder()">🔄 Get Another Reminder</button>
+            </div>
+        </div>
+
+        <!-- Islamic Courses Section -->
+        <div id="courses" class="section-content hidden">
+            <button class="btn btn-back" onclick="backToMenu()">← Back to Menu</button>
+            <h2>🎓 Free Islamic Courses</h2>
+            
+            <div class="posts-list">
+                <div class="post-item" style="border-left: 5px solid #4CAF50;">
+                    <div class="post-header">
+                        <div class="post-title" style="color: #2e7d32;">📖 Quran Reading with Tajweed</div>
+                        <div class="post-category" style="background: #4CAF50;">Beginner</div>
+                    </div>
+                    <div class="post-content">
+                        Learn to read the Quran correctly with proper pronunciation and tajweed rules. Perfect for beginners who want to improve their recitation.
+                        <br><br>
+                        <strong>⏱️ Duration:</strong> 8 weeks<br>
+                        <strong>📚 Lessons:</strong> 24 video lessons<br>
+                        <strong>👥 Learning:</strong> Self-paced
+                    </div>
+                    <div class="post-actions">
+                        <button class="btn" onclick="alert('🎓 Course starting soon insha\'Allah! This is a demo.')">Start Course →</button>
+                    </div>
+                </div>
+
+                <div class="post-item" style="border-left: 5px solid #2196F3;">
+                    <div class="post-header">
+                        <div class="post-title" style="color: #1565c0;">🕌 Fiqh of Salah</div>
+                        <div class="post-category" style="background: #2196F3;">Beginner</div>
+                    </div>
+                    <div class="post-content">
+                        Master the rulings and conditions of prayer. Learn about wudu, prayer times, different positions, and common mistakes to avoid.
+                        <br><br>
+                        <strong>⏱️ Duration:</strong> 6 weeks<br>
+                        <strong>📚 Lessons:</strong> 18 video lessons<br>
+                        <strong>👥 Learning:</strong> Self-paced
+                    </div>
+                    <div class="post-actions">
+                        <button class="btn" onclick="alert('🎓 Course starting soon insha\'Allah! This is a demo.')">Start Course →</button>
+                    </div>
+                </div>
+
+                <div class="post-item" style="border-left: 5px solid #FF9800;">
+                    <div class="post-header">
+                        <div class="post-title" style="color: #e65100;">🌙 Understanding Ramadan</div>
+                        <div class="post-category" style="background: #FF9800;">All Levels</div>
+                    </div>
+                    <div class="post-content">
+                        Comprehensive guide to Ramadan - fasting rules, spiritual practices, night prayers, and maximizing the blessings of this holy month.
+                        <br><br>
+                        <strong>⏱️ Duration:</strong> 4 weeks<br>
+                        <strong>📚 Lessons:</strong> 12 video lessons<br>
+                        <strong>👥 Learning:</strong> Self-paced
+                    </div>
+                    <div class="post-actions">
+                        <button class="btn" onclick="alert('🎓 Course starting soon insha\'Allah! This is a demo.')">Start Course →</button>
+                    </div>
+                </div>
+
+                <div class="post-item" style="border-left: 5px solid #9C27B0;">
+                    <div class="post-header">
+                        <div class="post-title" style="color: #6a1b9a;">📚 Arabic for Beginners</div>
+                        <div class="post-category" style="background: #9C27B0;">Beginner</div>
+                    </div>
+                    <div class="post-content">
+                        Start your Arabic journey from scratch. Learn the alphabet, basic vocabulary, and simple sentences to help you understand Islamic texts.
+                        <br><br>
+                        <strong>⏱️ Duration:</strong> 12 weeks<br>
+                        <strong>📚 Lessons:</strong> 36 video lessons<br>
+                        <strong>👥 Learning:</strong> Self-paced
+                    </div>
+                    <div class="post-actions">
+                        <button class="btn" onclick="alert('🎓 Course starting soon insha\'Allah! This is a demo.')">Start Course →</button>
+                    </div>
+                </div>
+
+                <div class="post-item" style="border-left: 5px solid #F44336;">
+                    <div class="post-header">
+                        <div class="post-title" style="color: #c62828;">⭐ The Life of Prophet Muhammad ﷺ</div>
+                        <div class="post-category" style="background: #F44336;">All Levels</div>
+                    </div>
+                    <div class="post-content">
+                        Complete Seerah course covering the entire life of Prophet Muhammad ﷺ from birth to his final days. Learn lessons from his blessed life.
+                        <br><br>
+                        <strong>⏱️ Duration:</strong> 16 weeks<br>
+                        <strong>📚 Lessons:</strong> 48 video lessons<br>
+                        <strong>👥 Learning:</strong> Self-paced
+                    </div>
+                    <div class="post-actions">
+                        <button class="btn" onclick="alert('🎓 Course starting soon insha\'Allah! This is a demo.')">Start Course →</button>
+                    </div>
+                </div>
+
+                <div class="post-item" style="border-left: 5px solid #00BCD4;">
+                    <div class="post-header">
+                        <div class="post-title" style="color: #00838f;">💍 Islamic Marriage & Family</div>
+                        <div class="post-category" style="background: #00BCD4;">Intermediate</div>
+                    </div>
+                    <div class="post-content">
+                        Learn about marriage in Islam - rights and responsibilities, building a strong Muslim home, raising children, and maintaining family bonds.
+                        <br><br>
+                        <strong>⏱️ Duration:</strong> 8 weeks<br>
+                        <strong>📚 Lessons:</strong> 24 video lessons<br>
+                        <strong>👥 Learning:</strong> Self-paced
+                    </div>
+                    <div class="post-actions">
+                        <button class="btn" onclick="alert('🎓 Course starting soon insha\'Allah! This is a demo.')">Start Course →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <footer>
@@ -633,6 +799,49 @@
         let studyCircles = JSON.parse(localStorage.getItem('studyCircles')) || [];
         let duaRequests = JSON.parse(localStorage.getItem('duaRequests')) || [];
 
+        const reminders = [
+            {
+                text: "The Prophet ﷺ said: 'The most beloved deed to Allah is the most regular and constant even if it were little.'",
+                source: "Sahih Bukhari"
+            },
+            {
+                text: "Remember Allah in times of ease, and He will remember you in times of hardship.",
+                source: "Islamic Wisdom"
+            },
+            {
+                text: "The best form of worship is dua. Never underestimate the power of your conversations with Allah.",
+                source: "At-Tirmidhi"
+            },
+            {
+                text: "Whoever reads a letter from the Book of Allah will receive a hasanah (good deed), and the hasanah is multiplied by ten.",
+                source: "At-Tirmidhi"
+            },
+            {
+                text: "Be in this world as if you were a stranger or a traveler passing through.",
+                source: "Sahih Bukhari"
+            },
+            {
+                text: "The strong person is not the one who can wrestle someone else down. The strong person is the one who can control himself when he is angry.",
+                source: "Sahih Bukhari"
+            },
+            {
+                text: "Whoever believes in Allah and the Last Day should speak good or keep silent.",
+                source: "Sahih Bukhari"
+            },
+            {
+                text: "A good word is charity.",
+                source: "Sahih Bukhari & Muslim"
+            },
+            {
+                text: "The believers are but brothers, so make peace between your brothers.",
+                source: "Quran 49:10"
+            },
+            {
+                text: "Indeed, with hardship comes ease.",
+                source: "Quran 94:6"
+            }
+        ];
+
         function showSection(sectionId) {
             document.getElementById('mainMenu').classList.add('hidden');
             document.getElementById(sectionId).classList.remove('hidden');
@@ -641,6 +850,7 @@
             if (sectionId === 'qaForum') loadQAPosts();
             if (sectionId === 'studyCircles') loadStudyCircles();
             if (sectionId === 'duaRequests') loadDuaRequests();
+            if (sectionId === 'dailyReminders') loadDailyReminder();
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -686,6 +896,10 @@
 
         function loadConnectPosts() {
             const container = document.getElementById('connectPosts');
+            if (connectPosts.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #999; padding: 2rem;">No posts yet. Be the first to introduce yourself!</p>';
+                return;
+            }
             container.innerHTML = connectPosts.map(post => `
                 <div class="post-item">
                     <div class="post-header">
@@ -697,7 +911,7 @@
                     </div>
                     <div class="post-content">${post.message}</div>
                     <div class="post-actions">
-                        <button class="post-action-btn" onclick="toggleReply(${post.id}, 'connect')">💬 Reply</button>
+                        <button class="post-action-btn" onclick="toggleReply(${post.id}, 'connect')">💬 Reply (${post.replies.length})</button>
                     </div>
                     <div class="reply-form" id="replyForm-connect-${post.id}">
                         <textarea placeholder="Write your reply..." id="replyText-connect-${post.id}"></textarea>
@@ -747,6 +961,10 @@
 
         function loadQAPosts() {
             const container = document.getElementById('qaPosts');
+            if (qaPosts.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #999; padding: 2rem;">No questions yet. Be the first to ask!</p>';
+                return;
+            }
             container.innerHTML = qaPosts.map(post => `
                 <div class="post-item">
                     <div class="post-header">
@@ -815,6 +1033,10 @@
 
         function loadStudyCircles() {
             const container = document.getElementById('studyCirclesList');
+            if (studyCircles.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #999; padding: 2rem;">No study circles yet. Create the first one!</p>';
+                return;
+            }
             container.innerHTML = studyCircles.map(circle => `
                 <div class="post-item">
                     <div class="post-header">
@@ -880,6 +1102,10 @@
 
         function loadDuaRequests() {
             const container = document.getElementById('duaRequestsList');
+            if (duaRequests.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #999; padding: 2rem;">No dua requests yet. Share yours!</p>';
+                return;
+            }
             container.innerHTML = duaRequests.map(dua => `
                 <div class="post-item">
                     <div class="post-header">
@@ -906,6 +1132,32 @@
                 localStorage.setItem('duaRequests', JSON.stringify(duaRequests));
                 loadDuaRequests();
             }
+        }
+
+        // DAILY REMINDERS FUNCTIONS
+        function loadDailyReminder() {
+            const today = new Date();
+            const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+            const reminder = reminders[dayOfYear % reminders.length];
+            
+            displayReminder(reminder);
+        }
+
+        function loadRandomReminder() {
+            const randomIndex = Math.floor(Math.random() * reminders.length);
+            const reminder = reminders[randomIndex];
+            displayReminder(reminder);
+        }
+
+        function displayReminder(reminder) {
+            const container = document.getElementById('reminderContent');
+            container.innerHTML = `
+                <div class="reminder-card">
+                    <h3>💡 Islamic Reminder</h3>
+                    <div class="reminder-text">"${reminder.text}"</div>
+                    <div class="reminder-source">— ${reminder.source}</div>
+                </div>
+            `;
         }
 
         // HELPER FUNCTIONS
