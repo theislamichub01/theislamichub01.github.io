@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Community - Islamic Hub</title>
+    
+    <!-- FIREBASE SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    
     <style>
         * {
             margin: 0;
@@ -129,6 +134,21 @@
             font-size: 1.2rem;
         }
 
+        .sync-info {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            border: 2px solid white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .sync-info h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
         .moderation-warning {
             background: rgba(255, 243, 205, 0.98);
             backdrop-filter: blur(10px);
@@ -148,24 +168,6 @@
             color: #856404;
             margin-left: 2rem;
             line-height: 2;
-        }
-
-        .sync-info {
-            background: rgba(33, 150, 243, 0.1);
-            border: 2px solid #2196F3;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .sync-info h4 {
-            color: #1976D2;
-            margin-bottom: 0.5rem;
-        }
-
-        .sync-info p {
-            color: #666;
         }
 
         .features-grid {
@@ -448,6 +450,13 @@
             margin-top: 1rem;
         }
 
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+            font-size: 1.2rem;
+        }
+
         .hidden {
             display: none;
         }
@@ -513,8 +522,8 @@
             </div>
 
             <div class="sync-info">
-                <h4>📱 Multi-Device Access</h4>
-                <p>Your posts are saved in your browser. To see them on other devices, you'll need to post again on each device. Cloud sync coming soon insha'Allah!</p>
+                <h4>☁️ Cloud Sync Enabled!</h4>
+                <p>Your posts are now synced across all devices! See them on phone, tablet, and computer! 🎉</p>
             </div>
 
             <div class="moderation-warning">
@@ -571,7 +580,7 @@
             </div>
         </div>
 
-        <!-- Global Connect -->
+        <!-- SECTIONS WILL BE ADDED HERE -->
         <div id="globalConnect" class="section-content hidden">
             <button class="btn btn-back" onclick="backToMenu()">← Back</button>
             <h2>🌍 Global Connect</h2>
@@ -593,10 +602,11 @@
                 <button class="btn" onclick="addConnectPost()">Post Message</button>
             </div>
 
-            <div class="posts-list" id="connectPosts"></div>
+            <div class="posts-list" id="connectPosts">
+                <div class="loading">Loading posts...</div>
+            </div>
         </div>
 
-        <!-- Q&A Forum -->
         <div id="qaForum" class="section-content hidden">
             <button class="btn btn-back" onclick="backToMenu()">← Back</button>
             <h2>❓ Q&A Forum</h2>
@@ -624,10 +634,11 @@
                 <button class="btn" onclick="addQAPost()">Post Question</button>
             </div>
 
-            <div class="posts-list" id="qaPosts"></div>
+            <div class="posts-list" id="qaPosts">
+                <div class="loading">Loading questions...</div>
+            </div>
         </div>
 
-        <!-- Study Circles -->
         <div id="studyCircles" class="section-content hidden">
             <button class="btn btn-back" onclick="backToMenu()">← Back</button>
             <h2>📚 Study Circles</h2>
@@ -660,10 +671,11 @@
                 <button class="btn" onclick="addStudyCircle()">Create Circle</button>
             </div>
 
-            <div class="posts-list" id="studyCirclesList"></div>
+            <div class="posts-list" id="studyCirclesList">
+                <div class="loading">Loading circles...</div>
+            </div>
         </div>
 
-        <!-- Dua Requests -->
         <div id="duaRequests" class="section-content hidden">
             <button class="btn btn-back" onclick="backToMenu()">← Back</button>
             <h2>🤲 Dua Requests</h2>
@@ -681,10 +693,11 @@
                 <button class="btn" onclick="addDuaRequest()">Submit Request</button>
             </div>
 
-            <div class="posts-list" id="duaRequestsList"></div>
+            <div class="posts-list" id="duaRequestsList">
+                <div class="loading">Loading dua requests...</div>
+            </div>
         </div>
 
-        <!-- Daily Reminders -->
         <div id="dailyReminders" class="section-content hidden">
             <button class="btn btn-back" onclick="backToMenu()">← Back</button>
             <h2>💡 Daily Islamic Reminders</h2>
@@ -696,7 +709,6 @@
             </div>
         </div>
 
-        <!-- Islamic Courses -->
         <div id="courses" class="section-content hidden">
             <button class="btn btn-back" onclick="backToMenu()">← Back</button>
             <h2>🎓 Free Islamic Courses</h2>
@@ -715,7 +727,7 @@
                         <strong>👥 Learning:</strong> Self-paced
                     </div>
                     <div class="post-actions">
-                        <button class="btn" onclick="alert('🎓 Course content coming soon insha\'Allah!')">Start Course →</button>
+                        <button class="btn" onclick="alert('🎓 Course content coming soon insha\'Allah! We are preparing high-quality lessons.')">Start Course →</button>
                     </div>
                 </div>
 
@@ -732,7 +744,7 @@
                         <strong>👥 Learning:</strong> Self-paced
                     </div>
                     <div class="post-actions">
-                        <button class="btn" onclick="alert('🎓 Course content coming soon insha\'Allah!')">Start Course →</button>
+                        <button class="btn" onclick="alert('🎓 Course content coming soon insha\'Allah! We are preparing high-quality lessons.')">Start Course →</button>
                     </div>
                 </div>
 
@@ -749,7 +761,7 @@
                         <strong>👥 Learning:</strong> Self-paced
                     </div>
                     <div class="post-actions">
-                        <button class="btn" onclick="alert('🎓 Course content coming soon insha\'Allah!')">Start Course →</button>
+                        <button class="btn" onclick="alert('🎓 Course content coming soon insha\'Allah! We are preparing high-quality lessons.')">Start Course →</button>
                     </div>
                 </div>
 
@@ -766,7 +778,7 @@
                         <strong>👥 Learning:</strong> Self-paced
                     </div>
                     <div class="post-actions">
-                        <button class="btn" onclick="alert('🎓 Course content coming soon insha\'Allah!')">Start Course →</button>
+                        <button class="btn" onclick="alert('🎓 Course content coming soon insha\'Allah! We are preparing high-quality lessons.')">Start Course →</button>
                     </div>
                 </div>
 
@@ -783,7 +795,7 @@
                         <strong>👥 Learning:</strong> Self-paced
                     </div>
                     <div class="post-actions">
-                        <button class="btn" onclick="alert('🎓 Course content coming soon insha\'Allah!')">Start Course →</button>
+                        <button class="btn" onclick="alert('🎓 Course content coming soon insha\'Allah! We are preparing high-quality lessons.')">Start Course →</button>
                     </div>
                 </div>
 
@@ -800,7 +812,7 @@
                         <strong>👥 Learning:</strong> Self-paced
                     </div>
                     <div class="post-actions">
-                        <button class="btn" onclick="alert('🎓 Course content coming soon insha\'Allah!')">Start Course →</button>
+                        <button class="btn" onclick="alert('🎓 Course content coming soon insha\'Allah! We are preparing high-quality lessons.')">Start Course →</button>
                     </div>
                 </div>
             </div>
@@ -813,17 +825,33 @@
     </footer>
 
     <script>
+        // 🔥 FIREBASE CONFIGURATION
+        // REPLACE WITH YOUR FIREBASE CONFIG FROM STEP 2!
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY_HERE",
+            authDomain: "YOUR_AUTH_DOMAIN_HERE",
+            projectId: "YOUR_PROJECT_ID_HERE",
+            storageBucket: "YOUR_STORAGE_BUCKET_HERE",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID_HERE",
+            appId: "YOUR_APP_ID_HERE"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
         function toggleMenu() {
             document.getElementById('navLinks').classList.toggle('active');
         }
 
-        // Data stored in localStorage (browser-specific)
-        let connectPosts = JSON.parse(localStorage.getItem('islamicHub_connect')) || [];
-        let qaPosts = JSON.parse(localStorage.getItem('islamicHub_qa')) || [];
-        let studyCircles = JSON.parse(localStorage.getItem('islamicHub_circles')) || [];
-        let duaRequests = JSON.parse(localStorage.getItem('islamicHub_duas')) || [];
+        // User ID (unique per browser)
+        let userId = localStorage.getItem('islamicHub_userId');
+        if (!userId) {
+            userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('islamicHub_userId', userId);
+        }
 
-        // Track user actions to prevent spam
+        // Track user actions
         let joinedCircles = JSON.parse(localStorage.getItem('islamicHub_joined')) || [];
         let madeDuas = JSON.parse(localStorage.getItem('islamicHub_madeDuas')) || [];
 
@@ -858,7 +886,7 @@
         }
 
         // GLOBAL CONNECT
-        function addConnectPost() {
+        async function addConnectPost() {
             const name = document.getElementById('connectName').value.trim();
             const country = document.getElementById('connectCountry').value.trim();
             const message = document.getElementById('connectMessage').value.trim();
@@ -868,61 +896,78 @@
                 return;
             }
             
-            const post = {
-                id: Date.now(),
-                name, country, message,
-                date: new Date().toLocaleString(),
-                replies: []
-            };
-            
-            connectPosts.unshift(post);
-            localStorage.setItem('islamicHub_connect', JSON.stringify(connectPosts));
-            
-            document.getElementById('connectName').value = '';
-            document.getElementById('connectCountry').value = '';
-            document.getElementById('connectMessage').value = '';
-            
-            loadConnectPosts();
-            alert('✅ Posted successfully!');
+            try {
+                await db.collection('connect').add({
+                    name, country, message,
+                    date: new Date().toISOString(),
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    userId: userId,
+                    replies: []
+                });
+                
+                document.getElementById('connectName').value = '';
+                document.getElementById('connectCountry').value = '';
+                document.getElementById('connectMessage').value = '';
+                
+                alert('✅ Posted successfully!');
+                loadConnectPosts();
+            } catch (error) {
+                alert('❌ Error posting. Please try again.');
+                console.error(error);
+            }
         }
 
-        function loadConnectPosts() {
+        async function loadConnectPosts() {
             const container = document.getElementById('connectPosts');
-            if (connectPosts.length === 0) {
-                container.innerHTML = '<p style="text-align:center;color:#999;padding:2rem;">No posts yet. Be the first!</p>';
-                return;
-            }
-            container.innerHTML = connectPosts.map(p => `
-                <div class="post-item">
-                    <div class="post-header">
-                        <div>
-                            <div class="post-author">${p.name} from ${p.country}</div>
-                            <div class="post-date">${p.date}</div>
-                        </div>
-                        <button class="btn btn-danger" onclick="deletePost('connect',${p.id})">🗑️</button>
-                    </div>
-                    <div class="post-content">${p.message}</div>
-                    <div class="post-actions">
-                        <button class="post-action-btn" onclick="toggleReply(${p.id},'connect')">💬 Reply (${p.replies.length})</button>
-                    </div>
-                    <div class="reply-form" id="replyForm-connect-${p.id}">
-                        <textarea placeholder="Write reply..." id="replyText-connect-${p.id}"></textarea>
-                        <button class="btn" onclick="addReply(${p.id},'connect')">Post Reply</button>
-                    </div>
-                    <div class="replies">
-                        ${p.replies.map(r => `
-                            <div class="reply-item">
-                                <div class="reply-author">${r.author}</div>
-                                <div class="reply-text">${r.text}</div>
+            container.innerHTML = '<div class="loading">Loading posts...</div>';
+            
+            try {
+                const snapshot = await db.collection('connect').orderBy('timestamp', 'desc').limit(20).get();
+                
+                if (snapshot.empty) {
+                    container.innerHTML = '<p style="text-align:center;color:#999;padding:2rem;">No posts yet. Be the first!</p>';
+                    return;
+                }
+                
+                container.innerHTML = snapshot.docs.map(doc => {
+                    const p = doc.data();
+                    const postId = doc.id;
+                    return `
+                        <div class="post-item">
+                            <div class="post-header">
+                                <div>
+                                    <div class="post-author">${p.name} from ${p.country}</div>
+                                    <div class="post-date">${new Date(p.date).toLocaleString()}</div>
+                                </div>
+                                ${p.userId === userId ? `<button class="btn btn-danger" onclick="deletePost('connect','${postId}')">🗑️</button>` : ''}
                             </div>
-                        `).join('')}
-                    </div>
-                </div>
-            `).join('');
+                            <div class="post-content">${p.message}</div>
+                            <div class="post-actions">
+                                <button class="post-action-btn" onclick="toggleReply('${postId}','connect')">💬 Reply (${(p.replies || []).length})</button>
+                            </div>
+                            <div class="reply-form" id="replyForm-connect-${postId}">
+                                <textarea placeholder="Write reply..." id="replyText-connect-${postId}"></textarea>
+                                <button class="btn" onclick="addReply('${postId}','connect')">Post Reply</button>
+                            </div>
+                            <div class="replies">
+                                ${(p.replies || []).map(r => `
+                                    <div class="reply-item">
+                                        <div class="reply-author">${r.author}</div>
+                                        <div class="reply-text">${r.text}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                container.innerHTML = '<p style="text-align:center;color:#c62828;padding:2rem;">❌ Error loading posts. Please refresh.</p>';
+                console.error(error);
+            }
         }
 
         // Q&A FORUM
-        function addQAPost() {
+        async function addQAPost() {
             const category = document.getElementById('qaCategory').value;
             const title = document.getElementById('qaTitle').value.trim();
             const details = document.getElementById('qaDetails').value.trim();
@@ -932,64 +977,81 @@
                 return;
             }
             
-            const post = {
-                id: Date.now(),
-                category, title, details,
-                date: new Date().toLocaleString(),
-                answers: []
-            };
-            
-            qaPosts.unshift(post);
-            localStorage.setItem('islamicHub_qa', JSON.stringify(qaPosts));
-            
-            document.getElementById('qaTitle').value = '';
-            document.getElementById('qaDetails').value = '';
-            
-            loadQAPosts();
-            alert('✅ Question posted!');
+            try {
+                await db.collection('qa').add({
+                    category, title, details: details || '',
+                    date: new Date().toISOString(),
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    userId: userId,
+                    answers: []
+                });
+                
+                document.getElementById('qaTitle').value = '';
+                document.getElementById('qaDetails').value = '';
+                
+                alert('✅ Question posted!');
+                loadQAPosts();
+            } catch (error) {
+                alert('❌ Error posting. Please try again.');
+                console.error(error);
+            }
         }
 
-        function loadQAPosts() {
+        async function loadQAPosts() {
             const container = document.getElementById('qaPosts');
-            if (qaPosts.length === 0) {
-                container.innerHTML = '<p style="text-align:center;color:#999;padding:2rem;">No questions yet. Ask the first!</p>';
-                return;
-            }
-            container.innerHTML = qaPosts.map(p => `
-                <div class="post-item">
-                    <div class="post-header">
-                        <div>
-                            <div class="post-author">Anonymous</div>
-                            <div class="post-date">${p.date}</div>
-                        </div>
-                        <div>
-                            <div class="post-category">${p.category}</div>
-                            <button class="btn btn-danger" onclick="deletePost('qa',${p.id})">🗑️</button>
-                        </div>
-                    </div>
-                    <div class="post-title">${p.title}</div>
-                    <div class="post-content">${p.details || 'No details.'}</div>
-                    <div class="post-actions">
-                        <button class="post-action-btn" onclick="toggleReply(${p.id},'qa')">💬 ${p.answers.length} Answers</button>
-                    </div>
-                    <div class="reply-form" id="replyForm-qa-${p.id}">
-                        <textarea placeholder="Write answer..." id="replyText-qa-${p.id}"></textarea>
-                        <button class="btn" onclick="addReply(${p.id},'qa')">Post Answer</button>
-                    </div>
-                    <div class="replies">
-                        ${p.answers.map(a => `
-                            <div class="reply-item">
-                                <div class="reply-author">${a.author}</div>
-                                <div class="reply-text">${a.text}</div>
+            container.innerHTML = '<div class="loading">Loading questions...</div>';
+            
+            try {
+                const snapshot = await db.collection('qa').orderBy('timestamp', 'desc').limit(20).get();
+                
+                if (snapshot.empty) {
+                    container.innerHTML = '<p style="text-align:center;color:#999;padding:2rem;">No questions yet. Ask the first!</p>';
+                    return;
+                }
+                
+                container.innerHTML = snapshot.docs.map(doc => {
+                    const p = doc.data();
+                    const postId = doc.id;
+                    return `
+                        <div class="post-item">
+                            <div class="post-header">
+                                <div>
+                                    <div class="post-author">Anonymous</div>
+                                    <div class="post-date">${new Date(p.date).toLocaleString()}</div>
+                                </div>
+                                <div>
+                                    <div class="post-category">${p.category}</div>
+                                    ${p.userId === userId ? `<button class="btn btn-danger" onclick="deletePost('qa','${postId}')">🗑️</button>` : ''}
+                                </div>
                             </div>
-                        `).join('')}
-                    </div>
-                </div>
-            `).join('');
+                            <div class="post-title">${p.title}</div>
+                            <div class="post-content">${p.details || 'No details.'}</div>
+                            <div class="post-actions">
+                                <button class="post-action-btn" onclick="toggleReply('${postId}','qa')">💬 ${(p.answers || []).length} Answers</button>
+                            </div>
+                            <div class="reply-form" id="replyForm-qa-${postId}">
+                                <textarea placeholder="Write answer..." id="replyText-qa-${postId}"></textarea>
+                                <button class="btn" onclick="addReply('${postId}','qa')">Post Answer</button>
+                            </div>
+                            <div class="replies">
+                                ${(p.answers || []).map(a => `
+                                    <div class="reply-item">
+                                        <div class="reply-author">${a.author}</div>
+                                        <div class="reply-text">${a.text}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                container.innerHTML = '<p style="text-align:center;color:#c62828;padding:2rem;">❌ Error loading questions. Please refresh.</p>';
+                console.error(error);
+            }
         }
 
         // STUDY CIRCLES
-        function addStudyCircle() {
+        async function addStudyCircle() {
             const topic = document.getElementById('studyTopic').value;
             const name = document.getElementById('circleName').value.trim();
             const description = document.getElementById('circleDescription').value.trim();
@@ -1000,79 +1062,100 @@
                 return;
             }
             
-            const circle = {
-                id: Date.now(),
-                topic, name, description, schedule,
-                date: new Date().toLocaleString(),
-                members: 1
-            };
-            
-            studyCircles.unshift(circle);
-            localStorage.setItem('islamicHub_circles', JSON.stringify(studyCircles));
-            
-            document.getElementById('circleName').value = '';
-            document.getElementById('circleDescription').value = '';
-            document.getElementById('circleSchedule').value = '';
-            
-            loadStudyCircles();
-            alert('✅ Circle created!');
-        }
-
-        function loadStudyCircles() {
-            const container = document.getElementById('studyCirclesList');
-            if (studyCircles.length === 0) {
-                container.innerHTML = '<p style="text-align:center;color:#999;padding:2rem;">No circles yet. Create one!</p>';
-                return;
+            try {
+                await db.collection('circles').add({
+                    topic, name, description, schedule,
+                    date: new Date().toISOString(),
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    userId: userId,
+                    members: 1
+                });
+                
+                document.getElementById('circleName').value = '';
+                document.getElementById('circleDescription').value = '';
+                document.getElementById('circleSchedule').value = '';
+                
+                alert('✅ Circle created!');
+                loadStudyCircles();
+            } catch (error) {
+                alert('❌ Error creating. Please try again.');
+                console.error(error);
             }
-            container.innerHTML = studyCircles.map(c => {
-                const hasJoined = joinedCircles.includes(c.id);
-                return `
-                <div class="post-item">
-                    <div class="post-header">
-                        <div>
-                            <div class="post-author">${c.name}</div>
-                            <div class="post-date">${c.date}</div>
-                        </div>
-                        <div>
-                            <div class="post-category">${c.topic}</div>
-                            <button class="btn btn-danger" onclick="deletePost('circle',${c.id})">🗑️</button>
-                        </div>
-                    </div>
-                    <div class="post-content">
-                        ${c.description}
-                        <br><br>
-                        <strong>📅 Schedule:</strong> ${c.schedule}<br>
-                        <strong>👥 Members:</strong> ${c.members}
-                    </div>
-                    <div class="post-actions">
-                        <button class="post-action-btn ${hasJoined ? 'active disabled' : ''}" 
-                                onclick="${hasJoined ? '' : 'joinCircle('+c.id+')'}">
-                            ${hasJoined ? '✅ Already Joined' : '✅ Join Circle'}
-                        </button>
-                    </div>
-                </div>
-            `}).join('');
         }
 
-        function joinCircle(id) {
-            if (joinedCircles.includes(id)) {
+        async function loadStudyCircles() {
+            const container = document.getElementById('studyCirclesList');
+            container.innerHTML = '<div class="loading">Loading circles...</div>';
+            
+            try {
+                const snapshot = await db.collection('circles').orderBy('timestamp', 'desc').limit(20).get();
+                
+                if (snapshot.empty) {
+                    container.innerHTML = '<p style="text-align:center;color:#999;padding:2rem;">No circles yet. Create one!</p>';
+                    return;
+                }
+                
+                container.innerHTML = snapshot.docs.map(doc => {
+                    const c = doc.data();
+                    const circleId = doc.id;
+                    const hasJoined = joinedCircles.includes(circleId);
+                    return `
+                        <div class="post-item">
+                            <div class="post-header">
+                                <div>
+                                    <div class="post-author">${c.name}</div>
+                                    <div class="post-date">${new Date(c.date).toLocaleString()}</div>
+                                </div>
+                                <div>
+                                    <div class="post-category">${c.topic}</div>
+                                    ${c.userId === userId ? `<button class="btn btn-danger" onclick="deletePost('circles','${circleId}')">🗑️</button>` : ''}
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                ${c.description}
+                                <br><br>
+                                <strong>📅 Schedule:</strong> ${c.schedule}<br>
+                                <strong>👥 Members:</strong> ${c.members}
+                            </div>
+                            <div class="post-actions">
+                                <button class="post-action-btn ${hasJoined ? 'active disabled' : ''}" 
+                                        onclick="${hasJoined ? '' : 'joinCircle(\''+circleId+'\')'}">
+                                    ${hasJoined ? '✅ Already Joined' : '✅ Join Circle'}
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                container.innerHTML = '<p style="text-align:center;color:#c62828;padding:2rem;">❌ Error loading circles. Please refresh.</p>';
+                console.error(error);
+            }
+        }
+
+        async function joinCircle(circleId) {
+            if (joinedCircles.includes(circleId)) {
                 alert('You already joined this circle!');
                 return;
             }
             
-            const circle = studyCircles.find(c => c.id === id);
-            if (circle) {
-                circle.members++;
-                joinedCircles.push(id);
-                localStorage.setItem('islamicHub_circles', JSON.stringify(studyCircles));
+            try {
+                const docRef = db.collection('circles').doc(circleId);
+                await docRef.update({
+                    members: firebase.firestore.FieldValue.increment(1)
+                });
+                
+                joinedCircles.push(circleId);
                 localStorage.setItem('islamicHub_joined', JSON.stringify(joinedCircles));
                 loadStudyCircles();
                 alert('✅ Joined!');
+            } catch (error) {
+                alert('❌ Error joining. Please try again.');
+                console.error(error);
             }
         }
 
         // DUA REQUESTS
-        function addDuaRequest() {
+        async function addDuaRequest() {
             const name = document.getElementById('duaName').value.trim() || 'Anonymous';
             const request = document.getElementById('duaRequest').value.trim();
             
@@ -1081,64 +1164,85 @@
                 return;
             }
             
-            const dua = {
-                id: Date.now(),
-                name, request,
-                date: new Date().toLocaleString(),
-                duaCount: 0
-            };
-            
-            duaRequests.unshift(dua);
-            localStorage.setItem('islamicHub_duas', JSON.stringify(duaRequests));
-            
-            document.getElementById('duaName').value = '';
-            document.getElementById('duaRequest').value = '';
-            
-            loadDuaRequests();
-            alert('✅ Request submitted!');
-        }
-
-        function loadDuaRequests() {
-            const container = document.getElementById('duaRequestsList');
-            if (duaRequests.length === 0) {
-                container.innerHTML = '<p style="text-align:center;color:#999;padding:2rem;">No requests yet. Share yours!</p>';
-                return;
+            try {
+                await db.collection('duas').add({
+                    name, request,
+                    date: new Date().toISOString(),
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    userId: userId,
+                    duaCount: 0
+                });
+                
+                document.getElementById('duaName').value = '';
+                document.getElementById('duaRequest').value = '';
+                
+                alert('✅ Request submitted!');
+                loadDuaRequests();
+            } catch (error) {
+                alert('❌ Error submitting. Please try again.');
+                console.error(error);
             }
-            container.innerHTML = duaRequests.map(d => {
-                const hasMadeDua = madeDuas.includes(d.id);
-                return `
-                <div class="post-item">
-                    <div class="post-header">
-                        <div>
-                            <div class="post-author">${d.name}</div>
-                            <div class="post-date">${d.date}</div>
-                        </div>
-                        <button class="btn btn-danger" onclick="deletePost('dua',${d.id})">🗑️</button>
-                    </div>
-                    <div class="post-content">${d.request}</div>
-                    <div class="post-actions">
-                        <button class="post-action-btn ${hasMadeDua ? 'active disabled' : ''}" 
-                                onclick="${hasMadeDua ? '' : 'makeDua('+d.id+')'}">
-                            🤲 ${hasMadeDua ? 'You Made Dua' : 'Make Dua'} (${d.duaCount})
-                        </button>
-                    </div>
-                </div>
-            `}).join('');
         }
 
-        function makeDua(id) {
-            if (madeDuas.includes(id)) {
+        async function loadDuaRequests() {
+            const container = document.getElementById('duaRequestsList');
+            container.innerHTML = '<div class="loading">Loading dua requests...</div>';
+            
+            try {
+                const snapshot = await db.collection('duas').orderBy('timestamp', 'desc').limit(20).get();
+                
+                if (snapshot.empty) {
+                    container.innerHTML = '<p style="text-align:center;color:#999;padding:2rem;">No requests yet. Share yours!</p>';
+                    return;
+                }
+                
+                container.innerHTML = snapshot.docs.map(doc => {
+                    const d = doc.data();
+                    const duaId = doc.id;
+                    const hasMadeDua = madeDuas.includes(duaId);
+                    return `
+                        <div class="post-item">
+                            <div class="post-header">
+                                <div>
+                                    <div class="post-author">${d.name}</div>
+                                    <div class="post-date">${new Date(d.date).toLocaleString()}</div>
+                                </div>
+                                ${d.userId === userId ? `<button class="btn btn-danger" onclick="deletePost('duas','${duaId}')">🗑️</button>` : ''}
+                            </div>
+                            <div class="post-content">${d.request}</div>
+                            <div class="post-actions">
+                                <button class="post-action-btn ${hasMadeDua ? 'active disabled' : ''}" 
+                                        onclick="${hasMadeDua ? '' : 'makeDua(\''+duaId+'\')'}">
+                                    🤲 ${hasMadeDua ? 'You Made Dua' : 'Make Dua'} (${d.duaCount})
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                container.innerHTML = '<p style="text-align:center;color:#c62828;padding:2rem;">❌ Error loading requests. Please refresh.</p>';
+                console.error(error);
+            }
+        }
+
+        async function makeDua(duaId) {
+            if (madeDuas.includes(duaId)) {
                 alert('You already made dua for this!');
                 return;
             }
             
-            const dua = duaRequests.find(d => d.id === id);
-            if (dua) {
-                dua.duaCount++;
-                madeDuas.push(id);
-                localStorage.setItem('islamicHub_duas', JSON.stringify(duaRequests));
+            try {
+                const docRef = db.collection('duas').doc(duaId);
+                await docRef.update({
+                    duaCount: firebase.firestore.FieldValue.increment(1)
+                });
+                
+                madeDuas.push(duaId);
                 localStorage.setItem('islamicHub_madeDuas', JSON.stringify(madeDuas));
                 loadDuaRequests();
+            } catch (error) {
+                alert('❌ Error. Please try again.');
+                console.error(error);
             }
         }
 
@@ -1148,7 +1252,7 @@
             form.classList.toggle('active');
         }
 
-        function addReply(postId, type) {
+        async function addReply(postId, type) {
             const textarea = document.getElementById(`replyText-${type}-${postId}`);
             const text = textarea.value.trim();
             
@@ -1158,45 +1262,40 @@
             }
             
             const reply = { author: 'You', text };
+            const collection = type === 'connect' ? 'connect' : 'qa';
+            const field = type === 'connect' ? 'replies' : 'answers';
             
-            if (type === 'connect') {
-                const post = connectPosts.find(p => p.id === postId);
-                if (post) {
-                    post.replies.push(reply);
-                    localStorage.setItem('islamicHub_connect', JSON.stringify(connectPosts));
-                    loadConnectPosts();
-                }
-            } else if (type === 'qa') {
-                const post = qaPosts.find(p => p.id === postId);
-                if (post) {
-                    post.answers.push(reply);
-                    localStorage.setItem('islamicHub_qa', JSON.stringify(qaPosts));
-                    loadQAPosts();
-                }
+            try {
+                const docRef = db.collection(collection).doc(postId);
+                await docRef.update({
+                    [field]: firebase.firestore.FieldValue.arrayUnion(reply)
+                });
+                
+                textarea.value = '';
+                if (type === 'connect') loadConnectPosts();
+                if (type === 'qa') loadQAPosts();
+                alert('✅ Reply posted!');
+            } catch (error) {
+                alert('❌ Error posting reply. Please try again.');
+                console.error(error);
             }
-            
-            alert('✅ Reply posted!');
         }
 
-        function deletePost(type, id) {
+        async function deletePost(collection, docId) {
             if (!confirm('Delete this?')) return;
             
-            if (type === 'connect') {
-                connectPosts = connectPosts.filter(p => p.id !== id);
-                localStorage.setItem('islamicHub_connect', JSON.stringify(connectPosts));
-                loadConnectPosts();
-            } else if (type === 'qa') {
-                qaPosts = qaPosts.filter(p => p.id !== id);
-                localStorage.setItem('islamicHub_qa', JSON.stringify(qaPosts));
-                loadQAPosts();
-            } else if (type === 'circle') {
-                studyCircles = studyCircles.filter(c => c.id !== id);
-                localStorage.setItem('islamicHub_circles', JSON.stringify(studyCircles));
-                loadStudyCircles();
-            } else if (type === 'dua') {
-                duaRequests = duaRequests.filter(d => d.id !== id);
-                localStorage.setItem('islamicHub_duas', JSON.stringify(duaRequests));
-                loadDuaRequests();
+            try {
+                await db.collection(collection).doc(docId).delete();
+                
+                if (collection === 'connect') loadConnectPosts();
+                if (collection === 'qa') loadQAPosts();
+                if (collection === 'circles') loadStudyCircles();
+                if (collection === 'duas') loadDuaRequests();
+                
+                alert('✅ Deleted!');
+            } catch (error) {
+                alert('❌ Error deleting. Please try again.');
+                console.error(error);
             }
         }
 
