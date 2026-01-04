@@ -23,7 +23,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 25%, #4a7c59 50%, #6b9c7d 75%, #8bbca0 100%);
+            background: linear-gradient(135deg, #2c5f2d 0%, #97d700 100%);
             background-size: 400% 400%;
             animation: gradientFlow 20s ease infinite;
             z-index: -1;
@@ -36,7 +36,7 @@
         }
 
         header {
-            background: rgba(26, 77, 46, 0.95);
+            background: rgba(44, 95, 45, 0.95);
             backdrop-filter: blur(15px);
             color: white;
             padding: 1rem 0;
@@ -109,7 +109,7 @@
 
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin-bottom: 2rem;
         }
@@ -120,93 +120,236 @@
             padding: 2.5rem;
             border-radius: 20px;
             box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-            text-align: center;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 48px rgba(0,0,0,0.3);
+            border-color: #2c5f2d;
         }
 
         .tool-card h2 {
-            color: #1a4d2e;
+            color: #2c5f2d;
             margin-bottom: 1.5rem;
             font-size: 2rem;
+            text-align: center;
         }
 
-        .btn {
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin: 1rem;
-            font-weight: 600;
+        .prayer-times-list {
+            list-style: none;
         }
 
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(26, 77, 46, 0.5);
-        }
-
-        .prayer-times {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            margin-top: 1.5rem;
-        }
-
-        .prayer-times h3 {
-            color: #1a4d2e;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .prayer-item {
+        .prayer-time-item {
             display: flex;
             justify-content: space-between;
-            align-items: center;
             padding: 1rem;
-            margin: 0.5rem 0;
-            background: #f0f0f0;
+            margin-bottom: 0.5rem;
+            background: #f5f5f5;
             border-radius: 10px;
-            border-left: 5px solid #1a4d2e;
+            border-left: 5px solid #2c5f2d;
         }
 
         .prayer-name {
             font-weight: bold;
-            color: #1a4d2e;
-            font-size: 1.2rem;
+            color: #2c5f2d;
+            font-size: 1.1rem;
         }
 
         .prayer-time {
-            font-size: 1.3rem;
-            color: #333;
             font-weight: 600;
-        }
-
-        .location-info {
-            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .location-info h4 {
-            color: #2e7d32;
-            margin-bottom: 0.5rem;
-        }
-
-        .qibla-result {
-            margin-top: 1.5rem;
+            color: #666;
+            font-size: 1.1rem;
         }
 
         .loading {
+            text-align: center;
+            padding: 2rem;
             color: #666;
-            font-style: italic;
+        }
+
+        .location-info {
+            text-align: center;
+            padding: 1rem;
+            background: #e8f5e9;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            color: #2c5f2d;
+            font-weight: 600;
+        }
+
+        .qibla-compass {
+            width: 300px;
+            height: 300px;
+            margin: 2rem auto;
+            position: relative;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        .compass-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 5px solid #2c5f2d;
+            position: relative;
+        }
+
+        .compass-needle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 4px;
+            height: 45%;
+            background: linear-gradient(to bottom, #d32f2f 0%, #d32f2f 50%, #666 50%, #666 100%);
+            transform-origin: bottom center;
+            transform: translate(-50%, -100%);
+            transition: transform 0.5s ease;
+            border-radius: 2px 2px 0 0;
+        }
+
+        .compass-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: #2c5f2d;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            border: 3px solid white;
+        }
+
+        .compass-directions {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .direction-mark {
+            position: absolute;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .direction-n { top: 5px; left: 50%; transform: translateX(-50%); color: #d32f2f; }
+        .direction-e { top: 50%; right: 5px; transform: translateY(-50%); color: #666; }
+        .direction-s { bottom: 5px; left: 50%; transform: translateX(-50%); color: #666; }
+        .direction-w { top: 50%; left: 5px; transform: translateY(-50%); color: #666; }
+
+        .qibla-info {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .qibla-degree {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #2c5f2d;
+            margin: 1rem 0;
+        }
+
+        .qibla-direction {
+            font-size: 1.5rem;
+            color: #666;
+            margin: 0.5rem 0;
+        }
+
+        .qibla-distance {
+            font-size: 1.2rem;
+            color: #999;
+        }
+
+        .disclaimer-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffe8a1 100%);
+            border: 3px solid #ff9800;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+        }
+
+        .disclaimer-box h3 {
+            color: #e65100;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .disclaimer-box ul {
+            list-style: none;
+            color: #856404;
+            line-height: 2;
+            font-size: 1.05rem;
+        }
+
+        .disclaimer-box li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .disclaimer-box li:before {
+            content: "⚠️";
+            position: absolute;
+            left: 0;
+        }
+
+        .pro-tips {
+            background: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+        }
+
+        .pro-tips h4 {
+            color: #1976d2;
+            margin-bottom: 1rem;
+        }
+
+        .pro-tips ul {
+            color: #666;
+            line-height: 1.8;
+            margin-left: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #2c5f2d 0%, #97d700 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(44, 95, 45, 0.5);
+        }
+
+        .error-message {
+            background: #ffebee;
+            color: #c62828;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid #c62828;
+            margin: 1rem 0;
         }
 
         footer {
-            background: rgba(26, 77, 46, 0.95);
+            background: rgba(44, 95, 45, 0.95);
             backdrop-filter: blur(15px);
             color: white;
             text-align: center;
@@ -224,7 +367,10 @@
             }
             .nav-links.active { display: flex; }
             .tools-grid { grid-template-columns: 1fr; }
-            .page-title { font-size: 2rem; }
+            .qibla-compass {
+                width: 250px;
+                height: 250px;
+            }
         }
     </style>
 </head>
@@ -258,25 +404,74 @@
         <h1 class="page-title">🕌 Prayer Tools</h1>
 
         <div class="tools-grid">
+            <!-- PRAYER TIMES -->
             <div class="tool-card">
-                <h2>⏰ Prayer Times</h2>
-                <p style="color: #666; margin-bottom: 1.5rem;">Get accurate prayer times for your location</p>
-                <button class="btn" onclick="getPrayerTimes()">Get Prayer Times</button>
-                <div id="prayerTimesResult"></div>
+                <h2>🕒 Prayer Times</h2>
+                <div class="location-info" id="locationInfo">
+                    <div class="loading">📍 Getting your location...</div>
+                </div>
+                <ul class="prayer-times-list" id="prayerTimesList">
+                    <li class="loading">Loading prayer times...</li>
+                </ul>
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <button class="btn" onclick="loadPrayerTimes()">🔄 Refresh Times</button>
+                </div>
             </div>
 
+            <!-- QIBLA DIRECTION -->
             <div class="tool-card">
                 <h2>🧭 Qibla Direction</h2>
-                <p style="color: #666; margin-bottom: 1.5rem;">Find the direction to Kaaba from anywhere</p>
-                <button class="btn" onclick="calculateQibla()">Find Qibla</button>
-                <div id="qiblaResult" class="qibla-result"></div>
+                
+                <!-- DISCLAIMER BOX -->
+                <div class="disclaimer-box">
+                    <h3>⚠️ Important Disclaimer</h3>
+                    <ul>
+                        <li><strong>This is an approximation!</strong> Digital compasses may not be 100% accurate.</li>
+                        <li><strong>Calibrate your phone compass</strong> by moving it in a figure-8 pattern.</li>
+                        <li><strong>Use a physical compass for verification</strong> when possible.</li>
+                        <li><strong>Magnetic interference</strong> from electronics can affect accuracy.</li>
+                        <li><strong>For precise direction,</strong> consult your local mosque.</li>
+                    </ul>
+                </div>
+
+                <div class="qibla-compass">
+                    <div class="compass-circle">
+                        <div class="compass-directions">
+                            <div class="direction-mark direction-n">N</div>
+                            <div class="direction-mark direction-e">E</div>
+                            <div class="direction-mark direction-s">S</div>
+                            <div class="direction-mark direction-w">W</div>
+                        </div>
+                        <div class="compass-needle" id="compassNeedle"></div>
+                        <div class="compass-center"></div>
+                    </div>
+                </div>
+
+                <div class="qibla-info">
+                    <div class="qibla-degree" id="qiblaDegree">---°</div>
+                    <div class="qibla-direction" id="qiblaDirection">Calculating...</div>
+                    <div class="qibla-distance" id="qiblaDistance"></div>
+                </div>
+
+                <div class="pro-tips">
+                    <h4>📱 Pro Tips for Better Accuracy:</h4>
+                    <ul>
+                        <li>Hold phone flat and away from metal objects</li>
+                        <li>Calibrate by moving phone in figure-8 pattern</li>
+                        <li>Stand away from electronic devices</li>
+                        <li>Compare with physical compass</li>
+                        <li>Ask local mosque for precise direction</li>
+                    </ul>
+                </div>
+
+                <div id="qiblaError" style="display: none;" class="error-message"></div>
             </div>
         </div>
     </div>
 
     <footer>
         <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
-        <p>May your prayers be accepted 🤲</p>
+        <p>May Allah accept our prayers 🤲</p>
     </footer>
 
     <script>
@@ -284,164 +479,211 @@
             document.getElementById('navLinks').classList.toggle('active');
         }
 
-        async function getPrayerTimes() {
-            const resultDiv = document.getElementById('prayerTimesResult');
-            resultDiv.innerHTML = '<p class="loading">Getting your location...</p>';
+        // PRAYER TIMES
+        let userLocation = { latitude: null, longitude: null, city: '', country: '' };
 
+        function loadPrayerTimes() {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    async (position) => {
-                        const lat = position.coords.latitude;
-                        const lon = position.coords.longitude;
-
-                        try {
-                            const response = await fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=2`);
-                            const data = await response.json();
-                            
-                            if (data.code === 200) {
-                                const timings = data.data.timings;
-                                const date = data.data.date;
-                                const location = `${data.data.meta.timezone}`;
-
-                                resultDiv.innerHTML = `
-                                    <div class="location-info">
-                                        <h4>📍 ${date.readable}</h4>
-                                        <p style="color: #666;">${location}</p>
-                                    </div>
-                                    <div class="prayer-times">
-                                        <h3>Today's Prayer Times</h3>
-                                        <div class="prayer-item">
-                                            <span class="prayer-name">Fajr</span>
-                                            <span class="prayer-time">${timings.Fajr}</span>
-                                        </div>
-                                        <div class="prayer-item">
-                                            <span class="prayer-name">Dhuhr</span>
-                                            <span class="prayer-time">${timings.Dhuhr}</span>
-                                        </div>
-                                        <div class="prayer-item">
-                                            <span class="prayer-name">Asr</span>
-                                            <span class="prayer-time">${timings.Asr}</span>
-                                        </div>
-                                        <div class="prayer-item">
-                                            <span class="prayer-name">Maghrib</span>
-                                            <span class="prayer-time">${timings.Maghrib}</span>
-                                        </div>
-                                        <div class="prayer-item">
-                                            <span class="prayer-name">Isha</span>
-                                            <span class="prayer-time">${timings.Isha}</span>
-                                        </div>
-                                    </div>
-                                `;
-                            }
-                        } catch (error) {
-                            resultDiv.innerHTML = '<p style="color: #c62828;">❌ Error fetching prayer times. Please try again.</p>';
-                        }
-                    },
-                    (error) => {
-                        resultDiv.innerHTML = '<p style="color: #c62828;">❌ Please enable location services and try again.</p>';
-                    }
-                );
-            } else {
-                resultDiv.innerHTML = '<p style="color: #c62828;">❌ Geolocation not supported by your browser.</p>';
-            }
-        }
-
-        function calculateQibla() {
-            const qiblaResult = document.getElementById('qiblaResult');
-            
-            if (navigator.geolocation) {
-                qiblaResult.innerHTML = '<p class="loading">📍 Getting your location...</p>';
+                document.getElementById('locationInfo').innerHTML = '<div class="loading">📍 Getting your location...</div>';
                 
                 navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        const lat = position.coords.latitude;
-                        const lon = position.coords.longitude;
-                        
-                        // Kaaba coordinates
-                        const kaabaLat = 21.4225;
-                        const kaabaLon = 39.8262;
-                        
-                        // Calculate bearing using better formula
-                        const dLon = (kaabaLon - lon) * Math.PI / 180;
-                        const lat1 = lat * Math.PI / 180;
-                        const lat2 = kaabaLat * Math.PI / 180;
-                        
-                        const y = Math.sin(dLon) * Math.cos(lat2);
-                        const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon);
-                        let bearing = Math.atan2(y, x) * 180 / Math.PI;
-                        bearing = (bearing + 360) % 360;
-                        
-                        // Calculate distance
-                        const R = 6371;
-                        const dLat = (kaabaLat - lat) * Math.PI / 180;
-                        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                                 Math.cos(lat1) * Math.cos(lat2) *
-                                 Math.sin(dLon/2) * Math.sin(dLon/2);
-                        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-                        const distance = R * c;
-                        
-                        // Direction guide
-                        let directionText = '';
-                        if (bearing >= 337.5 || bearing < 22.5) directionText = "⬆️ North";
-                        else if (bearing >= 22.5 && bearing < 67.5) directionText = "↗️ Northeast";
-                        else if (bearing >= 67.5 && bearing < 112.5) directionText = "➡️ East";
-                        else if (bearing >= 112.5 && bearing < 157.5) directionText = "↘️ Southeast";
-                        else if (bearing >= 157.5 && bearing < 202.5) directionText = "⬇️ South";
-                        else if (bearing >= 202.5 && bearing < 247.5) directionText = "↙️ Southwest";
-                        else if (bearing >= 247.5 && bearing < 292.5) directionText = "⬅️ West";
-                        else directionText = "↖️ Northwest";
-                        
-                        qiblaResult.innerHTML = `
-                            <div style="text-align: center;">
-                                <h4 style="color: #1a4d2e; margin-bottom: 1rem;">✅ Qibla Direction Found!</h4>
-                                <div style="font-size: 5rem; margin: 2rem 0;">🧭</div>
-                                <p style="font-size: 2.5rem; color: #1a4d2e; font-weight: bold; margin: 1rem 0;">
-                                    ${Math.round(bearing)}°
-                                </p>
-                                <p style="color: #666; margin: 1rem 0; font-size: 1.2rem;">
-                                    from North
-                                </p>
-                                <div style="background: #e8f5e9; padding: 1.5rem; border-radius: 10px; margin: 1.5rem 0;">
-                                    <h5 style="color: #2e7d32; margin-bottom: 0.5rem;">Direction:</h5>
-                                    <p style="font-size: 1.5rem; color: #2e7d32; font-weight: bold;">
-                                        ${directionText}
-                                    </p>
-                                </div>
-                                <p style="color: #666; margin: 1rem 0;">
-                                    Distance to Kaaba: <strong>${Math.round(distance)} km</strong>
-                                </p>
-                                <div style="background: #fff3cd; padding: 1.5rem; border-radius: 10px; margin-top: 1.5rem; border: 2px solid #ffc107;">
-                                    <p style="color: #856404; font-size: 0.95rem; line-height: 1.8;">
-                                        <strong>📱 Pro Tip:</strong> For maximum accuracy:<br>
-                                        1. Calibrate your phone's compass by moving it in a figure-8 pattern<br>
-                                        2. Use a physical compass for verification<br>
-                                        3. Stand away from metal objects and electronics
-                                    </p>
-                                </div>
-                            </div>
-                        `;
+                    position => {
+                        userLocation.latitude = position.coords.latitude;
+                        userLocation.longitude = position.coords.longitude;
+                        fetchPrayerTimes();
+                        fetchCityName();
                     },
-                    (error) => {
-                        qiblaResult.innerHTML = `
-                            <div style="text-align: center; color: #c62828; padding: 2rem;">
-                                <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem;">❌ Location Error</p>
-                                <p>Please enable location services in your browser settings and try again.</p>
-                                <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
-                                    On mobile: Go to Settings → Privacy → Location Services → Enable for your browser
-                                </p>
-                            </div>
-                        `;
-                    },
-                    { 
-                        enableHighAccuracy: true, 
-                        timeout: 10000, 
-                        maximumAge: 0 
+                    error => {
+                        document.getElementById('locationInfo').innerHTML = '❌ Location access denied. Using Delhi, India.';
+                        userLocation.latitude = 28.6139;
+                        userLocation.longitude = 77.2090;
+                        userLocation.city = 'Delhi';
+                        userLocation.country = 'India';
+                        fetchPrayerTimes();
                     }
                 );
             } else {
-                qiblaResult.innerHTML = '<p style="color: #c62828; text-align: center; padding: 2rem;">❌ Geolocation is not supported by your browser.</p>';
+                document.getElementById('locationInfo').innerHTML = '❌ Geolocation not supported. Using Delhi, India.';
+                userLocation.latitude = 28.6139;
+                userLocation.longitude = 77.2090;
+                userLocation.city = 'Delhi';
+                userLocation.country = 'India';
+                fetchPrayerTimes();
             }
         }
+
+        async function fetchCityName() {
+            try {
+                const response = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${userLocation.latitude}&longitude=${userLocation.longitude}&localityLanguage=en`);
+                const data = await response.json();
+                userLocation.city = data.city || data.locality || 'Unknown';
+                userLocation.country = data.countryName || 'Unknown';
+                document.getElementById('locationInfo').innerHTML = `📍 ${userLocation.city}, ${userLocation.country}`;
+            } catch (error) {
+                document.getElementById('locationInfo').innerHTML = `📍 Location found`;
+            }
+        }
+
+        async function fetchPrayerTimes() {
+            const today = new Date();
+            const day = today.getDate();
+            const month = today.getMonth() + 1;
+            const year = today.getFullYear();
+
+            try {
+                const response = await fetch(`https://api.aladhan.com/v1/timings/${day}-${month}-${year}?latitude=${userLocation.latitude}&longitude=${userLocation.longitude}&method=2`);
+                const data = await response.json();
+
+                if (data.code === 200) {
+                    const timings = data.data.timings;
+                    displayPrayerTimes(timings);
+                } else {
+                    throw new Error('Failed to fetch prayer times');
+                }
+            } catch (error) {
+                document.getElementById('prayerTimesList').innerHTML = '<li class="error-message">❌ Error loading prayer times. Please try again.</li>';
+            }
+        }
+
+        function displayPrayerTimes(timings) {
+            const prayerNames = {
+                'Fajr': timings.Fajr,
+                'Sunrise': timings.Sunrise,
+                'Dhuhr': timings.Dhuhr,
+                'Asr': timings.Asr,
+                'Maghrib': timings.Maghrib,
+                'Isha': timings.Isha
+            };
+
+            const list = document.getElementById('prayerTimesList');
+            list.innerHTML = '';
+
+            for (const [name, time] of Object.entries(prayerNames)) {
+                const li = document.createElement('li');
+                li.className = 'prayer-time-item';
+                li.innerHTML = `
+                    <span class="prayer-name">${name}</span>
+                    <span class="prayer-time">${time}</span>
+                `;
+                list.appendChild(li);
+            }
+        }
+
+        // QIBLA DIRECTION
+        const KAABA_LAT = 21.4225;
+        const KAABA_LON = 39.8262;
+        let deviceHeading = 0;
+        let qiblaAngle = 0;
+
+        function calculateQiblaDirection(userLat, userLon) {
+            const lat1 = userLat * Math.PI / 180;
+            const lat2 = KAABA_LAT * Math.PI / 180;
+            const dLon = (KAABA_LON - userLon) * Math.PI / 180;
+
+            const y = Math.sin(dLon);
+            const x = Math.cos(lat1) * Math.tan(lat2) - Math.sin(lat1) * Math.cos(dLon);
+
+            let bearing = Math.atan2(y, x) * 180 / Math.PI;
+            bearing = (bearing + 360) % 360;
+
+            return bearing;
+        }
+
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // Earth's radius in km
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                      Math.sin(dLon/2) * Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return R * c;
+        }
+
+        function getDirection(angle) {
+            const directions = [
+                'North', 'North-Northeast', 'Northeast', 'East-Northeast',
+                'East', 'East-Southeast', 'Southeast', 'South-Southeast',
+                'South', 'South-Southwest', 'Southwest', 'West-Southwest',
+                'West', 'West-Northwest', 'Northwest', 'North-Northwest'
+            ];
+            const index = Math.round(angle / 22.5) % 16;
+            return directions[index];
+        }
+
+        function getDirectionEmoji(angle) {
+            if (angle >= 337.5 || angle < 22.5) return '⬆️';
+            if (angle >= 22.5 && angle < 67.5) return '↗️';
+            if (angle >= 67.5 && angle < 112.5) return '➡️';
+            if (angle >= 112.5 && angle < 157.5) return '↘️';
+            if (angle >= 157.5 && angle < 202.5) return '⬇️';
+            if (angle >= 202.5 && angle < 247.5) return '↙️';
+            if (angle >= 247.5 && angle < 292.5) return '⬅️';
+            if (angle >= 292.5 && angle < 337.5) return '↖️';
+        }
+
+        function updateQiblaCompass() {
+            if (!userLocation.latitude || !userLocation.longitude) {
+                navigator.geolocation.getCurrentPosition(
+                    position => {
+                        userLocation.latitude = position.coords.latitude;
+                        userLocation.longitude = position.coords.longitude;
+                        
+                        qiblaAngle = calculateQiblaDirection(userLocation.latitude, userLocation.longitude);
+                        const distance = calculateDistance(userLocation.latitude, userLocation.longitude, KAABA_LAT, KAABA_LON);
+                        
+                        document.getElementById('qiblaDegree').textContent = Math.round(qiblaAngle) + '°';
+                        document.getElementById('qiblaDirection').textContent = getDirectionEmoji(qiblaAngle) + ' ' + getDirection(qiblaAngle);
+                        document.getElementById('qiblaDistance').textContent = `Distance to Kaaba: ${Math.round(distance)} km`;
+                        
+                        startCompass();
+                    },
+                    error => {
+                        document.getElementById('qiblaError').style.display = 'block';
+                        document.getElementById('qiblaError').textContent = '❌ Please enable location services to use Qibla compass.';
+                    }
+                );
+            } else {
+                qiblaAngle = calculateQiblaDirection(userLocation.latitude, userLocation.longitude);
+                const distance = calculateDistance(userLocation.latitude, userLocation.longitude, KAABA_LAT, KAABA_LON);
+                
+                document.getElementById('qiblaDegree').textContent = Math.round(qiblaAngle) + '°';
+                document.getElementById('qiblaDirection').textContent = getDirectionEmoji(qiblaAngle) + ' ' + getDirection(qiblaAngle);
+                document.getElementById('qiblaDistance').textContent = `Distance to Kaaba: ${Math.round(distance)} km`;
+                
+                startCompass();
+            }
+        }
+
+        function startCompass() {
+            if (window.DeviceOrientationEvent) {
+                window.addEventListener('deviceorientationabsolute', handleOrientation, true);
+                window.addEventListener('deviceorientation', handleOrientation, true);
+            } else {
+                document.getElementById('qiblaError').style.display = 'block';
+                document.getElementById('qiblaError').textContent = '❌ Device compass not supported. Please use a physical compass.';
+            }
+        }
+
+        function handleOrientation(event) {
+            let heading = event.alpha || event.webkitCompassHeading;
+            
+            if (heading !== null && heading !== undefined) {
+                // iOS reports compass heading directly, Android reports alpha
+                if (event.webkitCompassHeading !== undefined) {
+                    deviceHeading = event.webkitCompassHeading;
+                } else {
+                    deviceHeading = 360 - heading;
+                }
+                
+                const needleAngle = qiblaAngle - deviceHeading;
+                document.getElementById('compassNeedle').style.transform = `translate(-50%, -100%) rotate(${needleAngle}deg)`;
+            }
+        }
+
+        // Initialize on page load
+        loadPrayerTimes();
+        updateQiblaCompass();
     </script>
 </body>
 </html>
