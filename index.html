@@ -4,6 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Islamic Hub - Your Gateway to Islamic Knowledge</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Islamic Hub - Learn Quran, Hadith, Prayer Times, Islamic Games, Stories & More. Free Islamic Resources for Muslims Worldwide.">
+    <meta name="keywords" content="Islam, Quran, Hadith, Prayer Times, Islamic Games, Muslim, Islamic Stories, Zakat Calculator">
+    <meta name="author" content="Islamic Hub">
+    
+    <!-- Open Graph for Social Media -->
+    <meta property="og:title" content="Islamic Hub - Your Gateway to Islamic Knowledge">
+    <meta property="og:description" content="Free Islamic Resources: Quran, Hadith, Games, Stories & More!">
+    <meta property="og:url" content="https://theislamichub01.github.io/theislamichub01/">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Islamic Hub - Your Gateway to Islamic Knowledge">
+    <meta name="twitter:description" content="Free Islamic Resources: Quran, Hadith, Games, Stories & More!">
+    
     <style>
         * {
             margin: 0;
@@ -24,18 +41,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, 
-                #1a4d2e 0%, 
-                #2d5f3f 15%, 
-                #4a7c59 30%, 
-                #6b9c7d 45%, 
-                #8bbca0 60%, 
-                #abddc4 75%, 
-                #cbffe8 90%, 
-                #e8fff5 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
             background-size: 400% 400%;
             animation: gradientFlow 20s ease infinite;
-            z-index: -2;
+            z-index: -1;
         }
 
         @keyframes gradientFlow {
@@ -44,62 +53,70 @@
             100% { background-position: 0% 50%; }
         }
 
-        .pattern-overlay {
-            position: fixed;
+        header {
+            background: rgba(102, 126, 234, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 2px, transparent 2px),
-                radial-gradient(circle at 80% 50%, rgba(255,255,255,0.1) 2px, transparent 2px);
-            background-size: 100px 100px;
-            animation: patternMove 30s linear infinite;
-            z-index: -1;
+            z-index: 1000;
         }
 
-        @keyframes patternMove {
-            0% { background-position: 0 0; }
-            100% { background-position: 100px 100px; }
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
-        .floating-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
+        .nav-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
         }
 
-        .float-icon {
-            position: absolute;
-            font-size: 3rem;
-            opacity: 0.2;
-            animation: floatAround 25s infinite ease-in-out;
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
         }
 
-        @keyframes floatAround {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(30px, -40px) rotate(90deg); }
-            50% { transform: translate(-20px, -80px) rotate(180deg); }
-            75% { transform: translate(-40px, -40px) rotate(270deg); }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
-        .float-icon:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
-        .float-icon:nth-child(2) { top: 20%; left: 85%; animation-delay: 3s; }
-        .float-icon:nth-child(3) { top: 60%; left: 15%; animation-delay: 6s; }
-        .float-icon:nth-child(4) { top: 75%; left: 80%; animation-delay: 9s; }
-        .float-icon:nth-child(5) { top: 40%; left: 50%; animation-delay: 12s; }
-        .float-icon:nth-child(6) { top: 85%; left: 40%; animation-delay: 15s; }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
 
         .support-button {
             position: fixed;
             top: 20px;
             right: 20px;
             z-index: 9999;
-            background: linear-gradient(135deg, #ff9f43 0%, #ff6b6b 100%);
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
             color: white;
             padding: 1rem 1.5rem;
             border-radius: 15px;
@@ -115,17 +132,162 @@
             box-shadow: 0 12px 35px rgba(255, 107, 107, 0.7);
         }
 
-        .support-button-icon {
+        .support-icon {
             font-size: 1.5rem;
             margin-bottom: 0.3rem;
             display: block;
             text-align: center;
         }
 
-        .support-button-text {
+        .support-text {
             font-size: 0.9rem;
             font-weight: 600;
             text-align: center;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 6rem 2rem;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: rgba(255, 255, 255, 0.95);
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+        }
+
+        .features {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            text-align: center;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px) rotate(2deg);
+            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.4);
+            border-color: #667eea;
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .feature-card a {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .feature-card a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        footer {
+            background: rgba(102, 126, 234, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
         }
 
         .support-modal {
@@ -178,66 +340,56 @@
             background: #c62828;
         }
 
-        .support-modal h2 {
-            color: #1a4d2e;
-            margin-bottom: 2rem;
-            text-align: center;
-            font-size: 2rem;
-        }
-
         .support-tabs {
             display: flex;
-            gap: 1rem;
+            gap: 0.5rem;
             margin-bottom: 2rem;
             border-bottom: 2px solid #ddd;
-            flex-wrap: wrap;
         }
 
         .support-tab {
-            padding: 1rem 1.5rem;
+            padding: 1rem 2rem;
             background: none;
             border: none;
-            color: #666;
-            font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s;
+            font-size: 1rem;
+            color: #666;
             border-bottom: 3px solid transparent;
+            transition: all 0.3s;
             font-weight: 600;
-            flex: 1;
-            min-width: 100px;
-        }
-
-        .support-tab:hover {
-            color: #1a4d2e;
         }
 
         .support-tab.active {
-            color: #1a4d2e;
-            border-bottom-color: #1a4d2e;
+            color: #667eea;
+            border-bottom-color: #667eea;
         }
 
-        .support-tab-content {
+        .support-tab:hover {
+            color: #667eea;
+        }
+
+        .support-content {
             display: none;
         }
 
-        .support-tab-content.active {
+        .support-content.active {
             display: block;
         }
 
-        .support-form-group {
+        .form-group {
             margin-bottom: 1.5rem;
         }
 
-        .support-form-group label {
+        .form-group label {
             display: block;
-            color: #1a4d2e;
+            color: #333;
             font-weight: bold;
             margin-bottom: 0.5rem;
         }
 
-        .support-form-group input,
-        .support-form-group textarea,
-        .support-form-group select {
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
             width: 100%;
             padding: 1rem;
             border: 2px solid #ddd;
@@ -246,476 +398,371 @@
             font-family: inherit;
         }
 
-        .support-form-group textarea {
+        .form-group textarea {
             min-height: 120px;
             resize: vertical;
         }
 
-        .support-submit-btn {
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .submit-btn {
             width: 100%;
             padding: 1.2rem;
-            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
             border-radius: 10px;
             font-size: 1.1rem;
             cursor: pointer;
             transition: all 0.3s;
-            font-weight: 600;
+            font-weight: bold;
         }
 
-        .support-submit-btn:hover {
+        .submit-btn:hover {
             transform: scale(1.02);
-            box-shadow: 0 6px 20px rgba(26, 77, 46, 0.5);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
         }
 
-        .support-contact-info {
-            background: #f9f9f9;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-bottom: 1rem;
+        .contact-info {
+            background: #f5f5f5;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
         }
 
-        .support-contact-info h4 {
-            color: #1a4d2e;
-            margin-bottom: 1rem;
+        .contact-info h3 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
         }
 
-        .support-contact-info p {
-            color: #666;
-            line-height: 1.8;
+        .contact-item {
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .contact-item strong {
+            display: block;
+            color: #333;
             margin-bottom: 0.5rem;
         }
 
-        .hero {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 6rem 2rem;
-            text-align: center;
-            margin: 3rem 2rem;
-            border-radius: 30px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '☪';
-            position: absolute;
-            font-size: 25rem;
-            opacity: 0.08;
-            top: -80px;
-            right: -80px;
-            animation: rotateSlow 40s linear infinite;
-        }
-
-        @keyframes rotateSlow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            text-shadow: 4px 4px 8px rgba(0,0,0,0.4);
-            animation: fadeInDown 1.2s ease;
-        }
-
-        .hero .tagline {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1.2s ease 0.3s both;
-        }
-
-        .hero-bismillah {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            font-family: 'Times New Roman', serif;
-            animation: fadeIn 1.5s ease 0.9s both;
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .features {
-            max-width: 1300px;
-            margin: 5rem auto;
-            padding: 0 2rem;
-        }
-
-        .features h2 {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 4rem;
-            color: white;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(15px);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            text-align: center;
-            transition: all 0.4s;
-            animation: cardSlideUp 0.8s ease;
-        }
-
-        @keyframes cardSlideUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .feature-card:hover {
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: 0 20px 60px rgba(26, 77, 46, 0.4);
-        }
-
-        .feature-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            animation: iconBounce 2s infinite;
-        }
-
-        @keyframes iconBounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .feature-card h3 {
-            color: #1a4d2e;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .feature-card p {
-            color: #555;
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-card a {
-            display: inline-block;
-            padding: 0.9rem 2.2rem;
-            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 100%);
-            color: white;
+        .contact-item a {
+            color: #667eea;
             text-decoration: none;
-            border-radius: 30px;
             transition: all 0.3s;
-            box-shadow: 0 6px 20px rgba(26, 77, 46, 0.4);
         }
 
-        .feature-card a:hover {
-            transform: scale(1.08);
-            box-shadow: 0 8px 30px rgba(26, 77, 46, 0.6);
-        }
-
-        .quote-section {
-            max-width: 900px;
-            margin: 5rem auto;
-            padding: 3rem 2rem;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 25px;
-            text-align: center;
-            color: white;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
-        }
-
-        .quote-section blockquote {
-            font-size: 1.8rem;
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-        }
-
-        footer {
-            background: rgba(26, 77, 46, 0.95);
-            backdrop-filter: blur(15px);
-            color: white;
-            text-align: center;
-            padding: 3rem 2rem;
-            margin-top: 5rem;
-        }
-
-        footer p {
-            margin: 0.8rem 0;
-        }
-
-        .footer-heart {
-            animation: heartbeat 1.5s ease-in-out infinite;
-            display: inline-block;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.2); }
+        .contact-item a:hover {
+            color: #764ba2;
+            text-decoration: underline;
         }
 
         @media (max-width: 968px) {
-            .hero h1 { font-size: 2.5rem; }
-            .features h2 { font-size: 2rem; }
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
             .support-button {
-                top: 15px;
+                top: 80px;
                 right: 15px;
                 padding: 0.8rem 1rem;
             }
-            .support-button-icon {
+
+            .support-icon {
                 font-size: 1.2rem;
             }
-            .support-button-text {
+
+            .support-text {
                 font-size: 0.8rem;
             }
-            .support-modal-content {
-                padding: 2rem 1.5rem;
-            }
+
             .support-tabs {
                 flex-direction: column;
-                gap: 0.5rem;
             }
+
             .support-tab {
-                font-size: 0.9rem;
-                padding: 0.8rem 1rem;
+                border-bottom: none;
+                border-left: 3px solid transparent;
+            }
+
+            .support-tab.active {
+                border-left-color: #667eea;
             }
         }
     </style>
 </head>
 <body>
     <div class="animated-bg"></div>
-    <div class="pattern-overlay"></div>
-    
-    <div class="floating-elements">
-        <div class="float-icon">☪</div>
-        <div class="float-icon">🕌</div>
-        <div class="float-icon">⭐</div>
-        <div class="float-icon">🌙</div>
-        <div class="float-icon">✨</div>
-        <div class="float-icon">🤲</div>
-    </div>
 
+    <!-- SUPPORT BUTTON -->
     <div class="support-button" onclick="openSupportModal()">
-        <div class="support-button-icon">📧</div>
-        <div class="support-button-text">Support</div>
+        <div class="support-icon">💬</div>
+        <div class="support-text">Support</div>
     </div>
 
+    <header>
+        <nav>
+            <div class="nav-top">
+                <div class="logo">☪ Islamic Hub</div>
+                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">🏠 Home</a></li>
+                <li><a href="prayer-tools.html">🕌 Prayer</a></li>
+                <li><a href="quran.html">📕 Quran</a></li>
+                <li><a href="daily-hadith.html">📖 Hadith</a></li>
+                <li><a href="ayah-of-the-day.html">🌟 Ayah</a></li>
+                <li><a href="dua-of-the-day.html">🤲 Dua</a></li>
+                <li><a href="calendar.html">📅 Calendar</a></li>
+                <li><a href="zakat-calculator.html">💰 Zakat</a></li>
+                <li><a href="kids-stories.html">👶 Kids</a></li>
+                <li><a href="dawah.html">📢 Dawah</a></li>
+                <li><a href="community.html">💬 Community</a></li>
+                <li><a href="halal-games.html">🎮 Games</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Welcome to Islamic Hub</h1>
+        <p>Your Complete Islamic Resource Center</p>
+        <a href="#features" class="cta-button">Explore Now ↓</a>
+    </section>
+
+    <section class="features" id="features">
+        <div class="feature-card">
+            <div class="feature-icon">🕌</div>
+            <h3>Prayer Tools</h3>
+            <p>Accurate prayer times, Qibla direction, and Adhan notifications for your location.</p>
+            <a href="prayer-tools.html">Go to Prayer Tools →</a>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📕</div>
+            <h3>Quran</h3>
+            <p>Read the Holy Quran with translations in multiple languages and beautiful recitations.</p>
+            <a href="quran.html">Read Quran →</a>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📖</div>
+            <h3>Daily Hadith</h3>
+            <p>Learn from the teachings of Prophet Muhammad ﷺ with authentic Hadith collections.</p>
+            <a href="daily-hadith.html">Read Hadith →</a>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🌟</div>
+            <h3>Ayah of the Day</h3>
+            <p>Discover and reflect upon a new verse from the Quran every single day.</p>
+            <a href="ayah-of-the-day.html">See Today's Ayah →</a>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🤲</div>
+            <h3>Dua of the Day</h3>
+            <p>Learn powerful supplications from the Quran and Sunnah with meanings.</p>
+            <a href="dua-of-the-day.html">Learn Duas →</a>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📅</div>
+            <h3>Islamic Calendar</h3>
+            <p>Track important Islamic dates, convert between calendars, and plan ahead.</p>
+            <a href="calendar.html">View Calendar →</a>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">💰</div>
+            <h3>Zakat Calculator</h3>
+            <p>Calculate your Zakat accurately with our easy-to-use calculator tool.</p>
+            <a href="zakat-calculator.html">Calculate Zakat →</a>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">👶</div>
+            <h3>Kids' Stories</h3>
+            <p>Beautiful Islamic stories for children to learn about Prophets and Islamic values.</p>
+            <a href="kids-stories.html">Read Stories →</a>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📢</div>
+            <h3>Dawah Resources</h3>
+            <p>Tools and materials to share Islam with others in a beautiful way.</p>
+            <a href="dawah.html">Get Resources →</a>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">💬</div>
+            <h3>Community</h3>
+            <p>Connect with Muslims worldwide, ask questions, and join study circles.</p>
+            <a href="community.html">Join Community →</a>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🎮</div>
+            <h3>Halal Games</h3>
+            <p>Learn Islam through fun and educational games! Earn coins and unlock content!</p>
+            <a href="halal-games.html">Play Games →</a>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📚</div>
+            <h3>Islamic Library</h3>
+            <p>Access a vast collection of Islamic books, lectures, and educational content.</p>
+            <a href="#" onclick="alert('Coming Soon insha\'Allah!')">Coming Soon →</a>
+        </div>
+    </section>
+
+    <!-- SUPPORT MODAL -->
     <div class="support-modal" id="supportModal">
         <div class="support-modal-content">
             <button class="support-modal-close" onclick="closeSupportModal()">×</button>
-            <h2>📧 Support & Contact</h2>
+            
+            <h2 style="color: #667eea; margin-bottom: 2rem; text-align: center;">📞 Contact Support</h2>
             
             <div class="support-tabs">
-                <button class="support-tab active" onclick="switchTab(event, 'queries')">❓ Queries</button>
-                <button class="support-tab" onclick="switchTab(event, 'complaints')">⚠️ Complaints</button>
-                <button class="support-tab" onclick="switchTab(event, 'contact')">📞 Contact</button>
+                <button class="support-tab active" onclick="switchTab('queries')">Queries</button>
+                <button class="support-tab" onclick="switchTab('complaints')">Complaints</button>
+                <button class="support-tab" onclick="switchTab('contact')">Contact</button>
             </div>
 
-            <div class="support-tab-content active" id="queries">
-                <div class="support-form-group">
-                    <label>Your Name</label>
-                    <input type="text" id="queryName" placeholder="Enter your name">
-                </div>
-                <div class="support-form-group">
-                    <label>Email Address</label>
-                    <input type="email" id="queryEmail" placeholder="your@email.com">
-                </div>
-                <div class="support-form-group">
-                    <label>Query Type</label>
-                    <select id="queryType">
-                        <option>General Question</option>
-                        <option>Technical Issue</option>
-                        <option>Feature Request</option>
-                        <option>Account Help</option>
-                        <option>Islamic Content Question</option>
-                    </select>
-                </div>
-                <div class="support-form-group">
-                    <label>Your Query</label>
-                    <textarea id="queryMessage" placeholder="Describe your query in detail..."></textarea>
-                </div>
-                <button class="support-submit-btn" onclick="submitQuery()">Submit Query</button>
+            <!-- QUERIES TAB -->
+            <div class="support-content active" id="queriesTab">
+                <h3 style="color: #333; margin-bottom: 1.5rem;">Ask Us Anything</h3>
+                <form id="queryForm">
+                    <div class="form-group">
+                        <label>Your Name *</label>
+                        <input type="text" id="queryName" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Email *</label>
+                        <input type="email" id="queryEmail" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Query Type *</label>
+                        <select id="queryType" required>
+                            <option value="">Select type...</option>
+                            <option value="General Question">General Question</option>
+                            <option value="Technical Issue">Technical Issue</option>
+                            <option value="Feature Request">Feature Request</option>
+                            <option value="Islamic Question">Islamic Question</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Message *</label>
+                        <textarea id="queryMessage" placeholder="Tell us your query..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Query</button>
+                </form>
             </div>
 
-            <div class="support-tab-content" id="complaints">
-                <div class="support-form-group">
-                    <label>Your Name</label>
-                    <input type="text" id="complaintName" placeholder="Enter your name">
-                </div>
-                <div class="support-form-group">
-                    <label>Email Address</label>
-                    <input type="email" id="complaintEmail" placeholder="your@email.com">
-                </div>
-                <div class="support-form-group">
-                    <label>Complaint Type</label>
-                    <select id="complaintType">
-                        <option>Inappropriate Content</option>
-                        <option>Technical Problem</option>
-                        <option>User Behavior</option>
-                        <option>Incorrect Information</option>
-                        <option>Other</option>
-                    </select>
-                </div>
-                <div class="support-form-group">
-                    <label>Complaint Details</label>
-                    <textarea id="complaintMessage" placeholder="Please describe your complaint in detail..."></textarea>
-                </div>
-                <button class="support-submit-btn" onclick="submitComplaint()">Submit Complaint</button>
+            <!-- COMPLAINTS TAB -->
+            <div class="support-content" id="complaintsTab">
+                <h3 style="color: #333; margin-bottom: 1.5rem;">Report an Issue</h3>
+                <form id="complaintForm">
+                    <div class="form-group">
+                        <label>Your Name *</label>
+                        <input type="text" id="complaintName" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Email *</label>
+                        <input type="email" id="complaintEmail" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Issue Type *</label>
+                        <select id="complaintType" required>
+                            <option value="">Select type...</option>
+                            <option value="Bug/Error">Bug/Error</option>
+                            <option value="Inappropriate Content">Inappropriate Content</option>
+                            <option value="Account Issue">Account Issue</option>
+                            <option value="Performance Issue">Performance Issue</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Describe the Issue *</label>
+                        <textarea id="complaintMessage" placeholder="Please describe the issue in detail..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Complaint</button>
+                </form>
             </div>
 
-            <div class="support-tab-content" id="contact">
-                <div class="support-contact-info">
-                    <h4>📧 Email Us</h4>
-                    <p><strong>Queries & Support:</strong> lutrumputrumss@gmail.com</p>
-                </div>
+            <!-- CONTACT TAB -->
+            <div class="support-content" id="contactTab">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    
+                    <div class="contact-item">
+                        <strong>📧 Email</strong>
+                        <a href="mailto:lutrumputrumss@gmail.com">lutrumputrumss@gmail.com</a>
+                    </div>
 
-                <div class="support-contact-info">
-                    <h4>🌐 Follow Us</h4>
-                    <p><strong>Instagram:</strong> @theofficial.islamichub</p>
-                </div>
+                    <div class="contact-item">
+                        <strong>📱 Instagram</strong>
+                        <a href="https://instagram.com/theofficial.islamichub" target="_blank">@theofficial.islamichub</a>
+                    </div>
 
-                <div class="support-contact-info">
-                    <h4>⏰ Response Time</h4>
-                    <p>We typically respond within 24-48 hours.</p>
-                    <p>For urgent matters, please email us directly.</p>
-                </div>
+                    <div class="contact-item">
+                        <strong>🌐 Website</strong>
+                        <a href="https://theislamichub01.github.io/theislamichub01/">islamichub.com</a>
+                    </div>
 
-                <div class="support-form-group">
-                    <label>Your Name</label>
-                    <input type="text" id="contactName" placeholder="Your name">
+                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid #ddd;">
+                        <p style="color: #666; line-height: 1.8;">
+                            We typically respond within 24-48 hours insha'Allah.<br>
+                            For urgent matters, please mention "URGENT" in your subject line.
+                        </p>
+                    </div>
                 </div>
-                <div class="support-form-group">
-                    <label>Email Address</label>
-                    <input type="email" id="contactEmail" placeholder="Your email">
-                </div>
-                <div class="support-form-group">
-                    <label>Message</label>
-                    <textarea id="contactMessage" placeholder="Your message..."></textarea>
-                </div>
-                <button class="support-submit-btn" onclick="submitContact()">Send Message</button>
             </div>
         </div>
     </div>
 
-    <section class="hero">
-        <div class="hero-bismillah">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
-        <h1>🕌 Welcome to Islamic Hub</h1>
-        <p class="tagline">Your Comprehensive Gateway to Islamic Knowledge</p>
-    </section>
-
-    <section class="quote-section">
-        <blockquote>"The best of you are those who learn the Quran and teach it"</blockquote>
-        <cite>- Prophet Muhammad ﷺ (Sahih Bukhari)</cite>
-    </section>
-
-    <section class="features">
-        <h2>✨ Explore Our Resources</h2>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🕌</div>
-                <h3>Prayer Times & Qibla</h3>
-                <p>Accurate prayer times and Qibla direction from anywhere</p>
-                <a href="prayer-tools.html">Access Tools</a>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">📕</div>
-                <h3>Full Quran</h3>
-                <p>Read the complete Quran with English translation</p>
-                <a href="quran.html">Read Quran</a>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">📖</div>
-                <h3>Daily Hadith</h3>
-                <p>Authentic Hadith from Sahih Bukhari & Muslim</p>
-                <a href="daily-hadith.html">Read Hadith</a>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">🌟</div>
-                <h3>Ayah of the Day</h3>
-                <p>Daily Quranic verse with translation and tafsir</p>
-                <a href="ayah-of-the-day.html">View Today's Ayah</a>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">🤲</div>
-                <h3>Dua of the Day</h3>
-                <p>Learn essential duas from the Quran and Sunnah</p>
-                <a href="dua-of-the-day.html">Read Daily Dua</a>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">📅</div>
-                <h3>Islamic Calendar</h3>
-                <p>Hijri calendar and important Islamic dates</p>
-                <a href="calendar.html">View Calendar</a>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">💰</div>
-                <h3>Zakat Calculator</h3>
-                <p>Calculate your Zakat obligations accurately</p>
-                <a href="zakat-calculator.html">Calculate</a>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">👶</div>
-                <h3>Kids' Stories</h3>
-                <p>Islamic stories for children to learn and enjoy</p>
-                <a href="kids-stories.html">Read Stories</a>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">📢</div>
-                <h3>Dawah Resources</h3>
-                <p>Materials and guides for sharing Islam</p>
-                <a href="dawah.html">Learn More</a>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">💬</div>
-                <h3>Community</h3>
-                <p>Connect with Muslims worldwide</p>
-                <a href="community.html">Join Community</a>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">🎮</div>
-                <h3>Halal Games</h3>
-                <p>Educational Islamic games for all ages</p>
-                <a href="halal-games.html">Play Games</a>
-            </div>
-        </div>
-    </section>
-
     <footer>
         <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
-        <p>Made with <span class="footer-heart">❤️</span> for the Muslim Ummah</p>
-        <p>May Allah guide us all 🤲</p>
+        <p>Built with ❤️ for the Muslim Ummah</p>
+        <p style="margin-top: 1rem;">
+            <a href="mailto:lutrumputrumss@gmail.com" style="color: white; text-decoration: none;">📧 Contact Us</a> | 
+            <a href="https://instagram.com/theofficial.islamichub" target="_blank" style="color: white; text-decoration: none;">📱 Instagram</a>
+        </p>
     </footer>
 
     <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
         function openSupportModal() {
             document.getElementById('supportModal').classList.add('active');
         }
@@ -724,75 +771,81 @@
             document.getElementById('supportModal').classList.remove('active');
         }
 
-        function switchTab(event, tabName) {
-            document.querySelectorAll('.support-tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.querySelectorAll('.support-tab').forEach(btn => {
-                btn.classList.remove('active');
-            });
+        function switchTab(tab) {
+            // Remove active from all tabs and contents
+            document.querySelectorAll('.support-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.support-content').forEach(c => c.classList.remove('active'));
 
-            document.getElementById(tabName).classList.add('active');
+            // Add active to selected tab and content
             event.target.classList.add('active');
+            document.getElementById(tab + 'Tab').classList.add('active');
         }
 
-        function submitQuery() {
+        // Close modal when clicking outside
+        document.getElementById('supportModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeSupportModal();
+            }
+        });
+
+        // QUERY FORM SUBMISSION
+        document.getElementById('queryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
             const name = document.getElementById('queryName').value.trim();
             const email = document.getElementById('queryEmail').value.trim();
             const type = document.getElementById('queryType').value;
             const message = document.getElementById('queryMessage').value.trim();
 
-            if (!name || !email || !message) {
-                alert('Please fill in all required fields!');
+            if (!name || !email || !type || !message) {
+                alert('⚠️ Please fill in all required fields!');
                 return;
             }
 
-            const mailtoLink = `mailto:lutrumputrumss@gmail.com?subject=Query: ${type}&body=Name: ${name}%0AEmail: ${email}%0A%0AQuery:%0A${message}`;
-            window.location.href = mailtoLink;
-            
-            alert('✅ Opening your email app! Please send the email.');
-            closeSupportModal();
-        }
+            // Create mailto link
+            const subject = encodeURIComponent(`[Islamic Hub Query] ${type}`);
+            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nQuery Type: ${type}\n\nMessage:\n${message}`);
+            const mailtoLink = `mailto:lutrumputrumss@gmail.com?subject=${subject}&body=${body}`;
 
-        function submitComplaint() {
+            // Open email client
+            window.location.href = mailtoLink;
+
+            // Show success message
+            alert('✅ Your email client will open. Please send the email to complete your query submission!');
+
+            // Clear form
+            document.getElementById('queryForm').reset();
+            closeSupportModal();
+        });
+
+        // COMPLAINT FORM SUBMISSION
+        document.getElementById('complaintForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
             const name = document.getElementById('complaintName').value.trim();
             const email = document.getElementById('complaintEmail').value.trim();
             const type = document.getElementById('complaintType').value;
             const message = document.getElementById('complaintMessage').value.trim();
 
-            if (!name || !email || !message) {
-                alert('Please fill in all required fields!');
+            if (!name || !email || !type || !message) {
+                alert('⚠️ Please fill in all required fields!');
                 return;
             }
 
-            const mailtoLink = `mailto:lutrumputrumss@gmail.com?subject=Complaint: ${type}&body=Name: ${name}%0AEmail: ${email}%0A%0AComplaint:%0A${message}`;
+            // Create mailto link
+            const subject = encodeURIComponent(`[Islamic Hub Complaint] ${type}`);
+            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nIssue Type: ${type}\n\nComplaint Details:\n${message}`);
+            const mailtoLink = `mailto:lutrumputrumss@gmail.com?subject=${subject}&body=${body}`;
+
+            // Open email client
             window.location.href = mailtoLink;
-            
-            alert('✅ Opening your email app! Please send the email.');
+
+            // Show success message
+            alert('✅ Your email client will open. Please send the email to complete your complaint submission!');
+
+            // Clear form
+            document.getElementById('complaintForm').reset();
             closeSupportModal();
-        }
-
-        function submitContact() {
-            const name = document.getElementById('contactName').value.trim();
-            const email = document.getElementById('contactEmail').value.trim();
-            const message = document.getElementById('contactMessage').value.trim();
-
-            if (!name || !email || !message) {
-                alert('Please fill in all fields!');
-                return;
-            }
-
-            const mailtoLink = `mailto:lutrumputrumss@gmail.com?subject=Contact Message&body=Name: ${name}%0AEmail: ${email}%0A%0AMessage:%0A${message}`;
-            window.location.href = mailtoLink;
-            
-            alert('✅ Opening your email app! Please send the email.');
-            closeSupportModal();
-        }
-
-        document.getElementById('supportModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeSupportModal();
-            }
         });
     </script>
 </body>
