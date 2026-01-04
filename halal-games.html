@@ -139,6 +139,65 @@
             50% { transform: translateY(-10px); }
         }
 
+        .login-bonus-banner {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            border: 4px solid #fff;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .login-bonus-banner h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .login-bonus-banner p {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .login-btn {
+            padding: 1.5rem 3rem;
+            background: white;
+            color: #4CAF50;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .login-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+        }
+
+        .login-btn:disabled {
+            background: #ccc;
+            color: #666;
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+
+        .streak-info {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            color: white;
+        }
+
         .earn-coins-section {
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
@@ -275,6 +334,15 @@
             border-color: #667eea;
         }
 
+        .game-card.locked {
+            opacity: 0.7;
+            background: rgba(200, 200, 200, 0.98);
+        }
+
+        .game-card.locked:hover {
+            transform: translateY(-5px);
+        }
+
         .game-cost {
             position: absolute;
             top: 15px;
@@ -286,6 +354,24 @@
             font-weight: bold;
             font-size: 1.1rem;
             box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .premium-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.5);
+        }
+
+        .lock-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
 
         .game-icon {
@@ -306,6 +392,10 @@
             margin-bottom: 1rem;
         }
 
+        .game-card.locked .game-title {
+            color: #999;
+        }
+
         .game-description {
             color: #666;
             font-size: 1.1rem;
@@ -322,6 +412,11 @@
             font-size: 1rem;
             font-weight: bold;
             margin-top: 1rem;
+        }
+
+        .unlock-badge {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #333;
         }
 
         .btn {
@@ -439,72 +534,6 @@
             font-weight: bold;
         }
 
-        .memory-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            max-width: 600px;
-            margin: 2rem auto;
-        }
-
-        .memory-card {
-            aspect-ratio: 1;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 3px solid white;
-        }
-
-        .memory-card:hover {
-            transform: scale(1.05);
-        }
-
-        .memory-card.flipped {
-            background: white;
-            border-color: #667eea;
-        }
-
-        .memory-card.matched {
-            background: #4caf50;
-            border-color: white;
-        }
-
-        .word-scramble {
-            text-align: center;
-            margin: 2rem 0;
-        }
-
-        .scrambled-word {
-            font-size: 3rem;
-            color: #667eea;
-            font-weight: bold;
-            letter-spacing: 0.5rem;
-            margin: 2rem 0;
-            padding: 2rem;
-            background: white;
-            border-radius: 15px;
-            border: 3px solid #667eea;
-        }
-
-        .letter-input {
-            width: 100%;
-            max-width: 500px;
-            padding: 1.5rem;
-            font-size: 2rem;
-            text-align: center;
-            border: 3px solid #667eea;
-            border-radius: 15px;
-            margin: 2rem auto;
-            display: block;
-            text-transform: uppercase;
-            letter-spacing: 0.3rem;
-        }
-
         .hidden {
             display: none;
         }
@@ -534,9 +563,6 @@
                 right: 15px;
                 padding: 0.8rem 1.2rem;
                 font-size: 1.1rem;
-            }
-            .memory-grid {
-                grid-template-columns: repeat(3, 1fr);
             }
         }
     </style>
@@ -575,6 +601,16 @@
     <div class="container">
         <h1 class="page-title">🎮 Halal Islamic Games</h1>
 
+        <!-- DAILY LOGIN BONUS -->
+        <div class="login-bonus-banner">
+            <h2>🎁 Daily Login Bonus!</h2>
+            <p id="bonusMessage">Claim your daily coins!</p>
+            <button class="login-btn" id="loginBtn" onclick="claimDailyBonus()">
+                Claim Bonus 🪙
+            </button>
+            <div class="streak-info" id="streakInfo"></div>
+        </div>
+
         <div class="earn-coins-section">
             <h2>💰 Earn Coins by Watching Ads!</h2>
             <p>Watch a short ad and earn 10 coins to play games!</p>
@@ -596,16 +632,18 @@
         <div class="intro-section">
             <h2>🎮 How It Works</h2>
             <p>
-                <strong>1.</strong> Watch ads above to earn coins (10 coins per ad)<br>
-                <strong>2.</strong> Use your coins to unlock and play games<br>
-                <strong>3.</strong> Have fun learning about Islam!<br>
-                <strong>4.</strong> New quiz questions every day!
+                <strong>1.</strong> Claim daily login bonus (free coins!)<br>
+                <strong>2.</strong> Watch ads to earn more coins<br>
+                <strong>3.</strong> Play FREE games or unlock PREMIUM games<br>
+                <strong>4.</strong> Spend coins for special features<br>
+                <strong>5.</strong> New quiz questions every day!
             </p>
         </div>
 
         <div id="gamesMenu">
             <div class="games-grid">
-                <div class="game-card" onclick="playGame('quiz', 5)">
+                <!-- FREE GAMES -->
+                <div class="game-card" onclick="playGame('quiz', 5, false)">
                     <div class="game-cost">🪙 5 Coins</div>
                     <div class="game-icon">📚</div>
                     <div class="game-title">Islamic Quiz</div>
@@ -615,7 +653,7 @@
                     <div class="game-badge">Play Now!</div>
                 </div>
 
-                <div class="game-card" onclick="playGame('memory', 10)">
+                <div class="game-card" onclick="playGame('memory', 10, false)">
                     <div class="game-cost">🪙 10 Coins</div>
                     <div class="game-icon">🧠</div>
                     <div class="game-title">Memory Match</div>
@@ -625,7 +663,7 @@
                     <div class="game-badge">Play Now!</div>
                 </div>
 
-                <div class="game-card" onclick="playGame('scramble', 8)">
+                <div class="game-card" onclick="playGame('scramble', 8, false)">
                     <div class="game-cost">🪙 8 Coins</div>
                     <div class="game-icon">🔤</div>
                     <div class="game-title">Word Scramble</div>
@@ -635,34 +673,35 @@
                     <div class="game-badge">Play Now!</div>
                 </div>
 
-                <div class="game-card" onclick="playGame('pillar', 12)">
-                    <div class="game-cost">🪙 12 Coins</div>
-                    <div class="game-icon">🕌</div>
+                <!-- PREMIUM GAMES (LOCKED) -->
+                <div class="game-card locked" id="premiumPillar" onclick="unlockPremiumGame('pillar', 50)">
+                    <div class="premium-badge">🔒 PREMIUM</div>
+                    <div class="lock-icon">🔐</div>
                     <div class="game-title">Five Pillars Challenge</div>
                     <div class="game-description">
-                        Learn about the Five Pillars of Islam!
+                        Advanced quiz about the Five Pillars of Islam!
                     </div>
-                    <div class="game-badge">Play Now!</div>
+                    <div class="game-badge unlock-badge">Unlock for 50 Coins</div>
                 </div>
 
-                <div class="game-card" onclick="playGame('prophet', 15)">
-                    <div class="game-cost">🪙 15 Coins</div>
-                    <div class="game-icon">⭐</div>
-                    <div class="game-title">Prophets Quiz</div>
+                <div class="game-card locked" id="premiumProphet" onclick="unlockPremiumGame('prophet', 75)">
+                    <div class="premium-badge">🔒 PREMIUM</div>
+                    <div class="lock-icon">🔐</div>
+                    <div class="game-title">Prophets Master Quiz</div>
                     <div class="game-description">
-                        Test your knowledge about all the Prophets!
+                        Test your knowledge about all 25 Prophets!
                     </div>
-                    <div class="game-badge">Play Now!</div>
+                    <div class="game-badge unlock-badge">Unlock for 75 Coins</div>
                 </div>
 
-                <div class="game-card" onclick="playGame('quran', 20)">
-                    <div class="game-cost">🪙 20 Coins</div>
-                    <div class="game-icon">📖</div>
-                    <div class="game-title">Quran Challenge</div>
+                <div class="game-card locked" id="premiumQuran" onclick="unlockPremiumGame('quran', 100)">
+                    <div class="premium-badge">🔒 PREMIUM</div>
+                    <div class="lock-icon">🔐</div>
+                    <div class="game-title">Quran Master Challenge</div>
                     <div class="game-description">
-                        Match Quranic verses with their meanings!
+                        Match verses, Surahs, and test deep Quran knowledge!
                     </div>
-                    <div class="game-badge">Play Now!</div>
+                    <div class="game-badge unlock-badge">Unlock for 100 Coins</div>
                 </div>
             </div>
         </div>
@@ -671,43 +710,6 @@
         <div id="quizGame" class="game-area hidden">
             <h3>📚 Islamic Knowledge Quiz</h3>
             <div id="quizContent"></div>
-        </div>
-
-        <!-- MEMORY GAME -->
-        <div id="memoryGame" class="game-area hidden">
-            <h3>🧠 Islamic Memory Match</h3>
-            <p style="color: #666; margin-bottom: 2rem;">Match the pairs! Click on cards to flip them.</p>
-            <div class="score-board" style="margin-bottom: 2rem;">
-                <h4>Moves: <span id="moveCount">0</span></h4>
-                <h4>Matches: <span id="matchCount">0</span> / 8</h4>
-            </div>
-            <div class="memory-grid" id="memoryGrid"></div>
-            <button class="btn" onclick="backToMenu()">← Back to Games</button>
-        </div>
-
-        <!-- WORD SCRAMBLE GAME -->
-        <div id="scrambleGame" class="game-area hidden">
-            <h3>🔤 Islamic Word Scramble</h3>
-            <p style="color: #666; margin-bottom: 2rem;">Unscramble the Islamic word!</p>
-            <div id="scrambleContent"></div>
-        </div>
-
-        <!-- FIVE PILLARS GAME -->
-        <div id="pillarGame" class="game-area hidden">
-            <h3>🕌 Five Pillars Challenge</h3>
-            <div id="pillarContent"></div>
-        </div>
-
-        <!-- PROPHETS QUIZ -->
-        <div id="prophetGame" class="game-area hidden">
-            <h3>⭐ Prophets Knowledge Quiz</h3>
-            <div id="prophetContent"></div>
-        </div>
-
-        <!-- QURAN CHALLENGE -->
-        <div id="quranGame" class="game-area hidden">
-            <h3>📖 Quran Challenge</h3>
-            <div id="quranContent"></div>
         </div>
     </div>
 
@@ -723,7 +725,10 @@
 
         // COIN SYSTEM
         let coins = parseInt(localStorage.getItem('islamicHubCoins')) || 0;
+        let unlockedGames = JSON.parse(localStorage.getItem('islamicHubUnlockedGames')) || [];
+        
         updateCoinDisplay();
+        updateUnlockedGames();
 
         function updateCoinDisplay() {
             document.getElementById('coinBalance').textContent = coins;
@@ -742,6 +747,67 @@
                 return true;
             }
             return false;
+        }
+
+        // DAILY LOGIN BONUS
+        function claimDailyBonus() {
+            const today = new Date().toDateString();
+            const lastLogin = localStorage.getItem('islamicHubLastLogin');
+            const loginStreak = parseInt(localStorage.getItem('islamicHubLoginStreak')) || 0;
+
+            if (lastLogin === today) {
+                alert('⏰ You already claimed your bonus today! Come back tomorrow!');
+                return;
+            }
+
+            // Calculate bonus based on streak
+            let bonusCoins = 20; // Base bonus
+            let newStreak = loginStreak + 1;
+
+            // Check if streak is consecutive
+            const yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+            if (lastLogin !== yesterday.toDateString() && lastLogin !== null) {
+                newStreak = 1; // Reset streak if not consecutive
+            }
+
+            // Bonus multiplier for streaks
+            if (newStreak >= 7) bonusCoins = 50; // Week streak
+            else if (newStreak >= 3) bonusCoins = 30; // 3-day streak
+
+            addCoins(bonusCoins);
+            localStorage.setItem('islamicHubLastLogin', today);
+            localStorage.setItem('islamicHubLoginStreak', newStreak);
+
+            alert(`🎉 Daily Bonus Claimed!\n\n💰 +${bonusCoins} Coins\n🔥 ${newStreak} Day Streak!\n\n${newStreak >= 7 ? '🏆 AMAZING! Week streak bonus!' : newStreak >= 3 ? '⭐ Great! Keep the streak going!' : '✨ Come back tomorrow for more!'}`);
+
+            updateLoginButton();
+        }
+
+        function updateLoginButton() {
+            const today = new Date().toDateString();
+            const lastLogin = localStorage.getItem('islamicHubLastLogin');
+            const loginStreak = parseInt(localStorage.getItem('islamicHubLoginStreak')) || 0;
+            const btn = document.getElementById('loginBtn');
+            const message = document.getElementById('bonusMessage');
+            const streakInfo = document.getElementById('streakInfo');
+
+            if (lastLogin === today) {
+                btn.disabled = true;
+                btn.textContent = '✅ Claimed Today!';
+                message.textContent = 'Come back tomorrow for more coins!';
+                streakInfo.textContent = `🔥 Current Streak: ${loginStreak} days`;
+            } else {
+                btn.disabled = false;
+                btn.textContent = 'Claim Bonus 🪙';
+                
+                let bonusAmount = 20;
+                if (loginStreak >= 7) bonusAmount = 50;
+                else if (loginStreak >= 3) bonusAmount = 30;
+                
+                message.textContent = `Claim ${bonusAmount} coins today!`;
+                streakInfo.textContent = loginStreak > 0 ? `🔥 Current Streak: ${loginStreak} days` : '';
+            }
         }
 
         // AD WATCHING
@@ -786,33 +852,55 @@
             }, 1000);
         }
 
+        // PREMIUM GAMES UNLOCK
+        function unlockPremiumGame(gameName, cost) {
+            if (unlockedGames.includes(gameName)) {
+                playGame(gameName, 0, true);
+                return;
+            }
+
+            if (!confirm(`🔓 Unlock ${gameName.toUpperCase()} game for ${cost} coins?`)) {
+                return;
+            }
+
+            if (spendCoins(cost)) {
+                unlockedGames.push(gameName);
+                localStorage.setItem('islamicHubUnlockedGames', JSON.stringify(unlockedGames));
+                updateUnlockedGames();
+                alert(`🎉 ${gameName.toUpperCase()} game unlocked! You can now play it anytime!`);
+                playGame(gameName, 0, true);
+            } else {
+                alert(`❌ Not enough coins! You need ${cost} coins.\n\n💡 Watch ads or claim daily bonus to earn more!`);
+            }
+        }
+
+        function updateUnlockedGames() {
+            unlockedGames.forEach(gameName => {
+                const card = document.getElementById('premium' + gameName.charAt(0).toUpperCase() + gameName.slice(1));
+                if (card) {
+                    card.classList.remove('locked');
+                    card.querySelector('.lock-icon').textContent = '✅';
+                    card.querySelector('.premium-badge').textContent = '✅ UNLOCKED';
+                    card.querySelector('.premium-badge').style.background = 'linear-gradient(135deg, #4CAF50 0%, #45a049 100%)';
+                    card.querySelector('.game-badge').textContent = 'Play Now!';
+                    card.querySelector('.game-badge').classList.remove('unlock-badge');
+                    card.querySelector('.game-badge').classList.add('game-badge');
+                }
+            });
+        }
+
         // GAME SYSTEM
-        function playGame(gameType, cost) {
-            if (!spendCoins(cost)) {
+        function playGame(gameType, cost, isPremium) {
+            if (!isPremium && !spendCoins(cost)) {
                 alert(`❌ Not enough coins! You need ${cost} coins.\n\n💡 Watch ads to earn more coins!`);
                 return;
             }
             
             document.getElementById('gamesMenu').classList.add('hidden');
+            document.getElementById('quizGame').classList.remove('hidden');
             
-            if (gameType === 'quiz') {
-                document.getElementById('quizGame').classList.remove('hidden');
-                startQuiz();
-            } else if (gameType === 'memory') {
-                document.getElementById('memoryGame').classList.remove('hidden');
-                startMemoryGame();
-            } else if (gameType === 'scramble') {
-                document.getElementById('scrambleGame').classList.remove('hidden');
-                startScrambleGame();
-            } else if (gameType === 'pillar') {
-                document.getElementById('pillarGame').classList.remove('hidden');
-                startPillarGame();
-            } else if (gameType === 'prophet') {
-                document.getElementById('prophetGame').classList.remove('hidden');
-                startProphetGame();
-            } else if (gameType === 'quran') {
-                document.getElementById('quranGame').classList.remove('hidden');
-                startQuranGame();
+            if (gameType === 'quiz' || gameType === 'pillar' || gameType === 'prophet' || gameType === 'quran') {
+                startQuiz(gameType);
             }
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -824,107 +912,34 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // QUIZ QUESTIONS (200+ questions that rotate daily)
-        const allQuizQuestions = [
-            // BASIC ISLAM (50 questions)
-            {q: "How many pillars of Islam are there?", opts: ["3", "5", "7", "10"], correct: 1, exp: "The Five Pillars are: Shahada, Salah, Zakat, Sawm, and Hajj."},
-            {q: "Who was the first Prophet?", opts: ["Muhammad ﷺ", "Ibrahim (AS)", "Adam (AS)", "Musa (AS)"], correct: 2, exp: "Prophet Adam (AS) was the first human and first Prophet."},
-            {q: "How many times a day do Muslims pray?", opts: ["3", "5", "7", "10"], correct: 1, exp: "Muslims pray 5 times: Fajr, Dhuhr, Asr, Maghrib, Isha."},
-            {q: "In which month do Muslims fast?", opts: ["Muharram", "Rajab", "Ramadan", "Shawwal"], correct: 2, exp: "Muslims fast during Ramadan."},
-            {q: "What is the holy book of Islam?", opts: ["Torah", "Bible", "Quran", "Zabur"], correct: 2, exp: "The Quran is the holy book of Islam."},
-            {q: "Where was Prophet Muhammad ﷺ born?", opts: ["Madinah", "Makkah", "Jerusalem", "Damascus"], correct: 1, exp: "Prophet Muhammad ﷺ was born in Makkah."},
-            {q: "What does 'Islam' mean?", opts: ["Peace", "Submission to Allah", "Prayer", "Charity"], correct: 1, exp: "Islam means submission to Allah's will."},
-            {q: "How many Surahs in the Quran?", opts: ["100", "114", "120", "99"], correct: 1, exp: "The Quran has 114 Surahs."},
-            {q: "What direction do Muslims face when praying?", opts: ["North", "East", "Towards Kaaba", "Towards sun"], correct: 2, exp: "Muslims face the Kaaba in Makkah."},
-            {q: "What percentage is Zakat?", opts: ["1%", "2.5%", "5%", "10%"], correct: 1, exp: "Zakat is 2.5% of wealth."},
-            {q: "What is the first pillar of Islam?", opts: ["Prayer", "Shahada", "Fasting", "Hajj"], correct: 1, exp: "Shahada is the declaration of faith."},
-            {q: "How many prophets are mentioned in the Quran?", opts: ["25", "50", "100", "124000"], correct: 0, exp: "25 prophets are mentioned by name in the Quran."},
-            {q: "What is the Night of Power called?", opts: ["Laylat al-Isra", "Laylat al-Qadr", "Laylat al-Miraj", "Laylat al-Bara"], correct: 1, exp: "Laylat al-Qadr is the Night of Power."},
-            {q: "Who was the last Prophet?", opts: ["Isa (AS)", "Musa (AS)", "Muhammad ﷺ", "Ibrahim (AS)"], correct: 2, exp: "Muhammad ﷺ is the final Prophet."},
-            {q: "What is the Arabic word for charity?", opts: ["Sadaqah", "Salah", "Sawm", "Shahada"], correct: 0, exp: "Sadaqah means charity."},
-            {q: "Which angel brought revelation to prophets?", opts: ["Mikail", "Israfil", "Jibreel", "Azrael"], correct: 2, exp: "Angel Jibreel brought revelations."},
-            {q: "What is the first Surah of the Quran?", opts: ["Al-Baqarah", "Al-Fatiha", "Al-Ikhlas", "An-Nas"], correct: 1, exp: "Al-Fatiha is the opening chapter."},
-            {q: "How many days are in Ramadan?", opts: ["28", "29 or 30", "31", "40"], correct: 1, exp: "Ramadan is 29 or 30 days based on moon sighting."},
-            {q: "What is the Kaaba covered with?", opts: ["Gold cloth", "White cloth", "Black cloth (Kiswah)", "Green cloth"], correct: 2, exp: "The Kaaba is covered with black cloth called Kiswah."},
-            {q: "Who was Prophet Muhammad's ﷺ first wife?", opts: ["Aisha", "Khadijah", "Hafsa", "Zainab"], correct: 1, exp: "Khadijah was his first wife."},
-            // Add 30 more basic questions...
-            {q: "What is Salah?", opts: ["Fasting", "Prayer", "Charity", "Pilgrimage"], correct: 1, exp: "Salah means prayer."},
-            {q: "What is Sawm?", opts: ["Prayer", "Charity", "Fasting", "Pilgrimage"], correct: 2, exp: "Sawm means fasting."},
-            {q: "What is Hajj?", opts: ["Prayer", "Charity", "Fasting", "Pilgrimage"], correct: 3, exp: "Hajj is the pilgrimage to Makkah."},
-            {q: "Which month comes after Ramadan?", opts: ["Muharram", "Shawwal", "Rajab", "Dhul Hijjah"], correct: 1, exp: "Shawwal comes after Ramadan."},
-            {q: "What is the largest Surah in the Quran?", opts: ["Al-Fatiha", "Al-Baqarah", "Yasin", "Al-Mulk"], correct: 1, exp: "Al-Baqarah is the longest Surah."},
-            {q: "How many Juz in the Quran?", opts: ["20", "25", "30", "40"], correct: 2, exp: "The Quran has 30 Juz (parts)."},
-            {q: "What does 'Bismillah' mean?", opts: ["In the name of Allah", "Thanks to Allah", "Praise be to Allah", "Allah is Great"], correct: 0, exp: "Bismillah means 'In the name of Allah'."},
-            {q: "What is the reward for good deeds?", opts: ["Multiply by 10", "Multiply by 700", "Up to 700 times", "Equal reward"], correct: 2, exp: "Good deeds can be rewarded up to 700 times or more."},
-            {q: "Which prayer has no Sunnah before it?", opts: ["Fajr", "Dhuhr", "Asr", "Maghrib"], correct: 2, exp: "Asr has no regular Sunnah before it."},
-            {q: "What is the shortest Surah?", opts: ["Al-Fatiha", "Al-Ikhlas", "Al-Kawthar", "An-Nasr"], correct: 2, exp: "Al-Kawthar is the shortest Surah."},
-            {q: "How many angels carry the Throne of Allah?", opts: ["4", "6", "8", "10"], correct: 2, exp: "Eight angels carry the Throne."},
-            {q: "What is the Islamic greeting?", opts: ["Hello", "Assalamu Alaikum", "Good morning", "Namaste"], correct: 1, exp: "Assalamu Alaikum means 'Peace be upon you'."},
-            {q: "Which animal is not allowed to eat in Islam?", opts: ["Chicken", "Fish", "Pig", "Cow"], correct: 2, exp: "Pork is forbidden in Islam."},
-            {q: "What is forbidden during fasting?", opts: ["Talking", "Walking", "Eating/drinking", "Working"], correct: 2, exp: "Eating and drinking are forbidden during fasting hours."},
-            {q: "Which city is called the City of Prophet?", opts: ["Makkah", "Madinah", "Jerusalem", "Cairo"], correct: 1, exp: "Madinah is the City of the Prophet."},
-            {q: "What is the largest Islamic country by population?", opts: ["Saudi Arabia", "Egypt", "Indonesia", "Pakistan"], correct: 2, exp: "Indonesia has the largest Muslim population."},
-            {q: "Which angel will blow the trumpet?", opts: ["Jibreel", "Mikail", "Israfil", "Azrael"], correct: 2, exp: "Angel Israfil will blow the trumpet on Judgment Day."},
-            {q: "What is Tawhid?", opts: ["Prayer", "Fasting", "Oneness of Allah", "Charity"], correct: 2, exp: "Tawhid is the belief in the oneness of Allah."},
-            {q: "How many gates does Paradise have?", opts: ["4", "7", "8", "12"], correct: 2, exp: "Paradise has 8 gates."},
-            {q: "What is the mother of all evils?", opts: ["Lying", "Stealing", "Love of dunya", "Pride"], correct: 2, exp: "Love of worldly life is the mother of all evils."},
-            {q: "Which prophet could speak to animals?", opts: ["Musa (AS)", "Isa (AS)", "Sulaiman (AS)", "Yusuf (AS)"], correct: 2, exp: "Prophet Sulaiman could understand animals."},
-            
-            // PROPHETS (50 questions)
-            {q: "Who built the Kaaba?", opts: ["Adam (AS)", "Ibrahim & Ismail", "Muhammad ﷺ", "Nuh (AS)"], correct: 1, exp: "Ibrahim and Ismail built the Kaaba."},
-            {q: "Which prophet was swallowed by a whale?", opts: ["Musa (AS)", "Yunus (AS)", "Nuh (AS)", "Dawud (AS)"], correct: 1, exp: "Prophet Yunus was swallowed by a whale."},
-            {q: "Who was thrown into fire?", opts: ["Musa (AS)", "Ibrahim (AS)", "Yusuf (AS)", "Nuh (AS)"], correct: 1, exp: "Prophet Ibrahim was thrown into fire."},
-            {q: "Which prophet had the best voice?", opts: ["Muhammad ﷺ", "Dawud (AS)", "Musa (AS)", "Isa (AS)"], correct: 1, exp: "Prophet Dawud had a beautiful voice."},
-            {q: "Who was sold as a slave?", opts: ["Yusuf (AS)", "Musa (AS)", "Isa (AS)", "Yunus (AS)"], correct: 0, exp: "Prophet Yusuf was sold as a slave."},
-            {q: "Which prophet split the sea?", opts: ["Nuh (AS)", "Ibrahim (AS)", "Musa (AS)", "Isa (AS)"], correct: 2, exp: "Prophet Musa split the Red Sea."},
-            {q: "Who was born without a father?", opts: ["Adam (AS)", "Isa (AS)", "Muhammad ﷺ", "Yahya (AS)"], correct: 1, exp: "Prophet Isa was born without a father."},
-            {q: "Which prophet made the first ship?", opts: ["Ibrahim (AS)", "Nuh (AS)", "Yusuf (AS)", "Musa (AS)"], correct: 1, exp: "Prophet Nuh built the first ship."},
-            {q: "Who killed Goliath?", opts: ["Musa (AS)", "Dawud (AS)", "Sulaiman (AS)", "Yusuf (AS)"], correct: 1, exp: "Prophet Dawud killed Goliath."},
-            {q: "Which prophet's wife was barren for years?", opts: ["Ibrahim (AS)", "Zakariya (AS)", "Yaqub (AS)", "Lut (AS)"], correct: 1, exp: "Prophet Zakariya's wife was barren."},
-            // Add 40 more prophet questions...
-            
-            // QURAN (50 questions)
-            {q: "Which Surah doesn't start with Bismillah?", opts: ["Al-Fatiha", "At-Tawbah", "Al-Baqarah", "Yasin"], correct: 1, exp: "Surah At-Tawbah doesn't start with Bismillah."},
-            {q: "Which Surah is called the heart of Quran?", opts: ["Al-Fatiha", "Yasin", "Al-Mulk", "Ar-Rahman"], correct: 1, exp: "Surah Yasin is called the heart of Quran."},
-            {q: "How many times is 'Allah' mentioned in Quran?", opts: ["1000", "2699", "5000", "10000"], correct: 1, exp: "Allah is mentioned 2699 times."},
-            {q: "Which Surah has two Bismillahs?", opts: ["Al-Baqarah", "An-Naml", "Yasin", "Al-Mulk"], correct: 1, exp: "Surah An-Naml has two Bismillahs."},
-            {q: "How many years did Quran take to reveal?", opts: ["10", "15", "23", "40"], correct: 2, exp: "The Quran was revealed over 23 years."},
-            // Add 45 more Quran questions...
-            
-            // ADVANCED (50 questions)
-            {q: "How many names does Allah have?", opts: ["50", "99", "100", "1000"], correct: 1, exp: "Allah has 99 beautiful names."},
-            {q: "What is the Islamic New Year called?", opts: ["Eid", "Ramadan", "Muharram", "Rajab"], correct: 2, exp: "Muharram is the Islamic New Year."},
-            {q: "Which battle was called 'Day of Criterion'?", opts: ["Uhud", "Badr", "Khandaq", "Tabuk"], correct: 1, exp: "Battle of Badr is Yawm al-Furqan."},
-            // Add 47 more advanced questions...
-        ];
-
-        // Get daily quiz questions (10 random questions that change daily)
-        function getDailyQuestions() {
-            const today = new Date();
-            const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
-            const seed = dayOfYear;
-            
-            // Shuffle based on day
-            let shuffled = [...allQuizQuestions];
-            let currentIndex = shuffled.length;
-            
-            // Fisher-Yates shuffle with seed
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                const j = ((seed + i) * 9301 + 49297) % 233280 / 233280;
-                const swapIndex = Math.floor(j * (i + 1));
-                [shuffled[i], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[i]];
-            }
-            
-            return shuffled.slice(0, 10);
-        }
+        // QUIZ QUESTIONS (Simplified for demo)
+        const quizzes = {
+            quiz: [
+                {q: "How many pillars of Islam are there?", opts: ["3", "5", "7", "10"], correct: 1, exp: "The Five Pillars are: Shahada, Salah, Zakat, Sawm, and Hajj."},
+                {q: "Who was the first Prophet?", opts: ["Muhammad ﷺ", "Ibrahim (AS)", "Adam (AS)", "Musa (AS)"], correct: 2, exp: "Prophet Adam (AS) was the first human and first Prophet."},
+                {q: "How many times a day do Muslims pray?", opts: ["3", "5", "7", "10"], correct: 1, exp: "Muslims pray 5 times: Fajr, Dhuhr, Asr, Maghrib, Isha."},
+            ],
+            pillar: [
+                {q: "What is the first pillar of Islam?", opts: ["Prayer", "Shahada", "Fasting", "Hajj"], correct: 1, exp: "Shahada is the declaration of faith."},
+                {q: "What percentage is Zakat?", opts: ["1%", "2.5%", "5%", "10%"], correct: 1, exp: "Zakat is 2.5% of wealth."},
+            ],
+            prophet: [
+                {q: "Who built the Kaaba?", opts: ["Adam (AS)", "Ibrahim & Ismail", "Muhammad ﷺ", "Nuh (AS)"], correct: 1, exp: "Ibrahim and Ismail built the Kaaba."},
+                {q: "Which prophet was swallowed by a whale?", opts: ["Yunus", "Musa", "Isa", "Yusuf"], correct: 0, exp: "Prophet Yunus was swallowed by a whale."},
+            ],
+            quran: [
+                {q: "How many Surahs in the Quran?", opts: ["100", "114", "120", "99"], correct: 1, exp: "The Quran has 114 Surahs."},
+                {q: "What is the first Surah?", opts: ["Al-Baqarah", "Al-Fatiha", "Al-Ikhlas", "An-Nas"], correct: 1, exp: "Al-Fatiha is the opening chapter."},
+            ]
+        };
 
         let currentQuestion = 0;
         let score = 0;
         let answered = false;
-        let quizQuestions = [];
+        let currentQuiz = [];
 
-        function startQuiz() {
-            quizQuestions = getDailyQuestions();
+        function startQuiz(type) {
+            currentQuiz = quizzes[type] || quizzes.quiz;
             currentQuestion = 0;
             score = 0;
             answered = false;
@@ -932,12 +947,12 @@
         }
 
         function displayQuestion() {
-            const question = quizQuestions[currentQuestion];
+            const question = currentQuiz[currentQuestion];
             const content = document.getElementById('quizContent');
             
             content.innerHTML = `
                 <div class="quiz-question">
-                    <h4>Question ${currentQuestion + 1} of ${quizQuestions.length}</h4>
+                    <h4>Question ${currentQuestion + 1} of ${currentQuiz.length}</h4>
                     <h4 style="margin-top: 1rem;">${question.q}</h4>
                     <div class="quiz-options" id="quizOptions">
                         ${question.opts.map((opt, idx) => `
@@ -960,7 +975,7 @@
             if (answered) return;
             
             answered = true;
-            const question = quizQuestions[currentQuestion];
+            const question = currentQuiz[currentQuestion];
             const resultDiv = document.getElementById('quizResult');
             const options = document.querySelectorAll('.quiz-option');
             
@@ -981,7 +996,7 @@
                 `;
             }
             
-            if (currentQuestion < quizQuestions.length - 1) {
+            if (currentQuestion < currentQuiz.length - 1) {
                 resultDiv.innerHTML += `<button class="btn" onclick="nextQuestion()">Next Question →</button>`;
             } else {
                 resultDiv.innerHTML += `<button class="btn" onclick="showFinalScore()">See Final Score 🏆</button>`;
@@ -995,7 +1010,7 @@
         }
 
         function showFinalScore() {
-            const percentage = Math.round((score / quizQuestions.length) * 100);
+            const percentage = Math.round((score / currentQuiz.length) * 100);
             let message = '';
             let coinsReward = 0;
             
@@ -1020,7 +1035,7 @@
                 <div class="score-board" style="padding: 3rem;">
                     <h4>🏆 Quiz Complete!</h4>
                     <div class="score-text" style="margin: 2rem 0; font-size: 3rem;">
-                        ${score} / ${quizQuestions.length}
+                        ${score} / ${currentQuiz.length}
                     </div>
                     <h4 style="color: #333; margin: 1rem 0;">${percentage}% Correct</h4>
                     <p style="font-size: 1.5rem; color: #333; margin: 2rem 0;">
@@ -1034,308 +1049,8 @@
             `;
         }
 
-        // MEMORY GAME
-        const memorySymbols = ['🕌', '☪️', '📿', '🤲', '📖', '⭐', '🌙', '✨'];
-        let memoryCards = [];
-        let flippedCards = [];
-        let matchedPairs = 0;
-        let moves = 0;
-
-        function startMemoryGame() {
-            memoryCards = [...memorySymbols, ...memorySymbols]
-                .sort(() => Math.random() - 0.5)
-                .map((symbol, idx) => ({ id: idx, symbol, flipped: false, matched: false }));
-            
-            flippedCards = [];
-            matchedPairs = 0;
-            moves = 0;
-            updateMemoryStats();
-            renderMemoryGrid();
-        }
-
-        function renderMemoryGrid() {
-            const grid = document.getElementById('memoryGrid');
-            grid.innerHTML = memoryCards.map(card => `
-                <div class="memory-card ${card.flipped ? 'flipped' : ''} ${card.matched ? 'matched' : ''}"
-                     onclick="flipCard(${card.id})">
-                    ${card.flipped || card.matched ? card.symbol : '?'}
-                </div>
-            `).join('');
-        }
-
-        function flipCard(id) {
-            if (flippedCards.length >= 2) return;
-            const card = memoryCards.find(c => c.id === id);
-            if (!card || card.flipped || card.matched) return;
-            
-            card.flipped = true;
-            flippedCards.push(card);
-            renderMemoryGrid();
-            
-            if (flippedCards.length === 2) {
-                moves++;
-                updateMemoryStats();
-                
-                setTimeout(() => {
-                    if (flippedCards[0].symbol === flippedCards[1].symbol) {
-                        flippedCards.forEach(c => c.matched = true);
-                        matchedPairs++;
-                        updateMemoryStats();
-                        
-                        if (matchedPairs === memorySymbols.length) {
-                            setTimeout(() => {
-                                const reward = Math.max(30 - moves, 10);
-                                addCoins(reward);
-                                alert(`🎉 You won! Completed in ${moves} moves!\n💰 Earned ${reward} coins!`);
-                            }, 500);
-                        }
-                    } else {
-                        flippedCards.forEach(c => c.flipped = false);
-                    }
-                    flippedCards = [];
-                    renderMemoryGrid();
-                }, 1000);
-            }
-        }
-
-        function updateMemoryStats() {
-            document.getElementById('moveCount').textContent = moves;
-            document.getElementById('matchCount').textContent = matchedPairs;
-        }
-
-        // WORD SCRAMBLE GAME
-        const islamicWords = [
-            {word: 'QURAN', hint: 'Holy Book of Islam'},
-            {word: 'MAKKAH', hint: 'Holiest city in Islam'},
-            {word: 'RAMADAN', hint: 'Month of fasting'},
-            {word: 'PROPHET', hint: 'Messenger of Allah'},
-            {word: 'PRAYER', hint: 'Salah in English'},
-            {word: 'KAABA', hint: 'House of Allah'},
-            {word: 'MOSQUE', hint: 'Place of worship'},
-            {word: 'ZAKAT', hint: 'Obligatory charity'},
-            {word: 'HAJJ', hint: 'Pilgrimage to Makkah'},
-            {word: 'FAITH', hint: 'Iman in English'},
-            {word: 'ALLAH', hint: 'The One God'},
-            {word: 'ISLAM', hint: 'Submission to Allah'},
-            {word: 'MUSLIM', hint: 'One who submits'},
-            {word: 'FASTING', hint: 'Sawm in English'},
-            {word: 'ANGEL', hint: 'Malak in English'}
-        ];
-
-        let currentWord = {};
-        let scrambledWord = '';
-
-        function startScrambleGame() {
-            currentWord = islamicWords[Math.floor(Math.random() * islamicWords.length)];
-            scrambledWord = currentWord.word.split('').sort(() => Math.random() - 0.5).join('');
-            
-            document.getElementById('scrambleContent').innerHTML = `
-                <p style="color: #666; font-size: 1.2rem; margin-bottom: 2rem;">
-                    💡 Hint: ${currentWord.hint}
-                </p>
-                <div class="scrambled-word">${scrambledWord}</div>
-                <input type="text" class="letter-input" id="scrambleAnswer" 
-                       placeholder="Type your answer..." maxlength="${currentWord.word.length}">
-                <div style="margin-top: 2rem;">
-                    <button class="btn" onclick="checkScramble()">Check Answer</button>
-                    <button class="btn" onclick="startScrambleGame()">🔄 New Word</button>
-                    <button class="btn" onclick="backToMenu()">← Back</button>
-                </div>
-                <div id="scrambleResult"></div>
-            `;
-            
-            document.getElementById('scrambleAnswer').focus();
-        }
-
-        function checkScramble() {
-            const answer = document.getElementById('scrambleAnswer').value.toUpperCase();
-            const result = document.getElementById('scrambleResult');
-            
-            if (answer === currentWord.word) {
-                addCoins(15);
-                result.innerHTML = `
-                    <div class="quiz-result correct" style="margin-top: 2rem;">
-                        ✅ Correct! The word is ${currentWord.word}!<br>
-                        💰 +15 Coins earned!
-                    </div>
-                `;
-                setTimeout(() => startScrambleGame(), 2000);
-            } else if (answer.length > 0) {
-                result.innerHTML = `
-                    <div class="quiz-result incorrect" style="margin-top: 2rem;">
-                        ❌ Not quite! Try again!
-                    </div>
-                `;
-            }
-        }
-
-        // FIVE PILLARS GAME
-        function startPillarGame() {
-            const pillars = [
-                {name: 'Shahada', desc: 'Declaration of faith', detail: 'There is no god but Allah, and Muhammad is His messenger'},
-                {name: 'Salah', desc: 'Five daily prayers', detail: 'Fajr, Dhuhr, Asr, Maghrib, and Isha'},
-                {name: 'Zakat', desc: 'Obligatory charity', detail: '2.5% of wealth given to the poor'},
-                {name: 'Sawm', desc: 'Fasting in Ramadan', detail: 'Fasting from dawn to sunset'},
-                {name: 'Hajj', desc: 'Pilgrimage to Makkah', detail: 'Once in a lifetime if able'}
-            ];
-            
-            document.getElementById('pillarContent').innerHTML = `
-                <p style="color: #666; margin-bottom: 2rem;">Learn about the Five Pillars of Islam!</p>
-                ${pillars.map((p, idx) => `
-                    <div class="quiz-question" style="margin-bottom: 1.5rem;">
-                        <h4>${idx + 1}. ${p.name} - ${p.desc}</h4>
-                        <p style="color: #666; margin-top: 1rem;">${p.detail}</p>
-                    </div>
-                `).join('')}
-                <div class="score-board" style="margin-top: 2rem;">
-                    <h4>🎉 Congratulations!</h4>
-                    <p style="color: #333; margin: 1rem 0;">You've learned about the Five Pillars!</p>
-                    <div style="background: #ffd700; padding: 1.5rem; border-radius: 15px; margin-top: 1rem;">
-                        <h4 style="color: #333;">💰 Earned 25 Coins!</h4>
-                    </div>
-                </div>
-                <button class="btn" onclick="backToMenu()">← Back to Games</button>
-            `;
-            addCoins(25);
-        }
-
-        // PROPHETS QUIZ
-        function startProphetGame() {
-            const prophetQuestions = [
-                {q: 'Who was the first Prophet?', opts: ['Adam', 'Nuh', 'Ibrahim', 'Musa'], correct: 0},
-                {q: 'Who built the Kaaba?', opts: ['Adam', 'Ibrahim & Ismail', 'Muhammad ﷺ', 'Nuh'], correct: 1},
-                {q: 'Which prophet was swallowed by a whale?', opts: ['Yunus', 'Musa', 'Isa', 'Yusuf'], correct: 0},
-                {q: 'Who was thrown into fire?', opts: ['Musa', 'Ibrahim', 'Yusuf', 'Nuh'], correct: 1},
-                {q: 'Which prophet split the sea?', opts: ['Nuh', 'Ibrahim', 'Musa', 'Isa'], correct: 2}
-            ];
-            
-            let currentQ = 0;
-            let score = 0;
-            
-            function showProphetQuestion() {
-                const q = prophetQuestions[currentQ];
-                document.getElementById('prophetContent').innerHTML = `
-                    <div class="quiz-question">
-                        <h4>Question ${currentQ + 1} of ${prophetQuestions.length}</h4>
-                        <h4 style="margin-top: 1rem;">${q.q}</h4>
-                        <div class="quiz-options">
-                            ${q.opts.map((opt, idx) => `
-                                <div class="quiz-option" onclick="checkProphetAnswer(${idx})">
-                                    ${opt}
-                                </div>
-                            `).join('')}
-                        </div>
-                        <div id="prophetResult"></div>
-                    </div>
-                    <div class="score-board">
-                        <h4>Score: ${score} / ${currentQ}</h4>
-                    </div>
-                `;
-            }
-            
-            window.checkProphetAnswer = function(idx) {
-                const q = prophetQuestions[currentQ];
-                const result = document.getElementById('prophetResult');
-                
-                if (idx === q.correct) {
-                    score++;
-                    result.innerHTML = '<div class="quiz-result correct">✅ Correct!</div>';
-                } else {
-                    result.innerHTML = '<div class="quiz-result incorrect">❌ Incorrect!</div>';
-                }
-                
-                if (currentQ < prophetQuestions.length - 1) {
-                    result.innerHTML += '<button class="btn" onclick="nextProphetQ()">Next →</button>';
-                } else {
-                    const reward = score * 5;
-                    addCoins(reward);
-                    result.innerHTML += `<button class="btn" onclick="backToMenu()">Finish (+${reward} coins) ← </button>`;
-                }
-            };
-            
-            window.nextProphetQ = function() {
-                currentQ++;
-                showProphetQuestion();
-            };
-            
-            showProphetQuestion();
-        }
-
-        // QURAN CHALLENGE
-        function startQuranGame() {
-            const verses = [
-                {verse: 'Read in the name of your Lord', surah: 'Al-Alaq'},
-                {verse: 'Verily, with hardship comes ease', surah: 'Ash-Sharh'},
-                {verse: 'Indeed, We created man in the best of stature', surah: 'At-Tin'},
-                {verse: 'Say: He is Allah, the One', surah: 'Al-Ikhlas'},
-                {verse: 'Praise be to Allah, Lord of the worlds', surah: 'Al-Fatiha'}
-            ];
-            
-            let currentV = 0;
-            let score = 0;
-            
-            function showVerse() {
-                const v = verses[currentV];
-                const options = verses.map(x => x.surah).sort(() => Math.random() - 0.5);
-                
-                document.getElementById('quranContent').innerHTML = `
-                    <div class="quiz-question">
-                        <h4>Which Surah is this verse from?</h4>
-                        <p style="font-size: 1.3rem; color: #667eea; margin: 2rem 0; font-style: italic;">
-                            "${v.verse}"
-                        </p>
-                        <div class="quiz-options">
-                            ${options.map(opt => `
-                                <div class="quiz-option" onclick="checkQuranAnswer('${opt}')">
-                                    ${opt}
-                                </div>
-                            `).join('')}
-                        </div>
-                        <div id="quranResult"></div>
-                    </div>
-                    <div class="score-board">
-                        <h4>Score: ${score} / ${currentV}</h4>
-                    </div>
-                `;
-            }
-            
-            window.checkQuranAnswer = function(answer) {
-                const v = verses[currentV];
-                const result = document.getElementById('quranResult');
-                
-                if (answer === v.surah) {
-                    score++;
-                    result.innerHTML = `<div class="quiz-result correct">✅ Correct! It's from ${v.surah}</div>`;
-                } else {
-                    result.innerHTML = `<div class="quiz-result incorrect">❌ It's from ${v.surah}</div>`;
-                }
-                
-                if (currentV < verses.length - 1) {
-                    result.innerHTML += '<button class="btn" onclick="nextQuranQ()">Next →</button>';
-                } else {
-                    const reward = score * 8;
-                    addCoins(reward);
-                    result.innerHTML += `<button class="btn" onclick="backToMenu()">Finish (+${reward} coins) ← </button>`;
-                }
-            };
-            
-            window.nextQuranQ = function() {
-                currentV++;
-                showVerse();
-            };
-            
-            showVerse();
-        }
-
         // Initialize
-        window.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                const scrambleInput = document.getElementById('scrambleAnswer');
-                if (scrambleInput && scrambleInput === document.activeElement) {
-                    checkScramble();
-                }
-            }
-        });
+        updateLoginButton();
     </script>
 </body>
 </html>
