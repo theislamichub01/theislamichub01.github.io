@@ -97,15 +97,15 @@
             position: fixed;
             top: 100px;
             right: 20px;
-            z-index: 999;
+            z-index: 9999;
             background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
             color: #333;
-            padding: 1rem 1.5rem;
+            padding: 1.2rem 2rem;
             border-radius: 50px;
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
-            border: 3px solid #fff;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.8);
+            border: 4px solid #fff;
             font-weight: bold;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             animation: coinFloat 3s ease-in-out infinite;
         }
 
@@ -115,7 +115,7 @@
         }
 
         .coin-icon {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin-right: 0.5rem;
         }
 
@@ -334,17 +334,44 @@
             border-color: #667eea;
         }
 
+        .game-card.locked {
+            opacity: 0.7;
+            background: rgba(200, 200, 200, 0.98);
+        }
+
+        .game-card.locked:hover {
+            transform: translateY(-5px);
+        }
+
         .game-cost {
             position: absolute;
             top: 15px;
             right: 15px;
             background: #ffd700;
             color: #333;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .premium-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
             padding: 0.5rem 1rem;
             border-radius: 20px;
             font-weight: bold;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.5);
+        }
+
+        .lock-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
 
         .game-icon {
@@ -365,6 +392,10 @@
             margin-bottom: 1rem;
         }
 
+        .game-card.locked .game-title {
+            color: #999;
+        }
+
         .game-description {
             color: #666;
             font-size: 1.1rem;
@@ -381,6 +412,11 @@
             font-size: 1rem;
             font-weight: bold;
             margin-top: 1rem;
+        }
+
+        .unlock-badge {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #333;
         }
 
         .btn {
@@ -439,7 +475,7 @@
 
         .quiz-options {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmin(200px, 1fr));
             gap: 1rem;
         }
 
@@ -525,8 +561,8 @@
             .coin-balance {
                 top: 80px;
                 right: 15px;
-                padding: 0.8rem 1.2rem;
-                font-size: 1.1rem;
+                padding: 1rem 1.5rem;
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -534,7 +570,7 @@
 <body>
     <div class="animated-bg"></div>
 
-    <div class="coin-balance">
+    <div class="coin-balance" id="coinBalanceDisplay">
         <span class="coin-icon">🪙</span>
         <span id="coinBalance">0</span> Coins
     </div>
@@ -577,7 +613,7 @@
 
         <div class="earn-coins-section">
             <h2>💰 Earn Coins by Watching Ads!</h2>
-            <p>Watch a short ad and earn 10 coins to play games!</p>
+            <p>Watch a short ad and earn 10 coins to unlock games!</p>
             
             <div class="ad-container" id="adContainer">
                 <div class="ad-placeholder" id="adPlaceholder">
@@ -596,82 +632,103 @@
         <div class="intro-section">
             <h2>🎮 How It Works</h2>
             <p>
-                <strong>1.</strong> Claim daily login bonus (free coins!)<br>
-                <strong>2.</strong> Watch ads to earn more coins<br>
-                <strong>3.</strong> Play games to earn bonus coins<br>
-                <strong>4.</strong> All games are FREE - coins add extra rewards!<br>
+                <strong>1.</strong> Claim daily login bonus (20-50 coins!)<br>
+                <strong>2.</strong> Watch ads to earn more coins (10 coins per ad)<br>
+                <strong>3.</strong> Unlock games with your coins<br>
+                <strong>4.</strong> Win small rewards for completing games<br>
                 <strong>5.</strong> New quiz questions every day!
             </p>
         </div>
 
         <div id="gamesMenu">
             <div class="games-grid">
-                <!-- ALL GAMES FREE! -->
-                <div class="game-card" onclick="playGame('quiz', 5)">
-                    <div class="game-cost">🆓 FREE</div>
+                <!-- FREE STARTER GAME -->
+                <div class="game-card" onclick="playGame('quiz', 50, false)">
+                    <div class="game-cost">🪙 50 Coins</div>
                     <div class="game-icon">📚</div>
                     <div class="game-title">Islamic Quiz</div>
                     <div class="game-description">
-                        Test your Islamic knowledge! New questions daily!
+                        Test your Islamic knowledge! Win 3 coins for perfect score!
                     </div>
                     <div class="game-badge">Play Now!</div>
                 </div>
 
-                <div class="game-card" onclick="playGame('memory', 10)">
-                    <div class="game-cost">🆓 FREE</div>
-                    <div class="game-icon">🧠</div>
+                <!-- LOCKED PREMIUM GAMES -->
+                <div class="game-card locked" id="premiumMemory" onclick="unlockPremiumGame('memory', 100)">
+                    <div class="premium-badge">🔒 LOCKED</div>
+                    <div class="lock-icon">🔐</div>
                     <div class="game-title">Memory Match</div>
                     <div class="game-description">
-                        Match Islamic symbols and test your memory!
+                        Match Islamic symbols! Win 5 coins for completing!
                     </div>
-                    <div class="game-badge">Play Now!</div>
+                    <div class="game-badge unlock-badge">Unlock: 100 Coins</div>
                 </div>
 
-                <div class="game-card" onclick="playGame('scramble', 8)">
-                    <div class="game-cost">🆓 FREE</div>
-                    <div class="game-icon">🔤</div>
+                <div class="game-card locked" id="premiumScramble" onclick="unlockPremiumGame('scramble', 80)">
+                    <div class="premium-badge">🔒 LOCKED</div>
+                    <div class="lock-icon">🔐</div>
                     <div class="game-title">Word Scramble</div>
                     <div class="game-description">
-                        Unscramble Islamic words and terms!
+                        Unscramble Islamic words! Win 3 coins per word!
                     </div>
-                    <div class="game-badge">Play Now!</div>
+                    <div class="game-badge unlock-badge">Unlock: 80 Coins</div>
                 </div>
 
-                <div class="game-card" onclick="playGame('pillar', 5)">
-                    <div class="game-cost">🆓 FREE</div>
-                    <div class="game-icon">🕌</div>
+                <div class="game-card locked" id="premiumPillar" onclick="unlockPremiumGame('pillar', 150)">
+                    <div class="premium-badge">🔒 LOCKED</div>
+                    <div class="lock-icon">🔐</div>
                     <div class="game-title">Five Pillars Challenge</div>
                     <div class="game-description">
-                        Advanced quiz about the Five Pillars of Islam!
+                        Master the Five Pillars! Win 4 coins for completion!
                     </div>
-                    <div class="game-badge">Play Now!</div>
+                    <div class="game-badge unlock-badge">Unlock: 150 Coins</div>
                 </div>
 
-                <div class="game-card" onclick="playGame('prophet', 8)">
-                    <div class="game-cost">🆓 FREE</div>
-                    <div class="game-icon">⭐</div>
+                <div class="game-card locked" id="premiumProphet" onclick="unlockPremiumGame('prophet', 200)">
+                    <div class="premium-badge">🔒 LOCKED</div>
+                    <div class="lock-icon">🔐</div>
                     <div class="game-title">Prophets Master Quiz</div>
                     <div class="game-description">
-                        Test your knowledge about all 25 Prophets!
+                        Test knowledge of all Prophets! Win 5 coins!
                     </div>
-                    <div class="game-badge">Play Now!</div>
+                    <div class="game-badge unlock-badge">Unlock: 200 Coins</div>
                 </div>
 
-                <div class="game-card" onclick="playGame('quran', 10)">
-                    <div class="game-cost">🆓 FREE</div>
-                    <div class="game-icon">📖</div>
+                <div class="game-card locked" id="premiumQuran" onclick="unlockPremiumGame('quran', 250)">
+                    <div class="premium-badge">🔒 LOCKED</div>
+                    <div class="lock-icon">🔐</div>
                     <div class="game-title">Quran Master Challenge</div>
                     <div class="game-description">
-                        Match verses, Surahs, and test deep Quran knowledge!
+                        Deep Quran knowledge test! Win 6 coins!
                     </div>
-                    <div class="game-badge">Play Now!</div>
+                    <div class="game-badge unlock-badge">Unlock: 250 Coins</div>
+                </div>
+
+                <div class="game-card locked" id="premiumHouse" onclick="unlockPremiumGame('house', 300)">
+                    <div class="premium-badge">🔒 LOCKED</div>
+                    <div class="lock-icon">🔐</div>
+                    <div class="game-title">Build Your Halal House</div>
+                    <div class="game-description">
+                        Design your dream Islamic home! Win 8 coins!
+                    </div>
+                    <div class="game-badge unlock-badge">Unlock: 300 Coins</div>
+                </div>
+
+                <div class="game-card locked" id="premiumHajj" onclick="unlockPremiumGame('hajj', 350)">
+                    <div class="premium-badge">🔒 LOCKED</div>
+                    <div class="lock-icon">🔐</div>
+                    <div class="game-title">Virtual Hajj Journey</div>
+                    <div class="game-description">
+                        Journey from your city to Makkah! Win 10 coins!
+                    </div>
+                    <div class="game-badge unlock-badge">Unlock: 350 Coins</div>
                 </div>
             </div>
         </div>
 
         <!-- QUIZ GAME -->
         <div id="quizGame" class="game-area hidden">
-            <h3>📚 Islamic Knowledge Quiz</h3>
+            <h3 id="gameTitle">📚 Islamic Knowledge Quiz</h3>
             <div id="quizContent"></div>
         </div>
     </div>
@@ -688,12 +745,15 @@
 
         // COIN SYSTEM
         let coins = parseInt(localStorage.getItem('islamicHubCoins')) || 0;
+        let unlockedGames = JSON.parse(localStorage.getItem('islamicHubUnlockedGames')) || ['quiz'];
         
         updateCoinDisplay();
+        updateUnlockedGames();
 
         function updateCoinDisplay() {
             document.getElementById('coinBalance').textContent = coins;
             localStorage.setItem('islamicHubCoins', coins);
+            console.log('Coins updated:', coins); // Debug
         }
 
         function addCoins(amount) {
@@ -721,26 +781,23 @@
                 return;
             }
 
-            // Calculate bonus based on streak
-            let bonusCoins = 20; // Base bonus
+            let bonusCoins = 20;
             let newStreak = loginStreak + 1;
 
-            // Check if streak is consecutive
             const yesterday = new Date();
             yesterday.setDate(yesterday.getDate() - 1);
             if (lastLogin !== yesterday.toDateString() && lastLogin !== null) {
-                newStreak = 1; // Reset streak if not consecutive
+                newStreak = 1;
             }
 
-            // Bonus multiplier for streaks
-            if (newStreak >= 7) bonusCoins = 50; // Week streak
-            else if (newStreak >= 3) bonusCoins = 30; // 3-day streak
+            if (newStreak >= 7) bonusCoins = 50;
+            else if (newStreak >= 3) bonusCoins = 30;
 
             addCoins(bonusCoins);
             localStorage.setItem('islamicHubLastLogin', today);
             localStorage.setItem('islamicHubLoginStreak', newStreak);
 
-            alert(`🎉 Daily Bonus Claimed!\n\n💰 +${bonusCoins} Coins\n🔥 ${newStreak} Day Streak!\n\n${newStreak >= 7 ? '🏆 AMAZING! Week streak bonus!' : newStreak >= 3 ? '⭐ Great! Keep the streak going!' : '✨ Come back tomorrow for more!'}`);
+            alert(`🎉 Daily Bonus Claimed!\n\n💰 +${bonusCoins} Coins\n🔥 ${newStreak} Day Streak!\n\n${newStreak >= 7 ? '🏆 Week streak bonus!' : newStreak >= 3 ? '⭐ Keep going!' : '✨ Come back tomorrow!'}`);
 
             updateLoginButton();
         }
@@ -813,16 +870,71 @@
             }, 1000);
         }
 
-        // GAME SYSTEM - ALL GAMES FREE, BUT GIVE BONUS COINS
-        function playGame(gameType, bonusCoins) {
+        // PREMIUM GAMES UNLOCK
+        function unlockPremiumGame(gameName, cost) {
+            if (unlockedGames.includes(gameName)) {
+                playGame(gameName, 0, true);
+                return;
+            }
+
+            if (!confirm(`🔓 Unlock ${gameName.toUpperCase()} game for ${cost} coins?\n\nOnce unlocked, you can play forever!`)) {
+                return;
+            }
+
+            if (spendCoins(cost)) {
+                unlockedGames.push(gameName);
+                localStorage.setItem('islamicHubUnlockedGames', JSON.stringify(unlockedGames));
+                updateUnlockedGames();
+                alert(`🎉 ${gameName.toUpperCase()} game unlocked!\n\nYou can now play it anytime for FREE!`);
+                playGame(gameName, 0, true);
+            } else {
+                alert(`❌ Not enough coins! You need ${cost} coins.\n\nYou have: ${coins} coins\nYou need: ${cost - coins} more coins\n\n💡 Watch ads or claim daily bonus!`);
+            }
+        }
+
+        function updateUnlockedGames() {
+            unlockedGames.forEach(gameName => {
+                const cardId = 'premium' + gameName.charAt(0).toUpperCase() + gameName.slice(1);
+                const card = document.getElementById(cardId);
+                if (card) {
+                    card.classList.remove('locked');
+                    card.querySelector('.lock-icon').textContent = '✅';
+                    card.querySelector('.premium-badge').textContent = '✅ UNLOCKED';
+                    card.querySelector('.premium-badge').style.background = 'linear-gradient(135deg, #4CAF50 0%, #45a049 100%)';
+                    const badge = card.querySelector('.game-badge');
+                    badge.textContent = 'Play Now!';
+                    badge.classList.remove('unlock-badge');
+                    
+                    // Update onclick
+                    card.setAttribute('onclick', `playGame('${gameName}', 0, true)`);
+                }
+            });
+        }
+
+        // GAME SYSTEM
+        function playGame(gameType, cost, isPremium) {
+            if (!isPremium && !spendCoins(cost)) {
+                alert(`❌ Not enough coins! You need ${cost} coins.\n\nYou have: ${coins} coins\n\n💡 Watch ads to earn more!`);
+                return;
+            }
+            
             document.getElementById('gamesMenu').classList.add('hidden');
             document.getElementById('quizGame').classList.remove('hidden');
             
-            // Show which game and bonus coins
-            alert(`🎮 Starting ${gameType.toUpperCase()} game!\n\n🆓 FREE to play!\n💰 Win up to ${bonusCoins * 4} bonus coins based on your score!`);
+            // Set game title
+            const titles = {
+                quiz: '📚 Islamic Knowledge Quiz',
+                memory: '🧠 Memory Match Game',
+                scramble: '🔤 Word Scramble',
+                pillar: '🕌 Five Pillars Challenge',
+                prophet: '⭐ Prophets Master Quiz',
+                quran: '📖 Quran Master Challenge',
+                house: '🏠 Build Your Halal House',
+                hajj: '🕋 Virtual Hajj Journey'
+            };
+            document.getElementById('gameTitle').textContent = titles[gameType] || '🎮 Game';
             
-            startQuiz(gameType, bonusCoins);
-            
+            startGame(gameType);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -832,41 +944,34 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // QUIZ QUESTIONS
-        const quizzes = {
+        // GAME CONTENT
+        const gameData = {
             quiz: [
-                {q: "How many pillars of Islam are there?", opts: ["3", "5", "7", "10"], correct: 1, exp: "The Five Pillars are: Shahada, Salah, Zakat, Sawm, and Hajj."},
-                {q: "Who was the first Prophet?", opts: ["Muhammad ﷺ", "Ibrahim (AS)", "Adam (AS)", "Musa (AS)"], correct: 2, exp: "Prophet Adam (AS) was the first human and first Prophet."},
-                {q: "How many times a day do Muslims pray?", opts: ["3", "5", "7", "10"], correct: 1, exp: "Muslims pray 5 times: Fajr, Dhuhr, Asr, Maghrib, Isha."},
-                {q: "In which month do Muslims fast?", opts: ["Muharram", "Rajab", "Ramadan", "Shawwal"], correct: 2, exp: "Muslims fast during the month of Ramadan."},
-                {q: "What is the holy book of Islam?", opts: ["Torah", "Bible", "Quran", "Zabur"], correct: 2, exp: "The Quran is the holy book of Islam."},
+                {q: "How many pillars of Islam?", opts: ["3", "5", "7", "10"], correct: 1},
+                {q: "Who was the first Prophet?", opts: ["Muhammad ﷺ", "Ibrahim", "Adam", "Musa"], correct: 2},
+                {q: "How many daily prayers?", opts: ["3", "5", "7", "10"], correct: 1},
             ],
             pillar: [
-                {q: "What is the first pillar of Islam?", opts: ["Prayer", "Shahada", "Fasting", "Hajj"], correct: 1, exp: "Shahada is the declaration of faith."},
-                {q: "What percentage is Zakat?", opts: ["1%", "2.5%", "5%", "10%"], correct: 1, exp: "Zakat is 2.5% of wealth."},
-                {q: "How many times must Muslims perform Hajj?", opts: ["Once if able", "Every year", "Five times", "Never required"], correct: 0, exp: "Hajj is required once in a lifetime if able."},
-                {q: "Which pillar involves fasting?", opts: ["Shahada", "Salah", "Sawm", "Hajj"], correct: 2, exp: "Sawm is fasting during Ramadan."},
-                {q: "In which city is Hajj performed?", opts: ["Madinah", "Makkah", "Jerusalem", "Cairo"], correct: 1, exp: "Hajj is performed in Makkah."},
+                {q: "First pillar of Islam?", opts: ["Prayer", "Shahada", "Fasting", "Hajj"], correct: 1},
+                {q: "What percentage is Zakat?", opts: ["1%", "2.5%", "5%", "10%"], correct: 1},
             ],
             prophet: [
-                {q: "Who built the Kaaba?", opts: ["Adam (AS)", "Ibrahim & Ismail", "Muhammad ﷺ", "Nuh (AS)"], correct: 1, exp: "Ibrahim and Ismail built the Kaaba."},
-                {q: "Which prophet was swallowed by a whale?", opts: ["Yunus", "Musa", "Isa", "Yusuf"], correct: 0, exp: "Prophet Yunus was swallowed by a whale."},
-                {q: "Who was thrown into fire?", opts: ["Musa (AS)", "Ibrahim (AS)", "Yusuf (AS)", "Nuh (AS)"], correct: 1, exp: "Prophet Ibrahim was thrown into fire by his people."},
-                {q: "Which prophet could speak to animals?", opts: ["Musa (AS)", "Isa (AS)", "Sulaiman (AS)", "Yusuf (AS)"], correct: 2, exp: "Prophet Sulaiman could understand and speak to animals."},
-                {q: "Who split the sea?", opts: ["Nuh (AS)", "Ibrahim (AS)", "Musa (AS)", "Isa (AS)"], correct: 2, exp: "Prophet Musa split the Red Sea."},
+                {q: "Who built the Kaaba?", opts: ["Adam", "Ibrahim & Ismail", "Muhammad ﷺ", "Nuh"], correct: 1},
+                {q: "Who was swallowed by whale?", opts: ["Yunus", "Musa", "Isa", "Yusuf"], correct: 0},
             ],
             quran: [
-                {q: "How many Surahs in the Quran?", opts: ["100", "114", "120", "99"], correct: 1, exp: "The Quran has 114 Surahs."},
-                {q: "What is the first Surah?", opts: ["Al-Baqarah", "Al-Fatiha", "Al-Ikhlas", "An-Nas"], correct: 1, exp: "Al-Fatiha is the opening chapter."},
-                {q: "Which Surah is called the heart of Quran?", opts: ["Al-Fatiha", "Yasin", "Al-Mulk", "Ar-Rahman"], correct: 1, exp: "Surah Yasin is called the heart of Quran."},
-                {q: "What is the longest Surah?", opts: ["Al-Fatiha", "Al-Baqarah", "Yasin", "Al-Mulk"], correct: 1, exp: "Al-Baqarah is the longest Surah."},
-                {q: "What is the shortest Surah?", opts: ["Al-Fatiha", "Al-Ikhlas", "Al-Kawthar", "An-Nasr"], correct: 2, exp: "Al-Kawthar is the shortest Surah."},
+                {q: "How many Surahs?", opts: ["100", "114", "120", "99"], correct: 1},
+                {q: "First Surah?", opts: ["Al-Baqarah", "Al-Fatiha", "Al-Ikhlas", "An-Nas"], correct: 1},
             ],
-            memory: [
-                {q: "Memory game - coming soon!", opts: ["OK"], correct: 0, exp: "Memory game will be added soon!"}
+            house: [
+                {q: "Choose prayer room location", opts: ["Near entrance", "Quiet corner", "Upstairs", "Basement"], correct: 1},
+                {q: "Best library placement", opts: ["Living room", "Bedroom", "Study room", "Kitchen"], correct: 2},
+                {q: "Islamic art placement", opts: ["Everywhere", "Prayer room only", "Living areas", "Nowhere"], correct: 2},
             ],
-            scramble: [
-                {q: "Scramble game - coming soon!", opts: ["OK"], correct: 0, exp: "Word scramble will be added soon!"}
+            hajj: [
+                {q: "First step of Hajj", opts: ["Tawaf", "Ihram", "Sai", "Arafat"], correct: 1},
+                {q: "Where is Arafat?", opts: ["Makkah city", "Near Makkah", "Madinah", "Jeddah"], correct: 1},
+                {q: "How many times Tawaf?", opts: ["5", "7", "10", "3"], correct: 1},
             ]
         };
 
@@ -874,15 +979,38 @@
         let score = 0;
         let answered = false;
         let currentQuiz = [];
-        let gameBonusCoins = 0;
+        let currentGameType = '';
 
-        function startQuiz(type, bonusCoins) {
-            currentQuiz = quizzes[type] || quizzes.quiz;
-            gameBonusCoins = bonusCoins;
+        function startGame(type) {
+            currentGameType = type;
+            
+            if (type === 'memory') {
+                showComingSoon('Memory Match');
+                return;
+            }
+            if (type === 'scramble') {
+                showComingSoon('Word Scramble');
+                return;
+            }
+            
+            currentQuiz = gameData[type] || gameData.quiz;
             currentQuestion = 0;
             score = 0;
             answered = false;
             displayQuestion();
+        }
+
+        function showComingSoon(gameName) {
+            document.getElementById('quizContent').innerHTML = `
+                <div class="score-board" style="padding: 3rem;">
+                    <h4>🎮 ${gameName}</h4>
+                    <p style="font-size: 1.5rem; color: #333; margin: 2rem 0;">
+                        This game is coming soon insha'Allah!<br>
+                        Check back later for updates!
+                    </p>
+                    <button class="btn" onclick="backToMenu()">← Back to Games</button>
+                </div>
+            `;
         }
 
         function displayQuestion() {
@@ -922,17 +1050,9 @@
             
             if (selectedIndex === question.correct) {
                 score++;
-                resultDiv.innerHTML = `
-                    <div class="quiz-result correct">
-                        ✅ Correct! ${question.exp}
-                    </div>
-                `;
+                resultDiv.innerHTML = `<div class="quiz-result correct">✅ Correct!</div>`;
             } else {
-                resultDiv.innerHTML = `
-                    <div class="quiz-result incorrect">
-                        ❌ Incorrect. ${question.exp}
-                    </div>
-                `;
+                resultDiv.innerHTML = `<div class="quiz-result incorrect">❌ Incorrect!</div>`;
             }
             
             if (currentQuestion < currentQuiz.length - 1) {
@@ -950,40 +1070,30 @@
 
         function showFinalScore() {
             const percentage = Math.round((score / currentQuiz.length) * 100);
-            let message = '';
             let coinsReward = 0;
             
-            // Calculate bonus based on performance
-            if (percentage >= 90) {
-                message = "🌟 MASHALLAH! You're an Islamic scholar!";
-                coinsReward = gameBonusCoins * 4; // 4x bonus!
-            } else if (percentage >= 70) {
-                message = "👏 Great job! Excellent knowledge!";
-                coinsReward = gameBonusCoins * 3; // 3x bonus
-            } else if (percentage >= 50) {
-                message = "😊 Good effort! Keep learning!";
-                coinsReward = gameBonusCoins * 2; // 2x bonus
-            } else {
-                message = "📚 Keep studying! Practice makes perfect!";
-                coinsReward = gameBonusCoins; // 1x bonus
-            }
+            // LOW REWARDS
+            if (percentage === 100) coinsReward = 3;
+            else if (percentage >= 80) coinsReward = 2;
+            else if (percentage >= 60) coinsReward = 1;
             
             addCoins(coinsReward);
             
             const content = document.getElementById('quizContent');
             content.innerHTML = `
                 <div class="score-board" style="padding: 3rem;">
-                    <h4>🏆 Quiz Complete!</h4>
+                    <h4>🏆 Game Complete!</h4>
                     <div class="score-text" style="margin: 2rem 0; font-size: 3rem;">
                         ${score} / ${currentQuiz.length}
                     </div>
                     <h4 style="color: #333; margin: 1rem 0;">${percentage}% Correct</h4>
-                    <p style="font-size: 1.5rem; color: #333; margin: 2rem 0;">
-                        ${message}
-                    </p>
-                    <div style="background: #ffd700; padding: 1.5rem; border-radius: 15px; margin: 2rem 0;">
-                        <h4 style="color: #333;">💰 Bonus Reward: +${coinsReward} Coins!</h4>
-                    </div>
+                    ${coinsReward > 0 ? `
+                        <div style="background: #ffd700; padding: 1.5rem; border-radius: 15px; margin: 2rem 0;">
+                            <h4 style="color: #333;">💰 Reward: +${coinsReward} Coins!</h4>
+                        </div>
+                    ` : `
+                        <p style="color: #666; margin: 2rem 0;">Get 60%+ to win coins!</p>
+                    `}
                     <button class="btn" onclick="backToMenu()">← Play More Games</button>
                 </div>
             `;
@@ -991,6 +1101,7 @@
 
         // Initialize
         updateLoginButton();
+        console.log('Initial coins:', coins); // Debug
     </script>
 </body>
 </html>
