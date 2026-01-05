@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Library - Islamic Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 25%, #CD853F 50%, #DEB887 75%, #F4A460 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 20s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            background: rgba(139, 69, 19, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .page-title {
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .intro-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .intro-section h2 {
+            color: #8B4513;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .intro-section p {
+            color: #666;
+            line-height: 1.9;
+            font-size: 1.2rem;
+        }
+
+        .search-bar {
+            width: 100%;
+            max-width: 600px;
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 1.2rem 3rem 1.2rem 1.5rem;
+            border: 3px solid #8B4513;
+            border-radius: 50px;
+            font-size: 1.1rem;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: #D2691E;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: #8B4513;
+        }
+
+        .categories {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .category-btn {
+            padding: 0.8rem 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid #8B4513;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #8B4513;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: #8B4513;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .book-card {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            text-align: center;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .book-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 48px rgba(139, 69, 19, 0.4);
+            border-color: #8B4513;
+        }
+
+        .book-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .book-title {
+            color: #8B4513;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .book-author {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .book-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .book-category {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: #8B4513;
+            color: white;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.5);
+        }
+
+        footer {
+            background: rgba(139, 69, 19, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 968px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            .nav-links.active { display: flex; }
+            .books-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <header>
+        <nav>
+            <div class="nav-top">
+                <div class="logo">☪ Islamic Hub</div>
+                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">🏠 Home</a></li>
+                <li><a href="prayer-tools.html">🕌 Prayer</a></li>
+                <li><a href="quran.html">📕 Quran</a></li>
+                <li><a href="daily-hadith.html">📖 Hadith</a></li>
+                <li><a href="ayah-of-the-day.html">🌟 Ayah</a></li>
+                <li><a href="dua-of-the-day.html">🤲 Dua</a></li>
+                <li><a href="calendar.html">📅 Calendar</a></li>
+                <li><a href="zakat-calculator.html">💰 Zakat</a></li>
+                <li><a href="kids-stories.html">👶 Kids</a></li>
+                <li><a href="dawah.html">📢 Dawah</a></li>
+                <li><a href="community.html">💬 Community</a></li>
+                <li><a href="halal-games.html">🎮 Games</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">📚 Islamic Library</h1>
+
+        <div class="intro-section">
+            <h2>Explore Islamic Knowledge</h2>
+            <p>
+                Access authentic Islamic books, lectures, articles, and resources. 
+                Learn from scholars and deepen your understanding of Islam.
+            </p>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search books, authors, topics..." onkeyup="searchBooks()">
+            <span class="search-icon">🔍</span>
+        </div>
+
+        <div class="categories">
+            <button class="category-btn active" onclick="filterCategory('all')">All</button>
+            <button class="category-btn" onclick="filterCategory('Quran')">Quran</button>
+            <button class="category-btn" onclick="filterCategory('Hadith')">Hadith</button>
+            <button class="category-btn" onclick="filterCategory('Seerah')">Seerah</button>
+            <button class="category-btn" onclick="filterCategory('Fiqh')">Fiqh</button>
+            <button class="category-btn" onclick="filterCategory('Aqeedah')">Aqeedah</button>
+            <button class="category-btn" onclick="filterCategory('Spirituality')">Spirituality</button>
+        </div>
+
+        <div class="books-grid" id="booksGrid">
+            <!-- Books will be loaded here -->
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
+        <p>Building knowledge, one book at a time 📚</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        const books = [
+            {
+                title: "Tafsir Ibn Kathir",
+                author: "Imam Ibn Kathir",
+                category: "Quran",
+                description: "Comprehensive Quranic commentary explaining verses with Hadith and scholarly interpretations.",
+                icon: "📖",
+                link: "https://www.islamicstudies.info/tafheem.php"
+            },
+            {
+                title: "Sahih Al-Bukhari",
+                author: "Imam Bukhari",
+                category: "Hadith",
+                description: "The most authentic collection of Hadith, compiled by Imam Bukhari.",
+                icon: "📚",
+                link: "https://sunnah.com/bukhari"
+            },
+            {
+                title: "Sahih Muslim",
+                author: "Imam Muslim",
+                category: "Hadith",
+                description: "Second most authentic Hadith collection after Sahih Bukhari.",
+                icon: "📚",
+                link: "https://sunnah.com/muslim"
+            },
+            {
+                title: "Ar-Raheeq Al-Makhtum",
+                author: "Safiur Rahman Mubarakpuri",
+                category: "Seerah",
+                description: "The Sealed Nectar - Biography of Prophet Muhammad ﷺ. Award-winning book.",
+                icon: "⭐",
+                link: "https://www.kalamullah.com/sealed-nectar.html"
+            },
+            {
+                title: "Riyadh us-Saliheen",
+                author: "Imam An-Nawawi",
+                category: "Hadith",
+                description: "Gardens of the Righteous - Collection of Hadith on good manners and conduct.",
+                icon: "🌺",
+                link: "https://sunnah.com/riyadussalihin"
+            },
+            {
+                title: "Fortress of the Muslim",
+                author: "Sa'id bin Wahf Al-Qahtani",
+                category: "Spirituality",
+                description: "Collection of authentic duas and supplications for daily life.",
+                icon: "🤲",
+                link: "https://www.kalamullah.com/hisnul-muslim.html"
+            },
+            {
+                title: "Fiqh us-Sunnah",
+                author: "Sayyid Sabiq",
+                category: "Fiqh",
+                description: "Comprehensive guide to Islamic jurisprudence based on Quran and Sunnah.",
+                icon: "⚖️",
+                link: "https://www.kalamullah.com/fiqh-us-sunnah.html"
+            },
+            {
+                title: "Kitab At-Tawheed",
+                author: "Muhammad ibn Abdul-Wahhab",
+                category: "Aqeedah",
+                description: "Essential book on Islamic monotheism and correct belief.",
+                icon: "☪️",
+                link: "https://www.kalamullah.com/kitab-at-tawheed.html"
+            },
+            {
+                title: "In the Early Hours",
+                author: "Khurram Murad",
+                category: "Spirituality",
+                description: "Reflections on spiritual and practical life for modern Muslims.",
+                icon: "🌅",
+                link: "https://www.kalamullah.com/early-hours.html"
+            },
+            {
+                title: "Don't Be Sad",
+                author: "Aaidh ibn Abdullah al-Qarni",
+                category: "Spirituality",
+                description: "Islamic guide to overcoming sadness, worry, and depression.",
+                icon: "💚",
+                link: "https://www.kalamullah.com/dont-be-sad.html"
+            },
+            {
+                title: "Stories of the Prophets",
+                author: "Ibn Kathir",
+                category: "Seerah",
+                description: "Complete stories of all Prophets from Adam to Muhammad ﷺ.",
+                icon: "📜",
+                link: "https://www.kalamullah.com/stories-of-prophets.html"
+            },
+            {
+                title: "The Ideal Muslim",
+                author: "Muhammad Ali al-Hashimi",
+                category: "Spirituality",
+                description: "Comprehensive guide on Islamic character and conduct.",
+                icon: "🌟",
+                link: "https://www.kalamullah.com/ideal-muslim.html"
+            },
+            {
+                title: "Explanation of Important Lessons",
+                author: "Abdul Aziz bin Baz",
+                category: "Aqeedah",
+                description: "Essential lessons every Muslim must know about faith and practice.",
+                icon: "📘",
+                link: "https://www.kalamullah.com/important-lessons.html"
+            },
+            {
+                title: "40 Hadith Nawawi",
+                author: "Imam An-Nawawi",
+                category: "Hadith",
+                description: "40 essential Hadith covering fundamental Islamic principles.",
+                icon: "4️⃣0️⃣",
+                link: "https://sunnah.com/nawawi40"
+            },
+            {
+                title: "Towards Understanding the Quran",
+                author: "Sayyid Abul Ala Maududi",
+                category: "Quran",
+                description: "Modern Tafsir making Quranic meanings accessible to contemporary readers.",
+                icon: "📖",
+                link: "https://www.islamicstudies.info/tafheem.php"
+            },
+            {
+                title: "Purification of the Soul",
+                author: "Various Scholars",
+                category: "Spirituality",
+                description: "Collection on self-purification and spiritual development.",
+                icon: "✨",
+                link: "https://www.kalamullah.com/purification-soul.html"
+            },
+            {
+                title: "The Life of Muhammad",
+                author: "Ibn Ishaq",
+                category: "Seerah",
+                description: "The earliest and most detailed biography of Prophet Muhammad ﷺ.",
+                icon: "📕",
+                link: "https://www.kalamullah.com/seerah-ibn-ishaq.html"
+            },
+            {
+                title: "Sunan Abu Dawud",
+                author: "Imam Abu Dawud",
+                category: "Hadith",
+                description: "One of the six major Hadith collections focusing on legal matters.",
+                icon: "⚖️",
+                link: "https://sunnah.com/abudawud"
+            },
+            {
+                title: "Jami At-Tirmidhi",
+                author: "Imam Tirmidhi",
+                category: "Hadith",
+                description: "One of the six major Hadith collections with gradings of authenticity.",
+                icon: "📚",
+                link: "https://sunnah.com/tirmidhi"
+            },
+            {
+                title: "Tafsir As-Sa'di",
+                author: "Abdur Rahman As-Sa'di",
+                category: "Quran",
+                description: "Clear and concise explanation of Quranic meanings.",
+                icon: "📖",
+                link: "https://www.kalamullah.com/tafsir-as-sadi.html"
+            },
+            {
+                title: "The Sealed Nectar",
+                author: "Safiur Rahman Mubarakpuri",
+                category: "Seerah",
+                description: "Complete biography of Prophet Muhammad ﷺ - Award winner.",
+                icon: "🏆",
+                link: "https://www.kalamullah.com/sealed-nectar.html"
+            },
+            {
+                title: "Islamic Creed Series",
+                author: "Dr. Umar Al-Ashqar",
+                category: "Aqeedah",
+                description: "Comprehensive series on Islamic beliefs and theology.",
+                icon: "🕌",
+                link: "https://www.kalamullah.com/islamic-creed.html"
+            },
+            {
+                title: "Sharh Us-Sunnah",
+                author: "Imam Al-Baghawi",
+                category: "Hadith",
+                description: "Detailed commentary on selected authentic Hadith.",
+                icon: "📚",
+                link: "https://www.kalamullah.com/sharh-us-sunnah.html"
+            },
+            {
+                title: "The Way to the Quran",
+                author: "Khurram Murad",
+                category: "Quran",
+                description: "Guide to understanding and living by the Quran.",
+                icon: "📖",
+                link: "https://www.kalamullah.com/way-to-quran.html"
+            }
+        ];
+
+        let currentCategory = 'all';
+
+        function displayBooks() {
+            const grid = document.getElementById('booksGrid');
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            const filtered = books.filter(book => {
+                const matchesCategory = currentCategory === 'all' || book.category === currentCategory;
+                const matchesSearch = book.title.toLowerCase().includes(searchTerm) || 
+                                    book.author.toLowerCase().includes(searchTerm) ||
+                                    book.description.toLowerCase().includes(searchTerm);
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<p style="text-align:center;color:white;padding:3rem;font-size:1.2rem;">No books found. Try different search terms.</p>';
+                return;
+            }
+
+            grid.innerHTML = filtered.map(book => `
+                <div class="book-card">
+                    <div class="book-icon">${book.icon}</div>
+                    <div class="book-category">${book.category}</div>
+                    <div class="book-title">${book.title}</div>
+                    <div class="book-author">by ${book.author}</div>
+                    <div class="book-description">${book.description}</div>
+                    <a href="${book.link}" target="_blank" class="btn">Read Online →</a>
+                </div>
+            `).join('');
+        }
+
+        function filterCategory(category) {
+            currentCategory = category;
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            displayBooks();
+        }
+
+        function searchBooks() {
+            displayBooks();
+        }
+
+        // Initialize
+        displayBooks();
+    </script>
+</body>
+</html>
