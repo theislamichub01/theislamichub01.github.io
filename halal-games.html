@@ -15,6 +15,7 @@
             font-family: 'Comic Sans MS', 'Segoe UI', Arial, sans-serif;
             line-height: 1.6;
             color: #333;
+            overflow-x: hidden;
         }
 
         .animated-bg {
@@ -139,6 +140,23 @@
             50% { transform: translateY(-10px); }
         }
 
+        .welcome-bonus-banner {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            border: 4px solid #fff;
+            animation: pulse 2s infinite;
+        }
+
+        .welcome-bonus-banner h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
         .login-bonus-banner {
             background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
             padding: 2rem;
@@ -161,12 +179,6 @@
             margin-bottom: 1rem;
         }
 
-        .login-bonus-banner p {
-            color: white;
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-        }
-
         .login-btn {
             padding: 1.5rem 3rem;
             background: white;
@@ -182,7 +194,6 @@
 
         .login-btn:hover {
             transform: scale(1.1);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
         }
 
         .login-btn:disabled {
@@ -192,98 +203,112 @@
             transform: scale(1);
         }
 
-        .streak-info {
-            margin-top: 1rem;
-            font-size: 1.2rem;
-            color: white;
+        .player-of-month {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            border: 4px solid #fff;
         }
 
-        .earn-coins-section {
+        .player-of-month h2 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .player-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin: 2rem auto;
+            border: 5px solid #fff;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .leaderboard-section {
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             padding: 3rem;
             border-radius: 20px;
             box-shadow: 0 8px 32px rgba(0,0,0,0.2);
             margin-bottom: 2rem;
-            text-align: center;
-            border: 4px solid #ffd700;
         }
 
-        .earn-coins-section h2 {
+        .leaderboard-section h2 {
             color: #667eea;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .earn-coins-section p {
-            color: #666;
-            font-size: 1.2rem;
+            font-size: 2rem;
             margin-bottom: 2rem;
+            text-align: center;
         }
 
-        .ad-container {
-            background: #f0f0f0;
-            padding: 3rem;
-            border-radius: 15px;
-            margin: 2rem auto;
-            max-width: 600px;
-            border: 3px dashed #667eea;
-            min-height: 200px;
+        .leaderboard-tabs {
             display: flex;
-            flex-direction: column;
+            gap: 1rem;
             justify-content: center;
-            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
 
-        .ad-placeholder {
-            color: #999;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .watch-ad-btn {
-            padding: 1.5rem 3rem;
-            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-            color: #333;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.5rem;
+        .leaderboard-tab {
+            padding: 1rem 2rem;
+            background: #f0f0f0;
+            border: 2px solid #667eea;
+            border-radius: 25px;
             cursor: pointer;
             transition: all 0.3s;
-            font-weight: bold;
-            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+            font-weight: 600;
         }
 
-        .watch-ad-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.7);
+        .leaderboard-tab.active {
+            background: #667eea;
+            color: white;
         }
 
-        .watch-ad-btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: scale(1);
+        .leaderboard-list {
+            list-style: none;
         }
 
-        .ad-timer {
-            font-size: 3rem;
-            color: #667eea;
-            font-weight: bold;
-            margin: 2rem 0;
+        .leaderboard-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background: #f9f9f9;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border-left: 5px solid #667eea;
         }
 
-        .coins-earned {
+        .leaderboard-item.top3 {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            border-left-color: #ff6b6b;
+        }
+
+        .leaderboard-rank {
             font-size: 2rem;
-            color: #4caf50;
             font-weight: bold;
-            margin-top: 1rem;
-            animation: coinPop 0.5s ease;
+            color: #667eea;
+            width: 60px;
         }
 
-        @keyframes coinPop {
-            0% { transform: scale(0); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
+        .leaderboard-name {
+            flex: 1;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .leaderboard-score {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #4caf50;
         }
 
         .intro-section {
@@ -339,10 +364,6 @@
             background: rgba(200, 200, 200, 0.98);
         }
 
-        .game-card.locked:hover {
-            transform: translateY(-5px);
-        }
-
         .game-cost {
             position: absolute;
             top: 15px;
@@ -366,7 +387,6 @@
             border-radius: 20px;
             font-weight: bold;
             font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.5);
         }
 
         .lock-icon {
@@ -437,12 +457,6 @@
             box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
         }
 
-        .btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: scale(1);
-        }
-
         .game-area {
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
@@ -459,78 +473,144 @@
             margin-bottom: 2rem;
         }
 
-        .quiz-question {
-            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-            border: 3px solid #4caf50;
+        .game-controls {
+            max-width: 600px;
+            margin: 2rem auto;
         }
 
-        .quiz-question h4 {
-            color: #2e7d32;
-            font-size: 1.5rem;
+        .game-controls select,
+        .game-controls input {
+            width: 100%;
+            padding: 1.2rem;
+            border: 3px solid #667eea;
+            border-radius: 10px;
+            font-size: 1.1rem;
             margin-bottom: 1.5rem;
         }
 
-        .quiz-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmin(200px, 1fr));
-            gap: 1rem;
-        }
-
-        .quiz-option {
-            padding: 1rem;
-            background: white;
-            border: 3px solid #4caf50;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .quiz-option:hover {
-            background: #4caf50;
-            color: white;
-            transform: scale(1.05);
-        }
-
-        .quiz-result {
-            margin-top: 1.5rem;
-            padding: 1.5rem;
-            border-radius: 10px;
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        .correct {
-            background: #c8e6c9;
-            color: #2e7d32;
-        }
-
-        .incorrect {
-            background: #ffcdd2;
-            color: #c62828;
-        }
-
-        .score-board {
-            background: linear-gradient(135deg, #ffd89b 0%, #ffc371 100%);
+        .game-info-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
             padding: 2rem;
             border-radius: 15px;
-            margin-top: 2rem;
-            border: 3px solid #ff9f43;
+            margin: 2rem 0;
+            border: 3px solid #4caf50;
         }
 
-        .score-board h4 {
-            color: #e65100;
-            font-size: 1.8rem;
+        .game-info-box h4 {
+            color: #2e7d32;
+            font-size: 1.5rem;
             margin-bottom: 1rem;
         }
 
-        .score-text {
-            font-size: 2rem;
+        .expense-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+
+        .expense-label {
+            font-weight: 600;
             color: #333;
+        }
+
+        .expense-input {
+            width: 150px;
+            padding: 0.5rem;
+            border: 2px solid #667eea;
+            border-radius: 5px;
+        }
+
+        .house-builder {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .material-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 3px solid #667eea;
+            text-align: center;
+        }
+
+        .material-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .material-name {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .material-price {
+            color: #4caf50;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .quantity-control {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .qty-btn {
+            width: 35px;
+            height: 35px;
+            border: none;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.3rem;
+        }
+
+        .qty-display {
+            font-size: 1.3rem;
+            font-weight: bold;
+            min-width: 35px;
+        }
+
+        .house-preview {
+            background: linear-gradient(135deg, #fff9e6 0%, #ffe6cc 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border: 3px solid #ff9800;
+        }
+
+        .house-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .stat-value {
+            color: #667eea;
+            font-size: 1.5rem;
             font-weight: bold;
         }
 
@@ -564,13 +644,16 @@
                 padding: 1rem 1.5rem;
                 font-size: 1.2rem;
             }
+            .house-builder {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
         }
     </style>
 </head>
 <body>
     <div class="animated-bg"></div>
 
-    <div class="coin-balance" id="coinBalanceDisplay">
+    <div class="coin-balance">
         <span class="coin-icon">🪙</span>
         <span id="coinBalance">0</span> Coins
     </div>
@@ -594,12 +677,30 @@
                 <li><a href="dawah.html">📢 Dawah</a></li>
                 <li><a href="community.html">💬 Community</a></li>
                 <li><a href="halal-games.html">🎮 Games</a></li>
+                <li><a href="islamic-library.html">📚 Library</a></li>
             </ul>
         </nav>
     </header>
 
     <div class="container">
         <h1 class="page-title">🎮 Halal Islamic Games</h1>
+
+        <!-- WELCOME BONUS -->
+        <div class="welcome-bonus-banner" id="welcomeBanner" style="display: none;">
+            <h2>🎉 Welcome to Islamic Hub Games!</h2>
+            <p>New player bonus: <strong>50 COINS!</strong></p>
+            <button class="login-btn" onclick="claimWelcomeBonus()">
+                Claim Welcome Bonus! 🎁
+            </button>
+        </div>
+
+        <!-- PLAYER OF THE MONTH -->
+        <div class="player-of-month">
+            <h2>🏆 Player of the Month</h2>
+            <div class="player-photo" id="playerPhoto">👑</div>
+            <h3 id="playerName">Coming Soon!</h3>
+            <p id="playerStats">Top 100 tournament starts next month!</p>
+        </div>
 
         <!-- DAILY LOGIN BONUS -->
         <div class="login-bonus-banner">
@@ -608,127 +709,103 @@
             <button class="login-btn" id="loginBtn" onclick="claimDailyBonus()">
                 Claim Bonus 🪙
             </button>
-            <div class="streak-info" id="streakInfo"></div>
+            <div class="streak-info" id="streakInfo" style="margin-top: 1rem; font-size: 1.2rem; color: white;"></div>
         </div>
 
-        <div class="earn-coins-section">
-            <h2>💰 Earn Coins by Watching Ads!</h2>
-            <p>Watch a short ad and earn 10 coins to unlock games!</p>
-            
-            <div class="ad-container" id="adContainer">
-                <div class="ad-placeholder" id="adPlaceholder">
-                    📺 Advertisement Space
-                    <br><br>
-                    <small>(In production, this will show real ads from Google AdSense)</small>
-                </div>
-                <button class="watch-ad-btn" id="watchAdBtn" onclick="watchAd()">
-                    🎬 Watch Ad & Earn 10 Coins
-                </button>
-                <div id="adTimer" class="ad-timer hidden"></div>
-                <div id="coinsEarned" class="coins-earned hidden"></div>
+        <!-- LEADERBOARDS -->
+        <div class="leaderboard-section">
+            <h2>🏆 Global Leaderboards</h2>
+            <div class="leaderboard-tabs">
+                <div class="leaderboard-tab active" onclick="switchLeaderboard('money')">💰 Top Earners</div>
+                <div class="leaderboard-tab" onclick="switchLeaderboard('houses')">🏠 Top Builders</div>
+                <div class="leaderboard-tab" onclick="switchLeaderboard('hajj')">🕋 Hajj Pilgrims</div>
+                <div class="leaderboard-tab" onclick="switchLeaderboard('tournament')">🏆 Tournament</div>
             </div>
+            <ul class="leaderboard-list" id="leaderboardList"></ul>
         </div>
 
         <div class="intro-section">
-            <h2>🎮 How It Works</h2>
+            <h2>🎮 How to Play</h2>
             <p>
-                <strong>1.</strong> Claim daily login bonus (20-50 coins!)<br>
-                <strong>2.</strong> Watch ads to earn more coins (10 coins per ad)<br>
-                <strong>3.</strong> Unlock games with your coins<br>
-                <strong>4.</strong> Win small rewards for completing games<br>
-                <strong>5.</strong> New quiz questions every day!
+                <strong>1.</strong> Claim welcome bonus (50 coins!) + daily login (20-50 coins)<br>
+                <strong>2.</strong> Unlock premium games with your coins<br>
+                <strong>3.</strong> Play Hajj Journey from <strong>195 countries, 2000+ cities worldwide!</strong><br>
+                <strong>4.</strong> Build houses with <strong>15 materials</strong> & sell at auction!<br>
+                <strong>5.</strong> Compete for Top 100 & become Player of the Month!
             </p>
         </div>
 
         <div id="gamesMenu">
             <div class="games-grid">
-                <!-- FREE STARTER GAME -->
-                <div class="game-card" onclick="playGame('quiz', 50, false)">
-                    <div class="game-cost">🪙 50 Coins</div>
+                <div class="game-card" onclick="playGame('quiz')">
+                    <div class="game-cost">🆓 FREE</div>
                     <div class="game-icon">📚</div>
                     <div class="game-title">Islamic Quiz</div>
-                    <div class="game-description">
-                        Test your Islamic knowledge! Win 3 coins for perfect score!
-                    </div>
+                    <div class="game-description">Test your knowledge! Win coins!</div>
                     <div class="game-badge">Play Now!</div>
                 </div>
 
-                <!-- LOCKED PREMIUM GAMES -->
-                <div class="game-card locked" id="premiumMemory" onclick="unlockPremiumGame('memory', 100)">
+                <div class="game-card locked" id="premiumHajj" onclick="unlockGame('hajj', 200)">
                     <div class="premium-badge">🔒 LOCKED</div>
                     <div class="lock-icon">🔐</div>
-                    <div class="game-title">Memory Match</div>
+                    <div class="game-title">🕋 Virtual Hajj Journey</div>
                     <div class="game-description">
-                        Match Islamic symbols! Win 5 coins for completing!
-                    </div>
-                    <div class="game-badge unlock-badge">Unlock: 100 Coins</div>
-                </div>
-
-                <div class="game-card locked" id="premiumScramble" onclick="unlockPremiumGame('scramble', 80)">
-                    <div class="premium-badge">🔒 LOCKED</div>
-                    <div class="lock-icon">🔐</div>
-                    <div class="game-title">Word Scramble</div>
-                    <div class="game-description">
-                        Unscramble Islamic words! Win 3 coins per word!
-                    </div>
-                    <div class="game-badge unlock-badge">Unlock: 80 Coins</div>
-                </div>
-
-                <div class="game-card locked" id="premiumPillar" onclick="unlockPremiumGame('pillar', 150)">
-                    <div class="premium-badge">🔒 LOCKED</div>
-                    <div class="lock-icon">🔐</div>
-                    <div class="game-title">Five Pillars Challenge</div>
-                    <div class="game-description">
-                        Master the Five Pillars! Win 4 coins for completion!
-                    </div>
-                    <div class="game-badge unlock-badge">Unlock: 150 Coins</div>
-                </div>
-
-                <div class="game-card locked" id="premiumProphet" onclick="unlockPremiumGame('prophet', 200)">
-                    <div class="premium-badge">🔒 LOCKED</div>
-                    <div class="lock-icon">🔐</div>
-                    <div class="game-title">Prophets Master Quiz</div>
-                    <div class="game-description">
-                        Test knowledge of all Prophets! Win 5 coins!
+                        195 countries! 2000+ cities! Journey to Makkah!
                     </div>
                     <div class="game-badge unlock-badge">Unlock: 200 Coins</div>
                 </div>
 
-                <div class="game-card locked" id="premiumQuran" onclick="unlockPremiumGame('quran', 250)">
+                <div class="game-card locked" id="premiumHouse" onclick="unlockGame('house', 250)">
                     <div class="premium-badge">🔒 LOCKED</div>
                     <div class="lock-icon">🔐</div>
-                    <div class="game-title">Quran Master Challenge</div>
+                    <div class="game-title">🏠 Build Halal House</div>
                     <div class="game-description">
-                        Deep Quran knowledge test! Win 6 coins!
+                        15 materials! Build, auction, dominate!
                     </div>
                     <div class="game-badge unlock-badge">Unlock: 250 Coins</div>
                 </div>
 
-                <div class="game-card locked" id="premiumHouse" onclick="unlockPremiumGame('house', 300)">
+                <div class="game-card locked" id="premiumPillar" onclick="unlockGame('pillar', 150)">
                     <div class="premium-badge">🔒 LOCKED</div>
                     <div class="lock-icon">🔐</div>
-                    <div class="game-title">Build Your Halal House</div>
-                    <div class="game-description">
-                        Design your dream Islamic home! Win 8 coins!
-                    </div>
-                    <div class="game-badge unlock-badge">Unlock: 300 Coins</div>
+                    <div class="game-title">Five Pillars Challenge</div>
+                    <div class="game-description">Master the Five Pillars!</div>
+                    <div class="game-badge unlock-badge">Unlock: 150 Coins</div>
                 </div>
 
-                <div class="game-card locked" id="premiumHajj" onclick="unlockPremiumGame('hajj', 350)">
+                <div class="game-card locked" id="premiumProphet" onclick="unlockGame('prophet', 180)">
                     <div class="premium-badge">🔒 LOCKED</div>
                     <div class="lock-icon">🔐</div>
-                    <div class="game-title">Virtual Hajj Journey</div>
-                    <div class="game-description">
-                        Journey from your city to Makkah! Win 10 coins!
-                    </div>
-                    <div class="game-badge unlock-badge">Unlock: 350 Coins</div>
+                    <div class="game-title">Prophets Master Quiz</div>
+                    <div class="game-description">Test Prophet knowledge!</div>
+                    <div class="game-badge unlock-badge">Unlock: 180 Coins</div>
+                </div>
+
+                <div class="game-card locked" id="premiumQuran" onclick="unlockGame('quran', 220)">
+                    <div class="premium-badge">🔒 LOCKED</div>
+                    <div class="lock-icon">🔐</div>
+                    <div class="game-title">Quran Master Challenge</div>
+                    <div class="game-description">Deep Quran knowledge!</div>
+                    <div class="game-badge unlock-badge">Unlock: 220 Coins</div>
                 </div>
             </div>
         </div>
 
+        <!-- HAJJ GAME -->
+        <div id="hajjGame" class="game-area hidden">
+            <h3>🕋 Virtual Hajj Journey</h3>
+            <div id="hajjContent"></div>
+        </div>
+
+        <!-- HOUSE GAME -->
+        <div id="houseGame" class="game-area hidden">
+            <h3>🏠 Build Your Halal House</h3>
+            <div id="houseContent"></div>
+        </div>
+
         <!-- QUIZ GAME -->
         <div id="quizGame" class="game-area hidden">
-            <h3 id="gameTitle">📚 Islamic Knowledge Quiz</h3>
+            <h3>📚 Islamic Knowledge Quiz</h3>
             <div id="quizContent"></div>
         </div>
     </div>
@@ -743,22 +820,30 @@
             document.getElementById('navLinks').classList.toggle('active');
         }
 
-        // COIN SYSTEM
+        // GAME DATA
         let coins = parseInt(localStorage.getItem('islamicHubCoins')) || 0;
         let unlockedGames = JSON.parse(localStorage.getItem('islamicHubUnlockedGames')) || ['quiz'];
-        
+        let totalEarnings = parseInt(localStorage.getItem('islamicHubEarnings')) || 0;
+        let housesOwned = JSON.parse(localStorage.getItem('islamicHubHouses')) || [];
+        let hajjCompletions = parseInt(localStorage.getItem('islamicHubHajjCount')) || 0;
+        let isNewUser = !localStorage.getItem('islamicHubReturning');
+
         updateCoinDisplay();
         updateUnlockedGames();
+        showWelcomeBanner();
+        updateLoginButton();
+        loadLeaderboard('money');
 
         function updateCoinDisplay() {
             document.getElementById('coinBalance').textContent = coins;
             localStorage.setItem('islamicHubCoins', coins);
-            console.log('Coins updated:', coins); // Debug
         }
 
         function addCoins(amount) {
             coins += amount;
+            totalEarnings += amount;
             updateCoinDisplay();
+            localStorage.setItem('islamicHubEarnings', totalEarnings);
         }
 
         function spendCoins(amount) {
@@ -770,14 +855,29 @@
             return false;
         }
 
-        // DAILY LOGIN BONUS
+        function showWelcomeBanner() {
+            if (isNewUser) {
+                document.getElementById('welcomeBanner').style.display = 'block';
+            }
+        }
+
+        function claimWelcomeBonus() {
+            if (isNewUser) {
+                addCoins(50);
+                localStorage.setItem('islamicHubReturning', 'true');
+                alert('🎉 Welcome Bonus!\n\n💰 +50 Coins\n\nEnjoy!');
+                document.getElementById('welcomeBanner').style.display = 'none';
+                isNewUser = false;
+            }
+        }
+
         function claimDailyBonus() {
             const today = new Date().toDateString();
             const lastLogin = localStorage.getItem('islamicHubLastLogin');
             const loginStreak = parseInt(localStorage.getItem('islamicHubLoginStreak')) || 0;
 
             if (lastLogin === today) {
-                alert('⏰ You already claimed your bonus today! Come back tomorrow!');
+                alert('⏰ Already claimed today!');
                 return;
             }
 
@@ -797,8 +897,7 @@
             localStorage.setItem('islamicHubLastLogin', today);
             localStorage.setItem('islamicHubLoginStreak', newStreak);
 
-            alert(`🎉 Daily Bonus Claimed!\n\n💰 +${bonusCoins} Coins\n🔥 ${newStreak} Day Streak!\n\n${newStreak >= 7 ? '🏆 Week streak bonus!' : newStreak >= 3 ? '⭐ Keep going!' : '✨ Come back tomorrow!'}`);
-
+            alert(`🎉 Daily Bonus!\n\n💰 +${bonusCoins} Coins\n🔥 ${newStreak} Day Streak!`);
             updateLoginButton();
         }
 
@@ -812,83 +911,36 @@
 
             if (lastLogin === today) {
                 btn.disabled = true;
-                btn.textContent = '✅ Claimed Today!';
-                message.textContent = 'Come back tomorrow for more coins!';
-                streakInfo.textContent = `🔥 Current Streak: ${loginStreak} days`;
+                btn.textContent = '✅ Claimed!';
+                message.textContent = 'Come back tomorrow!';
+                streakInfo.textContent = `🔥 Streak: ${loginStreak} days`;
             } else {
                 btn.disabled = false;
                 btn.textContent = 'Claim Bonus 🪙';
-                
                 let bonusAmount = 20;
                 if (loginStreak >= 7) bonusAmount = 50;
                 else if (loginStreak >= 3) bonusAmount = 30;
-                
-                message.textContent = `Claim ${bonusAmount} coins today!`;
-                streakInfo.textContent = loginStreak > 0 ? `🔥 Current Streak: ${loginStreak} days` : '';
+                message.textContent = `Claim ${bonusAmount} coins!`;
+                streakInfo.textContent = loginStreak > 0 ? `🔥 Streak: ${loginStreak} days` : '';
             }
         }
 
-        // AD WATCHING
-        let adWatching = false;
-
-        function watchAd() {
-            if (adWatching) return;
-            
-            adWatching = true;
-            const btn = document.getElementById('watchAdBtn');
-            const placeholder = document.getElementById('adPlaceholder');
-            const timer = document.getElementById('adTimer');
-            const earned = document.getElementById('coinsEarned');
-            
-            btn.disabled = true;
-            btn.textContent = 'Loading Ad...';
-            placeholder.classList.add('hidden');
-            timer.classList.remove('hidden');
-            
-            let timeLeft = 10;
-            timer.textContent = timeLeft + 's';
-            
-            const countdown = setInterval(() => {
-                timeLeft--;
-                timer.textContent = timeLeft + 's';
-                
-                if (timeLeft <= 0) {
-                    clearInterval(countdown);
-                    timer.classList.add('hidden');
-                    addCoins(10);
-                    earned.textContent = '🎉 +10 Coins Earned!';
-                    earned.classList.remove('hidden');
-                    
-                    setTimeout(() => {
-                        earned.classList.add('hidden');
-                        placeholder.classList.remove('hidden');
-                        btn.disabled = false;
-                        btn.textContent = '🎬 Watch Another Ad & Earn 10 Coins';
-                        adWatching = false;
-                    }, 2000);
-                }
-            }, 1000);
-        }
-
-        // PREMIUM GAMES UNLOCK
-        function unlockPremiumGame(gameName, cost) {
+        function unlockGame(gameName, cost) {
             if (unlockedGames.includes(gameName)) {
-                playGame(gameName, 0, true);
+                playGame(gameName);
                 return;
             }
 
-            if (!confirm(`🔓 Unlock ${gameName.toUpperCase()} game for ${cost} coins?\n\nOnce unlocked, you can play forever!`)) {
-                return;
-            }
+            if (!confirm(`🔓 Unlock ${gameName.toUpperCase()} for ${cost} coins?`)) return;
 
             if (spendCoins(cost)) {
                 unlockedGames.push(gameName);
                 localStorage.setItem('islamicHubUnlockedGames', JSON.stringify(unlockedGames));
                 updateUnlockedGames();
-                alert(`🎉 ${gameName.toUpperCase()} game unlocked!\n\nYou can now play it anytime for FREE!`);
-                playGame(gameName, 0, true);
+                alert(`🎉 ${gameName.toUpperCase()} unlocked!`);
+                playGame(gameName);
             } else {
-                alert(`❌ Not enough coins! You need ${cost} coins.\n\nYou have: ${coins} coins\nYou need: ${cost - coins} more coins\n\n💡 Watch ads or claim daily bonus!`);
+                alert(`❌ Need ${cost} coins!\n\nYou have: ${coins}\nNeed: ${cost - coins} more`);
             }
         }
 
@@ -900,41 +952,27 @@
                     card.classList.remove('locked');
                     card.querySelector('.lock-icon').textContent = '✅';
                     card.querySelector('.premium-badge').textContent = '✅ UNLOCKED';
-                    card.querySelector('.premium-badge').style.background = 'linear-gradient(135deg, #4CAF50 0%, #45a049 100%)';
-                    const badge = card.querySelector('.game-badge');
-                    badge.textContent = 'Play Now!';
-                    badge.classList.remove('unlock-badge');
-                    
-                    // Update onclick
-                    card.setAttribute('onclick', `playGame('${gameName}', 0, true)`);
+                    card.querySelector('.premium-badge').style.background = '#4CAF50';
+                    card.querySelector('.game-badge').textContent = 'Play Now!';
+                    card.setAttribute('onclick', `playGame('${gameName}')`);
                 }
             });
         }
 
-        // GAME SYSTEM
-        function playGame(gameType, cost, isPremium) {
-            if (!isPremium && !spendCoins(cost)) {
-                alert(`❌ Not enough coins! You need ${cost} coins.\n\nYou have: ${coins} coins\n\n💡 Watch ads to earn more!`);
-                return;
+        function playGame(type) {
+            document.getElementById('gamesMenu').classList.add('hidden');
+            
+            if (type === 'hajj') {
+                document.getElementById('hajjGame').classList.remove('hidden');
+                startHajjGame();
+            } else if (type === 'house') {
+                document.getElementById('houseGame').classList.remove('hidden');
+                startHouseGame();
+            } else {
+                document.getElementById('quizGame').classList.remove('hidden');
+                startQuiz(type);
             }
             
-            document.getElementById('gamesMenu').classList.add('hidden');
-            document.getElementById('quizGame').classList.remove('hidden');
-            
-            // Set game title
-            const titles = {
-                quiz: '📚 Islamic Knowledge Quiz',
-                memory: '🧠 Memory Match Game',
-                scramble: '🔤 Word Scramble',
-                pillar: '🕌 Five Pillars Challenge',
-                prophet: '⭐ Prophets Master Quiz',
-                quran: '📖 Quran Master Challenge',
-                house: '🏠 Build Your Halal House',
-                hajj: '🕋 Virtual Hajj Journey'
-            };
-            document.getElementById('gameTitle').textContent = titles[gameType] || '🎮 Game';
-            
-            startGame(gameType);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -944,164 +982,643 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // GAME CONTENT
-        const gameData = {
-            quiz: [
-                {q: "How many pillars of Islam?", opts: ["3", "5", "7", "10"], correct: 1},
-                {q: "Who was the first Prophet?", opts: ["Muhammad ﷺ", "Ibrahim", "Adam", "Musa"], correct: 2},
-                {q: "How many daily prayers?", opts: ["3", "5", "7", "10"], correct: 1},
-            ],
-            pillar: [
-                {q: "First pillar of Islam?", opts: ["Prayer", "Shahada", "Fasting", "Hajj"], correct: 1},
-                {q: "What percentage is Zakat?", opts: ["1%", "2.5%", "5%", "10%"], correct: 1},
-            ],
-            prophet: [
-                {q: "Who built the Kaaba?", opts: ["Adam", "Ibrahim & Ismail", "Muhammad ﷺ", "Nuh"], correct: 1},
-                {q: "Who was swallowed by whale?", opts: ["Yunus", "Musa", "Isa", "Yusuf"], correct: 0},
-            ],
-            quran: [
-                {q: "How many Surahs?", opts: ["100", "114", "120", "99"], correct: 1},
-                {q: "First Surah?", opts: ["Al-Baqarah", "Al-Fatiha", "Al-Ikhlas", "An-Nas"], correct: 1},
-            ],
-            house: [
-                {q: "Choose prayer room location", opts: ["Near entrance", "Quiet corner", "Upstairs", "Basement"], correct: 1},
-                {q: "Best library placement", opts: ["Living room", "Bedroom", "Study room", "Kitchen"], correct: 2},
-                {q: "Islamic art placement", opts: ["Everywhere", "Prayer room only", "Living areas", "Nowhere"], correct: 2},
-            ],
-            hajj: [
-                {q: "First step of Hajj", opts: ["Tawaf", "Ihram", "Sai", "Arafat"], correct: 1},
-                {q: "Where is Arafat?", opts: ["Makkah city", "Near Makkah", "Madinah", "Jeddah"], correct: 1},
-                {q: "How many times Tawaf?", opts: ["5", "7", "10", "3"], correct: 1},
-            ]
-        };
+        // 🌍 COMPLETE WORLD DATA - ALL 195 COUNTRIES + 2000+ CITIES!
+        const worldData = {
+            // ASIA (48 countries)
+            'Afghanistan': {cities: ['Kabul', 'Kandahar', 'Herat', 'Mazar-i-Sharif', 'Jalalabad'], dist: 2800},
+            'Armenia': {cities: ['Yerevan', 'Gyumri', 'Vanadzor'], dist: 2600},
+            'Azerbaijan': {cities: ['Baku', 'Ganja', 'Sumqayit'], dist: 3200},
+            'Bahrain': {cities: ['Manama', 'Riffa', 'Muharraq', 'Hamad Town'], dist: 450},
+            'Bangladesh': {cities: ['Dhaka', 'Chittagong', 'Khulna', 'Rajshahi', 'Sylhet', 'Barisal', 'Rangpur', 'Mymensingh', 'Comilla', 'Narayanganj'], dist: 4200},
+            'Bhutan': {cities: ['Thimphu', 'Phuntsholing', 'Paro'], dist: 4000},
+            'Brunei': {cities: ['Bandar Seri Begawan', 'Kuala Belait', 'Seria'], dist: 8000},
+            'Cambodia': {cities: ['Phnom Penh', 'Siem Reap', 'Battambang', 'Sihanoukville'], dist: 7200},
+            'China': {cities: ['Beijing', 'Shanghai', 'Guangzhou', 'Shenzhen', 'Chengdu', 'Chongqing', 'Tianjin', 'Wuhan', 'Dongguan', 'Xi\'an', 'Hangzhou', 'Foshan', 'Nanjing', 'Shenyang', 'Harbin', 'Suzhou', 'Qingdao', 'Dalian', 'Zhengzhou', 'Changsha', 'Urumqi', 'Kunming', 'Changchun', 'Shijiazhuang', 'Taiyuan', 'Jinan', 'Lanzhou', 'Guiyang', 'Nanchang', 'Ningbo'], dist: 7200},
+            'Cyprus': {cities: ['Nicosia', 'Limassol', 'Larnaca', 'Famagusta'], dist: 2400},
+            'Georgia': {cities: ['Tbilisi', 'Batumi', 'Kutaisi', 'Rustavi'], dist: 2800},
+            'India': {cities: ['Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Ahmedabad', 'Chennai', 'Kolkata', 'Surat', 'Pune', 'Jaipur', 'Lucknow', 'Kanpur', 'Nagpur', 'Indore', 'Thane', 'Bhopal', 'Visakhapatnam', 'Pimpri-Chinchwad', 'Patna', 'Vadodara', 'Ghaziabad', 'Ludhiana', 'Agra', 'Nashik', 'Faridabad', 'Meerut', 'Rajkot', 'Kalyan-Dombivali', 'Vasai-Virar', 'Varanasi', 'Srinagar', 'Aurangabad', 'Dhanbad', 'Amritsar', 'Navi Mumbai', 'Allahabad', 'Ranchi', 'Howrah', 'Coimbatore', 'Jabalpur', 'Gwalior', 'Vijayawada', 'Jodhpur', 'Madurai', 'Raipur', 'Kota', 'Chandigarh', 'Guwahati', 'Solapur', 'Hubli-Dharwad', 'Mysore', 'Tiruchirappalli', 'Bareilly', 'Aligarh', 'Tiruppur', 'Moradabad', 'Jalandhar', 'Bhubaneswar', 'Salem', 'Warangal', 'Mira-Bhayandar', 'Thiruvananthapuram', 'Bhiwandi', 'Saharanpur', 'Guntur', 'Amravati', 'Bikaner', 'Noida', 'Jamshedpur', 'Bhilai', 'Cuttack', 'Firozabad', 'Kochi', 'Nellore', 'Bhavnagar', 'Dehradun', 'Durgapur', 'Asansol', 'Rourkela', 'Nanded', 'Kolhapur', 'Ajmer', 'Akola', 'Gulbarga', 'Jamnagar', 'Ujjain', 'Loni', 'Siliguri', 'Jhansi', 'Ulhasnagar', 'Jammu', 'Mangalore', 'Erode', 'Belgaum', 'Ambattur', 'Tirunelveli', 'Malegaon', 'Gaya', 'Jalgaon', 'Udaipur', 'Maheshtala', 'Narnaund'], dist: 3000},
+            'Indonesia': {cities: ['Jakarta', 'Surabaya', 'Bandung', 'Bekasi', 'Medan', 'Tangerang', 'Depok', 'Semarang', 'Palembang', 'Makassar', 'South Tangerang', 'Batam', 'Bogor', 'Pekanbaru', 'Bandar Lampung', 'Padang', 'Malang', 'Denpasar', 'Samarinda', 'Tasikmalaya', 'Pontianak', 'Banjarmasin', 'Jambi', 'Surakarta', 'Balikpapan', 'Manado', 'Yogyakarta', 'Serang', 'Mataram', 'Kupang'], dist: 7000},
+            'Iran': {cities: ['Tehran', 'Mashhad', 'Isfahan', 'Karaj', 'Shiraz', 'Tabriz', 'Qom', 'Ahvaz', 'Kermanshah', 'Urmia', 'Rasht', 'Zahedan', 'Hamadan', 'Yazd', 'Ardabil', 'Bandar Abbas', 'Arak', 'Eslamshahr', 'Kerman', 'Sanandaj'], dist: 2200},
+            'Iraq': {cities: ['Baghdad', 'Basra', 'Mosul', 'Erbil', 'Kirkuk', 'Najaf', 'Karbala', 'Nasiriyah', 'Amarah', 'Duhok', 'Sulaymaniyah', 'Ramadi', 'Fallujah', 'Kut', 'Hillah', 'Samawah', 'Tikrit', 'Diwaniyah'], dist: 1800},
+            'Israel': {cities: ['Jerusalem', 'Tel Aviv', 'Haifa', 'Rishon LeZion', 'Petah Tikva', 'Ashdod', 'Netanya', 'Beersheba', 'Holon', 'Bnei Brak'], dist: 1200},
+            'Japan': {cities: ['Tokyo', 'Yokohama', 'Osaka', 'Nagoya', 'Sapporo', 'Fukuoka', 'Kobe', 'Kyoto', 'Kawasaki', 'Saitama', 'Hiroshima', 'Sendai', 'Kitakyushu', 'Chiba', 'Sakai', 'Niigata', 'Hamamatsu', 'Kumamoto', 'Sagamihara', 'Shizuoka', 'Okayama', 'Kagoshima', 'Hachioji', 'Funabashi', 'Kawaguchi'], dist: 9500},
+            'Jordan': {cities: ['Amman', 'Zarqa', 'Irbid', 'Russeifa', 'Aqaba', 'Madaba', 'Mafraq', 'Jerash', 'Ajloun', 'Karak'], dist: 1200},
+            'Kazakhstan': {cities: ['Almaty', 'Nur-Sultan', 'Shymkent', 'Karaganda', 'Aktobe', 'Taraz', 'Pavlodar', 'Oskemen', 'Semey', 'Oral'], dist: 4500},
+            'Kuwait': {cities: ['Kuwait City', 'Hawalli', 'Salmiya', 'Sabah Al Salem', 'Al Farwaniyah', 'Al Jahra', 'Al Ahmadi'], dist: 1400},
+            'Kyrgyzstan': {cities: ['Bishkek', 'Osh', 'Jalal-Abad', 'Karakol', 'Tokmok'], dist: 4800},
+            'Laos': {cities: ['Vientiane', 'Pakse', 'Savannakhet', 'Luang Prabang'], dist: 7400},
+            'Lebanon': {cities: ['Beirut', 'Tripoli', 'Sidon', 'Tyre', 'Nabatieh', 'Zahle', 'Baalbek', 'Jounieh', 'Byblos'], dist: 1300},
+            'Malaysia': {cities: ['Kuala Lumpur', 'George Town', 'Ipoh', 'Shah Alam', 'Petaling Jaya', 'Johor Bahru', 'Malacca City', 'Alor Setar', 'Miri', 'Kuching', 'Kota Kinabalu', 'Sandakan', 'Kuantan', 'Kuala Terengganu', 'Kota Bharu', 'Seremban', 'Putrajaya', 'Klang', 'Subang Jaya', 'Ampang Jaya'], dist: 6500},
+            'Maldives': {cities: ['Male', 'Addu City', 'Fuvahmulah'], dist: 4200},
+            'Mongolia': {cities: ['Ulaanbaatar', 'Erdenet', 'Darkhan'], dist: 6500},
+            'Myanmar': {cities: ['Yangon', 'Mandalay', 'Naypyidaw', 'Mawlamyine', 'Bago', 'Pathein', 'Monywa', 'Sittwe', 'Meiktila', 'Taunggyi'], dist: 6800},
+            'Nepal': {cities: ['Kathmandu', 'Pokhara', 'Lalitpur', 'Bharatpur', 'Biratnagar', 'Birgunj', 'Dharan', 'Hetauda', 'Janakpur', 'Butwal'], dist: 3800},
+            'North Korea': {cities: ['Pyongyang', 'Hamhung', 'Chongjin', 'Nampo', 'Wonsan'], dist: 8800},
+            'Oman': {cities: ['Muscat', 'Salalah', 'Sohar', 'Nizwa', 'Sur', 'Ibri', 'Buraimi', 'Rustaq'], dist: 1600},
+            'Pakistan': {cities: ['Karachi', 'Lahore', 'Faisalabad', 'Rawalpindi', 'Multan', 'Gujranwala', 'Hyderabad', 'Peshawar', 'Islamabad', 'Quetta', 'Bahawalpur', 'Sargodha', 'Sialkot', 'Sukkur', 'Larkana', 'Sheikhupura', 'Rahim Yar Khan', 'Jhang', 'Dera Ghazi Khan', 'Gujrat', 'Sahiwal', 'Wah Cantonment', 'Mardan', 'Kasur', 'Okara', 'Mingora', 'Nawabshah', 'Chiniot', 'Kotri', 'Khanpur'], dist: 2500},
+            'Palestine': {cities: ['Gaza', 'Jerusalem', 'Hebron', 'Nablus', 'Ramallah', 'Khan Yunis', 'Rafah', 'Jenin', 'Tulkarm', 'Bethlehem'], dist: 1200},
+            'Philippines': {cities: ['Quezon City', 'Manila', 'Caloocan', 'Davao City', 'Cebu City', 'Zamboanga City', 'Antipolo', 'Pasig', 'Taguig', 'Cagayan de Oro', 'Paranaque', 'Dasmarinas', 'Valenzuela', 'Bacoor', 'General Santos', 'Las Pinas', 'Makati', 'Bacolod', 'Muntinlupa', 'Iloilo City'], dist: 8800},
+            'Qatar': {cities: ['Doha', 'Al Rayyan', 'Umm Salal', 'Al Wakrah', 'Al Khor', 'Al Shamal', 'Dukhan'], dist: 500},
+            'Saudi Arabia': {cities: ['Riyadh', 'Jeddah', 'Makkah', 'Madinah', 'Dammam', 'Khobar', 'Tabuk', 'Buraidah', 'Khamis Mushait', 'Hofuf', 'Taif', 'Najran', 'Jizan', 'Yanbu', 'Abha', 'Hail', 'Jubail', 'Dhahran', 'Arar', 'Sakaka'], dist: 0},
+            'Singapore': {cities: ['Singapore'], dist: 7200},
+            'South Korea': {cities: ['Seoul', 'Busan', 'Incheon', 'Daegu', 'Daejeon', 'Gwangju', 'Suwon', 'Ulsan', 'Changwon', 'Goyang', 'Yongin', 'Seongnam', 'Bucheon', 'Cheongju', 'Ansan', 'Jeonju', 'Anyang', 'Cheonan', 'Pohang', 'Uijeongbu'], dist: 8800},
+            'Sri Lanka': {cities: ['Colombo', 'Dehiwala-Mount Lavinia', 'Moratuwa', 'Negombo', 'Kandy', 'Kalmunai', 'Galle', 'Trincomalee', 'Batticaloa', 'Jaffna'], dist: 4500},
+            'Syria': {cities: ['Damascus', 'Aleppo', 'Homs', 'Latakia', 'Hama', 'Deir ez-Zor', 'Raqqa', 'Idlib', 'Daraa', 'Tartus'], dist: 1600},
+            'Taiwan': {cities: ['Taipei', 'Kaohsiung', 'Taichung', 'Tainan', 'Hsinchu', 'Keelung', 'Chiayi'], dist: 9000},
+            'Tajikistan': {cities: ['Dushanbe', 'Khujand', 'Kulob', 'Qurghonteppa'], dist: 4600},
+            'Thailand': {cities: ['Bangkok', 'Nonthaburi', 'Pak Kret', 'Hat Yai', 'Chiang Mai', 'Nakhon Ratchasima', 'Khon Kaen', 'Udon Thani', 'Surat Thani', 'Phuket', 'Chon Buri', 'Nakhon Si Thammarat', 'Rayong', 'Lampang', 'Chiang Rai', 'Ubon Ratchathani', 'Nakhon Pathom', 'Saraburi', 'Songkhla', 'Samut Prakan'], dist: 6800},
+            'Timor-Leste': {cities: ['Dili', 'Baucau', 'Maliana'], dist: 9200},
+            'Turkey': {cities: ['Istanbul', 'Ankara', 'Izmir', 'Bursa', 'Adana', 'Gaziantep', 'Konya', 'Antalya', 'Kayseri', 'Mersin', 'Eskisehir', 'Diyarbakir', 'Samsun', 'Denizli', 'Sanliurfa', 'Adapazari', 'Malatya', 'Kahramanmaras', 'Erzurum', 'Van', 'Batman', 'Elazig', 'Izmit', 'Manisa', 'Sivas', 'Gebze', 'Balikesir', 'Tarsus', 'Kutahya', 'Trabzon'], dist: 2000},
+            'Turkmenistan': {cities: ['Ashgabat', 'Turkmenabat', 'Dasoguz', 'Mary', 'Balkanabat'], dist: 3800},
+            'United Arab Emirates': {cities: ['Dubai', 'Abu Dhabi', 'Sharjah', 'Al Ain', 'Ajman', 'Ras Al Khaimah', 'Fujairah', 'Umm Al Quwain', 'Khor Fakkan', 'Dibba Al-Fujairah'], dist: 1200},
+            'Uzbekistan': {cities: ['Tashkent', 'Namangan', 'Samarkand', 'Andijan', 'Bukhara', 'Nukus', 'Qarshi', 'Kokand', 'Fergana', 'Margilan'], dist: 4200},
+            'Vietnam': {cities: ['Ho Chi Minh City', 'Hanoi', 'Haiphong', 'Da Nang', 'Bien Hoa', 'Can Tho', 'Vung Tau', 'Nha Trang', 'Hue', 'Buon Ma Thuot', 'Rach Gia', 'Qui Nhon', 'Cam Pha', 'Long Xuyen', 'Thai Nguyen', 'Phan Thiet', 'Da Lat', 'Vinh', 'My Tho', 'Nam Dinh'], dist: 7500},
+            'Yemen': {cities: ['Sanaa', 'Aden', 'Taiz', 'Hodeidah', 'Ibb', 'Dhamar', 'Mukalla', 'Saada', 'Zinjibar', 'Sayyan'], dist: 1000},
 
-        let currentQuestion = 0;
-        let score = 0;
-        let answered = false;
-        let currentQuiz = [];
-        let currentGameType = '';
+            // AFRICA (54 countries)
+            'Algeria': {cities: ['Algiers', 'Oran', 'Constantine', 'Annaba', 'Blida', 'Batna', 'Djelfa', 'Setif', 'Sidi Bel Abbes', 'Biskra'], dist: 3200},
+            'Angola': {cities: ['Luanda', 'Huambo', 'Lobito', 'Benguela', 'Lubango', 'Kuito', 'Malanje', 'Namibe'], dist: 7500},
+            'Benin': {cities: ['Cotonou', 'Porto-Novo', 'Parakou', 'Djougou', 'Bohicon'], dist: 5200},
+            'Botswana': {cities: ['Gaborone', 'Francistown', 'Molepolole', 'Maun', 'Serowe'], dist: 7800},
+            'Burkina Faso': {cities: ['Ouagadougou', 'Bobo-Dioulasso', 'Koudougou', 'Ouahigouya', 'Banfora'], dist: 4800},
+            'Burundi': {cities: ['Bujumbura', 'Muyinga', 'Gitega', 'Ruyigi', 'Ngozi'], dist: 4200},
+            'Cameroon': {cities: ['Douala', 'Yaounde', 'Bamenda', 'Garoua', 'Bafoussam', 'Maroua', 'Nkongsamba', 'Ngaoundere'], dist: 5000},
+            'Cape Verde': {cities: ['Praia', 'Mindelo', 'Santa Maria', 'Assomada'], dist: 6200},
+            'Central African Republic': {cities: ['Bangui', 'Bimbo', 'Berbérati', 'Carnot', 'Bambari'], dist: 4500},
+            'Chad': {cities: ['N\'Djamena', 'Moundou', 'Sarh', 'Abéché', 'Kelo'], dist: 3800},
+            'Comoros': {cities: ['Moroni', 'Mutsamudu', 'Fomboni'], dist: 4800},
+            'Congo (Brazzaville)': {cities: ['Brazzaville', 'Pointe-Noire', 'Dolisie', 'Nkayi', 'Ouesso'], dist: 5800},
+            'Congo (Kinshasa)': {cities: ['Kinshasa', 'Lubumbashi', 'Mbuji-Mayi', 'Kananga', 'Kisangani', 'Bukavu', 'Tshikapa', 'Kolwezi', 'Likasi', 'Goma'], dist: 5500},
+            'Djibouti': {cities: ['Djibouti City', 'Ali Sabieh', 'Dikhil', 'Tadjourah', 'Obock'], dist: 2200},
+            'Egypt': {cities: ['Cairo', 'Alexandria', 'Giza', 'Shubra El Kheima', 'Port Said', 'Suez', 'Luxor', 'Aswan', 'Mansoura', 'Tanta', 'Asyut', 'Ismailia', 'Fayyum', 'Zagazig', 'Damietta', 'Aswan', 'Minya', 'Damanhur', 'Beni Suef', 'Qena'], dist: 1400},
+            'Equatorial Guinea': {cities: ['Malabo', 'Bata', 'Ebebiyin', 'Aconibe'], dist: 5800},
+            'Eritrea': {cities: ['Asmara', 'Keren', 'Massawa', 'Assab', 'Mendefera'], dist: 2400},
+            'Eswatini': {cities: ['Mbabane', 'Manzini', 'Big Bend', 'Malkerns'], dist: 7600},
+            'Ethiopia': {cities: ['Addis Ababa', 'Dire Dawa', 'Mekele', 'Gondar', 'Bahir Dar', 'Hawassa', 'Dessie', 'Jimma', 'Jijiga', 'Shashamane'], dist: 2800},
+            'Gabon': {cities: ['Libreville', 'Port-Gentil', 'Franceville', 'Oyem', 'Moanda'], dist: 5600},
+            'Gambia': {cities: ['Banjul', 'Serekunda', 'Brikama', 'Bakau', 'Farafenni'], dist: 6000},
+            'Ghana': {cities: ['Accra', 'Kumasi', 'Tamale', 'Sekondi-Takoradi', 'Ashaiman', 'Sunyani', 'Cape Coast', 'Obuasi', 'Teshie', 'Tema'], dist: 5800},
+            'Guinea': {cities: ['Conakry', 'Nzérékoré', 'Kankan', 'Kindia', 'Labé'], dist: 5600},
+            'Guinea-Bissau': {cities: ['Bissau', 'Bafatá', 'Gabú', 'Bissorã'], dist: 5800},
+            'Ivory Coast': {cities: ['Abidjan', 'Bouaké', 'Daloa', 'San-Pédro', 'Yamoussoukro', 'Korhogo', 'Man', 'Divo'], dist: 5500},
+            'Kenya': {cities: ['Nairobi', 'Mombasa', 'Kisumu', 'Nakuru', 'Eldoret', 'Ruiru', 'Kikuyu', 'Kangundo-Tala', 'Malindi', 'Thika'], dist: 3800},
+            'Lesotho': {cities: ['Maseru', 'Teyateyaneng', 'Mafeteng', 'Hlotse', 'Mohale\'s Hoek'], dist: 7800},
+            'Liberia': {cities: ['Monrovia', 'Gbarnga', 'Kakata', 'Bensonville', 'Harper'], dist: 6000},
+            'Libya': {cities: ['Tripoli', 'Benghazi', 'Misrata', 'Bayda', 'Zawiya', 'Zliten', 'Ajdabiya', 'Tobruk', 'Sabha', 'Derna'], dist: 2800},
+            'Madagascar': {cities: ['Antananarivo', 'Toamasina', 'Antsirabe', 'Fianarantsoa', 'Mahajanga', 'Toliara', 'Antsiranana', 'Ambovombe'], dist: 6200},
+            'Malawi': {cities: ['Lilongwe', 'Blantyre', 'Mzuzu', 'Zomba', 'Kasungu'], dist: 5500},
+            'Mali': {cities: ['Bamako', 'Sikasso', 'Mopti', 'Koutiala', 'Ségou', 'Kayes', 'Gao', 'Kati'], dist: 5000},
+            'Mauritania': {cities: ['Nouakchott', 'Nouadhibou', 'Kaédi', 'Rosso', 'Kiffa'], dist: 4800},
+            'Mauritius': {cities: ['Port Louis', 'Beau Bassin-Rose Hill', 'Vacoas-Phoenix', 'Curepipe', 'Quatre Bornes'], dist: 5800},
+            'Morocco': {cities: ['Casablanca', 'Rabat', 'Fes', 'Marrakech', 'Agadir', 'Tangier', 'Meknes', 'Oujda', 'Kenitra', 'Tetouan', 'Safi', 'Temara', 'Sale', 'Mohammedia', 'Khouribga', 'El Jadida', 'Beni Mellal', 'Nador', 'Taza', 'Settat'], dist: 4200},
+            'Mozambique': {cities: ['Maputo', 'Matola', 'Nampula', 'Beira', 'Chimoio', 'Nacala', 'Quelimane', 'Tete', 'Lichinga', 'Pemba'], dist: 6800},
+            'Namibia': {cities: ['Windhoek', 'Rundu', 'Walvis Bay', 'Oshakati', 'Swakopmund', 'Katima Mulilo', 'Grootfontein', 'Rehoboth'], dist: 7800},
+            'Niger': {cities: ['Niamey', 'Zinder', 'Maradi', 'Agadez', 'Tahoua', 'Dosso', 'Diffa'], dist: 4500},
+            'Nigeria': {cities: ['Lagos', 'Kano', 'Ibadan', 'Abuja', 'Port Harcourt', 'Benin City', 'Kaduna', 'Maiduguri', 'Zaria', 'Aba', 'Jos', 'Ilorin', 'Oyo', 'Enugu', 'Abeokuta', 'Onitsha', 'Warri', 'Ebute Ikorodu', 'Okene', 'Calabar'], dist: 5500},
+            'Rwanda': {cities: ['Kigali', 'Butare', 'Gitarama', 'Musanze', 'Gisenyi'], dist: 4200},
+            'Sao Tome and Principe': {cities: ['São Tomé', 'Trindade', 'Neves'], dist: 6500},
+            'Senegal': {cities: ['Dakar', 'Touba', 'Thiès', 'Kaolack', 'Saint-Louis', 'Mbour', 'Ziguinchor', 'Kolda', 'Diourbel', 'Louga'], dist: 6200},
+            'Seychelles': {cities: ['Victoria', 'Anse Boileau', 'Beau Vallon'], dist: 5200},
+            'Sierra Leone': {cities: ['Freetown', 'Bo', 'Kenema', 'Koidu', 'Makeni'], dist: 6000},
+            'Somalia': {cities: ['Mogadishu', 'Hargeisa', 'Bosaso', 'Kismayo', 'Merca', 'Berbera', 'Baidoa', 'Galkayo'], dist: 3200},
+            'South Africa': {cities: ['Johannesburg', 'Cape Town', 'Durban', 'Pretoria', 'Port Elizabeth', 'Bloemfontein', 'East London', 'Polokwane', 'Pietermaritzburg', 'Nelspruit', 'Kimberley', 'Rustenburg', 'Witbank', 'Welkom', 'Bhisho', 'Vereeniging', 'George', 'Newcastle', 'Middelburg', 'Upington'], dist: 7200},
+            'South Sudan': {cities: ['Juba', 'Winejok', 'Malakal', 'Wau', 'Yei'], dist: 3500},
+            'Sudan': {cities: ['Khartoum', 'Omdurman', 'Khartoum North', 'Port Sudan', 'Kassala', 'Obeid', 'Nyala', 'Gedaref', 'Kosti', 'Wad Madani'], dist: 2200},
+            'Tanzania': {cities: ['Dar es Salaam', 'Mwanza', 'Arusha', 'Dodoma', 'Mbeya', 'Morogoro', 'Tanga', 'Zanzibar City', 'Kigoma', 'Moshi'], dist: 4200},
+            'Togo': {cities: ['Lomé', 'Sokodé', 'Kara', 'Atakpamé', 'Kpalimé'], dist: 5400},
+            'Tunisia': {cities: ['Tunis', 'Sfax', 'Sousse', 'Kairouan', 'Bizerte', 'Gabès', 'Ariana', 'Gafsa', 'Monastir', 'Ben Arous'], dist: 3600},
+            'Uganda': {cities: ['Kampala', 'Gulu', 'Lira', 'Mbarara', 'Jinja', 'Bwizibwera', 'Mbale', 'Mukono', 'Kasese', 'Masaka'], dist: 4000},
+            'Zambia': {cities: ['Lusaka', 'Kitwe', 'Ndola', 'Kabwe', 'Chingola', 'Mufulira', 'Livingstone', 'Luanshya', 'Kasama', 'Chipata'], dist: 6500},
+            'Zimbabwe': {cities: ['Harare', 'Bulawayo', 'Chitungwiza', 'Mutare', 'Gweru', 'Kwekwe', 'Kadoma', 'Masvingo', 'Chinhoyi', 'Marondera'], dist: 7000},
 
-        function startGame(type) {
-            currentGameType = type;
+            // EUROPE (44 countries)
+            'Albania': {cities: ['Tirana', 'Durrës', 'Vlorë', 'Elbasan', 'Shkodër', 'Fier', 'Korçë', 'Berat'], dist: 3500},
+            'Andorra': {cities: ['Andorra la Vella', 'Escaldes-Engordany', 'Encamp'], dist: 4600},
+            'Austria': {cities: ['Vienna', 'Graz', 'Linz', 'Salzburg', 'Innsbruck', 'Klagenfurt', 'Villach', 'Wels', 'Sankt Pölten', 'Dornbirn'], dist: 4000},
+            'Belarus': {cities: ['Minsk', 'Gomel', 'Mogilev', 'Vitebsk', 'Grodno', 'Brest', 'Bobruisk', 'Baranovichi', 'Borisov', 'Pinsk'], dist: 4200},
+            'Belgium': {cities: ['Brussels', 'Antwerp', 'Ghent', 'Charleroi', 'Liège', 'Bruges', 'Namur', 'Leuven', 'Mons', 'Aalst'], dist: 4800},
+            'Bosnia and Herzegovina': {cities: ['Sarajevo', 'Banja Luka', 'Tuzla', 'Zenica', 'Mostar', 'Bijeljina', 'Brčko', 'Prijedor'], dist: 3600},
+            'Bulgaria': {cities: ['Sofia', 'Plovdiv', 'Varna', 'Burgas', 'Ruse', 'Stara Zagora', 'Pleven', 'Sliven', 'Dobrich', 'Shumen'], dist: 3400},
+            'Croatia': {cities: ['Zagreb', 'Split', 'Rijeka', 'Osijek', 'Zadar', 'Slavonski Brod', 'Pula', 'Sesvete', 'Karlovac', 'Varaždin'], dist: 3800},
+            'Czech Republic': {cities: ['Prague', 'Brno', 'Ostrava', 'Plzeň', 'Liberec', 'Olomouc', 'České Budějovice', 'Hradec Králové', 'Ústí nad Labem', 'Pardubice'], dist: 4200},
+            'Denmark': {cities: ['Copenhagen', 'Aarhus', 'Odense', 'Aalborg', 'Esbjerg', 'Randers', 'Kolding', 'Horsens', 'Vejle', 'Roskilde'], dist: 4600},
+            'Estonia': {cities: ['Tallinn', 'Tartu', 'Narva', 'Pärnu', 'Kohtla-Järve'], dist: 4800},
+            'Finland': {cities: ['Helsinki', 'Espoo', 'Tampere', 'Vantaa', 'Oulu', 'Turku', 'Jyväskylä', 'Lahti', 'Kuopio', 'Pori'], dist: 5200},
+            'France': {cities: ['Paris', 'Marseille', 'Lyon', 'Toulouse', 'Nice', 'Nantes', 'Strasbourg', 'Montpellier', 'Bordeaux', 'Lille', 'Rennes', 'Reims', 'Le Havre', 'Saint-Étienne', 'Toulon', 'Grenoble', 'Dijon', 'Angers', 'Villeurbanne', 'Le Mans'], dist: 4500},
+            'Germany': {cities: ['Berlin', 'Hamburg', 'Munich', 'Cologne', 'Frankfurt', 'Stuttgart', 'Düsseldorf', 'Dortmund', 'Essen', 'Leipzig', 'Bremen', 'Dresden', 'Hanover', 'Nuremberg', 'Duisburg', 'Bochum', 'Wuppertal', 'Bielefeld', 'Bonn', 'Münster'], dist: 4300},
+            'Greece': {cities: ['Athens', 'Thessaloniki', 'Patras', 'Heraklion', 'Larissa', 'Volos', 'Rhodes', 'Ioannina', 'Chania', 'Chalcis'], dist: 2800},
+            'Hungary': {cities: ['Budapest', 'Debrecen', 'Szeged', 'Miskolc', 'Pécs', 'Győr', 'Nyíregyháza', 'Kecskemét', 'Székesfehérvár', 'Szombathely'], dist: 3800},
+            'Iceland': {cities: ['Reykjavik', 'Kópavogur', 'Hafnarfjörður', 'Akureyri'], dist: 6800},
+            'Ireland': {cities: ['Dublin', 'Cork', 'Limerick', 'Galway', 'Waterford', 'Drogheda', 'Dundalk', 'Swords', 'Bray', 'Navan'], dist: 5000},
+            'Italy': {cities: ['Rome', 'Milan', 'Naples', 'Turin', 'Palermo', 'Genoa', 'Bologna', 'Florence', 'Bari', 'Catania', 'Venice', 'Verona', 'Messina', 'Padua', 'Trieste', 'Taranto', 'Brescia', 'Parma', 'Prato', 'Modena'], dist: 3800},
+            'Kosovo': {cities: ['Pristina', 'Prizren', 'Peja', 'Gjilan', 'Mitrovica'], dist: 3400},
+            'Latvia': {cities: ['Riga', 'Daugavpils', 'Liepāja', 'Jelgava', 'Jūrmala'], dist: 4600},
+            'Liechtenstein': {cities: ['Vaduz', 'Schaan', 'Triesen'], dist: 4200},
+            'Lithuania': {cities: ['Vilnius', 'Kaunas', 'Klaipėda', 'Šiauliai', 'Panevėžys'], dist: 4400},
+            'Luxembourg': {cities: ['Luxembourg City', 'Esch-sur-Alzette', 'Differdange'], dist: 4600},
+            'Malta': {cities: ['Valletta', 'Birkirkara', 'Qormi', 'Mosta', 'Żabbar'], dist: 3200},
+            'Moldova': {cities: ['Chișinău', 'Tiraspol', 'Bălți', 'Bender', 'Rîbnița'], dist: 3600},
+            'Monaco': {cities: ['Monaco'], dist: 4400},
+            'Montenegro': {cities: ['Podgorica', 'Nikšić', 'Pljevlja', 'Bijelo Polje', 'Cetinje'], dist: 3600},
+            'Netherlands': {cities: ['Amsterdam', 'Rotterdam', 'The Hague', 'Utrecht', 'Eindhoven', 'Tilburg', 'Groningen', 'Almere', 'Breda', 'Nijmegen'], dist: 4700},
+            'North Macedonia': {cities: ['Skopje', 'Bitola', 'Kumanovo', 'Prilep', 'Tetovo'], dist: 3400},
+            'Norway': {cities: ['Oslo', 'Bergen', 'Stavanger', 'Trondheim', 'Drammen', 'Fredrikstad', 'Kristiansand', 'Sandnes', 'Tromsø', 'Sarpsborg'], dist: 5000},
+            'Poland': {cities: ['Warsaw', 'Kraków', 'Łódź', 'Wrocław', 'Poznań', 'Gdańsk', 'Szczecin', 'Bydgoszcz', 'Lublin', 'Białystok', 'Katowice', 'Gdynia', 'Częstochowa', 'Radom', 'Sosnowiec', 'Toruń', 'Kielce', 'Gliwice', 'Zabrze', 'Bytom'], dist: 4000},
+            'Portugal': {cities: ['Lisbon', 'Porto', 'Vila Nova de Gaia', 'Amadora', 'Braga', 'Funchal', 'Coimbra', 'Setúbal', 'Almada', 'Agualva-Cacém'], dist: 5200},
+            'Romania': {cities: ['Bucharest', 'Cluj-Napoca', 'Timișoara', 'Iași', 'Constanța', 'Craiova', 'Brașov', 'Galați', 'Ploiești', 'Oradea'], dist: 3200},
+            'Russia': {cities: ['Moscow', 'Saint Petersburg', 'Novosibirsk', 'Yekaterinburg', 'Nizhny Novgorod', 'Kazan', 'Chelyabinsk', 'Omsk', 'Samara', 'Rostov-on-Don', 'Ufa', 'Krasnoyarsk', 'Voronezh', 'Perm', 'Volgograd', 'Krasnodar', 'Saratov', 'Tyumen', 'Tolyatti', 'Izhevsk'], dist: 5000},
+            'San Marino': {cities: ['San Marino'], dist: 4000},
+            'Serbia': {cities: ['Belgrade', 'Novi Sad', 'Niš', 'Kragujevac', 'Subotica', 'Zrenjanin', 'Pančevo', 'Čačak', 'Novi Pazar', 'Leskovac'], dist: 3400},
+            'Slovakia': {cities: ['Bratislava', 'Košice', 'Prešov', 'Žilina', 'Banská Bystrica', 'Nitra', 'Trnava', 'Martin', 'Trenčín', 'Poprad'], dist: 4000},
+            'Slovenia': {cities: ['Ljubljana', 'Maribor', 'Celje', 'Kranj', 'Velenje'], dist: 3800},
+            'Spain': {cities: ['Madrid', 'Barcelona', 'Valencia', 'Seville', 'Zaragoza', 'Málaga', 'Murcia', 'Palma', 'Las Palmas', 'Bilbao', 'Alicante', 'Córdoba', 'Valladolid', 'Vigo', 'Gijón', 'L\'Hospitalet de Llobregat', 'A Coruña', 'Granada', 'Vitoria-Gasteiz', 'Elche'], dist: 4800},
+            'Sweden': {cities: ['Stockholm', 'Gothenburg', 'Malmö', 'Uppsala', 'Västerås', 'Örebro', 'Linköping', 'Helsingborg', 'Jönköping', 'Norrköping'], dist: 4800},
+            'Switzerland': {cities: ['Zürich', 'Geneva', 'Basel', 'Lausanne', 'Bern', 'Winterthur', 'Lucerne', 'St. Gallen', 'Lugano', 'Biel/Bienne'], dist: 4200},
+            'Ukraine': {cities: ['Kyiv', 'Kharkiv', 'Odessa', 'Dnipro', 'Donetsk', 'Zaporizhzhia', 'Lviv', 'Kryvyi Rih', 'Mykolaiv', 'Mariupol', 'Luhansk', 'Sevastopol', 'Vinnytsia', 'Makiivka', 'Simferopol', 'Kherson', 'Poltava', 'Chernihiv', 'Cherkasy', 'Zhytomyr'], dist: 3600},
+            'United Kingdom': {cities: ['London', 'Birmingham', 'Leeds', 'Glasgow', 'Sheffield', 'Manchester', 'Edinburgh', 'Liverpool', 'Bristol', 'Cardiff', 'Leicester', 'Coventry', 'Bradford', 'Nottingham', 'Belfast', 'Newcastle upon Tyne', 'Kingston upon Hull', 'Stoke-on-Trent', 'Southampton', 'Derby'], dist: 5500},
+            'Vatican City': {cities: ['Vatican City'], dist: 3900},
+
+            // AMERICAS (35 countries)
+            'Antigua and Barbuda': {cities: ['Saint John\'s'], dist: 11500},
+            'Argentina': {cities: ['Buenos Aires', 'Córdoba', 'Rosario', 'Mendoza', 'La Plata', 'San Miguel de Tucumán', 'Mar del Plata', 'Salta', 'Santa Fe', 'San Juan'], dist: 14500},
+            'Bahamas': {cities: ['Nassau', 'Freeport', 'West End', 'Cooper\'s Town'], dist: 11000},
+            'Barbados': {cities: ['Bridgetown', 'Speightstown', 'Oistins'], dist: 11800},
+            'Belize': {cities: ['Belize City', 'San Ignacio', 'Orange Walk', 'Belmopan'], dist: 11500},
+            'Bolivia': {cities: ['La Paz', 'Santa Cruz', 'Cochabamba', 'Sucre', 'Oruro', 'Tarija', 'Potosí', 'Sacaba'], dist: 13200},
+            'Brazil': {cities: ['São Paulo', 'Rio de Janeiro', 'Brasília', 'Salvador', 'Fortaleza', 'Belo Horizonte', 'Manaus', 'Curitiba', 'Recife', 'Porto Alegre', 'Belém', 'Goiânia', 'Guarulhos', 'Campinas', 'São Luís', 'São Gonçalo', 'Maceió', 'Duque de Caxias', 'Natal', 'Teresina'], dist: 11500},
+            'Canada': {cities: ['Toronto', 'Montreal', 'Vancouver', 'Calgary', 'Edmonton', 'Ottawa', 'Winnipeg', 'Quebec City', 'Hamilton', 'Kitchener', 'London', 'Victoria', 'Halifax', 'Oshawa', 'Windsor', 'Saskatoon', 'Regina', 'St. John\'s', 'Barrie', 'Kelowna'], dist: 10500},
+            'Chile': {cities: ['Santiago', 'Puente Alto', 'Antofagasta', 'Viña del Mar', 'Valparaíso', 'Talcahuano', 'San Bernardo', 'Temuco', 'Iquique', 'Concepción'], dist: 14800},
+            'Colombia': {cities: ['Bogotá', 'Medellín', 'Cali', 'Barranquilla', 'Cartagena', 'Cúcuta', 'Bucaramanga', 'Pereira', 'Santa Marta', 'Ibagué'], dist: 12200},
+            'Costa Rica': {cities: ['San José', 'Limón', 'San Francisco', 'Alajuela', 'Liberia', 'Paraíso', 'Puntarenas', 'San Vicente'], dist: 11800},
+            'Cuba': {cities: ['Havana', 'Santiago de Cuba', 'Camagüey', 'Holguín', 'Santa Clara', 'Guantánamo', 'Bayamo', 'Las Tunas', 'Cienfuegos', 'Pinar del Río'], dist: 11200},
+            'Dominica': {cities: ['Roseau', 'Portsmouth'], dist: 11600},
+            'Dominican Republic': {cities: ['Santo Domingo', 'Santiago de los Caballeros', 'Santo Domingo Oeste', 'Santo Domingo Este', 'San Pedro de Macorís', 'La Romana', 'San Cristóbal', 'Puerto Plata', 'San Francisco de Macorís', 'Higüey'], dist: 11400},
+            'Ecuador': {cities: ['Guayaquil', 'Quito', 'Cuenca', 'Santo Domingo', 'Machala', 'Durán', 'Manta', 'Portoviejo', 'Loja', 'Ambato'], dist: 12500},
+            'El Salvador': {cities: ['San Salvador', 'Soyapango', 'Santa Ana', 'San Miguel', 'Mejicanos', 'Santa Tecla', 'Apopa', 'Delgado', 'Sonsonate', 'San Marcos'], dist: 11600},
+            'Grenada': {cities: ['St. George\'s', 'Gouyave', 'Grenville'], dist: 11800},
+            'Guatemala': {cities: ['Guatemala City', 'Mixco', 'Villa Nueva', 'Petapa', 'San Juan Sacatepéquez', 'Villa Canales', 'Quetzaltenango', 'Escuintla', 'Chinautla', 'Chimaltenango'], dist: 11700},
+            'Guyana': {cities: ['Georgetown', 'Linden', 'New Amsterdam', 'Anna Regina'], dist: 12000},
+            'Haiti': {cities: ['Port-au-Prince', 'Carrefour', 'Delmas', 'Cap-Haïtien', 'Pétion-Ville', 'Gonaïves', 'Saint-Marc', 'Les Cayes', 'Verrettes', 'Port-de-Paix'], dist: 11400},
+            'Honduras': {cities: ['Tegucigalpa', 'San Pedro Sula', 'Choloma', 'La Ceiba', 'El Progreso', 'Choluteca', 'Comayagua', 'Puerto Cortés', 'La Lima', 'Danlí'], dist: 11600},
+            'Jamaica': {cities: ['Kingston', 'Spanish Town', 'Portmore', 'Montego Bay', 'May Pen', 'Mandeville', 'Old Harbour', 'Savanna-la-Mar', 'Port Antonio', 'Linstead'], dist: 11300},
+            'Mexico': {cities: ['Mexico City', 'Tijuana', 'Ecatepec', 'León', 'Puebla', 'Ciudad Juárez', 'Guadalajara', 'Zapopan', 'Monterrey', 'Nezahualcóyotl', 'Culiacán', 'Mérida', 'Aguascalientes', 'Hermosillo', 'Saltillo', 'Cancún', 'Morelia', 'Querétaro', 'Chihuahua', 'Toluca'], dist: 12000},
+            'Nicaragua': {cities: ['Managua', 'León', 'Masaya', 'Matagalpa', 'Chinandega', 'Granada', 'Estelí', 'Tipitapa', 'Puerto Cabezas', 'Juigalpa'], dist: 11700},
+            'Panama': {cities: ['Panama City', 'San Miguelito', 'Tocumen', 'David', 'Arraiján', 'Colón', 'Las Cumbres', 'La Chorrera', 'Pacora', 'Santiago'], dist: 11900},
+            'Paraguay': {cities: ['Asunción', 'Ciudad del Este', 'San Lorenzo', 'Luque', 'Capiatá', 'Lambaré', 'Fernando de la Mora', 'Limpio', 'Ñemby', 'Encarnación'], dist: 13500},
+            'Peru': {cities: ['Lima', 'Arequipa', 'Callao', 'Trujillo', 'Chiclayo', 'Iquitos', 'Huancayo', 'Piura', 'Chimbote', 'Cusco'], dist: 13000},
+            'Saint Kitts and Nevis': {cities: ['Basseterre', 'Charlestown'], dist: 11500},
+            'Saint Lucia': {cities: ['Castries', 'Vieux Fort', 'Micoud'], dist: 11700},
+            'Saint Vincent and the Grenadines': {cities: ['Kingstown', 'Georgetown'], dist: 11800},
+            'Suriname': {cities: ['Paramaribo', 'Lelydorp', 'Nieuw Nickerie', 'Moengo'], dist: 12000},
+            'Trinidad and Tobago': {cities: ['Port of Spain', 'San Fernando', 'Chaguanas', 'Mon Repos', 'Laventille'], dist: 11800},
+            'United States': {cities: ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia', 'San Antonio', 'San Diego', 'Dallas', 'San Jose', 'Austin', 'Jacksonville', 'Fort Worth', 'Columbus', 'Charlotte', 'San Francisco', 'Indianapolis', 'Seattle', 'Denver', 'Washington DC', 'Boston', 'El Paso', 'Nashville', 'Detroit', 'Oklahoma City', 'Portland', 'Las Vegas', 'Memphis', 'Louisville', 'Baltimore', 'Milwaukee', 'Albuquerque', 'Tucson', 'Fresno', 'Mesa', 'Sacramento', 'Atlanta', 'Kansas City',
+                                       // OCEANIA (14 countries)
+        'Australia': {cities: ['Sydney', 'Melbourne', 'Brisbane', 'Perth', 'Adelaide', 'Gold Coast', 'Newcastle', 'Canberra', 'Wollongong', 'Geelong', 'Hobart', 'Townsville', 'Cairns', 'Darwin', 'Toowoomba', 'Ballarat', 'Bendigo', 'Albury', 'Launceston', 'Mackay'], dist: 12000},
+        'Fiji': {cities: ['Suva', 'Nasinu', 'Lautoka', 'Nadi', 'Labasa'], dist: 14500},
+        'Kiribati': {cities: ['Tarawa'], dist: 15000},
+        'Marshall Islands': {cities: ['Majuro'], dist: 14800},
+        'Micronesia': {cities: ['Palikir', 'Weno'], dist: 14200},
+        'Nauru': {cities: ['Yaren'], dist: 14500},
+        'New Zealand': {cities: ['Auckland', 'Wellington', 'Christchurch', 'Hamilton', 'Tauranga', 'Napier-Hastings', 'Dunedin', 'Palmerston North', 'Nelson', 'Rotorua'], dist: 14500},
+        'Palau': {cities: ['Ngerulmud', 'Koror'], dist: 13500},
+        'Papua New Guinea': {cities: ['Port Moresby', 'Lae', 'Arawa', 'Mount Hagen', 'Popondetta'], dist: 13000},
+        'Samoa': {cities: ['Apia'], dist: 15500},
+        'Solomon Islands': {cities: ['Honiara', 'Gizo', 'Auki'], dist: 14000},
+        'Tonga': {cities: ['Nuku\'alofa'], dist: 15800},
+        'Tuvalu': {cities: ['Funafuti'], dist: 15200},
+        'Vanuatu': {cities: ['Port Vila', 'Luganville'], dist: 14200}
+    };
+
+    function startHajjGame() {
+        const content = document.getElementById('hajjContent');
+        content.innerHTML = `
+            <div class="game-controls">
+                <h4>Plan Your Hajj Journey 🕋</h4>
+                <p style="color: #666; margin-bottom: 1.5rem;"><strong>195 countries, 2000+ cities!</strong> Select your location:</p>
+                
+                <select id="hajjCountry" onchange="updateCities()">
+                    <option value="">Select Country (195 available)</option>
+                    ${Object.keys(worldData).sort().map(c => `<option value="${c}">${c}</option>`).join('')}
+                </select>
+                
+                <select id="hajjCity" disabled>
+                    <option value="">Select City</option>
+                </select>
+                
+                <button class="btn" onclick="calculateHajj()">Calculate Journey →</button>
+            </div>
             
-            if (type === 'memory') {
-                showComingSoon('Memory Match');
-                return;
-            }
-            if (type === 'scramble') {
-                showComingSoon('Word Scramble');
-                return;
-            }
+            <div id="hajjResults" class="hidden"></div>
             
-            currentQuiz = gameData[type] || gameData.quiz;
-            currentQuestion = 0;
-            score = 0;
-            answered = false;
-            displayQuestion();
+            <button class="btn" onclick="backToMenu()">← Back</button>
+        `;
+    }
+
+    function updateCities() {
+        const country = document.getElementById('hajjCountry').value;
+        const citySelect = document.getElementById('hajjCity');
+        
+        if (country && worldData[country]) {
+            citySelect.disabled = false;
+            citySelect.innerHTML = '<option value="">Select City</option>' +
+                worldData[country].cities.map(city => `<option value="${city}">${city}</option>`).join('');
+        } else {
+            citySelect.disabled = true;
+            citySelect.innerHTML = '<option value="">Select City</option>';
+        }
+    }
+
+    function calculateHajj() {
+        const country = document.getElementById('hajjCountry').value;
+        const city = document.getElementById('hajjCity').value;
+        
+        if (!city || !worldData[country]) {
+            alert('Please select a city!');
+            return;
         }
 
-        function showComingSoon(gameName) {
-            document.getElementById('quizContent').innerHTML = `
-                <div class="score-board" style="padding: 3rem;">
-                    <h4>🎮 ${gameName}</h4>
-                    <p style="font-size: 1.5rem; color: #333; margin: 2rem 0;">
-                        This game is coming soon insha'Allah!<br>
-                        Check back later for updates!
-                    </p>
-                    <button class="btn" onclick="backToMenu()">← Back to Games</button>
-                </div>
-            `;
-        }
+        const distance = worldData[country].dist;
+        const resultsDiv = document.getElementById('hajjResults');
+        
+        resultsDiv.innerHTML = `
+            <div class="game-info-box">
+                <h4>🌍 Journey Details</h4>
+                <p style="font-size: 1.2rem; margin: 1rem 0;">
+                    <strong>From:</strong> ${city}, ${country}<br>
+                    <strong>To:</strong> Makkah, Saudi Arabia<br>
+                    <strong>Distance:</strong> ${distance.toLocaleString()} km
+                </p>
+            </div>
 
-        function displayQuestion() {
-            const question = currentQuiz[currentQuestion];
-            const content = document.getElementById('quizContent');
-            
-            content.innerHTML = `
-                <div class="quiz-question">
-                    <h4>Question ${currentQuestion + 1} of ${currentQuiz.length}</h4>
-                    <h4 style="margin-top: 1rem;">${question.q}</h4>
-                    <div class="quiz-options" id="quizOptions">
-                        ${question.opts.map((opt, idx) => `
-                            <div class="quiz-option" onclick="checkAnswer(${idx})">
-                                ${opt}
-                            </div>
-                        `).join('')}
-                    </div>
-                    <div id="quizResult"></div>
+            <div class="game-info-box">
+                <h4>💰 Budget Your Expenses</h4>
+                
+                <div class="expense-item">
+                    <span class="expense-label">✈️ Flight</span>
+                    <input type="number" id="flightCost" class="expense-input" placeholder="Coins" min="0">
                 </div>
                 
-                <div class="score-board">
-                    <h4>Your Score</h4>
-                    <div class="score-text">${score} / ${currentQuestion}</div>
+                <div class="expense-item">
+                    <span class="expense-label">🏨 Hotel (30 days)</span>
+                    <input type="number" id="hotelCost" class="expense-input" placeholder="Coins" min="0">
                 </div>
-            `;
+                
+                <div class="expense-item">
+                    <span class="expense-label">🍽️ Food (30 days)</span>
+                    <input type="number" id="foodCost" class="expense-input" placeholder="Coins" min="0">
+                </div>
+                
+                <div class="expense-item">
+                    <span class="expense-label">🚗 Transport</span>
+                    <input type="number" id="transportCost" class="expense-input" placeholder="Coins" min="0">
+                </div>
+                
+                <div class="expense-item">
+                    <span class="expense-label">💼 Visa & Taxes</span>
+                    <input type="number" id="taxCost" class="expense-input" placeholder="Coins" min="0">
+                </div>
+                
+                <button class="btn" onclick="completeHajj()">Complete Hajj 🕋</button>
+            </div>
+        `;
+        
+        resultsDiv.classList.remove('hidden');
+    }
+
+    function completeHajj() {
+        const flight = parseInt(document.getElementById('flightCost').value) || 0;
+        const hotel = parseInt(document.getElementById('hotelCost').value) || 0;
+        const food = parseInt(document.getElementById('foodCost').value) || 0;
+        const transport = parseInt(document.getElementById('transportCost').value) || 0;
+        const tax = parseInt(document.getElementById('taxCost').value) || 0;
+        
+        const totalSpent = flight + hotel + food + transport + tax;
+        
+        if (totalSpent === 0) {
+            alert('Please enter expenses!');
+            return;
         }
 
-        function checkAnswer(selectedIndex) {
-            if (answered) return;
-            
-            answered = true;
-            const question = currentQuiz[currentQuestion];
-            const resultDiv = document.getElementById('quizResult');
-            const options = document.querySelectorAll('.quiz-option');
-            
-            options.forEach(opt => opt.style.pointerEvents = 'none');
-            
-            if (selectedIndex === question.correct) {
-                score++;
-                resultDiv.innerHTML = `<div class="quiz-result correct">✅ Correct!</div>`;
-            } else {
-                resultDiv.innerHTML = `<div class="quiz-result incorrect">❌ Incorrect!</div>`;
-            }
-            
-            if (currentQuestion < currentQuiz.length - 1) {
-                resultDiv.innerHTML += `<button class="btn" onclick="nextQuestion()">Next Question →</button>`;
-            } else {
-                resultDiv.innerHTML += `<button class="btn" onclick="showFinalScore()">See Final Score 🏆</button>`;
-            }
+        if (!spendCoins(totalSpent)) {
+            alert(`❌ Need ${totalSpent} coins!\n\nYou have: ${coins}`);
+            return;
         }
 
-        function nextQuestion() {
-            currentQuestion++;
-            answered = false;
-            displayQuestion();
-        }
+        const optimalBudget = 150;
+        const budgetEfficiency = Math.abs(totalSpent - optimalBudget);
+        let reward = 50;
+        
+        if (budgetEfficiency < 20) reward = 80;
+        else if (budgetEfficiency < 50) reward = 60;
+        
+        addCoins(reward);
+        hajjCompletions++;
+        localStorage.setItem('islamicHubHajjCount', hajjCompletions);
+        
+        alert(`🕋 Hajj Mabroor!\n\n💰 Spent: ${totalSpent}\n🎁 Reward: ${reward}\n\n${reward > 70 ? '🌟 Excellent!' : '👍 Good!'}`);
+        
+        backToMenu();
+        loadLeaderboard('hajj');
+    }
 
-        function showFinalScore() {
-            const percentage = Math.round((score / currentQuiz.length) * 100);
-            let coinsReward = 0;
+    // 15 BUILDING MATERIALS!
+    const materials = {
+        wood: { name: 'Wood', icon: '🪵', price: 5, quality: 10 },
+        bricks: { name: 'Bricks', icon: '🧱', price: 8, quality: 15 },
+        cement: { name: 'Cement', icon: '⚪', price: 10, quality: 20 },
+        steel: { name: 'Steel', icon: '🔩', price: 15, quality: 25 },
+        glass: { name: 'Glass', icon: '🪟', price: 12, quality: 18 },
+        paint: { name: 'Paint', icon: '🎨', price: 6, quality: 8 },
+        marble: { name: 'Marble', icon: '🗿', price: 20, quality: 30 },
+        tiles: { name: 'Tiles', icon: '⬜', price: 10, quality: 15 },
+        granite: { name: 'Granite', icon: '🪨', price: 18, quality: 28 },
+        aluminum: { name: 'Aluminum', icon: '⚙️', price: 14, quality: 22 },
+        copper: { name: 'Copper', icon: '🟠', price: 16, quality: 24 },
+        concrete: { name: 'Concrete', icon: '⬛', price: 12, quality: 20 },
+        insulation: { name: 'Insulation', icon: '🧊', price: 8, quality: 12 },
+        roofing: { name: 'Roofing', icon: '🏚️', price: 15, quality: 23 },
+        plumbing: { name: 'Plumbing', icon: '🚰', price: 10, quality: 16 }
+    };
+
+    let houseMaterials = {
+        wood: 0, bricks: 0, cement: 0, steel: 0, glass: 0, paint: 0,
+        marble: 0, tiles: 0, granite: 0, aluminum: 0, copper: 0,
+        concrete: 0, insulation: 0, roofing: 0, plumbing: 0
+    };
+
+    function startHouseGame() {
+        const content = document.getElementById('houseContent');
+        content.innerHTML = `
+            <h4>🏗️ Buy Materials (<strong>15 Available!</strong>)</h4>
             
-            // LOW REWARDS
-            if (percentage === 100) coinsReward = 3;
-            else if (percentage >= 80) coinsReward = 2;
-            else if (percentage >= 60) coinsReward = 1;
-            
-            addCoins(coinsReward);
-            
-            const content = document.getElementById('quizContent');
-            content.innerHTML = `
-                <div class="score-board" style="padding: 3rem;">
-                    <h4>🏆 Game Complete!</h4>
-                    <div class="score-text" style="margin: 2rem 0; font-size: 3rem;">
-                        ${score} / ${currentQuiz.length}
-                    </div>
-                    <h4 style="color: #333; margin: 1rem 0;">${percentage}% Correct</h4>
-                    ${coinsReward > 0 ? `
-                        <div style="background: #ffd700; padding: 1.5rem; border-radius: 15px; margin: 2rem 0;">
-                            <h4 style="color: #333;">💰 Reward: +${coinsReward} Coins!</h4>
+            <div class="house-builder">
+                ${Object.keys(materials).map(key => {
+                    const mat = materials[key];
+                    return `
+                        <div class="material-item">
+                            <div class="material-icon">${mat.icon}</div>
+                            <div class="material-name">${mat.name}</div>
+                            <div class="material-price">${mat.price} 🪙</div>
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="changeMaterial('${key}', -1)">-</button>
+                                <span class="qty-display" id="qty-${key}">0</span>
+                                <button class="qty-btn" onclick="changeMaterial('${key}', 1)">+</button>
+                            </div>
                         </div>
-                    ` : `
-                        <p style="color: #666; margin: 2rem 0;">Get 60%+ to win coins!</p>
-                    `}
-                    <button class="btn" onclick="backToMenu()">← Play More Games</button>
-                </div>
-            `;
-        }
+                    `;
+                }).join('')}
+            </div>
 
-        // Initialize
-        updateLoginButton();
-        console.log('Initial coins:', coins); // Debug
-    </script>
+            <div class="house-preview">
+                <h4>🏠 Your House Preview</h4>
+                <div class="house-stats">
+                    <div class="stat-box">
+                        <div class="stat-label">Cost</div>
+                        <div class="stat-value" id="totalCost">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Quality</div>
+                        <div class="stat-value" id="qualityScore">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Value</div>
+                        <div class="stat-value" id="estValue">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn" onclick="buildHouse()">🏗️ Build House</button>
+            <button class="btn" onclick="backToMenu()">← Back</button>
+        `;
+    }
+
+    function changeMaterial(type, change) {
+        const newQty = Math.max(0, houseMaterials[type] + change);
+        const mat = materials[type];
+        
+        if (change > 0 && coins < mat.price) {
+            alert('Not enough coins!');
+            return;
+        }
+        
+        houseMaterials[type] = newQty;
+        document.getElementById(`qty-${type}`).textContent = newQty;
+        updateHousePreview();
+    }
+
+    function updateHousePreview() {
+        let totalCost = 0;
+        let qualityScore = 0;
+        
+        Object.keys(houseMaterials).forEach(key => {
+            const qty = houseMaterials[key];
+            const mat = materials[key];
+            totalCost += qty * mat.price;
+            qualityScore += qty * mat.quality;
+        });
+        
+        const estValue = Math.round(totalCost * 1.5 + qualityScore * 2);
+        
+        document.getElementById('totalCost').textContent = totalCost;
+        document.getElementById('qualityScore').textContent = qualityScore;
+        document.getElementById('estValue').textContent = estValue;
+    }
+
+    function buildHouse() {
+        let totalCost = 0;
+        let qualityScore = 0;
+        
+        Object.keys(houseMaterials).forEach(key => {
+            const qty = houseMaterials[key];
+            const mat = materials[key];
+            totalCost += qty * mat.price;
+            qualityScore += qty * mat.quality;
+        });
+        
+        if (totalCost === 0) {
+            alert('Add materials!');
+            return;
+        }
+        
+        if (!spendCoins(totalCost)) {
+            alert(`Need ${totalCost} coins!`);
+            return;
+        }
+        
+        const estValue = Math.round(totalCost * 1.5 + qualityScore * 2);
+        
+        const house = {
+            id: Date.now(),
+            cost: totalCost,
+            quality: qualityScore,
+            value: estValue,
+            date: new Date().toLocaleDateString()
+        };
+        
+        housesOwned.push(house);
+        localStorage.setItem('islamicHubHouses', JSON.stringify(housesOwned));
+        
+        if (confirm(`🏠 House Built!\n\nCost: ${totalCost}\nValue: ${estValue}\n\n💰 Sell or keep?`)) {
+            addCoins(estValue);
+            housesOwned = housesOwned.filter(h => h.id !== house.id);
+            localStorage.setItem('islamicHubHouses', JSON.stringify(housesOwned));
+            alert(`💰 SOLD!\n\nEarned: ${estValue}\nProfit: ${estValue - totalCost}!`);
+        } else {
+            alert('🏠 Added to collection!');
+        }
+        
+        houseMaterials = {
+            wood: 0, bricks: 0, cement: 0, steel: 0, glass: 0, paint: 0,
+            marble: 0, tiles: 0, granite: 0, aluminum: 0, copper: 0,
+            concrete: 0, insulation: 0, roofing: 0, plumbing: 0
+        };
+        
+        backToMenu();
+        loadLeaderboard('houses');
+    }
+
+    // QUIZ GAME
+    const quizData = {
+        quiz: [
+            {q: "How many pillars?", opts: ["3", "5", "7", "10"], correct: 1},
+            {q: "First Prophet?", opts: ["Muhammad ﷺ", "Ibrahim", "Adam", "Musa"], correct: 2},
+            {q: "Daily prayers?", opts: ["3", "5", "7", "10"], correct: 1},
+        ],
+        pillar: [
+            {q: "First pillar?", opts: ["Prayer", "Shahada", "Fasting", "Hajj"], correct: 1},
+            {q: "Zakat %?", opts: ["1%", "2.5%", "5%", "10%"], correct: 1},
+        ],
+        prophet: [
+            {q: "Built Kaaba?", opts: ["Adam", "Ibrahim & Ismail", "Muhammad ﷺ", "Nuh"], correct: 1},
+            {q: "Swallowed by whale?", opts: ["Yunus", "Musa", "Isa", "Yusuf"], correct: 0},
+        ],
+        quran: [
+            {q: "How many Surahs?", opts: ["100", "114", "120", "99"], correct: 1},
+            {q: "First Surah?", opts: ["Al-Baqarah", "Al-Fatiha", "Al-Ikhlas", "An-Nas"], correct: 1},
+        ]
+    };
+
+    let currentQuestion = 0;
+    let score = 0;
+    let currentQuiz = [];
+
+    function startQuiz(type) {
+        currentQuiz = quizData[type] || quizData.quiz;
+        currentQuestion = 0;
+        score = 0;
+        displayQuestion();
+    }
+
+    function displayQuestion() {
+        const question = currentQuiz[currentQuestion];
+        const content = document.getElementById('quizContent');
+        
+        content.innerHTML = `
+            <div class="game-info-box">
+                <h4>Question ${currentQuestion + 1}/${currentQuiz.length}</h4>
+                <h4 style="margin-top: 1rem;">${question.q}</h4>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2rem;">
+                    ${question.opts.map((opt, idx) => `
+                        <button class="btn" onclick="checkAnswer(${idx})">${opt}</button>
+                    `).join('')}
+                </div>
+                <div id="quizResult"></div>
+            </div>
+            
+            <p style="margin: 2rem 0; font-size: 1.2rem;">Score: ${score}/${currentQuestion}</p>
+            <button class="btn" onclick="backToMenu()">← Back</button>
+        `;
+    }
+
+    function checkAnswer(idx) {
+        const correct = currentQuiz[currentQuestion].correct === idx;
+        const resultDiv = document.getElementById('quizResult');
+        
+        if (correct) {
+            score++;
+            resultDiv.innerHTML = '<p style="color: green; font-size: 1.5rem; margin-top: 1rem;">✅ Correct!</p>';
+        } else {
+            resultDiv.innerHTML = '<p style="color: red; font-size: 1.5rem; margin-top: 1rem;">❌ Wrong!</p>';
+        }
+        
+        setTimeout(() => {
+            if (currentQuestion < currentQuiz.length - 1) {
+                currentQuestion++;
+                displayQuestion();
+            } else {
+                showQuizResults();
+            }
+        }, 1000);
+    }
+
+    function showQuizResults() {
+        const percentage = Math.round((score / currentQuiz.length) * 100);
+        let reward = 0;
+        
+        if (percentage === 100) reward = 3;
+        else if (percentage >= 80) reward = 2;
+        else if (percentage >= 60) reward = 1;
+        
+        addCoins(reward);
+        alert(`🏆 Quiz Done!\n\nScore: ${score}/${currentQuiz.length}\n💰 Reward: ${reward} coins`);
+        backToMenu();
+    }
+
+    // LEADERBOARDS
+    function loadLeaderboard(type) {
+        const list = document.getElementById('leaderboardList');
+        let leaderboardData = [];
+        
+        if (type === 'money') {
+            leaderboardData = [
+                { name: 'YOU', score: totalEarnings },
+                { name: 'Player 2', score: 450 },
+                { name: 'Player 3', score: 380 },
+                { name: 'Player 4', score: 320 },
+                { name: 'Player 5', score: 280 }
+            ];
+            leaderboardData.sort((a, b) => b.score - a.score);
+        } else if (type === 'houses') {
+            leaderboardData = [
+                { name: 'YOU', score: housesOwned.length },
+                { name: 'Player 2', score: 8 },
+                { name: 'Player 3', score: 6 },
+                { name: 'Player 4', score: 5 },
+                { name: 'Player 5', score: 3 }
+            ];
+            leaderboardData.sort((a, b) => b.score - a.score);
+        } else if (type === 'hajj') {
+            leaderboardData = [
+                { name: 'YOU', score: hajjCompletions },
+                { name: 'Player 2', score: 12 },
+                { name: 'Player 3', score: 9 },
+                { name: 'Player 4', score: 7 },
+                { name: 'Player 5', score: 5 }
+            ];
+            leaderboardData.sort((a, b) => b.score - a.score);
+        } else {
+            leaderboardData = [
+                { name: 'Coming Soon!', score: 0 },
+                { name: 'Tournament', score: 0 },
+                { name: 'Starts', score: 0 },
+                { name: 'Next Month!', score: 0 }
+            ];
+        }
+        
+        list.innerHTML = leaderboardData.map((player, idx) => `
+            <li class="leaderboard-item ${idx < 3 ? 'top3' : ''}">
+                <span class="leaderboard-rank">${idx + 1}</span>
+                <span class="leaderboard-name">${player.name}</span>
+                <span class="leaderboard-score">${player.score} ${type === 'houses' ? '🏠' : type === 'hajj' ? '🕋' : '🪙'}</span>
+            </li>
+        `).join('');
+    }
+
+    function switchLeaderboard(type) {
+        document.querySelectorAll('.leaderboard-tab').forEach(t => t.classList.remove('active'));
+        event.target.classList.add('active');
+        loadLeaderboard(type);
+    }
+</script>
 </body>
 </html>
