@@ -310,6 +310,7 @@
                 <li><a href="dawah.html">📢 Dawah</a></li>
                 <li><a href="community.html">💬 Community</a></li>
                 <li><a href="halal-games.html">🎮 Games</a></li>
+                <li><a href="islamic-library.html">📚 Library</a></li>
             </ul>
         </nav>
     </header>
@@ -318,10 +319,10 @@
         <h1 class="page-title">📚 Islamic Library</h1>
 
         <div class="intro-section">
-            <h2>Explore Islamic Knowledge</h2>
+            <h2>Explore Authentic Hadith Collections</h2>
             <p>
-                Access authentic Islamic books, lectures, articles, and resources. 
-                Learn from scholars and deepen your understanding of Islam.
+                Access the most authentic Hadith books from Sunnah.com. 
+                All books verified and authenticated by Islamic scholars.
             </p>
         </div>
 
@@ -331,13 +332,9 @@
         </div>
 
         <div class="categories">
-            <button class="category-btn active" onclick="filterCategory('all')">All</button>
-            <button class="category-btn" onclick="filterCategory('Quran')">Quran</button>
-            <button class="category-btn" onclick="filterCategory('Hadith')">Hadith</button>
-            <button class="category-btn" onclick="filterCategory('Seerah')">Seerah</button>
-            <button class="category-btn" onclick="filterCategory('Fiqh')">Fiqh</button>
-            <button class="category-btn" onclick="filterCategory('Aqeedah')">Aqeedah</button>
-            <button class="category-btn" onclick="filterCategory('Spirituality')">Spirituality</button>
+            <button class="category-btn active" onclick="filterCategory('all')">All Books</button>
+            <button class="category-btn" onclick="filterCategory('Six Books')">The Six Books</button>
+            <button class="category-btn" onclick="filterCategory('Other Collections')">Other Collections</button>
         </div>
 
         <div class="books-grid" id="booksGrid">
@@ -356,165 +353,136 @@
         }
 
         const books = [
+            // THE SIX AUTHENTIC BOOKS (Kutub al-Sittah)
             {
-                title: "Tafsir Ibn Kathir",
-                author: "Imam Ibn Kathir",
-                category: "Quran",
-                description: "Comprehensive Quranic commentary explaining verses with Hadith and scholarly interpretations.",
-                icon: "📖",
-                link: "https://quran.com/tafsir"
-            },
-            {
-                title: "Sahih Al-Bukhari",
-                author: "Imam Bukhari",
-                category: "Hadith",
-                description: "The most authentic collection of Hadith, compiled by Imam Bukhari.",
+                title: "Sahih al-Bukhari",
+                author: "Imam Muhammad al-Bukhari",
+                category: "Six Books",
+                description: "The most authentic book of Hadith. Contains 7,563 narrations covering all aspects of Islamic life.",
                 icon: "📚",
                 link: "https://sunnah.com/bukhari"
             },
             {
                 title: "Sahih Muslim",
-                author: "Imam Muslim",
-                category: "Hadith",
-                description: "Second most authentic Hadith collection after Sahih Bukhari.",
+                author: "Imam Muslim ibn al-Hajjaj",
+                category: "Six Books",
+                description: "Second most authentic Hadith collection. Contains 12,000 narrations arranged by topics.",
                 icon: "📚",
                 link: "https://sunnah.com/muslim"
             },
             {
-                title: "The Sealed Nectar",
-                author: "Safiur Rahman Mubarakpuri",
-                category: "Seerah",
-                description: "Biography of Prophet Muhammad ﷺ. Award-winning book on his life.",
-                icon: "⭐",
-                link: "https://archive.org/details/SealedNectarByShfiurRahmanMubarakpuri"
-            },
-            {
-                title: "Riyadh us-Saliheen",
-                author: "Imam An-Nawawi",
-                category: "Hadith",
-                description: "Gardens of the Righteous - Collection of Hadith on good manners and conduct.",
-                icon: "🌺",
-                link: "https://sunnah.com/riyadussalihin"
-            },
-            {
-                title: "Fortress of the Muslim",
-                author: "Sa'id bin Wahf Al-Qahtani",
-                category: "Spirituality",
-                description: "Collection of authentic duas and supplications for daily life.",
-                icon: "🤲",
-                link: "https://ia801302.us.archive.org/27/items/HisnulMuslimEnglish/HisnulMuslim-english.pdf"
-            },
-            {
-                title: "Fiqh us-Sunnah",
-                author: "Sayyid Sabiq",
-                category: "Fiqh",
-                description: "Comprehensive guide to Islamic jurisprudence based on Quran and Sunnah.",
-                icon: "⚖️",
-                link: "https://archive.org/details/fiqhussunnahsayyidsabiq"
-            },
-            {
-                title: "Kitab At-Tawheed",
-                author: "Muhammad ibn Abdul-Wahhab",
-                category: "Aqeedah",
-                description: "Essential book on Islamic monotheism and correct belief.",
-                icon: "☪️",
-                link: "https://islamhouse.com/en/books/281762/"
-            },
-            {
-                title: "In the Early Hours",
-                author: "Khurram Murad",
-                category: "Spirituality",
-                description: "Reflections on spiritual and practical life for modern Muslims.",
-                icon: "🌅",
-                link: "https://archive.org/details/InTheEarlyHours"
-            },
-            {
-                title: "Don't Be Sad",
-                author: "Aaidh ibn Abdullah al-Qarni",
-                category: "Spirituality",
-                description: "Islamic guide to overcoming sadness, worry, and depression.",
-                icon: "💚",
-                link: "https://archive.org/details/DontBeSad_201310"
-            },
-            {
-                title: "Stories of the Prophets",
-                author: "Ibn Kathir",
-                category: "Seerah",
-                description: "Complete stories of all Prophets from Adam to Muhammad ﷺ.",
-                icon: "📜",
-                link: "https://archive.org/details/StoriesOfTheProphetsIbnKathir"
-            },
-            {
-                title: "The Ideal Muslim",
-                author: "Muhammad Ali al-Hashimi",
-                category: "Spirituality",
-                description: "Comprehensive guide on Islamic character and conduct.",
-                icon: "🌟",
-                link: "https://archive.org/details/TheIdealMuslim"
-            },
-            {
-                title: "40 Hadith Nawawi",
-                author: "Imam An-Nawawi",
-                category: "Hadith",
-                description: "40 essential Hadith covering fundamental Islamic principles.",
-                icon: "4️⃣0️⃣",
-                link: "https://sunnah.com/nawawi40"
-            },
-            {
-                title: "Tafsir As-Sa'di",
-                author: "Abdur Rahman As-Sa'di",
-                category: "Quran",
-                description: "Clear and concise explanation of Quranic meanings.",
-                icon: "📖",
-                link: "https://quran.com/tafsir"
-            },
-            {
-                title: "Purification of the Soul",
-                author: "Various Scholars",
-                category: "Spirituality",
-                description: "Collection on self-purification and spiritual development.",
-                icon: "✨",
-                link: "https://archive.org/details/PurificationOfTheSoul"
-            },
-            {
-                title: "The Life of Muhammad",
-                author: "Ibn Ishaq",
-                category: "Seerah",
-                description: "The earliest and most detailed biography of Prophet Muhammad ﷺ.",
-                icon: "📕",
-                link: "https://archive.org/details/TheLifeOfMuhammadByIbnIshaq"
-            },
-            {
                 title: "Sunan Abu Dawud",
                 author: "Imam Abu Dawud",
-                category: "Hadith",
-                description: "One of the six major Hadith collections focusing on legal matters.",
+                category: "Six Books",
+                description: "Major Hadith collection focusing on legal matters and jurisprudence. Contains 5,274 narrations.",
                 icon: "⚖️",
                 link: "https://sunnah.com/abudawud"
             },
             {
-                title: "Jami At-Tirmidhi",
-                author: "Imam Tirmidhi",
-                category: "Hadith",
-                description: "One of the six major Hadith collections with gradings of authenticity.",
-                icon: "📚",
+                title: "Jami' at-Tirmidhi",
+                author: "Imam at-Tirmidhi",
+                category: "Six Books",
+                description: "Comprehensive Hadith collection with authenticity gradings. Contains 3,956 narrations.",
+                icon: "📖",
                 link: "https://sunnah.com/tirmidhi"
             },
             {
-                title: "Islamic Studies Books",
-                author: "Dr. Abu Ameenah Bilal Philips",
-                category: "Aqeedah",
-                description: "Comprehensive series on Islamic beliefs and practices.",
-                icon: "🕌",
-                link: "https://islamhouse.com/en/books/"
+                title: "Sunan an-Nasa'i",
+                author: "Imam an-Nasa'i",
+                category: "Six Books",
+                description: "Known for its strict authentication standards. Contains 5,761 narrations on Islamic law.",
+                icon: "📘",
+                link: "https://sunnah.com/nasai"
             },
             {
-                title: "The Way to the Quran",
-                author: "Khurram Murad",
-                category: "Quran",
-                description: "Guide to understanding and living by the Quran.",
-                icon: "📖",
-                link: "https://archive.org/details/TheWayToTheQuran"
+                title: "Sunan Ibn Majah",
+                author: "Imam Ibn Majah",
+                category: "Six Books",
+                description: "The sixth book of the major six. Contains 4,341 narrations including unique Hadith.",
+                icon: "📗",
+                link: "https://sunnah.com/ibnmajah"
+            },
+
+            // OTHER MAJOR COLLECTIONS
+            {
+                title: "Muwatta Imam Malik",
+                author: "Imam Malik ibn Anas",
+                category: "Other Collections",
+                description: "One of the earliest Hadith collections. Combines Hadith with legal opinions of Madinah scholars.",
+                icon: "📕",
+                link: "https://sunnah.com/malik"
+            },
+            {
+                title: "Musnad Ahmad",
+                author: "Imam Ahmad ibn Hanbal",
+                category: "Other Collections",
+                description: "Massive collection of 27,000+ narrations arranged by companion who narrated them.",
+                icon: "📙",
+                link: "https://sunnah.com/ahmad"
+            },
+            {
+                title: "Riyadh us-Saliheen",
+                author: "Imam an-Nawawi",
+                category: "Other Collections",
+                description: "Gardens of the Righteous - Popular collection on character, manners, and spirituality.",
+                icon: "🌺",
+                link: "https://sunnah.com/riyadussalihin"
+            },
+            {
+                title: "40 Hadith Nawawi",
+                author: "Imam an-Nawawi",
+                category: "Other Collections",
+                description: "40 essential Hadith covering fundamental Islamic principles that every Muslim should know.",
+                icon: "4️⃣0️⃣",
+                link: "https://sunnah.com/nawawi40"
+            },
+            {
+                title: "40 Hadith Qudsi",
+                author: "Various Scholars",
+                category: "Other Collections",
+                description: "40 Sacred Hadith - Direct words of Allah narrated through Prophet Muhammad ﷺ.",
+                icon: "✨",
+                link: "https://sunnah.com/qudsi40"
+            },
+            {
+                title: "Bulugh al-Maram",
+                author: "Ibn Hajar al-Asqalani",
+                category: "Other Collections",
+                description: "Attainment of the Objective - Hadith compilation for Islamic jurisprudence.",
+                icon: "🎯",
+                link: "https://sunnah.com/bulugh"
+            },
+            {
+                title: "Mishkat al-Masabih",
+                author: "Wali al-Din al-Khatib",
+                category: "Other Collections",
+                description: "Niche of Lamps - Expanded version of Masabih as-Sunnah with additional narrations.",
+                icon: "🕯️",
+                link: "https://sunnah.com/mishkat"
+            },
+            {
+                title: "Al-Adab Al-Mufrad",
+                author: "Imam al-Bukhari",
+                category: "Other Collections",
+                description: "The Book of Manners - Imam Bukhari's collection focused on Islamic etiquette and behavior.",
+                icon: "🤝",
+                link: "https://sunnah.com/adab"
+            },
+            {
+                title: "Shamail Muhammadiyah",
+                author: "Imam at-Tirmidhi",
+                category: "Other Collections",
+                description: "Description of Prophet Muhammad ﷺ - Physical features, character, and daily life.",
+                icon: "⭐",
+                link: "https://sunnah.com/shamail"
+            },
+            {
+                title: "Sunan ad-Darimi",
+                author: "Imam ad-Darimi",
+                category: "Other Collections",
+                description: "Important early Hadith collection arranged by legal topics. Contains 3,550 narrations.",
+                icon: "📔",
+                link: "https://sunnah.com/darimi"
             }
         ];
 
@@ -544,7 +512,7 @@
                     <div class="book-title">${book.title}</div>
                     <div class="book-author">by ${book.author}</div>
                     <div class="book-description">${book.description}</div>
-                    <a href="${book.link}" target="_blank" class="btn">Read Online →</a>
+                    <a href="${book.link}" target="_blank" class="btn">Read on Sunnah.com →</a>
                 </div>
             `).join('');
         }
