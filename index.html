@@ -36,33 +36,39 @@
             100% { background-position: 0% 50%; }
         }
 
+        /* ── NAVBAR ── */
         header {
-            background: rgba(102, 126, 234, 0.95);
+            background: rgba(102, 126, 234, 0.97);
             backdrop-filter: blur(10px);
             color: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
         nav {
-            max-width: 1400px;
+            max-width: 1500px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 52px;
+            gap: 0.5rem;
         }
 
         .nav-top {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            flex-shrink: 0;
         }
 
         .logo {
-            font-size: 2rem;
+            font-size: 1.25rem;
             font-weight: bold;
+            white-space: nowrap;
         }
 
         .menu-toggle {
@@ -77,23 +83,27 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
+            gap: 0;
+            flex-wrap: nowrap;
+            align-items: center;
         }
 
         .nav-links a {
             color: white;
             text-decoration: none;
-            padding: 0.5rem 1rem;
+            padding: 0.3rem 0.45rem;
             border-radius: 5px;
-            transition: background 0.3s;
+            transition: background 0.2s;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            display: block;
         }
 
         .nav-links a:hover {
             background: rgba(255,255,255,0.2);
         }
 
+        /* ── HERO ── */
         .hero {
             text-align: center;
             padding: 4rem 2rem;
@@ -130,6 +140,7 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
 
+        /* ── CONTAINER / GRID ── */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -190,6 +201,7 @@
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
 
+        /* ── STATS ── */
         .stats-section {
             background: rgba(255, 255, 255, 0.95);
             padding: 3rem 2rem;
@@ -222,6 +234,7 @@
             margin-top: 0.5rem;
         }
 
+        /* ── SUPPORT BUTTON ── */
         .support-button {
             position: fixed;
             bottom: 30px;
@@ -246,6 +259,7 @@
             box-shadow: 0 6px 30px rgba(102, 126, 234, 0.7);
         }
 
+        /* ── MODAL ── */
         .modal {
             display: none;
             position: fixed;
@@ -335,6 +349,7 @@
             text-decoration: underline;
         }
 
+        /* ── FOOTER ── */
         footer {
             background: rgba(102, 126, 234, 0.95);
             color: white;
@@ -352,20 +367,40 @@
             text-decoration: underline;
         }
 
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .nav-links a {
+                font-size: 0.72rem;
+                padding: 0.3rem 0.3rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .menu-toggle {
                 display: block;
+            }
+
+            nav {
+                height: auto;
+                flex-wrap: wrap;
+                padding: 0.5rem 1rem;
             }
 
             .nav-links {
                 display: none;
                 flex-direction: column;
                 width: 100%;
-                margin-top: 1rem;
+                margin-top: 0.5rem;
+                gap: 0.2rem;
             }
 
             .nav-links.active {
                 display: flex;
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+                padding: 0.5rem 0.5rem;
             }
 
             .hero h1 {
@@ -429,7 +464,7 @@
                     <span class="stat-label">Complete Features</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">33</span>
+                    <span class="stat-number">100</span>
                     <span class="stat-label">Kids Stories</span>
                 </div>
                 <div class="stat-item">
@@ -504,7 +539,7 @@
             <div class="feature-card">
                 <div class="feature-icon">👶</div>
                 <h3>Kids Stories</h3>
-                <p>33 Islamic stories for children. Teach values and faith through engaging tales.</p>
+                <p>100 Islamic stories for children. Teach values and faith through engaging tales.</p>
                 <a href="kids-stories.html">Read Stories →</a>
             </div>
 
@@ -573,7 +608,7 @@
                 A: Some features work offline once loaded, but internet connection is needed for updates and community features.</p>
 
                 <p><strong>Q: How do I earn coins in games?</strong><br>
-                A: Claim daily login bonus (20-50 coins), watch ads (10 coins), complete games (1-3 coins), or claim welcome bonus (50 coins for new users)!</p>
+                A: Claim daily login bonus (20-50 coins), complete games (1-3 coins), or claim welcome bonus (50 coins for new users)!</p>
 
                 <p><strong>Q: Are the Islamic courses certified?</strong><br>
                 A: Courses are curated from reputable scholars and institutions. They're for learning purposes - not formal certification.</p>
@@ -590,7 +625,7 @@
             <div class="tab-content" id="aboutTab">
                 <h3>About Islamic Hub</h3>
                 <p>Islamic Hub is a comprehensive Islamic resource platform designed to make learning and practicing Islam easier and more accessible.</p>
-                
+
                 <p><strong>Our Mission:</strong><br>
                 To provide authentic Islamic knowledge and resources to Muslims worldwide, completely free of charge.</p>
 
@@ -599,7 +634,7 @@
                 • 195 countries with 2000+ cities in Hajj Journey game<br>
                 • 16 authentic Hadith books from Sunnah.com<br>
                 • 15 structured Islamic courses<br>
-                • 33 educational kids stories<br>
+                • 100 educational kids stories<br>
                 • Active community platform<br>
                 • 100% FREE forever!</p>
 
@@ -613,7 +648,7 @@
 
     <footer>
         <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
-        <p>📧 <a href="mailto:lutrumputrumss@gmail.com">lutrumputrumss@gmail.com</a> | 
+        <p>📧 <a href="mailto:lutrumputrumss@gmail.com">lutrumputrumss@gmail.com</a> |
            📱 <a href="https://instagram.com/theofficial.islamichub01" target="_blank">@theofficial.islamichub01</a></p>
         <p style="margin-top: 1rem;">May Allah accept our efforts and guide us all. Ameen.</p>
     </footer>
@@ -632,20 +667,16 @@
         }
 
         function switchTab(tabName) {
-            // Hide all tabs
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.remove('active');
             });
             document.querySelectorAll('.tab-button').forEach(btn => {
                 btn.classList.remove('active');
             });
-
-            // Show selected tab
             document.getElementById(tabName + 'Tab').classList.add('active');
             event.target.classList.add('active');
         }
 
-        // Close modal when clicking outside
         document.getElementById('supportModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeModal();
