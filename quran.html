@@ -23,7 +23,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 25%, #4a7c59 50%, #6b9c7d 75%, #8bbca0 100%);
+            background: linear-gradient(135deg, #2d5016 0%, #3d6b1f 25%, #4d7c2f 50%, #5d8d3f 75%, #6d9e4f 100%);
             background-size: 400% 400%;
             animation: gradientFlow 20s ease infinite;
             z-index: -1;
@@ -36,10 +36,10 @@
         }
 
         header {
-            background: rgba(26, 77, 46, 0.95);
+            background: rgba(45, 80, 22, 0.95);
             backdrop-filter: blur(15px);
             color: white;
-            padding: 1rem 0;
+            padding: 0.8rem 0;
             box-shadow: 0 4px 30px rgba(0,0,0,0.3);
             position: sticky;
             top: 0;
@@ -56,11 +56,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .logo {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
         }
 
@@ -76,7 +76,7 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            gap: 1.2rem;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -84,9 +84,10 @@
         .nav-links a {
             color: white;
             text-decoration: none;
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             border-radius: 5px;
             transition: all 0.3s;
+            font-size: 0.95rem;
         }
 
         .nav-links a:hover {
@@ -94,7 +95,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 2rem auto;
             padding: 0 2rem;
         }
@@ -102,21 +103,12 @@
         .page-title {
             text-align: center;
             color: white;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
             font-size: 2.5rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
-        .bismillah {
-            text-align: center;
-            color: white;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            font-family: 'Times New Roman', serif;
-        }
-
-        .search-section {
+        .controls {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             padding: 2rem;
@@ -125,200 +117,163 @@
             margin-bottom: 2rem;
         }
 
-        .search-section h3 {
-            color: #1a4d2e;
-            margin-bottom: 1rem;
-            text-align: center;
+        .controls h3 {
+            color: #2d5016;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
         }
 
-        .search-controls {
+        .control-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .control-item {
             display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
+            flex-direction: column;
         }
 
-        .search-controls select,
-        .search-controls input {
-            flex: 1;
-            min-width: 200px;
+        .control-item label {
+            color: #2d5016;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .control-item select,
+        .control-item input {
             padding: 0.8rem;
-            border: 2px solid #ddd;
-            border-radius: 10px;
+            border: 2px solid #2d5016;
+            border-radius: 8px;
             font-size: 1rem;
+        }
+
+        .control-item select:focus,
+        .control-item input:focus {
+            outline: none;
+            border-color: #4d7c2f;
         }
 
         .btn {
-            padding: 0.8rem 2rem;
-            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 100%);
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #2d5016 0%, #4d7c2f 100%);
             color: white;
             border: none;
             border-radius: 10px;
-            font-size: 1rem;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: all 0.3s;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(26, 77, 46, 0.5);
+            box-shadow: 0 6px 20px rgba(45, 80, 22, 0.5);
         }
 
-        .surah-list {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-            margin-bottom: 2rem;
-        }
-
-        .surah-list h3 {
-            color: #1a4d2e;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .surah-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-
-        .surah-item {
-            padding: 1rem;
-            background: #f9f9f9;
-            border-radius: 10px;
-            border-left: 4px solid #1a4d2e;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .surah-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            background: #f0f7f0;
-        }
-
-        .surah-number {
-            color: #1a4d2e;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        .surah-name-arabic {
-            font-size: 1.5rem;
-            color: #1a4d2e;
-            margin: 0.5rem 0;
-            text-align: right;
-        }
-
-        .surah-name-english {
-            font-weight: bold;
-            color: #333;
-        }
-
-        .surah-info {
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 0.5rem;
-        }
-
-        .surah-content {
+        .verse-display {
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             padding: 3rem;
-            border-radius: 15px;
+            border-radius: 20px;
             box-shadow: 0 8px 32px rgba(0,0,0,0.2);
             margin-bottom: 2rem;
+            border-left: 5px solid #2d5016;
         }
 
-        .surah-header {
+        .verse-header {
             text-align: center;
             margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 3px solid #1a4d2e;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #eee;
         }
 
-        .surah-title {
-            color: #1a4d2e;
+        .surah-name {
+            color: #2d5016;
             font-size: 2rem;
+            font-weight: bold;
             margin-bottom: 0.5rem;
         }
 
-        .ayah-item {
-            margin: 2rem 0;
-            padding: 2rem;
-            background: #f9f9f9;
-            border-radius: 15px;
-            border-left: 5px solid #1a4d2e;
+        .surah-info {
+            color: #666;
+            font-size: 1.1rem;
         }
 
-        .ayah-number {
+        .verse-number-badge {
             display: inline-block;
-            background: #1a4d2e;
+            background: #2d5016;
             color: white;
-            padding: 0.3rem 0.8rem;
+            padding: 0.5rem 1rem;
             border-radius: 20px;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
         }
 
-        .ayah-arabic {
+        .arabic-text {
             font-size: 2rem;
-            line-height: 3;
+            line-height: 2.5;
             text-align: right;
             direction: rtl;
-            color: #1a4d2e;
-            margin: 1.5rem 0;
-            padding: 2rem;
-            background: white;
+            color: #1a1a1a;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(45, 80, 22, 0.05);
             border-radius: 10px;
-            font-family: 'Traditional Arabic', 'Times New Roman', serif;
         }
 
-        .ayah-translation {
+        .translation {
             font-size: 1.2rem;
-            line-height: 2;
+            line-height: 1.9;
             color: #333;
-            margin-top: 1.5rem;
             padding: 1.5rem;
-            background: #e8f5e9;
+            background: rgba(109, 158, 79, 0.1);
             border-radius: 10px;
+            border-left: 4px solid #2d5016;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .nav-btn {
+            padding: 0.8rem 1.5rem;
+            background: #2d5016;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: #4d7c2f;
+        }
+
+        .nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
         }
 
         .loading {
             text-align: center;
-            color: #666;
             padding: 3rem;
-            font-style: italic;
-            font-size: 1.2rem;
-        }
-
-        .error {
-            background: #ffebee;
-            color: #c62828;
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .back-btn {
-            margin-bottom: 2rem;
+            color: white;
+            font-size: 1.5rem;
         }
 
         footer {
-            background: rgba(26, 77, 46, 0.95);
+            background: rgba(45, 80, 22, 0.95);
             backdrop-filter: blur(15px);
             color: white;
             text-align: center;
             padding: 2rem;
             margin-top: 4rem;
-        }
-
-        .hidden {
-            display: none;
         }
 
         @media (max-width: 968px) {
@@ -330,9 +285,10 @@
                 margin-top: 1rem;
             }
             .nav-links.active { display: flex; }
-            .search-controls { flex-direction: column; }
-            .surah-grid { grid-template-columns: 1fr; }
-            .ayah-arabic { font-size: 1.5rem; }
+            .page-title { font-size: 2rem; }
+            .arabic-text { font-size: 1.5rem; }
+            .translation { font-size: 1rem; }
+            .navigation-buttons { flex-direction: column; }
         }
     </style>
 </head>
@@ -358,40 +314,58 @@
                 <li><a href="dawah.html">📢 Dawah</a></li>
                 <li><a href="community.html">💬 Community</a></li>
                 <li><a href="halal-games.html">🎮 Games</a></li>
+                <li><a href="islamic-library.html">📚 Library</a></li>
+                <li><a href="islamic-courses.html">🎓 Courses</a></li>
             </ul>
         </nav>
     </header>
 
     <div class="container">
-        <h1 class="page-title">📕 The Holy Quran</h1>
-        <div class="bismillah">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+        <h1 class="page-title">📕 Holy Quran</h1>
 
-        <div class="search-section">
-            <h3>Read the Quran</h3>
-            <div class="search-controls">
-                <select id="surahSelect">
-                    <option value="">Select a Surah...</option>
-                </select>
-                <button class="btn" onclick="loadSelectedSurah()">Read Surah</button>
+        <div class="controls">
+            <h3>Select Surah & Ayah</h3>
+            <div class="control-group">
+                <div class="control-item">
+                    <label for="surahSelect">Select Surah:</label>
+                    <select id="surahSelect" onchange="loadSurah()">
+                        <option value="">Choose a Surah...</option>
+                    </select>
+                </div>
+                <div class="control-item">
+                    <label for="ayahSelect">Select Ayah:</label>
+                    <select id="ayahSelect" onchange="loadAyah()">
+                        <option value="">Choose an Ayah...</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn" onclick="loadAyah()">Load Ayah</button>
+        </div>
+
+        <div id="verseDisplay" class="verse-display" style="display: none;">
+            <div class="verse-header">
+                <div class="surah-name" id="surahName"></div>
+                <div class="surah-info" id="surahInfo"></div>
+            </div>
+            
+            <div class="verse-number-badge" id="verseNumber"></div>
+            
+            <div class="arabic-text" id="arabicText"></div>
+            
+            <div class="translation" id="translationText"></div>
+
+            <div class="navigation-buttons">
+                <button class="nav-btn" id="prevBtn" onclick="previousAyah()">← Previous Ayah</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextAyah()">Next Ayah →</button>
             </div>
         </div>
 
-        <div id="surahListSection" class="surah-list">
-            <h3>All Surahs (Chapters)</h3>
-            <div class="surah-grid" id="surahGrid">
-                <div class="loading">Loading Surahs...</div>
-            </div>
-        </div>
-
-        <div id="surahContentSection" class="hidden">
-            <button class="btn back-btn" onclick="showSurahList()">← Back to Surah List</button>
-            <div id="surahContent"></div>
-        </div>
+        <div id="loading" class="loading" style="display: none;">Loading Quran...</div>
     </div>
 
     <footer>
         <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
-        <p>May Allah guide us through His words 🤲</p>
+        <p>Recite the Quran with understanding 📕</p>
     </footer>
 
     <script>
@@ -399,136 +373,230 @@
             document.getElementById('navLinks').classList.toggle('active');
         }
 
-        let allSurahs = [];
+        // Surah data - all 114 Surahs
+        const surahs = [
+            {number: 1, name: "Al-Fatihah", english: "The Opener", verses: 7, revelation: "Meccan"},
+            {number: 2, name: "Al-Baqarah", english: "The Cow", verses: 286, revelation: "Medinan"},
+            {number: 3, name: "Ali 'Imran", english: "Family of Imran", verses: 200, revelation: "Medinan"},
+            {number: 4, name: "An-Nisa", english: "The Women", verses: 176, revelation: "Medinan"},
+            {number: 5, name: "Al-Ma'idah", english: "The Table Spread", verses: 120, revelation: "Medinan"},
+            {number: 6, name: "Al-An'am", english: "The Cattle", verses: 165, revelation: "Meccan"},
+            {number: 7, name: "Al-A'raf", english: "The Heights", verses: 206, revelation: "Meccan"},
+            {number: 8, name: "Al-Anfal", english: "The Spoils of War", verses: 75, revelation: "Medinan"},
+            {number: 9, name: "At-Tawbah", english: "The Repentance", verses: 129, revelation: "Medinan"},
+            {number: 10, name: "Yunus", english: "Jonah", verses: 109, revelation: "Meccan"},
+            {number: 11, name: "Hud", english: "Hud", verses: 123, revelation: "Meccan"},
+            {number: 12, name: "Yusuf", english: "Joseph", verses: 111, revelation: "Meccan"},
+            {number: 13, name: "Ar-Ra'd", english: "The Thunder", verses: 43, revelation: "Medinan"},
+            {number: 14, name: "Ibrahim", english: "Abraham", verses: 52, revelation: "Meccan"},
+            {number: 15, name: "Al-Hijr", english: "The Rocky Tract", verses: 99, revelation: "Meccan"},
+            {number: 16, name: "An-Nahl", english: "The Bee", verses: 128, revelation: "Meccan"},
+            {number: 17, name: "Al-Isra", english: "The Night Journey", verses: 111, revelation: "Meccan"},
+            {number: 18, name: "Al-Kahf", english: "The Cave", verses: 110, revelation: "Meccan"},
+            {number: 19, name: "Maryam", english: "Mary", verses: 98, revelation: "Meccan"},
+            {number: 20, name: "Taha", english: "Ta-Ha", verses: 135, revelation: "Meccan"},
+            {number: 21, name: "Al-Anbya", english: "The Prophets", verses: 112, revelation: "Meccan"},
+            {number: 22, name: "Al-Hajj", english: "The Pilgrimage", verses: 78, revelation: "Medinan"},
+            {number: 23, name: "Al-Mu'minun", english: "The Believers", verses: 118, revelation: "Meccan"},
+            {number: 24, name: "An-Nur", english: "The Light", verses: 64, revelation: "Medinan"},
+            {number: 25, name: "Al-Furqan", english: "The Criterion", verses: 77, revelation: "Meccan"},
+            {number: 26, name: "Ash-Shu'ara", english: "The Poets", verses: 227, revelation: "Meccan"},
+            {number: 27, name: "An-Naml", english: "The Ant", verses: 93, revelation: "Meccan"},
+            {number: 28, name: "Al-Qasas", english: "The Stories", verses: 88, revelation: "Meccan"},
+            {number: 29, name: "Al-'Ankabut", english: "The Spider", verses: 69, revelation: "Meccan"},
+            {number: 30, name: "Ar-Rum", english: "The Romans", verses: 60, revelation: "Meccan"},
+            {number: 31, name: "Luqman", english: "Luqman", verses: 34, revelation: "Meccan"},
+            {number: 32, name: "As-Sajdah", english: "The Prostration", verses: 30, revelation: "Meccan"},
+            {number: 33, name: "Al-Ahzab", english: "The Combined Forces", verses: 73, revelation: "Medinan"},
+            {number: 34, name: "Saba", english: "Sheba", verses: 54, revelation: "Meccan"},
+            {number: 35, name: "Fatir", english: "Originator", verses: 45, revelation: "Meccan"},
+            {number: 36, name: "Ya-Sin", english: "Ya Sin", verses: 83, revelation: "Meccan"},
+            {number: 37, name: "As-Saffat", english: "Those who set the Ranks", verses: 182, revelation: "Meccan"},
+            {number: 38, name: "Sad", english: "The Letter 'Saad'", verses: 88, revelation: "Meccan"},
+            {number: 39, name: "Az-Zumar", english: "The Troops", verses: 75, revelation: "Meccan"},
+            {number: 40, name: "Ghafir", english: "The Forgiver", verses: 85, revelation: "Meccan"},
+            {number: 41, name: "Fussilat", english: "Explained in Detail", verses: 54, revelation: "Meccan"},
+            {number: 42, name: "Ash-Shuraa", english: "The Consultation", verses: 53, revelation: "Meccan"},
+            {number: 43, name: "Az-Zukhruf", english: "The Ornaments of Gold", verses: 89, revelation: "Meccan"},
+            {number: 44, name: "Ad-Dukhan", english: "The Smoke", verses: 59, revelation: "Meccan"},
+            {number: 45, name: "Al-Jathiyah", english: "The Crouching", verses: 37, revelation: "Meccan"},
+            {number: 46, name: "Al-Ahqaf", english: "The Wind-Curved Sandhills", verses: 35, revelation: "Meccan"},
+            {number: 47, name: "Muhammad", english: "Muhammad", verses: 38, revelation: "Medinan"},
+            {number: 48, name: "Al-Fath", english: "The Victory", verses: 29, revelation: "Medinan"},
+            {number: 49, name: "Al-Hujurat", english: "The Rooms", verses: 18, revelation: "Medinan"},
+            {number: 50, name: "Qaf", english: "The Letter 'Qaf'", verses: 45, revelation: "Meccan"},
+            {number: 51, name: "Adh-Dhariyat", english: "The Winnowing Winds", verses: 60, revelation: "Meccan"},
+            {number: 52, name: "At-Tur", english: "The Mount", verses: 49, revelation: "Meccan"},
+            {number: 53, name: "An-Najm", english: "The Star", verses: 62, revelation: "Meccan"},
+            {number: 54, name: "Al-Qamar", english: "The Moon", verses: 55, revelation: "Meccan"},
+            {number: 55, name: "Ar-Rahman", english: "The Beneficent", verses: 78, revelation: "Medinan"},
+            {number: 56, name: "Al-Waqi'ah", english: "The Inevitable", verses: 96, revelation: "Meccan"},
+            {number: 57, name: "Al-Hadid", english: "The Iron", verses: 29, revelation: "Medinan"},
+            {number: 58, name: "Al-Mujadila", english: "The Pleading Woman", verses: 22, revelation: "Medinan"},
+            {number: 59, name: "Al-Hashr", english: "The Exile", verses: 24, revelation: "Medinan"},
+            {number: 60, name: "Al-Mumtahanah", english: "She that is to be examined", verses: 13, revelation: "Medinan"},
+            {number: 61, name: "As-Saf", english: "The Ranks", verses: 14, revelation: "Medinan"},
+            {number: 62, name: "Al-Jumu'ah", english: "The Congregation", verses: 11, revelation: "Medinan"},
+            {number: 63, name: "Al-Munafiqun", english: "The Hypocrites", verses: 11, revelation: "Medinan"},
+            {number: 64, name: "At-Taghabun", english: "The Mutual Disillusion", verses: 18, revelation: "Medinan"},
+            {number: 65, name: "At-Talaq", english: "The Divorce", verses: 12, revelation: "Medinan"},
+            {number: 66, name: "At-Tahrim", english: "The Prohibition", verses: 12, revelation: "Medinan"},
+            {number: 67, name: "Al-Mulk", english: "The Sovereignty", verses: 30, revelation: "Meccan"},
+            {number: 68, name: "Al-Qalam", english: "The Pen", verses: 52, revelation: "Meccan"},
+            {number: 69, name: "Al-Haqqah", english: "The Reality", verses: 52, revelation: "Meccan"},
+            {number: 70, name: "Al-Ma'arij", english: "The Ascending Stairways", verses: 44, revelation: "Meccan"},
+            {number: 71, name: "Nuh", english: "Noah", verses: 28, revelation: "Meccan"},
+            {number: 72, name: "Al-Jinn", english: "The Jinn", verses: 28, revelation: "Meccan"},
+            {number: 73, name: "Al-Muzzammil", english: "The Enshrouded One", verses: 20, revelation: "Meccan"},
+            {number: 74, name: "Al-Muddaththir", english: "The Cloaked One", verses: 56, revelation: "Meccan"},
+            {number: 75, name: "Al-Qiyamah", english: "The Resurrection", verses: 40, revelation: "Meccan"},
+            {number: 76, name: "Al-Insan", english: "The Man", verses: 31, revelation: "Medinan"},
+            {number: 77, name: "Al-Mursalat", english: "The Emissaries", verses: 50, revelation: "Meccan"},
+            {number: 78, name: "An-Naba", english: "The Tidings", verses: 40, revelation: "Meccan"},
+            {number: 79, name: "An-Nazi'at", english: "Those who drag forth", verses: 46, revelation: "Meccan"},
+            {number: 80, name: "'Abasa", english: "He Frowned", verses: 42, revelation: "Meccan"},
+            {number: 81, name: "At-Takwir", english: "The Overthrowing", verses: 29, revelation: "Meccan"},
+            {number: 82, name: "Al-Infitar", english: "The Cleaving", verses: 19, revelation: "Meccan"},
+            {number: 83, name: "Al-Mutaffifin", english: "The Defrauding", verses: 36, revelation: "Meccan"},
+            {number: 84, name: "Al-Inshiqaq", english: "The Sundering", verses: 25, revelation: "Meccan"},
+            {number: 85, name: "Al-Buruj", english: "The Mansions of the Stars", verses: 22, revelation: "Meccan"},
+            {number: 86, name: "At-Tariq", english: "The Nightcommer", verses: 17, revelation: "Meccan"},
+            {number: 87, name: "Al-A'la", english: "The Most High", verses: 19, revelation: "Meccan"},
+            {number: 88, name: "Al-Ghashiyah", english: "The Overwhelming", verses: 26, revelation: "Meccan"},
+            {number: 89, name: "Al-Fajr", english: "The Dawn", verses: 30, revelation: "Meccan"},
+            {number: 90, name: "Al-Balad", english: "The City", verses: 20, revelation: "Meccan"},
+            {number: 91, name: "Ash-Shams", english: "The Sun", verses: 15, revelation: "Meccan"},
+            {number: 92, name: "Al-Layl", english: "The Night", verses: 21, revelation: "Meccan"},
+            {number: 93, name: "Ad-Duhaa", english: "The Morning Hours", verses: 11, revelation: "Meccan"},
+            {number: 94, name: "Ash-Sharh", english: "The Relief", verses: 8, revelation: "Meccan"},
+            {number: 95, name: "At-Tin", english: "The Fig", verses: 8, revelation: "Meccan"},
+            {number: 96, name: "Al-'Alaq", english: "The Clot", verses: 19, revelation: "Meccan"},
+            {number: 97, name: "Al-Qadr", english: "The Power", verses: 5, revelation: "Meccan"},
+            {number: 98, name: "Al-Bayyinah", english: "The Clear Proof", verses: 8, revelation: "Medinan"},
+            {number: 99, name: "Az-Zalzalah", english: "The Earthquake", verses: 8, revelation: "Medinan"},
+            {number: 100, name: "Al-'Adiyat", english: "The Courser", verses: 11, revelation: "Meccan"},
+            {number: 101, name: "Al-Qari'ah", english: "The Calamity", verses: 11, revelation: "Meccan"},
+            {number: 102, name: "At-Takathur", english: "The Rivalry in world increase", verses: 8, revelation: "Meccan"},
+            {number: 103, name: "Al-'Asr", english: "The Declining Day", verses: 3, revelation: "Meccan"},
+            {number: 104, name: "Al-Humazah", english: "The Traducer", verses: 9, revelation: "Meccan"},
+            {number: 105, name: "Al-Fil", english: "The Elephant", verses: 5, revelation: "Meccan"},
+            {number: 106, name: "Quraysh", english: "Quraysh", verses: 4, revelation: "Meccan"},
+            {number: 107, name: "Al-Ma'un", english: "The Small kindnesses", verses: 7, revelation: "Meccan"},
+            {number: 108, name: "Al-Kawthar", english: "The Abundance", verses: 3, revelation: "Meccan"},
+            {number: 109, name: "Al-Kafirun", english: "The Disbelievers", verses: 6, revelation: "Meccan"},
+            {number: 110, name: "An-Nasr", english: "The Divine Support", verses: 3, revelation: "Medinan"},
+            {number: 111, name: "Al-Masad", english: "The Palm Fiber", verses: 5, revelation: "Meccan"},
+            {number: 112, name: "Al-Ikhlas", english: "The Sincerity", verses: 4, revelation: "Meccan"},
+            {number: 113, name: "Al-Falaq", english: "The Daybreak", verses: 5, revelation: "Meccan"},
+            {number: 114, name: "An-Nas", english: "The Mankind", verses: 6, revelation: "Meccan"}
+        ];
 
+        let currentSurah = 1;
+        let currentAyah = 1;
+
+        // Initialize page
         window.onload = function() {
-            loadSurahList();
+            populateSurahDropdown();
+            // AUTO-LOAD SURAH 1, AYAH 1 ON PAGE LOAD!
+            currentSurah = 1;
+            currentAyah = 1;
+            loadSurah();
+            loadAyah();
         };
 
-        async function loadSurahList() {
-            try {
-                const response = await fetch('https://api.alquran.cloud/v1/surah');
-                const data = await response.json();
-                
-                if (data.code === 200) {
-                    allSurahs = data.data;
-                    displaySurahList(allSurahs);
-                    populateSurahSelect(allSurahs);
-                }
-            } catch (error) {
-                document.getElementById('surahGrid').innerHTML = 
-                    '<div class="error">Unable to load Surahs. Please refresh the page.</div>';
-            }
-        }
-
-        function displaySurahList(surahs) {
-            const grid = document.getElementById('surahGrid');
-            
-            grid.innerHTML = surahs.map(surah => `
-                <div class="surah-item" onclick="loadSurah(${surah.number})">
-                    <div class="surah-number">${surah.number}.</div>
-                    <div class="surah-name-arabic">${surah.name}</div>
-                    <div class="surah-name-english">${surah.englishName}</div>
-                    <div class="surah-info">
-                        ${surah.englishNameTranslation} • ${surah.numberOfAyahs} verses • ${surah.revelationType}
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function populateSurahSelect(surahs) {
+        function populateSurahDropdown() {
             const select = document.getElementById('surahSelect');
-            
             surahs.forEach(surah => {
                 const option = document.createElement('option');
                 option.value = surah.number;
-                option.textContent = `${surah.number}. ${surah.englishName} (${surah.name})`;
+                option.textContent = `${surah.number}. ${surah.name} (${surah.english})`;
                 select.appendChild(option);
             });
+            // Set to Surah 1 by default
+            select.value = 1;
         }
 
-        function loadSelectedSurah() {
-            const select = document.getElementById('surahSelect');
-            const surahNumber = select.value;
+        function loadSurah() {
+            const surahNum = document.getElementById('surahSelect').value;
+            if (!surahNum) return;
             
-            if (surahNumber) {
-                loadSurah(parseInt(surahNumber));
+            currentSurah = parseInt(surahNum);
+            const surah = surahs.find(s => s.number === currentSurah);
+            
+            // Populate ayah dropdown
+            const ayahSelect = document.getElementById('ayahSelect');
+            ayahSelect.innerHTML = '';
+            for (let i = 1; i <= surah.verses; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = `Ayah ${i}`;
+                ayahSelect.appendChild(option);
             }
+            // Set to Ayah 1 by default
+            ayahSelect.value = 1;
+            currentAyah = 1;
         }
 
-        async function loadSurah(surahNumber) {
-            const contentSection = document.getElementById('surahContentSection');
-            const listSection = document.getElementById('surahListSection');
-            const content = document.getElementById('surahContent');
+        async function loadAyah() {
+            const ayahNum = document.getElementById('ayahSelect').value;
+            if (!ayahNum) {
+                alert('Please select an Ayah!');
+                return;
+            }
+
+            currentAyah = parseInt(ayahNum);
             
-            listSection.classList.add('hidden');
-            contentSection.classList.remove('hidden');
-            content.innerHTML = '<div class="loading">Loading Surah...</div>';
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('verseDisplay').style.display = 'none';
+
             try {
-                const [arabicRes, translationRes] = await Promise.all([
-                    fetch(`https://api.alquran.cloud/v1/surah/${surahNumber}`),
-                    fetch(`https://api.alquran.cloud/v1/surah/${surahNumber}/en.sahih`)
-                ]);
-                
-                const arabicData = await arabicRes.json();
-                const translationData = await translationRes.json();
-                
-                if (arabicData.code === 200 && translationData.code === 200) {
-                    displaySurah(arabicData.data, translationData.data);
+                // Fetch from Al-Quran Cloud API
+                const response = await fetch(`https://api.alquran.cloud/v1/ayah/${currentSurah}:${currentAyah}/editions/quran-uthmani,en.sahih`);
+                const data = await response.json();
+
+                if (data.code === 200) {
+                    const arabicVerse = data.data[0];
+                    const translationVerse = data.data[1];
+                    const surah = surahs.find(s => s.number === currentSurah);
+
+                    // Display verse
+                    document.getElementById('surahName').textContent = `${surah.name} (${surah.english})`;
+                    document.getElementById('surahInfo').textContent = `${surah.revelation} • ${surah.verses} verses`;
+                    document.getElementById('verseNumber').textContent = `Verse ${currentAyah}`;
+                    document.getElementById('arabicText').textContent = arabicVerse.text;
+                    document.getElementById('translationText').textContent = translationVerse.text;
+
+                    // Update navigation buttons
+                    document.getElementById('prevBtn').disabled = currentAyah === 1;
+                    document.getElementById('nextBtn').disabled = currentAyah === surah.verses;
+
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('verseDisplay').style.display = 'block';
                 } else {
-                    throw new Error('Failed to load');
+                    throw new Error('Failed to load verse');
                 }
             } catch (error) {
-                content.innerHTML = '<div class="error">Unable to load Surah. Please try again.</div>';
+                document.getElementById('loading').style.display = 'none';
+                alert('Error loading Quran verse. Please try again.');
+                console.error(error);
             }
         }
 
-        function displaySurah(arabic, translation) {
-            const content = document.getElementById('surahContent');
-            const surah = arabic;
-            
-            let ayahsHTML = '';
-            
-            for (let i = 0; i < surah.ayahs.length; i++) {
-                const arabicAyah = surah.ayahs[i];
-                const translatedAyah = translation.ayahs[i];
-                
-                // Skip Bismillah for all surahs except Al-Fatihah and At-Tawbah
-                if (i === 0 && surah.number !== 1 && surah.number !== 9) {
-                    continue;
-                }
-                
-                ayahsHTML += `
-                    <div class="ayah-item">
-                        <div class="ayah-number">Verse ${arabicAyah.numberInSurah}</div>
-                        <div class="ayah-arabic">${arabicAyah.text}</div>
-                        <div class="ayah-translation">${translatedAyah.text}</div>
-                    </div>
-                `;
+        function previousAyah() {
+            if (currentAyah > 1) {
+                currentAyah--;
+                document.getElementById('ayahSelect').value = currentAyah;
+                loadAyah();
             }
-            
-            content.innerHTML = `
-                <div class="surah-content">
-                    <div class="surah-header">
-                        <div class="surah-title">
-                            ${surah.englishName} (${surah.name})
-                        </div>
-                        <div style="color: #666; font-size: 1.1rem;">
-                            ${surah.englishNameTranslation} • ${surah.numberOfAyahs} verses • ${surah.revelationType}
-                        </div>
-                    </div>
-                    ${ayahsHTML}
-                </div>
-            `;
         }
 
-        function showSurahList() {
-            document.getElementById('surahContentSection').classList.add('hidden');
-            document.getElementById('surahListSection').classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        function nextAyah() {
+            const surah = surahs.find(s => s.number === currentSurah);
+            if (currentAyah < surah.verses) {
+                currentAyah++;
+                document.getElementById('ayahSelect').value = currentAyah;
+                loadAyah();
+            }
         }
     </script>
 </body>
