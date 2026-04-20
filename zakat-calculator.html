@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +24,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 25%, #4a7c59 50%, #6b9c7d 75%, #8bbca0 100%);
+            background: linear-gradient(135deg, #2d5016 0%, #3d6b1f 25%, #4d7c2f 50%, #5d8d3f 75%, #6d9e4f 100%);
             background-size: 400% 400%;
             animation: gradientFlow 20s ease infinite;
             z-index: -1;
@@ -36,10 +37,10 @@
         }
 
         header {
-            background: rgba(26, 77, 46, 0.95);
+            background: rgba(45, 80, 22, 0.95);
             backdrop-filter: blur(15px);
             color: white;
-            padding: 1rem 0;
+            padding: 0.8rem 0;
             box-shadow: 0 4px 30px rgba(0,0,0,0.3);
             position: sticky;
             top: 0;
@@ -56,11 +57,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .logo {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
         }
 
@@ -76,7 +77,7 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            gap: 1.2rem;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -84,9 +85,10 @@
         .nav-links a {
             color: white;
             text-decoration: none;
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             border-radius: 5px;
             transition: all 0.3s;
+            font-size: 0.95rem;
         }
 
         .nav-links a:hover {
@@ -107,7 +109,29 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
-        .info-section {
+        .intro-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .intro-section h2 {
+            color: #2d5016;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .intro-section p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .currency-selector {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             padding: 2rem;
@@ -116,53 +140,60 @@
             margin-bottom: 2rem;
         }
 
-        .info-section h3 {
-            color: #1a4d2e;
-            margin-bottom: 1rem;
+        .currency-selector h3 {
+            color: #2d5016;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
         }
 
-        .info-section p {
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 1rem;
+        .currency-selector label {
+            color: #2d5016;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.5rem;
         }
 
-        .info-section ul {
-            margin-left: 2rem;
-            color: #666;
+        .currency-selector select {
+            width: 100%;
+            padding: 1rem;
+            border: 3px solid #2d5016;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            background: white;
+            cursor: pointer;
         }
 
-        .info-section li {
-            margin: 0.5rem 0;
+        .currency-selector select:focus {
+            outline: none;
+            border-color: #4d7c2f;
         }
 
-        .calculator-card {
-            background: rgba(255, 255, 255, 0.95);
+        .selected-currency-display {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(45, 80, 22, 0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .selected-currency-display strong {
+            color: #2d5016;
+            font-size: 1.3rem;
+        }
+
+        .calculator {
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
-            padding: 3rem;
+            padding: 2.5rem;
             border-radius: 15px;
             box-shadow: 0 8px 32px rgba(0,0,0,0.2);
             margin-bottom: 2rem;
         }
 
-        .calculator-card h2 {
-            color: #1a4d2e;
+        .calculator h3 {
+            color: #2d5016;
             margin-bottom: 1.5rem;
-            text-align: center;
-            font-size: 2rem;
-        }
-
-        .calculator-intro {
-            background: #f0f7f0;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-            border-left: 4px solid #1a4d2e;
-        }
-
-        .calculator-intro p {
-            color: #666;
-            line-height: 1.8;
+            font-size: 1.5rem;
         }
 
         .input-group {
@@ -171,94 +202,88 @@
 
         .input-group label {
             display: block;
-            color: #1a4d2e;
-            font-weight: bold;
+            color: #2d5016;
+            font-weight: 600;
             margin-bottom: 0.5rem;
-            font-size: 1.1rem;
         }
 
         .input-group input {
             width: 100%;
             padding: 1rem;
-            border: 2px solid #ddd;
-            border-radius: 10px;
+            border: 2px solid #2d5016;
+            border-radius: 8px;
             font-size: 1rem;
-            transition: border-color 0.3s;
         }
 
         .input-group input:focus {
             outline: none;
-            border-color: #1a4d2e;
+            border-color: #4d7c2f;
         }
 
         .input-group small {
-            display: block;
             color: #666;
-            margin-top: 0.5rem;
             font-style: italic;
         }
 
         .btn {
             width: 100%;
-            padding: 1rem;
-            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 100%);
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #2d5016 0%, #4d7c2f 100%);
             color: white;
             border: none;
             border-radius: 10px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             cursor: pointer;
             transition: all 0.3s;
+            font-weight: 600;
             margin-top: 1rem;
         }
 
         .btn:hover {
             transform: scale(1.02);
-            box-shadow: 0 4px 15px rgba(26, 77, 46, 0.5);
+            box-shadow: 0 6px 20px rgba(45, 80, 22, 0.5);
         }
 
-        .result-box {
-            margin-top: 2rem;
+        .result {
+            background: linear-gradient(135deg, #2d5016 0%, #4d7c2f 100%);
             padding: 2rem;
-            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 100%);
-            color: white;
             border-radius: 15px;
+            margin-top: 2rem;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(26, 77, 46, 0.3);
+            color: white;
+            display: none;
         }
 
-        .result-box h3 {
-            font-size: 1.3rem;
+        .result h3 {
+            font-size: 1.8rem;
             margin-bottom: 1rem;
         }
 
-        .result-amount {
+        .result .amount {
             font-size: 3rem;
             font-weight: bold;
             margin: 1rem 0;
         }
 
-        .result-details {
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255,255,255,0.3);
+        .result .details {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1rem;
         }
 
-        .result-details p {
+        .result .details p {
             margin: 0.5rem 0;
             font-size: 1.1rem;
         }
 
         footer {
-            background: rgba(26, 77, 46, 0.95);
+            background: rgba(45, 80, 22, 0.95);
             backdrop-filter: blur(15px);
             color: white;
             text-align: center;
             padding: 2rem;
             margin-top: 4rem;
-        }
-
-        .hidden {
-            display: none;
         }
 
         @media (max-width: 968px) {
@@ -271,8 +296,7 @@
             }
             .nav-links.active { display: flex; }
             .page-title { font-size: 2rem; }
-            .calculator-card { padding: 1.5rem; }
-            .result-amount { font-size: 2rem; }
+            .result .amount { font-size: 2rem; }
         }
     </style>
 </head>
@@ -298,6 +322,8 @@
                 <li><a href="dawah.html">📢 Dawah</a></li>
                 <li><a href="community.html">💬 Community</a></li>
                 <li><a href="halal-games.html">🎮 Games</a></li>
+                <li><a href="islamic-library.html">📚 Library</a></li>
+                <li><a href="islamic-courses.html">🎓 Courses</a></li>
             </ul>
         </nav>
     </header>
@@ -305,117 +331,89 @@
     <div class="container">
         <h1 class="page-title">💰 Zakat Calculator</h1>
 
-        <div class="info-section">
-            <h3>What is Zakat?</h3>
+        <div class="intro-section">
+            <h2>Calculate Your Zakat</h2>
             <p>
-                Zakat is one of the five pillars of Islam. It is an obligatory charity that Muslims must pay annually 
-                on their wealth and assets that have been in their possession for a full lunar year.
-            </p>
-            <p>
-                <strong>The standard Zakat rate is 2.5%</strong> of your total qualifying wealth.
-            </p>
-            <p><strong>Who must pay Zakat?</strong></p>
-            <ul>
-                <li>Adult Muslims who are sane</li>
-                <li>Free (not slaves)</li>
-                <li>In possession of the minimum amount of wealth (Nisab) for one lunar year</li>
-            </ul>
-            <p style="margin-top: 1rem;">
-                <strong>Nisab:</strong> The minimum amount of wealth required before Zakat is due. It is equivalent to 
-                85 grams of gold or 595 grams of silver.
+                Zakat is 2.5% of your wealth that has been in your possession for one full lunar year. 
+                Use this calculator to determine your Zakat obligation accurately.
             </p>
         </div>
 
-        <div class="calculator-card">
-            <h2>💰 Calculate Your Zakat</h2>
-            
-            <div class="calculator-intro">
-                <p>
-                    <strong>How to use this calculator:</strong> Enter the total value of your assets that have been 
-                    in your possession for one full lunar year. The calculator will determine if you meet the Nisab 
-                    threshold and calculate your Zakat obligation.
-                </p>
+        <!-- CURRENCY SELECTOR -->
+        <div class="currency-selector">
+            <h3>🌍 Select Your Currency</h3>
+            <label for="currencySelect">Choose your currency (180+ available):</label>
+            <select id="currencySelect" onchange="updateCurrency()">
+                <option value="">Select Currency...</option>
+            </select>
+            <div class="selected-currency-display" id="currencyDisplay" style="display: none;">
+                Selected: <strong id="selectedCurrency"></strong>
             </div>
+        </div>
 
+        <div class="calculator">
+            <h3>Enter Your Assets</h3>
+            
             <div class="input-group">
-                <label>Cash in Hand & Bank Accounts ($)</label>
-                <input type="number" id="cash" placeholder="Enter amount" min="0" step="0.01">
+                <label for="cash">Cash in Hand & Bank Accounts (<span id="currencySymbol1">$</span>)</label>
+                <input type="number" id="cash" placeholder="0" min="0" step="0.01">
                 <small>Include all cash, savings, and checking accounts</small>
             </div>
 
             <div class="input-group">
-                <label>Gold & Silver ($)</label>
-                <input type="number" id="gold" placeholder="Enter value" min="0" step="0.01">
+                <label for="gold">Gold & Silver (<span id="currencySymbol2">$</span>)</label>
+                <input type="number" id="gold" placeholder="0" min="0" step="0.01">
                 <small>Current market value of your gold and silver</small>
             </div>
 
             <div class="input-group">
-                <label>Business Assets & Merchandise ($)</label>
-                <input type="number" id="business" placeholder="Enter value" min="0" step="0.01">
-                <small>Value of stock and merchandise intended for sale</small>
+                <label for="business">Business Assets & Merchandise (<span id="currencySymbol3">$</span>)</label>
+                <input type="number" id="business" placeholder="0" min="0" step="0.01">
+                <small>Value of business inventory and trade goods</small>
             </div>
 
             <div class="input-group">
-                <label>Investments & Stocks ($)</label>
-                <input type="number" id="investments" placeholder="Enter value" min="0" step="0.01">
-                <small>Stocks, bonds, investment certificates, etc.</small>
+                <label for="investments">Investments & Stocks (<span id="currencySymbol4">$</span>)</label>
+                <input type="number" id="investments" placeholder="0" min="0" step="0.01">
+                <small>Current value of stocks, bonds, and investments</small>
             </div>
 
             <div class="input-group">
-                <label>Money Owed to You ($)</label>
-                <input type="number" id="receivables" placeholder="Enter amount" min="0" step="0.01">
-                <small>Debts people owe you that you expect to get back</small>
+                <label for="other">Other Assets (<span id="currencySymbol5">$</span>)</label>
+                <input type="number" id="other" placeholder="0" min="0" step="0.01">
+                <small>Any other zakatable wealth</small>
             </div>
 
             <div class="input-group">
-                <label>Other Assets ($)</label>
-                <input type="number" id="other" placeholder="Enter value" min="0" step="0.01">
-                <small>Any other zakatable assets</small>
+                <label for="debts">Debts Owed to You (<span id="currencySymbol6">$</span>)</label>
+                <input type="number" id="debts" placeholder="0" min="0" step="0.01">
+                <small>Money owed to you that you expect to receive</small>
             </div>
 
             <div class="input-group">
-                <label>Debts & Liabilities ($)</label>
-                <input type="number" id="debts" placeholder="Enter amount" min="0" step="0.01">
-                <small>Money you owe that is due within the year</small>
-            </div>
-
-            <div class="input-group">
-                <label>Current Gold Price per Gram ($)</label>
-                <input type="number" id="goldPrice" placeholder="e.g., 65" min="0" step="0.01" value="65">
-                <small>Nisab threshold: 85 grams of gold</small>
+                <label for="liabilities">Immediate Liabilities (<span id="currencySymbol7">$</span>)</label>
+                <input type="number" id="liabilities" placeholder="0" min="0" step="0.01">
+                <small>Debts due within the year (can be deducted)</small>
             </div>
 
             <button class="btn" onclick="calculateZakat()">Calculate Zakat</button>
 
-            <div id="result" class="hidden"></div>
-        </div>
-
-        <div class="info-section">
-            <h3>Important Notes</h3>
-            <p>
-                <strong>This calculator provides an estimate.</strong> For precise calculations and specific situations, 
-                please consult with a qualified Islamic scholar or your local mosque.
-            </p>
-            <p>
-                <strong>Assets NOT subject to Zakat:</strong>
-            </p>
-            <ul>
-                <li>Your primary residence</li>
-                <li>Personal car(s) for transportation</li>
-                <li>Household furniture and appliances</li>
-                <li>Personal clothing and jewelry worn regularly</li>
-                <li>Tools and equipment needed for your profession</li>
-            </ul>
-            <p style="margin-top: 1rem;">
-                <strong>When to pay Zakat:</strong> Zakat should be paid as soon as it becomes due. You can calculate 
-                your Zakat date based on when you first became eligible or use a fixed date like Ramadan each year.
-            </p>
+            <div class="result" id="result">
+                <h3>Your Zakat Obligation</h3>
+                <div class="amount" id="zakatAmount"></div>
+                <div class="details">
+                    <p><strong>Total Zakatable Wealth:</strong> <span id="totalWealth"></span></p>
+                    <p><strong>Nisab Threshold:</strong> <span id="nisabThreshold"></span></p>
+                    <p><strong>Zakat Rate:</strong> 2.5%</p>
+                    <p id="nisabStatus"></p>
+                </div>
+            </div>
         </div>
     </div>
 
     <footer>
         <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
-        <p>May Allah accept your Zakat 🤲</p>
+        <p>May Allah accept your Zakat 💰</p>
     </footer>
 
     <script>
@@ -423,67 +421,89 @@
             document.getElementById('navLinks').classList.toggle('active');
         }
 
-        function calculateZakat() {
-            const cash = parseFloat(document.getElementById('cash').value) || 0;
-            const gold = parseFloat(document.getElementById('gold').value) || 0;
-            const business = parseFloat(document.getElementById('business').value) || 0;
-            const investments = parseFloat(document.getElementById('investments').value) || 0;
-            const receivables = parseFloat(document.getElementById('receivables').value) || 0;
-            const other = parseFloat(document.getElementById('other').value) || 0;
-            const debts = parseFloat(document.getElementById('debts').value) || 0;
-            const goldPrice = parseFloat(document.getElementById('goldPrice').value) || 65;
-
-            const totalAssets = cash + gold + business + investments + receivables + other;
-            const netWealth = totalAssets - debts;
-
-            const nisab = 85 * goldPrice;
-
-            const zakatAmount = netWealth * 0.025;
-
-            const resultDiv = document.getElementById('result');
-            
-            if (netWealth >= nisab) {
-                resultDiv.innerHTML = `
-                    <div class="result-box">
-                        <h3>✅ Zakat is Due</h3>
-                        <div class="result-amount">$${zakatAmount.toFixed(2)}</div>
-                        <p style="font-size: 1.1rem;">This is the amount you need to pay in Zakat</p>
-                        
-                        <div class="result-details">
-                            <p><strong>Total Assets:</strong> $${totalAssets.toFixed(2)}</p>
-                            <p><strong>Minus Debts:</strong> -$${debts.toFixed(2)}</p>
-                            <p><strong>Net Wealth:</strong> $${netWealth.toFixed(2)}</p>
-                            <p><strong>Nisab Threshold:</strong> $${nisab.toFixed(2)}</p>
-                            <p style="margin-top: 1rem; font-size: 0.95rem; opacity: 0.9;">
-                                Since your net wealth ($${netWealth.toFixed(2)}) exceeds the Nisab ($${nisab.toFixed(2)}), 
-                                you are obligated to pay Zakat at 2.5% of your net wealth.
-                            </p>
-                        </div>
-                    </div>
-                `;
-            } else {
-                resultDiv.innerHTML = `
-                    <div class="result-box">
-                        <h3>ℹ️ Zakat is Not Due</h3>
-                        <p style="font-size: 1.2rem; margin: 1rem 0;">
-                            Your net wealth is below the Nisab threshold
-                        </p>
-                        
-                        <div class="result-details">
-                            <p><strong>Your Net Wealth:</strong> $${netWealth.toFixed(2)}</p>
-                            <p><strong>Nisab Threshold:</strong> $${nisab.toFixed(2)}</p>
-                            <p style="margin-top: 1rem; font-size: 0.95rem; opacity: 0.9;">
-                                You are not currently obligated to pay Zakat as your wealth is below the Nisab. 
-                                However, you can still give voluntary charity (Sadaqah) to earn rewards from Allah.
-                            </p>
-                        </div>
-                    </div>
-                `;
-            }
-
-            resultDiv.classList.remove('hidden');
-            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-    </script>
-</body>
-</html>
+        // ALL WORLD CURRENCIES (180+ currencies!)
+        const currencies = {
+            "USD": { name: "US Dollar", symbol: "$", country: "United States" },
+            "EUR": { name: "Euro", symbol: "€", country: "European Union" },
+            "GBP": { name: "British Pound", symbol: "£", country: "United Kingdom" },
+            "JPY": { name: "Japanese Yen", symbol: "¥", country: "Japan" },
+            "AUD": { name: "Australian Dollar", symbol: "A$", country: "Australia" },
+            "CAD": { name: "Canadian Dollar", symbol: "C$", country: "Canada" },
+            "CHF": { name: "Swiss Franc", symbol: "CHF", country: "Switzerland" },
+            "CNY": { name: "Chinese Yuan", symbol: "¥", country: "China" },
+            "INR": { name: "Indian Rupee", symbol: "₹", country: "India" },
+            "PKR": { name: "Pakistani Rupee", symbol: "₨", country: "Pakistan" },
+            "BDT": { name: "Bangladeshi Taka", symbol: "৳", country: "Bangladesh" },
+            "SAR": { name: "Saudi Riyal", symbol: "﷼", country: "Saudi Arabia" },
+            "AED": { name: "UAE Dirham", symbol: "د.إ", country: "United Arab Emirates" },
+            "QAR": { name: "Qatari Riyal", symbol: "﷼", country: "Qatar" },
+            "KWD": { name: "Kuwaiti Dinar", symbol: "د.ك", country: "Kuwait" },
+            "BHD": { name: "Bahraini Dinar", symbol: "د.ب", country: "Bahrain" },
+            "OMR": { name: "Omani Rial", symbol: "﷼", country: "Oman" },
+            "JOD": { name: "Jordanian Dinar", symbol: "د.ا", country: "Jordan" },
+            "EGP": { name: "Egyptian Pound", symbol: "£", country: "Egypt" },
+            "TRY": { name: "Turkish Lira", symbol: "₺", country: "Turkey" },
+            "IDR": { name: "Indonesian Rupiah", symbol: "Rp", country: "Indonesia" },
+            "MYR": { name: "Malaysian Ringgit", symbol: "RM", country: "Malaysia" },
+            "SGD": { name: "Singapore Dollar", symbol: "S$", country: "Singapore" },
+            "THB": { name: "Thai Baht", symbol: "฿", country: "Thailand" },
+            "PHP": { name: "Philippine Peso", symbol: "₱", country: "Philippines" },
+            "VND": { name: "Vietnamese Dong", symbol: "₫", country: "Vietnam" },
+            "KRW": { name: "South Korean Won", symbol: "₩", country: "South Korea" },
+            "RUB": { name: "Russian Ruble", symbol: "₽", country: "Russia" },
+            "ZAR": { name: "South African Rand", symbol: "R", country: "South Africa" },
+            "NGN": { name: "Nigerian Naira", symbol: "₦", country: "Nigeria" },
+            "KES": { name: "Kenyan Shilling", symbol: "KSh", country: "Kenya" },
+            "GHS": { name: "Ghanaian Cedi", symbol: "₵", country: "Ghana" },
+            "MAD": { name: "Moroccan Dirham", symbol: "د.م.", country: "Morocco" },
+            "TND": { name: "Tunisian Dinar", symbol: "د.ت", country: "Tunisia" },
+            "DZD": { name: "Algerian Dinar", symbol: "د.ج", country: "Algeria" },
+            "LYD": { name: "Libyan Dinar", symbol: "ل.د", country: "Libya" },
+            "SDG": { name: "Sudanese Pound", symbol: "ج.س.", country: "Sudan" },
+            "SOS": { name: "Somali Shilling", symbol: "Sh", country: "Somalia" },
+            "ETB": { name: "Ethiopian Birr", symbol: "Br", country: "Ethiopia" },
+            "TZS": { name: "Tanzanian Shilling", symbol: "TSh", country: "Tanzania" },
+            "UGX": { name: "Ugandan Shilling", symbol: "USh", country: "Uganda" },
+            "MXN": { name: "Mexican Peso", symbol: "$", country: "Mexico" },
+            "BRL": { name: "Brazilian Real", symbol: "R$", country: "Brazil" },
+            "ARS": { name: "Argentine Peso", symbol: "$", country: "Argentina" },
+            "CLP": { name: "Chilean Peso", symbol: "$", country: "Chile" },
+            "COP": { name: "Colombian Peso", symbol: "$", country: "Colombia" },
+            "PEN": { name: "Peruvian Sol", symbol: "S/", country: "Peru" },
+            "VES": { name: "Venezuelan Bolívar", symbol: "Bs.S", country: "Venezuela" },
+            "NZD": { name: "New Zealand Dollar", symbol: "NZ$", country: "New Zealand" },
+            "HKD": { name: "Hong Kong Dollar", symbol: "HK$", country: "Hong Kong" },
+            "TWD": { name: "Taiwan Dollar", symbol: "NT$", country: "Taiwan" },
+            "SEK": { name: "Swedish Krona", symbol: "kr", country: "Sweden" },
+            "NOK": { name: "Norwegian Krone", symbol: "kr", country: "Norway" },
+            "DKK": { name: "Danish Krone", symbol: "kr", country: "Denmark" },
+            "PLN": { name: "Polish Zloty", symbol: "zł", country: "Poland" },
+            "CZK": { name: "Czech Koruna", symbol: "Kč", country: "Czech Republic" },
+            "HUF": { name: "Hungarian Forint", symbol: "Ft", country: "Hungary" },
+            "RON": { name: "Romanian Leu", symbol: "lei", country: "Romania" },
+            "BGN": { name: "Bulgarian Lev", symbol: "лв", country: "Bulgaria" },
+            "HRK": { name: "Croatian Kuna", symbol: "kn", country: "Croatia" },
+            "ILS": { name: "Israeli Shekel", symbol: "₪", country: "Israel" },
+            "IQD": { name: "Iraqi Dinar", symbol: "ع.د", country: "Iraq" },
+            "IRR": { name: "Iranian Rial", symbol: "﷼", country: "Iran" },
+            "AFN": { name: "Afghan Afghani", symbol: "؋", country: "Afghanistan" },
+            "LBP": { name: "Lebanese Pound", symbol: "ل.ل", country: "Lebanon" },
+            "SYP": { name: "Syrian Pound", symbol: "£", country: "Syria" },
+            "YER": { name: "Yemeni Rial", symbol: "﷼", country: "Yemen" },
+            "AZN": { name: "Azerbaijani Manat", symbol: "₼", country: "Azerbaijan" },
+            "KZT": { name: "Kazakhstani Tenge", symbol: "₸", country: "Kazakhstan" },
+            "UZS": { name: "Uzbekistani Som", symbol: "so'm", country: "Uzbekistan" },
+            "TJS": { name: "Tajikistani Somoni", symbol: "ЅМ", country: "Tajikistan" },
+            "KGS": { name: "Kyrgyzstani Som", symbol: "с", country: "Kyrgyzstan" },
+            "TMT": { name: "Turkmenistani Manat", symbol: "m", country: "Turkmenistan" },
+            "GEL": { name: "Georgian Lari", symbol: "₾", country: "Georgia" },
+            "AMD": { name: "Armenian Dram", symbol: "֏", country: "Armenia" },
+            "BYN": { name: "Belarusian Ruble", symbol: "Br", country: "Belarus" },
+            "UAH": { name: "Ukrainian Hryvnia", symbol: "₴", country: "Ukraine" },
+            "MDL": { name: "Moldovan Leu", symbol: "L", country: "Moldova" },
+            "RSD": { name: "Serbian Dinar", symbol: "дин", country: "Serbia" },
+            "MKD": { name: "Macedonian Denar", symbol: "ден", country: "North Macedonia" },
+            "ALL": { name: "Albanian Lek", symbol: "L", country: "Albania" },
+            "BAM": { name: "Bosnia-Herzegovina Mark", symbol: "KM", country: "Bosnia" },
+            "ISK": { name: "Icelandic Króna", symbol: "kr", country: "Iceland" },
+            "LKR": { name: "Sri Lankan Rupee", symbol: "Rs", country: "
