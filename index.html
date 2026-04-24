@@ -24,9 +24,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
             background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
+            animation: gradient 20s ease infinite;
             z-index: -1;
         }
 
@@ -38,10 +38,10 @@
 
         header {
             background: rgba(102, 126, 234, 0.95);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             color: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 0.8rem 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -57,12 +57,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .logo {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .menu-toggle {
@@ -77,7 +80,7 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            gap: 1.2rem;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -85,9 +88,10 @@
         .nav-links a {
             color: white;
             text-decoration: none;
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             border-radius: 5px;
             transition: background 0.3s;
+            font-size: 0.95rem;
         }
 
         .nav-links a:hover {
@@ -96,38 +100,63 @@
 
         .hero {
             text-align: center;
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
             color: white;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            font-size: 1.8rem;
+            margin-bottom: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .cta-button {
             display: inline-block;
-            padding: 1rem 2rem;
+            padding: 1.2rem 3rem;
             background: white;
             color: #667eea;
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 50px;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out 0.6s both;
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.4);
         }
 
         .container {
@@ -136,114 +165,167 @@
             padding: 2rem;
         }
 
+        .section-title {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
             margin-top: 3rem;
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            transition: all 0.4s;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.3);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
         }
 
         .feature-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .feature-card h3 {
             color: #667eea;
             margin-bottom: 1rem;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
         }
 
         .feature-card p {
             color: #666;
             margin-bottom: 1.5rem;
             line-height: 1.8;
+            font-size: 1.05rem;
         }
 
         .feature-card a {
             display: inline-block;
-            padding: 0.8rem 1.5rem;
+            padding: 1rem 2rem;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 10px;
             transition: all 0.3s;
             font-weight: 600;
         }
 
         .feature-card a:hover {
             transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
         }
 
         .stats-section {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 3rem 2rem;
-            border-radius: 15px;
-            margin: 3rem auto;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 4rem 3rem;
+            border-radius: 30px;
+            margin: 4rem auto;
             text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .stats-section h2 {
+            color: #667eea;
+            font-size: 3rem;
+            margin-bottom: 2rem;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2.5rem;
             margin-top: 2rem;
         }
 
         .stat-item {
-            padding: 1.5rem;
+            padding: 2rem 1rem;
         }
 
         .stat-number {
-            font-size: 3rem;
+            font-size: 4rem;
             color: #667eea;
             font-weight: bold;
             display: block;
+            animation: countUp 2s ease-out;
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         .stat-label {
             color: #666;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-top: 0.5rem;
+            font-weight: 600;
         }
 
         .support-button {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 60px;
-            height: 60px;
+            width: 65px;
+            height: 65px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.5);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
             z-index: 1000;
             transition: all 0.3s;
         }
 
         .support-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(102, 126, 234, 0.7);
+            transform: scale(1.15);
+            box-shadow: 0 8px 35px rgba(102, 126, 234, 0.8);
         }
 
         .modal {
@@ -265,42 +347,49 @@
 
         .modal-content {
             background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            max-width: 600px;
+            padding: 3rem;
+            border-radius: 25px;
+            max-width: 650px;
             width: 90%;
-            max-height: 80vh;
+            max-height: 85vh;
             overflow-y: auto;
             position: relative;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
         }
 
         .modal-close {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
+            top: 1.5rem;
+            right: 1.5rem;
             background: none;
             border: none;
-            font-size: 2rem;
+            font-size: 2.5rem;
             cursor: pointer;
             color: #666;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: #667eea;
         }
 
         .modal-tabs {
             display: flex;
             gap: 1rem;
-            margin-bottom: 2rem;
-            border-bottom: 2px solid #eee;
+            margin-bottom: 2.5rem;
+            border-bottom: 3px solid #f3f4f6;
         }
 
         .tab-button {
-            padding: 1rem 1.5rem;
+            padding: 1rem 2rem;
             background: none;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #666;
             border-bottom: 3px solid transparent;
             transition: all 0.3s;
+            font-weight: 600;
         }
 
         .tab-button.active {
@@ -318,17 +407,20 @@
 
         .tab-content h3 {
             color: #667eea;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
         }
 
         .tab-content p {
-            margin-bottom: 1rem;
-            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+            font-size: 1.05rem;
         }
 
         .tab-content a {
             color: #667eea;
             text-decoration: none;
+            font-weight: 600;
         }
 
         .tab-content a:hover {
@@ -339,13 +431,15 @@
             background: rgba(102, 126, 234, 0.95);
             color: white;
             text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
+            padding: 3rem;
+            margin-top: 5rem;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
         }
 
         footer a {
             color: white;
             text-decoration: none;
+            font-weight: 600;
         }
 
         footer a:hover {
@@ -369,11 +463,11 @@
             }
 
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
             .hero p {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
             }
 
             .features-grid {
@@ -382,6 +476,10 @@
 
             .stats-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .stat-number {
+                font-size: 3rem;
             }
         }
     </style>
@@ -410,6 +508,7 @@
                 <li><a href="halal-games.html">🎮 Games</a></li>
                 <li><a href="islamic-library.html">📚 Library</a></li>
                 <li><a href="islamic-courses.html">🎓 Courses</a></li>
+                <li><a href="chat.html">💬 Chat</a></li>
             </ul>
         </nav>
     </header>
@@ -417,15 +516,16 @@
     <section class="hero">
         <h1>Welcome to Islamic Hub</h1>
         <p>Your Complete Islamic Resource Platform</p>
-        <a href="#features" class="cta-button">Explore Now</a>
+        <a href="#features" class="cta-button">Explore Now ✨</a>
     </section>
 
     <div class="container">
+        <h2 class="section-title">📊 Platform Statistics</h2>
         <div class="stats-section">
-            <h2 style="color: #667eea; font-size: 2.5rem; margin-bottom: 1rem;">By the Numbers</h2>
+            <h2>Serving the Ummah Worldwide 🌍</h2>
             <div class="stats-grid">
                 <div class="stat-item">
-                    <span class="stat-number">14</span>
+                    <span class="stat-number">15</span>
                     <span class="stat-label">Complete Features</span>
                 </div>
                 <div class="stat-item">
@@ -434,7 +534,7 @@
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">195</span>
-                    <span class="stat-label">Countries in Hajj Game</span>
+                    <span class="stat-label">Countries</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">16</span>
@@ -451,96 +551,104 @@
             </div>
         </div>
 
-        <div id="features" class="features-grid">
+        <h2 class="section-title" id="features">🌟 Our Features</h2>
+        <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">🕌</div>
                 <h3>Prayer Tools</h3>
-                <p>Accurate prayer times, Qibla direction, and Islamic calendar for your location.</p>
+                <p>Accurate prayer times, Qibla direction, and Islamic calendar for your location worldwide.</p>
                 <a href="prayer-tools.html">Access Tools →</a>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon">📕</div>
                 <h3>Quran Reader</h3>
-                <p>Read the Holy Quran with translations and tafsir. Multiple reciters available.</p>
+                <p>Read the Holy Quran with translations and tafsir. Beautiful interface, multiple reciters.</p>
                 <a href="quran.html">Read Quran →</a>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon">📖</div>
                 <h3>Daily Hadith</h3>
-                <p>Discover authentic Hadith from Sahih collections. Learn Sunnah daily.</p>
+                <p>Discover authentic Hadith from Sahih collections. Learn the Sunnah of the Prophet ﷺ daily.</p>
                 <a href="daily-hadith.html">Read Hadith →</a>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon">🌟</div>
                 <h3>Ayah of the Day</h3>
-                <p>Daily Quranic verses with meanings and reflections to inspire your day.</p>
+                <p>Daily Quranic verses with beautiful meanings and reflections to inspire your spiritual journey.</p>
                 <a href="ayah-of-the-day.html">View Ayah →</a>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon">🤲</div>
                 <h3>Dua of the Day</h3>
-                <p>Learn and memorize authentic daily supplications from Quran and Sunnah.</p>
+                <p>Learn and memorize authentic daily supplications from the Quran and Sunnah.</p>
                 <a href="dua-of-the-day.html">View Dua →</a>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon">📅</div>
                 <h3>Islamic Calendar</h3>
-                <p>Track Islamic dates, important events, and Hijri calendar conversions.</p>
+                <p>Track Islamic dates, important events, Ramadan, Eid, and Hijri calendar conversions.</p>
                 <a href="calendar.html">View Calendar →</a>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon">💰</div>
                 <h3>Zakat Calculator</h3>
-                <p>Calculate your Zakat accurately based on assets, gold, silver, and savings.</p>
+                <p>Calculate your Zakat accurately in 180+ currencies. Simple, professional, precise.</p>
                 <a href="zakat-calculator.html">Calculate Zakat →</a>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon">👶</div>
                 <h3>Kids Stories</h3>
-                <p>33 Islamic stories for children. Teach values and faith through engaging tales.</p>
+                <p>33 beautiful Islamic stories for children. Teach values and faith through engaging tales.</p>
                 <a href="kids-stories.html">Read Stories →</a>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon">📢</div>
                 <h3>Dawah Resources</h3>
-                <p>Materials and guides for sharing Islam. Answer common questions effectively.</p>
+                <p>Comprehensive materials and guides for sharing Islam. Answer common questions effectively.</p>
                 <a href="dawah.html">Explore Dawah →</a>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon">💬</div>
                 <h3>Community</h3>
-                <p>Connect with Muslims worldwide. Share knowledge and support each other.</p>
+                <p>100+ Islamic reminders, connect with Muslims worldwide. Share knowledge and inspiration.</p>
                 <a href="community.html">Join Community →</a>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon">🎮</div>
                 <h3>Halal Games</h3>
-                <p>Play Islamic games, earn coins, and learn while having fun! 195 countries, 2000+ cities!</p>
+                <p>Play Islamic quizzes, Virtual Hajj journey, build houses, earn coins! 195 countries, 50+ questions each!</p>
                 <a href="halal-games.html">Play Games →</a>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon">📚</div>
                 <h3>Islamic Library</h3>
-                <p>Access authentic Hadith collections from Sunnah.com. Read the six authentic books and more!</p>
+                <p>Access 16 authentic Hadith collections from Sunnah.com. The six books and more!</p>
                 <a href="islamic-library.html">Browse Library →</a>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon">🎓</div>
                 <h3>Islamic Courses</h3>
-                <p>Learn Quran, Hadith, Fiqh, Arabic, and Seerah with structured courses from authentic scholars.</p>
+                <p>15 comprehensive courses on Quran, Hadith, Fiqh, Arabic, and Seerah from top scholars.</p>
                 <a href="islamic-courses.html">Browse Courses →</a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3>Chat & Messaging</h3>
+                <p>Instagram-style messaging! Direct chats, group chats, real-time messaging with Muslims worldwide.</p>
+                <a href="chat.html">Start Chatting →</a>
             </div>
         </div>
     </div>
@@ -561,22 +669,22 @@
             <div class="tab-content active" id="faqTab">
                 <h3>Frequently Asked Questions</h3>
                 <p><strong>Q: Is this website free?</strong><br>
-                A: Yes! Islamic Hub is 100% free and will always remain free. No subscriptions or hidden costs.</p>
+                A: Yes! Islamic Hub is 100% free and will always remain free. No subscriptions, no hidden costs.</p>
 
                 <p><strong>Q: Are the prayer times accurate?</strong><br>
                 A: Yes, we use verified calculation methods and your location to provide accurate prayer times.</p>
 
                 <p><strong>Q: Where do you get Hadith from?</strong><br>
-                A: All Hadith are from authentic collections like Sahih Bukhari, Sahih Muslim, and other verified sources from Sunnah.com.</p>
+                A: All Hadith are from authentic collections like Sahih Bukhari, Sahih Muslim from Sunnah.com.</p>
 
-                <p><strong>Q: Can I use this offline?</strong><br>
-                A: Some features work offline once loaded, but internet connection is needed for updates and community features.</p>
+                <p><strong>Q: Can I use the chat feature?</strong><br>
+                A: Yes! Our Instagram-style chat lets you message Muslims worldwide. Create groups, send direct messages!</p>
 
                 <p><strong>Q: How do I earn coins in games?</strong><br>
-                A: Claim daily login bonus (20-50 coins), watch ads (10 coins), complete games (1-3 coins), or claim welcome bonus (50 coins for new users)!</p>
+                A: Welcome bonus (50 coins), daily login (20-50 coins), quizzes (1-4 coins), all working perfectly!</p>
 
                 <p><strong>Q: Are the Islamic courses certified?</strong><br>
-                A: Courses are curated from reputable scholars and institutions. They're for learning purposes - not formal certification.</p>
+                A: Courses are curated from reputable scholars for learning purposes, not formal certification.</p>
             </div>
 
             <div class="tab-content" id="contactTab">
@@ -589,24 +697,27 @@
 
             <div class="tab-content" id="aboutTab">
                 <h3>About Islamic Hub</h3>
-                <p>Islamic Hub is a comprehensive Islamic resource platform designed to make learning and practicing Islam easier and more accessible.</p>
+                <p>Islamic Hub is the most comprehensive Islamic resource platform designed to make learning and practicing Islam easier and more accessible for everyone.</p>
                 
                 <p><strong>Our Mission:</strong><br>
                 To provide authentic Islamic knowledge and resources to Muslims worldwide, completely free of charge.</p>
 
                 <p><strong>What We Offer:</strong></p>
-                <p>• 14 complete features covering prayer, Quran, Hadith, and more<br>
-                • 195 countries with 2000+ cities in Hajj Journey game<br>
+                <p>• 15 complete features including Chat & Messaging<br>
+                • 195 countries with 2000+ cities in Hajj Journey<br>
                 • 16 authentic Hadith books from Sunnah.com<br>
-                • 15 structured Islamic courses<br>
+                • 15 structured Islamic courses from top scholars<br>
                 • 33 educational kids stories<br>
+                • 100+ Islamic reminders<br>
+                • Real-time messaging with direct & group chats<br>
                 • Active community platform<br>
+                • 180+ currencies in Zakat calculator<br>
                 • 100% FREE forever!</p>
 
                 <p><strong>Our Values:</strong><br>
                 Authenticity • Accessibility • Community • Free Knowledge</p>
 
-                <p>Built with ❤️ for the Muslim Ummah</p>
+                <p>Built with ❤️ for the Muslim Ummah 🌍</p>
             </div>
         </div>
     </div>
@@ -615,7 +726,7 @@
         <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
         <p>📧 <a href="mailto:lutrumputrumss@gmail.com">lutrumputrumss@gmail.com</a> | 
            📱 <a href="https://instagram.com/theofficial.islamichub01" target="_blank">@theofficial.islamichub01</a></p>
-        <p style="margin-top: 1rem;">May Allah accept our efforts and guide us all. Ameen.</p>
+        <p style="margin-top: 1.5rem; font-size: 1.1rem;">May Allah accept our efforts and guide us all. Ameen 🤲</p>
     </footer>
 
     <script>
