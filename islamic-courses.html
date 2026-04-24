@@ -39,7 +39,7 @@
             background: rgba(106, 17, 203, 0.95);
             backdrop-filter: blur(15px);
             color: white;
-            padding: 1rem 0;
+            padding: 0.8rem 0;
             box-shadow: 0 4px 30px rgba(0,0,0,0.3);
             position: sticky;
             top: 0;
@@ -56,11 +56,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .logo {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
         }
 
@@ -76,7 +76,7 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            gap: 1.2rem;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -84,9 +84,10 @@
         .nav-links a {
             color: white;
             text-decoration: none;
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             border-radius: 5px;
             transition: all 0.3s;
+            font-size: 0.95rem;
         }
 
         .nav-links a:hover {
@@ -157,7 +158,7 @@
 
         .courses-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 2rem;
             margin-bottom: 2rem;
         }
@@ -214,6 +215,41 @@
             margin-bottom: 1.5rem;
         }
 
+        .course-topics {
+            text-align: left;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(106, 17, 203, 0.05);
+            border-radius: 10px;
+        }
+
+        .course-topics h4 {
+            color: #6a11cb;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .course-topics ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .course-topics li {
+            color: #666;
+            font-size: 0.85rem;
+            padding: 0.3rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .course-topics li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #6a11cb;
+            font-weight: bold;
+        }
+
         .course-info {
             display: flex;
             justify-content: space-around;
@@ -233,9 +269,16 @@
             color: #6a11cb;
         }
 
+        .course-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
         .btn {
             display: inline-block;
-            padding: 0.8rem 2rem;
+            padding: 0.8rem 1.5rem;
             background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             color: white;
             text-decoration: none;
@@ -243,13 +286,24 @@
             transition: all 0.3s;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
         }
 
         .btn:hover {
             transform: scale(1.05);
             box-shadow: 0 6px 20px rgba(106, 17, 203, 0.5);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #6a11cb;
+            border: 2px solid #6a11cb;
+        }
+
+        .btn-secondary:hover {
+            background: #6a11cb;
+            color: white;
         }
 
         footer {
@@ -308,18 +362,19 @@
         <div class="intro-section">
             <h2>Learn Islam at Your Own Pace</h2>
             <p>
-                Comprehensive courses covering Quran, Hadith, Fiqh, Arabic, and more. 
+                Comprehensive courses covering Quran, Hadith, Fiqh, Arabic, and Seerah. 
                 Study from authentic sources with structured lessons designed for all levels.
+                All courses feature handpicked lectures from renowned scholars!
             </p>
         </div>
 
         <div class="categories">
             <button class="category-btn active" onclick="filterCategory('all')">All Courses</button>
-            <button class="category-btn" onclick="filterCategory('Quran')">Quran</button>
-            <button class="category-btn" onclick="filterCategory('Hadith')">Hadith</button>
-            <button class="category-btn" onclick="filterCategory('Fiqh')">Fiqh</button>
-            <button class="category-btn" onclick="filterCategory('Arabic')">Arabic</button>
-            <button class="category-btn" onclick="filterCategory('Seerah')">Seerah</button>
+            <button class="category-btn" onclick="filterCategory('Quran')">📖 Quran</button>
+            <button class="category-btn" onclick="filterCategory('Hadith')">📚 Hadith</button>
+            <button class="category-btn" onclick="filterCategory('Fiqh')">⚖️ Fiqh</button>
+            <button class="category-btn" onclick="filterCategory('Arabic')">🔤 Arabic</button>
+            <button class="category-btn" onclick="filterCategory('Seerah')">⭐ Seerah</button>
         </div>
 
         <div class="courses-grid" id="coursesGrid">
@@ -347,7 +402,20 @@
                 lessons: 40,
                 duration: "10 weeks",
                 level: "Beginner",
-                link: "https://www.youtube.com/results?search_query=tajweed+course"
+                topics: [
+                    "Arabic Letters & Pronunciation",
+                    "Makharij (Points of Articulation)",
+                    "Sifaat (Characteristics of Letters)",
+                    "Rules of Noon Sakinah & Tanween",
+                    "Rules of Meem Sakinah",
+                    "Qalqalah & Heavy Letters",
+                    "Madd (Prolongation) Rules",
+                    "Waqf & Ibtida (Stopping & Starting)"
+                ],
+                links: [
+                    { text: "Watch on YouTube", url: "https://www.youtube.com/results?search_query=tajweed+course+full" },
+                    { text: "Quran.com", url: "https://quran.com" }
+                ]
             },
             {
                 title: "Tafsir Al-Quran",
@@ -358,29 +426,68 @@
                 lessons: 60,
                 duration: "16 weeks",
                 level: "Intermediate",
-                link: "https://www.youtube.com/results?search_query=tafsir+quran+course"
+                topics: [
+                    "Introduction to Tafsir Sciences",
+                    "Tafsir Ibn Kathir Study",
+                    "Surah Al-Fatihah Explained",
+                    "Stories of the Prophets in Quran",
+                    "Meccan vs Medinan Surahs",
+                    "Reasons for Revelation (Asbab Al-Nuzul)",
+                    "Legal Verses Explained",
+                    "Eloquence & Miracles of Quran"
+                ],
+                links: [
+                    { text: "Yasir Qadhi Lectures", url: "https://www.youtube.com/results?search_query=yasir+qadhi+tafsir" },
+                    { text: "Quran Tafsir", url: "https://quran.com" }
+                ]
             },
             {
                 title: "Memorizing Quran (Hifz)",
-                instructor: "Hafiz Ahmed",
+                instructor: "Hafiz Ahmed Al-Azhari",
                 category: "Quran",
                 icon: "🧠",
                 description: "Structured program to memorize Quran with revision techniques and retention strategies.",
                 lessons: 100,
                 duration: "2 years",
                 level: "All Levels",
-                link: "https://www.youtube.com/results?search_query=quran+memorization+hifz"
+                topics: [
+                    "Memory Techniques for Quran",
+                    "Daily Memorization Schedule",
+                    "Revision Strategies",
+                    "Juz' Amma (Last 30 Surahs)",
+                    "Longer Surahs Strategy",
+                    "Dealing with Similar Verses",
+                    "Connecting with Meanings",
+                    "Long-term Retention Methods"
+                ],
+                links: [
+                    { text: "Hifz Guide", url: "https://www.youtube.com/results?search_query=quran+memorization+hifz+guide" },
+                    { text: "Quran Memorization App", url: "https://quran.com" }
+                ]
             },
             {
                 title: "Sahih Bukhari Study",
-                instructor: "Sheikh Ibn Uthaymeen",
+                instructor: "Sheikh Muhammad ibn Saleh",
                 category: "Hadith",
                 icon: "📚",
                 description: "Comprehensive study of Sahih Bukhari with explanations and context of each Hadith.",
                 lessons: 80,
                 duration: "20 weeks",
                 level: "Advanced",
-                link: "https://sunnah.com/bukhari"
+                topics: [
+                    "Introduction to Sahih Bukhari",
+                    "Book of Revelation",
+                    "Book of Faith (Iman)",
+                    "Book of Knowledge",
+                    "Book of Purification (Taharah)",
+                    "Book of Prayer (Salah)",
+                    "Book of Zakat",
+                    "Book of Fasting, Hajj & More"
+                ],
+                links: [
+                    { text: "Read Bukhari", url: "https://sunnah.com/bukhari" },
+                    { text: "Bukhari Lectures", url: "https://www.youtube.com/results?search_query=sahih+bukhari+complete" }
+                ]
             },
             {
                 title: "40 Hadith Nawawi",
@@ -391,7 +498,20 @@
                 lessons: 40,
                 duration: "8 weeks",
                 level: "Beginner",
-                link: "https://sunnah.com/nawawi40"
+                topics: [
+                    "Actions by Intentions",
+                    "The Pillars of Islam",
+                    "The Pillars of Iman",
+                    "The Excellence of Knowledge",
+                    "The Halal & Haram",
+                    "Brotherhood in Islam",
+                    "Rights of a Muslim",
+                    "Leaving What Doesn't Concern You"
+                ],
+                links: [
+                    { text: "Read 40 Hadith", url: "https://sunnah.com/nawawi40" },
+                    { text: "40 Hadith Explained", url: "https://www.youtube.com/results?search_query=40+hadith+nawawi+explained" }
+                ]
             },
             {
                 title: "Hadith Sciences (Mustalah)",
@@ -402,21 +522,47 @@
                 lessons: 30,
                 duration: "12 weeks",
                 level: "Advanced",
-                link: "https://www.youtube.com/results?search_query=hadith+sciences+course"
+                topics: [
+                    "Introduction to Hadith Sciences",
+                    "Sahih, Hasan, Da'if Classifications",
+                    "Chain of Narration (Isnad)",
+                    "Narrator Criticism (Ilm al-Rijal)",
+                    "Fabricated Hadiths",
+                    "Methodology of Authenticating",
+                    "Famous Hadith Scholars",
+                    "How to Verify Hadiths"
+                ],
+                links: [
+                    { text: "Hadith Sciences", url: "https://www.youtube.com/results?search_query=hadith+sciences+course" },
+                    { text: "Sunnah.com", url: "https://sunnah.com" }
+                ]
             },
             {
                 title: "Islamic Jurisprudence (Fiqh)",
-                instructor: "Mufti Menk",
+                instructor: "Mufti Ismail Menk",
                 category: "Fiqh",
                 icon: "⚖️",
                 description: "Comprehensive Fiqh course covering worship, transactions, and family law.",
                 lessons: 50,
                 duration: "14 weeks",
                 level: "Intermediate",
-                link: "https://www.youtube.com/results?search_query=fiqh+course+mufti+menk"
+                topics: [
+                    "Introduction to Fiqh",
+                    "Four Schools of Thought",
+                    "Fiqh of Purification",
+                    "Fiqh of Prayer",
+                    "Fiqh of Zakat",
+                    "Fiqh of Fasting",
+                    "Fiqh of Hajj",
+                    "Marriage & Divorce Laws"
+                ],
+                links: [
+                    { text: "Mufti Menk Fiqh", url: "https://www.youtube.com/results?search_query=mufti+menk+fiqh+course" },
+                    { text: "Islamic Rulings", url: "https://islamqa.info/en" }
+                ]
             },
             {
-                title: "Fiqh of Prayer",
+                title: "Fiqh of Prayer (Salah)",
                 instructor: "Sheikh Saleh Al-Fawzan",
                 category: "Fiqh",
                 icon: "🕌",
@@ -424,7 +570,20 @@
                 lessons: 20,
                 duration: "6 weeks",
                 level: "Beginner",
-                link: "https://www.youtube.com/results?search_query=fiqh+of+prayer"
+                topics: [
+                    "Conditions of Prayer",
+                    "Pillars of Prayer",
+                    "Obligatory Acts (Wajibat)",
+                    "Sunnah Acts in Prayer",
+                    "Things that Invalidate Prayer",
+                    "Prostration of Forgetfulness",
+                    "Congregational Prayer",
+                    "Common Mistakes to Avoid"
+                ],
+                links: [
+                    { text: "Fiqh of Salah", url: "https://www.youtube.com/results?search_query=fiqh+of+prayer+complete" },
+                    { text: "Prayer Guide", url: "https://islamqa.info/en" }
+                ]
             },
             {
                 title: "Fiqh of Fasting & Hajj",
@@ -435,7 +594,20 @@
                 lessons: 25,
                 duration: "8 weeks",
                 level: "Intermediate",
-                link: "https://www.youtube.com/results?search_query=fiqh+fasting+hajj"
+                topics: [
+                    "Fiqh of Fasting - Conditions",
+                    "Things that Break the Fast",
+                    "Voluntary Fasting",
+                    "Fasting on Special Days",
+                    "Hajj - Types & Rulings",
+                    "Umrah - Step by Step",
+                    "Common Hajj Mistakes",
+                    "Virtues of Hajj & Umrah"
+                ],
+                links: [
+                    { text: "Fasting Rulings", url: "https://www.youtube.com/results?search_query=fiqh+of+fasting" },
+                    { text: "Hajj Guide", url: "https://www.youtube.com/results?search_query=hajj+guide+complete" }
+                ]
             },
             {
                 title: "Arabic for Beginners",
@@ -446,7 +618,20 @@
                 lessons: 30,
                 duration: "10 weeks",
                 level: "Beginner",
-                link: "https://www.youtube.com/results?search_query=arabic+for+beginners"
+                topics: [
+                    "Arabic Alphabet & Sounds",
+                    "Connecting Letters",
+                    "Short & Long Vowels",
+                    "Basic Vocabulary (500 words)",
+                    "Simple Sentence Structure",
+                    "Present & Past Tense",
+                    "Common Greetings",
+                    "Reading Simple Texts"
+                ],
+                links: [
+                    { text: "Arabic Beginner", url: "https://www.youtube.com/results?search_query=arabic+for+beginners+complete" },
+                    { text: "Bayyinah Institute", url: "https://www.youtube.com/c/BayyinahInstitute" }
+                ]
             },
             {
                 title: "Quranic Arabic",
@@ -457,7 +642,20 @@
                 lessons: 50,
                 duration: "16 weeks",
                 level: "Intermediate",
-                link: "https://www.youtube.com/results?search_query=quranic+arabic+grammar"
+                topics: [
+                    "Quranic Grammar Basics",
+                    "Verb Forms (Sarf)",
+                    "Sentence Structure (Nahw)",
+                    "Common Quranic Patterns",
+                    "Root Words & Derivatives",
+                    "Understanding Ayahs Directly",
+                    "1000+ Quranic Vocabulary",
+                    "Tafsir Through Grammar"
+                ],
+                links: [
+                    { text: "Quranic Arabic", url: "https://www.youtube.com/results?search_query=quranic+arabic+grammar" },
+                    { text: "Learn Quranic", url: "https://www.youtube.com/c/BayyinahInstitute" }
+                ]
             },
             {
                 title: "Advanced Arabic Grammar",
@@ -468,7 +666,20 @@
                 lessons: 60,
                 duration: "20 weeks",
                 level: "Advanced",
-                link: "https://www.youtube.com/results?search_query=advanced+arabic+grammar"
+                topics: [
+                    "Al-Ajrumiyyah Study",
+                    "Al-Alfiyyah of Ibn Malik",
+                    "Advanced Nahw Rules",
+                    "Advanced Sarf Patterns",
+                    "Classical Poetry Analysis",
+                    "Arabic Rhetoric (Balagha)",
+                    "Reading Classical Texts",
+                    "Arabic Linguistics"
+                ],
+                links: [
+                    { text: "Advanced Grammar", url: "https://www.youtube.com/results?search_query=advanced+arabic+grammar+nahw" },
+                    { text: "Classical Texts", url: "https://www.youtube.com/results?search_query=ajrumiyyah+explained" }
+                ]
             },
             {
                 title: "Life of Prophet Muhammad ﷺ",
@@ -479,18 +690,44 @@
                 lessons: 100,
                 duration: "24 weeks",
                 level: "All Levels",
-                link: "https://www.youtube.com/results?search_query=seerah+yasir+qadhi"
+                topics: [
+                    "Birth & Early Life",
+                    "Revelation & Prophethood",
+                    "Meccan Period - Persecution",
+                    "Migration to Madinah",
+                    "Battle of Badr",
+                    "Battle of Uhud",
+                    "Conquest of Makkah",
+                    "Farewell Sermon & Passing"
+                ],
+                links: [
+                    { text: "Yasir Qadhi Seerah", url: "https://www.youtube.com/results?search_query=yasir+qadhi+seerah+complete" },
+                    { text: "Prophet's Life", url: "https://www.youtube.com/results?search_query=life+of+prophet+muhammad" }
+                ]
             },
             {
                 title: "Stories of the Prophets",
-                instructor: "Mufti Menk",
+                instructor: "Mufti Ismail Menk",
                 category: "Seerah",
                 icon: "👥",
                 description: "Learn from the lives of all Prophets mentioned in Quran and Hadith.",
                 lessons: 30,
                 duration: "10 weeks",
                 level: "Beginner",
-                link: "https://www.youtube.com/results?search_query=stories+prophets+mufti+menk"
+                topics: [
+                    "Prophet Adam (AS)",
+                    "Prophet Nuh (AS)",
+                    "Prophet Ibrahim (AS)",
+                    "Prophet Musa (AS)",
+                    "Prophet Isa (AS)",
+                    "Prophet Yusuf (AS)",
+                    "Prophet Sulayman (AS)",
+                    "Lessons from Each Prophet"
+                ],
+                links: [
+                    { text: "Stories of Prophets", url: "https://www.youtube.com/results?search_query=mufti+menk+stories+prophets" },
+                    { text: "Prophets in Quran", url: "https://www.youtube.com/results?search_query=stories+of+prophets+complete" }
+                ]
             },
             {
                 title: "Companions of the Prophet",
@@ -501,7 +738,20 @@
                 lessons: 40,
                 duration: "12 weeks",
                 level: "Intermediate",
-                link: "https://www.youtube.com/results?search_query=companions+prophet+omar+suleiman"
+                topics: [
+                    "Abu Bakr As-Siddiq (RA)",
+                    "Umar ibn Al-Khattab (RA)",
+                    "Uthman ibn Affan (RA)",
+                    "Ali ibn Abi Talib (RA)",
+                    "Khadijah (RA)",
+                    "Aisha (RA)",
+                    "Bilal ibn Rabah (RA)",
+                    "Lessons from the Sahabah"
+                ],
+                links: [
+                    { text: "Omar Suleiman Series", url: "https://www.youtube.com/results?search_query=omar+suleiman+companions" },
+                    { text: "Companions Stories", url: "https://www.youtube.com/results?search_query=sahabah+stories" }
+                ]
             }
         ];
 
@@ -521,6 +771,14 @@
                     <div class="course-title">${course.title}</div>
                     <div class="course-instructor">by ${course.instructor}</div>
                     <div class="course-description">${course.description}</div>
+                    
+                    <div class="course-topics">
+                        <h4>📚 What You'll Learn:</h4>
+                        <ul>
+                            ${course.topics.slice(0, 5).map(topic => `<li>${topic}</li>`).join('')}
+                        </ul>
+                    </div>
+
                     <div class="course-info">
                         <div class="info-item">
                             <span class="info-label">${course.lessons}</span>
@@ -535,7 +793,12 @@
                             <span>Level</span>
                         </div>
                     </div>
-                    <a href="${course.link}" target="_blank" class="btn">Start Learning →</a>
+
+                    <div class="course-links">
+                        ${course.links.map(link => `
+                            <a href="${link.url}" target="_blank" class="btn">${link.text} →</a>
+                        `).join('')}
+                    </div>
                 </div>
             `).join('');
         }
