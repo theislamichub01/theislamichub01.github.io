@@ -4,371 +4,272 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quran Explorer - Islamic Hub</title>
+    <!-- Tailwind CSS for high-fidelity adaptive layouts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Amiri (Arabic Calligraphy) & Inter (English Interfaces) -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0a0a0a;
-            color: #e0e0e0;
-            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            background: #060608;
+            color: #f3f4f6;
         }
-
-        header {
-            background: rgba(15, 15, 15, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 2px solid #d4af37;
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.15);
+        .arabic-font {
+            font-family: 'Amiri', serif;
+            line-height: 2.3;
         }
-
-        nav {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* Elegant Custom gold scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
         }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #d4af37, #f0e68c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 2px;
+        ::-webkit-scrollbar-track {
+            background: #09090c;
         }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .nav-links a {
-            color: #e0e0e0;
-            text-decoration: none;
-            padding: 0.6rem 1rem;
+        ::-webkit-scrollbar-thumb {
+            background: #c5a85c;
             border-radius: 6px;
-            transition: all 0.3s;
-            font-weight: 500;
-            font-size: 0.9rem;
-            position: relative;
         }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #d4af37;
-            transition: width 0.3s;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e5c06a;
         }
-
-        .nav-links a:hover::after {
-            width: 100%;
+        /* Smooth shimmering effects for live loads */
+        .shimmer {
+            background: linear-gradient(90deg, #13131a 25%, #22222d 50%, #13131a 75%);
+            background-size: 200% 100%;
+            animation: loading-shimmer 1.5s infinite;
         }
-
-        .nav-links a:hover {
-            color: #d4af37;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        .page-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .page-title {
-            font-size: 3rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, #d4af37, #ffd700, #d4af37);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-            letter-spacing: 1px;
-        }
-
-        .page-subtitle {
-            font-size: 1.1rem;
-            color: #999;
-            letter-spacing: 1px;
-        }
-
-        .controls {
-            background: rgba(212, 175, 55, 0.05);
-            border: 2px solid rgba(212, 175, 55, 0.2);
-            padding: 2rem;
-            border-radius: 12px;
-            margin-bottom: 3rem;
-        }
-
-        .controls h3 {
-            color: #d4af37;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-        }
-
-        .control-group {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .control-item {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .control-item label {
-            color: #d4af37;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .control-item select {
-            padding: 0.8rem 1rem;
-            background: rgba(212, 175, 55, 0.1);
-            border: 2px solid #d4af37;
-            border-radius: 8px;
-            color: #d4af37;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .control-item select:hover {
-            background: rgba(212, 175, 55, 0.2);
-        }
-
-        .control-item select:focus {
-            outline: none;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-        }
-
-        .btn {
-            padding: 0.8rem 2rem;
-            background: linear-gradient(135deg, #d4af37, #ffd700);
-            color: #0a0a0a;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
-        }
-
-        .verse-display {
-            background: rgba(212, 175, 55, 0.05);
-            border: 2px solid #d4af37;
-            border-radius: 12px;
-            padding: 3rem;
-            margin-bottom: 3rem;
-            display: none;
-        }
-
-        .verse-display.active {
-            display: block;
-        }
-
-        .verse-header {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
-        }
-
-        .surah-name {
-            color: #d4af37;
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-
-        .surah-info {
-            color: #999;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-        }
-
-        .verse-number-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #d4af37, #ffd700);
-            color: #0a0a0a;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            font-weight: 700;
-            margin: 1.5rem 0;
-        }
-
-        .arabic-text {
-            font-size: 2.2rem;
-            line-height: 2.8;
-            text-align: right;
-            direction: rtl;
-            color: #ffd700;
-            margin-bottom: 2rem;
-            padding: 2rem;
-            background: rgba(212, 175, 55, 0.1);
-            border-radius: 12px;
-        }
-
-        .translation {
-            font-size: 1.15rem;
-            line-height: 1.9;
-            color: #bbb;
-            padding: 1.5rem;
-            background: rgba(212, 175, 55, 0.05);
-            border-radius: 8px;
-            border-left: 4px solid #d4af37;
-            margin-bottom: 2rem;
-        }
-
-        .navigation-buttons {
-            display: flex;
-            justify-content: space-between;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .nav-btn {
-            flex: 1;
-            padding: 0.8rem 1.5rem;
-            background: linear-gradient(135deg, #d4af37, #ffd700);
-            color: #0a0a0a;
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 1rem;
-        }
-
-        .nav-btn:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(212, 175, 55, 0.3);
-        }
-
-        .nav-btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 3rem;
-            color: #d4af37;
-            font-size: 1.3rem;
-            display: none;
-        }
-
-        footer {
-            background: #000;
-            border-top: 2px solid #d4af37;
-            padding: 3rem 2rem;
-            text-align: center;
-            color: #888;
-            font-size: 0.9rem;
-            margin-top: 4rem;
-        }
-
-        @media (max-width: 768px) {
-            .page-title { font-size: 2rem; }
-            .arabic-text { font-size: 1.5rem; }
-            .nav-links { gap: 0.8rem; font-size: 0.85rem; }
-            .navigation-buttons { flex-direction: column; }
+        @keyframes loading-shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col justify-between selection:bg-amber-500/20 selection:text-amber-200">
 
-<header>
-    <nav>
-        <div class="logo">☪ ISLAMIC HUB</div>
-        <ul class="nav-links">
-            <li><a href="index.html">🏠 Home</a></li>
-            <li><a href="prayer-tools.html">🕌 Prayer</a></li>
-            <li><a href="quran.html">📕 Quran</a></li>
-            <li><a href="halal-games.html">🎮 Games</a></li>
-            <li><a href="kids-stories.html">👶 Kids</a></li>
-            <li><a href="community.html">💬 Chat</a></li>
-            <li><a href="islamic-library.html">📚 Library</a></li>
+<!-- Header Navigation -->
+<header class="sticky top-0 z-50 bg-[#09090c]/90 backdrop-blur-md border-b border-amber-500/30 shadow-lg shadow-amber-950/10">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <span class="text-3xl text-amber-400">☪</span>
+            <div class="logo text-xl sm:text-2xl font-black tracking-wider bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500 bg-clip-text text-transparent">
+                ISLAMIC HUB
+            </div>
+        </div>
+        <!-- Menu Navigation items -->
+        <ul class="hidden lg:flex items-center gap-2 text-sm font-semibold text-zinc-300">
+            <li><a href="#" class="px-3 py-2 rounded-lg hover:text-amber-400 hover:bg-zinc-900/50 transition">🏠 Home</a></li>
+            <li><a href="#" class="px-3 py-2 rounded-lg hover:text-amber-400 hover:bg-zinc-900/50 transition">🕌 Prayer</a></li>
+            <li><a href="#" class="px-3 py-2 rounded-lg text-amber-400 bg-amber-500/10 border border-amber-500/20 transition">📕 Quran</a></li>
+            <li><a href="#" class="px-3 py-2 rounded-lg hover:text-amber-400 hover:bg-zinc-900/50 transition">🎮 Games</a></li>
+            <li><a href="#" class="px-3 py-2 rounded-lg hover:text-amber-400 hover:bg-zinc-900/50 transition">👶 Kids</a></li>
+            <li><a href="#" class="px-3 py-2 rounded-lg hover:text-amber-400 hover:bg-zinc-900/50 transition">💬 Chat</a></li>
+            <li><a href="#" class="px-3 py-2 rounded-lg hover:text-amber-400 hover:bg-zinc-900/50 transition">📚 Library</a></li>
         </ul>
+        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-900" onclick="toggleMobileMenu()">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+        </button>
     </nav>
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-[#09090c] border-b border-zinc-850 px-4 pt-2 pb-4 space-y-1">
+        <a href="#" class="block px-3 py-2 rounded-md text-base hover:bg-zinc-900 text-zinc-300">🏠 Home</a>
+        <a href="#" class="block px-3 py-2 rounded-md text-base hover:bg-zinc-900 text-zinc-300">🕌 Prayer</a>
+        <a href="#" class="block px-3 py-2 rounded-md text-base text-amber-400 bg-amber-500/10 font-bold">📕 Quran</a>
+        <a href="#" class="block px-3 py-2 rounded-md text-base hover:bg-zinc-900 text-zinc-300">🎮 Games</a>
+        <a href="#" class="block px-3 py-2 rounded-md text-base hover:bg-zinc-900 text-zinc-300">👶 Kids</a>
+        <a href="#" class="block px-3 py-2 rounded-md text-base hover:bg-zinc-900 text-zinc-300">💬 Chat</a>
+        <a href="#" class="block px-3 py-2 rounded-md text-base hover:bg-zinc-900 text-zinc-300">📚 Library</a>
+    </div>
 </header>
 
-<div class="container">
-    <div class="page-header">
-        <h1 class="page-title">📕 Quran Explorer</h1>
-        <p class="page-subtitle">THE WORD OF ALLAH — EXPLORE, READ, REFLECT</p>
+<main class="flex-grow container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Header Titles -->
+    <div class="text-center mb-10">
+        <h1 class="text-4xl sm:text-5xl font-black bg-gradient-to-r from-amber-400 via-yellow-100 to-amber-500 bg-clip-text text-transparent mb-3 tracking-tight">
+            📕 Quran Explorer
+        </h1>
+        <p class="text-xs sm:text-sm text-zinc-400 tracking-widest font-semibold uppercase">
+            THE WORD OF ALLAH — EXPLORE, READ, LISTEN, AND REFLECT
+        </p>
     </div>
 
-    <div class="controls">
-        <h3>Select Surah & Ayat</h3>
-        <div class="control-group">
-            <div class="control-item">
-                <label>Select Surah:</label>
-                <select id="surahSelect" onchange="loadSurah(); loadAyat();"></select>
+    <!-- Controls Panel -->
+    <div class="bg-[#0b0b0e] border border-zinc-800/80 rounded-2xl p-4 sm:p-6 shadow-xl mb-8 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-amber-500 to-transparent"></div>
+        
+        <h3 class="text-lg font-bold text-amber-400 mb-4 flex items-center gap-2">
+            <span>⚙️</span> Choose Chapter & Verse
+        </h3>
+
+        <!-- Control selectors grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <!-- Search & Filter Bar -->
+            <div class="flex flex-col">
+                <label class="text-xs font-semibold text-zinc-400 mb-2 uppercase tracking-wider">Search Surah Name:</label>
+                <input type="text" id="surahSearch" placeholder="Filter by name or number..." 
+                       class="w-full bg-[#111116] border border-zinc-700/60 rounded-xl px-4 py-2.5 text-zinc-100 text-sm focus:outline-none focus:border-amber-500/80 transition"
+                       oninput="filterSurahs()">
             </div>
-            <div class="control-item">
-                <label>Select Ayat:</label>
-                <select id="ayatSelect"></select>
+
+            <!-- Surah Dropdown selector -->
+            <div class="flex flex-col">
+                <label class="text-xs font-semibold text-zinc-400 mb-2 uppercase tracking-wider">Select Surah:</label>
+                <select id="surahSelect" onchange="loadSurahDropdownChange();" 
+                        class="w-full bg-[#111116] border border-zinc-700/60 rounded-xl px-4 py-2.5 text-amber-400 text-sm focus:outline-none focus:border-amber-500/80 cursor-pointer transition">
+                    <!-- Loaded dynamically -->
+                </select>
+            </div>
+
+            <!-- Ayat Dropdown selector -->
+            <div class="flex flex-col">
+                <label class="text-xs font-semibold text-zinc-400 mb-2 uppercase tracking-wider">Select Ayat:</label>
+                <select id="ayatSelect" class="w-full bg-[#111116] border border-zinc-700/60 rounded-xl px-4 py-2.5 text-amber-400 text-sm focus:outline-none focus:border-amber-500/80 cursor-pointer transition">
+                    <!-- Loaded dynamically -->
+                </select>
             </div>
         </div>
-        <button class="btn" onclick="handleLoadAyat()">Load Ayat</button>
-    </div>
 
-    <div id="loading" class="loading">Loading Ayat...</div>
+        <!-- Custom Sizing and Load Controls -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-between items-center border-t border-zinc-800/80 pt-4">
+            <!-- Font scaling utility -->
+            <div class="flex items-center gap-3">
+                <span class="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Arabic Font Size:</span>
+                <div class="inline-flex rounded-lg bg-[#111116] p-0.5 border border-zinc-800">
+                    <button onclick="changeFontSize(-3)" class="px-3 py-1.5 text-xs text-zinc-300 hover:text-white rounded-md hover:bg-zinc-850 transition">A-</button>
+                    <button onclick="changeFontSize(3)" class="px-3 py-1.5 text-xs text-zinc-300 hover:text-white rounded-md hover:bg-zinc-850 transition">A+</button>
+                </div>
+            </div>
 
-    <div id="verseDisplay" class="verse-display">
-        <div class="verse-header">
-            <div class="surah-name" id="surahName">Al-Fatiha</div>
-            <div class="surah-info" id="surahInfo">Meccan • 7 verses</div>
-        </div>
-        
-        <div style="text-align: center;">
-            <div class="verse-number-badge" id="verseNumber">Ayat 1</div>
-        </div>
-        
-        <div class="arabic-text" id="arabicText">الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</div>
-        
-        <div class="translation" id="translationText">All praise is due to Allah, Lord of the worlds</div>
-
-        <div class="navigation-buttons">
-            <button class="nav-btn" id="prevBtn" onclick="previousAyat()">← Previous</button>
-            <button class="nav-btn" id="nextBtn" onclick="nextAyat()">Next →</button>
+            <!-- Load Trigger button -->
+            <button onclick="handleLoadAyat()" class="w-full sm:w-auto bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-zinc-950 px-8 py-3 rounded-xl font-bold text-sm tracking-wide shadow-lg shadow-amber-500/10 transform hover:-translate-y-0.5 active:translate-y-0 transition">
+                Load Ayat
+            </button>
         </div>
     </div>
-</div>
 
-<footer>
-    <p>&copy; 2026 Islamic Hub. Quran | Knowledge | Spirituality</p>
-    <p>عَلَّمَ الْقُرْآنَ</p>
+    <!-- Loading Skeletal Indicator -->
+    <div id="loading" class="hidden space-y-4 my-8">
+        <div class="shimmer h-12 w-1/3 mx-auto rounded-xl"></div>
+        <div class="shimmer h-36 w-full rounded-2xl"></div>
+        <div class="shimmer h-24 w-full rounded-xl"></div>
+    </div>
+
+    <!-- Main Live Ayat Viewer Display Card -->
+    <div id="verseDisplay" class="bg-[#0b0b0e] border border-amber-500/30 rounded-2xl shadow-2xl p-6 sm:p-8 hidden relative transition-all duration-300">
+        
+        <!-- Interactive Bookmark Indicator button -->
+        <button onclick="toggleBookmark()" class="absolute top-5 right-5 text-zinc-500 hover:text-amber-400 transition-all text-2xl" title="Bookmark Ayat">
+            <span id="bookmarkIcon">☆</span>
+        </button>
+
+        <!-- Chapter Header details -->
+        <div class="text-center border-b border-zinc-850 pb-6 mb-8">
+            <h2 class="text-3xl font-extrabold text-amber-400 tracking-wide mb-1" id="surahName">Al-Fatiha</h2>
+            <div class="text-xs text-zinc-500 font-semibold uppercase tracking-widest flex items-center justify-center gap-2">
+                <span id="surahInfoEnglish">The Opener</span>
+                <span>•</span>
+                <span id="surahInfoType" class="text-amber-500">Meccan</span>
+                <span>•</span>
+                <span id="surahInfoVerses">7 verses</span>
+            </div>
+            
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-full text-xs font-bold mt-4" id="verseNumber">
+                Ayat 1
+            </div>
+        </div>
+
+        <!-- Bismillah Header Calligraphy Callout -->
+        <div id="bismillahBanner" class="hidden text-center mb-8 pb-4 border-b border-zinc-800/30">
+            <p class="arabic-font text-3xl sm:text-4xl text-amber-300/90 select-none">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+            <p class="text-[11px] sm:text-xs text-zinc-500 tracking-wider mt-1 italic">In the name of Allah, the Entirely Merciful, the Especially Merciful.</p>
+        </div>
+
+        <!-- Advanced Audio Control Deck -->
+        <div class="bg-[#111116] border border-zinc-800 rounded-xl p-4 mb-8 flex flex-col sm:flex-row items-center gap-4 justify-between">
+            <div class="flex items-center gap-3 w-full sm:w-auto">
+                <button id="audioPlayBtn" onclick="toggleAudio()" class="w-12 h-12 flex items-center justify-center rounded-full bg-amber-500 hover:bg-amber-400 text-zinc-950 font-black transition-all transform hover:scale-105 active:scale-95 shadow-md shadow-amber-500/10">
+                    <!-- Play icon -->
+                    <svg id="playSvg" class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    <!-- Pause icon -->
+                    <svg id="pauseSvg" class="w-5 h-5 fill-current hidden" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                </button>
+                <div>
+                    <p class="text-xs font-bold text-zinc-200">Listen Recitation</p>
+                    <p class="text-[10px] text-zinc-400">Mishary Rashid Alafasy</p>
+                </div>
+            </div>
+
+            <!-- Autoplay / Continuous recitation mode selector toggler -->
+            <div class="flex items-center gap-2 bg-[#171720] border border-zinc-850 px-3 py-2 rounded-xl">
+                <span class="text-xs font-semibold text-zinc-300">Continuous Recitation</span>
+                <button id="autoplayToggle" onclick="toggleAutoplay()" class="w-12 h-6 rounded-full bg-zinc-700 relative p-1 transition-all duration-300">
+                    <div id="autoplayDot" class="w-4 h-4 bg-white rounded-full transition-all duration-300 translate-x-0"></div>
+                </button>
+            </div>
+
+            <!-- Current playback status display tag -->
+            <div id="audioStatus" class="text-xs text-zinc-400 tracking-wide bg-zinc-900 px-3 py-1.5 rounded-lg border border-zinc-800">
+                Audio Idle
+            </div>
+            <audio id="quranAudio" onended="handleAudioEnd()" onplay="audioPlaying()" onpause="audioPaused()" onwaiting="audioWaiting()" onerror="audioError()"></audio>
+        </div>
+
+        <!-- Arabic Calligraphy Text Presentation box -->
+        <div class="bg-[#111116] border border-zinc-800 rounded-xl p-6 sm:p-8 mb-6 relative">
+            <span class="absolute top-3 left-3 text-zinc-600 text-[9px] font-mono tracking-widest uppercase">Arabic (Uthmani)</span>
+            <div class="arabic-font text-right text-amber-200 select-all tracking-wide" id="arabicText" style="font-size: 2.3rem;">
+                الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ
+            </div>
+        </div>
+
+        <!-- English Translation Block -->
+        <div class="bg-[#111116]/60 border-l-4 border-amber-500 rounded-r-xl p-5 mb-8 relative">
+            <span class="absolute top-3 right-3 text-zinc-600 text-[9px] font-mono tracking-widest uppercase">Translation (Sahih Int.)</span>
+            <div class="text-zinc-300 text-sm sm:text-base leading-relaxed" id="translationText">
+                All praise is due to Allah, Lord of the worlds.
+            </div>
+        </div>
+
+        <!-- Copy & Share Quick Tray -->
+        <div class="flex items-center gap-2 mb-8 justify-end">
+            <button onclick="copyVerseToClipboard()" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-700 text-zinc-400 hover:text-zinc-200 rounded-lg text-xs transition">
+                📋 Copy Ayat Text
+            </button>
+            <span id="copyFeedback" class="text-xs text-emerald-400 font-semibold opacity-0 transition-opacity duration-300">Copied!</span>
+        </div>
+
+        <!-- Next/Prev Chapter and Verse navigation buttons -->
+        <div class="grid grid-cols-2 gap-4 border-t border-zinc-850 pt-6">
+            <button class="flex items-center justify-center gap-2 py-3 bg-[#111116] hover:bg-zinc-850 text-zinc-300 hover:text-white border border-zinc-800 hover:border-zinc-750 rounded-xl font-semibold text-sm transition disabled:opacity-40 disabled:cursor-not-allowed" id="prevBtn" onclick="previousAyat()">
+                ← Previous Ayat
+            </button>
+            <button class="flex items-center justify-center gap-2 py-3 bg-[#111116] hover:bg-zinc-850 text-zinc-300 hover:text-white border border-zinc-800 hover:border-zinc-750 rounded-xl font-semibold text-sm transition disabled:opacity-40 disabled:cursor-not-allowed" id="nextBtn" onclick="nextAyat()">
+                Next Ayat →
+            </button>
+        </div>
+    </div>
+
+    <!-- Bookmarks persistent container -->
+    <div class="bg-[#0b0b0e] border border-zinc-850 rounded-xl p-4 sm:p-6 mt-8">
+        <h4 class="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+            <span>🔖</span> Your Bookmarked Ayats
+        </h4>
+        <div id="bookmarksList" class="flex flex-wrap gap-2 text-xs">
+            <!-- Populated programmatically -->
+            <p class="text-zinc-500 italic">No bookmarked verses saved yet.</p>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-[#030304] border-t border-zinc-850 py-8 text-center text-zinc-500">
+    <p class="text-xs sm:text-sm mb-2">&copy; 2026 Islamic Hub. Alafasy Recitations. Quran Explorer Powered by Authentic cloud APIs.</p>
+    <p class="arabic-font text-amber-500/35 text-xl select-none">عَلَّمَ الْقُرْآنَ</p>
 </footer>
 
 <script>
+    // All 114 Surahs details including total verse count and location
     const surahs = [
         {number: 1, name: "Al-Fatihah", english: "The Opener", verses: 7, revelation: "Meccan"},
         {number: 2, name: "Al-Baqarah", english: "The Cow", verses: 286, revelation: "Medinan"},
@@ -486,29 +387,52 @@
         {number: 114, name: "An-Nas", english: "The Mankind", verses: 6, revelation: "Meccan"}
     ];
 
+    // State Variables
     let currentSurah = 1;
     let currentAyat = 1;
+    let bookmarks = [];
+    let continuousPlay = false; // "Recites full automatically" toggle status
+    let autoPlayAudioOnLoad = false; // Flag to play audio immediately after continuous navigation
 
     window.onload = function() {
-        populateSurahDropdown();
-        currentSurah = 1;
-        currentAyat = 1;
-        loadSurah();
-        loadAyat();
+        populateSurahDropdown(surahs);
+        loadSurahDropdownChange(); // Automatically populates Ayats for Surah 1 on load
+        loadSavedBookmarks();
+        loadAyat(); // Pre-load the Al-Fatihah, Ayat 1
     };
 
-    function populateSurahDropdown() {
+    // Populate Surah selection dynamically
+    function populateSurahDropdown(list) {
         const select = document.getElementById('surahSelect');
-        surahs.forEach(surah => {
+        select.innerHTML = '';
+        list.forEach(surah => {
             const option = document.createElement('option');
             option.value = surah.number;
             option.textContent = `${surah.number}. ${surah.name} (${surah.english})`;
             select.appendChild(option);
         });
-        select.value = 1;
     }
 
-    function loadSurah() {
+    // Filter list of Surahs based on typing input
+    function filterSurahs() {
+        const q = document.getElementById('surahSearch').value.toLowerCase();
+        const filtered = surahs.filter(s => 
+            s.name.toLowerCase().includes(q) || 
+            s.english.toLowerCase().includes(q) || 
+            s.number.toString() === q
+        );
+        
+        populateSurahDropdown(filtered);
+        
+        // Auto-select first matching item
+        if (filtered.length > 0) {
+            document.getElementById('surahSelect').value = filtered[0].number;
+            loadSurahDropdownChange();
+        }
+    }
+
+    // Handle updates when the selected Surah is modified
+    function loadSurahDropdownChange() {
         const surahNum = document.getElementById('surahSelect').value;
         if (!surahNum) return;
         
@@ -527,85 +451,340 @@
         currentAyat = 1;
     }
 
+    // Manual load event handler from interface button
     function handleLoadAyat() {
-        const surahNum = parseInt(document.getElementById('surahSelect').value);
-        const ayatNum = parseInt(document.getElementById('ayatSelect').value);
-        
-        if (!surahNum || !ayatNum) {
-            alert('Please select both Surah and Ayat!');
-            return;
-        }
-        
-        currentSurah = surahNum;
-        currentAyat = ayatNum;
+        currentSurah = parseInt(document.getElementById('surahSelect').value);
+        currentAyat = parseInt(document.getElementById('ayatSelect').value);
+        autoPlayAudioOnLoad = false; // Reset autoplay on manual click
         loadAyat();
     }
 
     async function loadAyat() {
-        const surahNum = currentSurah;
-        const ayatNum = currentAyat;
+        const loading = document.getElementById('loading');
+        const display = document.getElementById('verseDisplay');
+        const audio = document.getElementById('quranAudio');
         
-        if (!surahNum || !ayatNum) {
-            alert('Invalid Surah or Ayat!');
-            return;
-        }
-        
-        document.getElementById('loading').style.display = 'block';
-        document.getElementById('verseDisplay').classList.remove('active');
+        // Securely stop existing playback streams
+        audio.pause();
+        audio.src = '';
+        resetAudioUI();
 
-        setTimeout(() => {
-            try {
-                const surah = surahs.find(s => s.number === surahNum);
-                
-                // Sample verses database
-                const verseDB = {
-                    '1:1': { arabic: 'الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ', english: 'All praise is due to Allah, Lord of the worlds' },
-                    '1:2': { arabic: 'الرَّحْمَٰنِ الرَّحِيمِ', english: 'The Most Merciful, the Especially Merciful' },
-                    '2:1': { arabic: 'الم', english: 'Alif, Lam, Meem' },
-                    '112:1': { arabic: 'قُلْ هُوَ اللَّهُ أَحَدٌ', english: 'Say, "He is Allah, [Who is] One"' }
-                };
+        loading.classList.remove('hidden');
+        display.classList.add('hidden');
 
-                const verseKey = `${surahNum}:${ayatNum}`;
-                const verse = verseDB[verseKey] || { 
-                    arabic: 'بسم الله الرحمن الرحيم', 
-                    english: 'In the name of Allah, the Most Merciful' 
-                };
+        try {
+            const selectedSurahMeta = surahs.find(s => s.number === currentSurah);
+            if (!selectedSurahMeta) throw new Error("Surah metadata not found.");
 
-                document.getElementById('surahName').textContent = surah.name;
-                document.getElementById('surahInfo').textContent = `${surah.revelation} • ${surah.verses} verses`;
-                document.getElementById('verseNumber').textContent = `Ayat ${ayatNum}`;
-                document.getElementById('arabicText').textContent = verse.arabic;
-                document.getElementById('translationText').textContent = verse.english;
-
-                document.getElementById('prevBtn').disabled = ayatNum === 1;
-                document.getElementById('nextBtn').disabled = ayatNum === surah.verses;
-
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('verseDisplay').classList.add('active');
-            } catch (error) {
-                document.getElementById('loading').style.display = 'none';
-                alert('Error: ' + error.message);
+            // Request both Uthmani scripture and Sahih International translation in one efficient call
+            const response = await fetch(`https://api.alquran.cloud/v1/ayah/${currentSurah}:${currentAyat}/editions/quran-uthmani,en.sahih`);
+            
+            if (!response.ok) {
+                throw new Error("Unable to establish safe connection to Quran cloud repository.");
             }
-        }, 500);
+            
+            const result = await response.json();
+            
+            if (result.code !== 200 || !result.data) {
+                throw new Error("API failed to return expected Holy Scripture.");
+            }
+
+            let arabicRaw = result.data[0].text;
+            const englishRaw = result.data[1].text;
+            const absoluteAyatNum = result.data[0].number;
+
+            // Standardize Bismillah stripping (API prefixes first Ayah of Surahs with standard Bismillah).
+            // We strip it from the main verse block and represent it nicely in our stylized calligraphy header instead.
+            const bismillahPrefix = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ";
+            const bismillahBanner = document.getElementById('bismillahBanner');
+            
+            if (currentAyat === 1 && currentSurah !== 9) {
+                // Show customized calligraphy banner
+                bismillahBanner.classList.remove('hidden');
+                
+                // Strip the duplicate text (Except for Al-Fatihah, where Bismillah IS Ayah 1)
+                if (currentSurah !== 1 && arabicRaw.startsWith(bismillahPrefix)) {
+                    arabicRaw = arabicRaw.substring(bismillahPrefix.length).trim();
+                }
+            } else {
+                bismillahBanner.classList.add('hidden');
+            }
+
+            // Fill card data
+            document.getElementById('surahName').textContent = selectedSurahMeta.name;
+            document.getElementById('surahInfoEnglish').textContent = selectedSurahMeta.english;
+            document.getElementById('surahInfoType').textContent = selectedSurahMeta.revelation;
+            document.getElementById('surahInfoVerses').textContent = `${selectedSurahMeta.verses} verses`;
+            document.getElementById('verseNumber').textContent = `Ayat ${currentAyat}`;
+            document.getElementById('arabicText').textContent = arabicRaw;
+            document.getElementById('translationText').textContent = englishRaw;
+
+            // Direct stream reciter endpoint (Alafasy audio index relies on absolute Quranic Verse indices)
+            audio.src = `https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/${absoluteAyatNum}`;
+            audio.load();
+
+            // Set state-based navigation limitations
+            document.getElementById('prevBtn').disabled = (currentSurah === 1 && currentAyat === 1);
+            document.getElementById('nextBtn').disabled = (currentSurah === 114 && currentAyat === 6); // limit of Surah An-Nas
+
+            // Toggle correct active Bookmark UI star
+            updateBookmarkButtonUI();
+
+            // End skeleton loaders and show card
+            loading.classList.add('hidden');
+            display.classList.remove('hidden');
+
+            // Autoplay execution if continuous chain sequence is active
+            if (autoPlayAudioOnLoad) {
+                audio.play().catch(e => {
+                    console.log("Autoplay was blocked by browser permissions until user interacts.", e);
+                    document.getElementById('audioStatus').textContent = "⚠️ Click Play to begin continuous loop";
+                });
+            }
+        } catch (error) {
+            loading.classList.add('hidden');
+            showNotification('Error loading verse: ' + error.message, 'error');
+        }
     }
 
     function previousAyat() {
         if (currentAyat > 1) {
             currentAyat--;
-            document.getElementById('ayatSelect').value = currentAyat;
-            loadAyat();
+            updateSelectionSelectorsAndReload();
+        } else if (currentSurah > 1) {
+            currentSurah--;
+            const prevSurahMeta = surahs.find(s => s.number === currentSurah);
+            currentAyat = prevSurahMeta.verses;
+            updateSelectionSelectorsAndReload();
         }
     }
 
     function nextAyat() {
-        const surah = surahs.find(s => s.number === currentSurah);
-        if (currentAyat < surah.verses) {
+        const currentSurahMeta = surahs.find(s => s.number === currentSurah);
+        if (currentAyat < currentSurahMeta.verses) {
             currentAyat++;
-            document.getElementById('ayatSelect').value = currentAyat;
-            loadAyat();
+            updateSelectionSelectorsAndReload();
+        } else if (currentSurah < 114) {
+            currentSurah++;
+            currentAyat = 1;
+            updateSelectionSelectorsAndReload();
+        } else {
+            // Reached Surah An-Nas (End of Quran)
+            autoPlayAudioOnLoad = false;
+            resetAudioUI();
+            showNotification('Reached the end of the Holy Quran!', 'info');
         }
     }
-</script>
 
-</body>
-</html>
+    // Update active index select list options when navigated
+    function updateSelectionSelectorsAndReload() {
+        document.getElementById('surahSelect').value = currentSurah;
+        
+        // Regenerate and match selected Ayat dropdowns
+        const surah = surahs.find(s => s.number === currentSurah);
+        const ayatSelect = document.getElementById('ayatSelect');
+        ayatSelect.innerHTML = '';
+        for (let i = 1; i <= surah.verses; i++) {
+            const option = document.createElement('option');
+            option.value = i;
+            option.textContent = `Ayat ${i}`;
+            ayatSelect.appendChild(option);
+        }
+        
+        document.getElementById('ayatSelect').value = currentAyat;
+        loadAyat();
+    }
+
+    // Playback control
+    function toggleAudio() {
+        const audio = document.getElementById('quranAudio');
+        if (audio.paused) {
+            audio.play().catch(err => {
+                showNotification('Could not stream Alafasy recitation audio.', 'error');
+            });
+        } else {
+            audio.pause();
+        }
+    }
+
+    // Toggle continuous playing state
+    function toggleAutoplay() {
+        continuousPlay = !continuousPlay;
+        const toggleBtn = document.getElementById('autoplayToggle');
+        const toggleDot = document.getElementById('autoplayDot');
+        
+        if (continuousPlay) {
+            toggleBtn.classList.replace('bg-zinc-700', 'bg-amber-500');
+            toggleDot.classList.replace('translate-x-0', 'translate-x-6');
+            showNotification('Continuous Recitation Mode: Activated', 'success');
+        } else {
+            toggleBtn.classList.replace('bg-amber-500', 'bg-zinc-700');
+            toggleDot.classList.replace('translate-x-6', 'translate-x-0');
+            showNotification('Continuous Recitation Mode: Deactivated', 'info');
+        }
+    }
+
+    // Custom Audio Event Handlers
+    function audioPlaying() {
+        document.getElementById('playSvg').classList.add('hidden');
+        document.getElementById('pauseSvg').classList.remove('hidden');
+        document.getElementById('audioStatus').textContent = "⚡ Playing Recitation";
+        document.getElementById('audioStatus').className = "text-xs text-amber-400 font-semibold tracking-wide bg-amber-500/10 px-3 py-1.5 rounded-lg border border-amber-500/20";
+    }
+
+    function audioPaused() {
+        document.getElementById('playSvg').classList.remove('hidden');
+        document.getElementById('pauseSvg').classList.add('hidden');
+        document.getElementById('audioStatus').textContent = "⏸️ Paused";
+        document.getElementById('audioStatus').className = "text-xs text-zinc-400 tracking-wide bg-zinc-900 px-3 py-1.5 rounded-lg border border-zinc-850";
+    }
+
+    // Executed when a recitation finishes playing
+    function handleAudioEnd() {
+        resetAudioUI();
+        if (continuousPlay) {
+            // Set flag to execute continuous playback immediately on loading next verse
+            autoPlayAudioOnLoad = true;
+            nextAyat();
+        }
+    }
+
+    function audioWaiting() {
+        document.getElementById('audioStatus').textContent = "⏳ Streaming Reciter...";
+    }
+
+    function audioError() {
+        document.getElementById('audioStatus').textContent = "⚠️ Stream Timeout";
+        document.getElementById('audioStatus').className = "text-xs text-red-400 tracking-wide bg-red-950/20 px-3 py-1.5 rounded-lg border border-red-900/30";
+    }
+
+    function resetAudioUI() {
+        document.getElementById('playSvg').classList.remove('hidden');
+        document.getElementById('pauseSvg').classList.add('hidden');
+        document.getElementById('audioStatus').textContent = "Audio Idle";
+        document.getElementById('audioStatus').className = "text-xs text-zinc-500 tracking-wide bg-zinc-900 px-3 py-1.5 rounded-lg border border-zinc-800";
+    }
+
+    // Modify active arabic viewer font sizes
+    function changeFontSize(increment) {
+        const textElement = document.getElementById('arabicText');
+        let currentSize = parseFloat(textElement.style.fontSize);
+        let newSize = currentSize + (increment * 0.1);
+        if (newSize >= 1.5 && newSize <= 4.0) {
+            textElement.style.fontSize = `${newSize}rem`;
+        }
+    }
+
+    // Securely copy text to clipboard without iframe blocks
+    function copyVerseToClipboard() {
+        const arabic = document.getElementById('arabicText').textContent.trim();
+        const translation = document.getElementById('translationText').textContent.trim();
+        const meta = `${document.getElementById('surahName').textContent} [${currentSurah}:${currentAyat}]`;
+        
+        const fullText = `"${arabic}"\n\n${translation}\n\n- ${meta}`;
+
+        const textarea = document.createElement('textarea');
+        textarea.value = fullText;
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            const feedback = document.getElementById('copyFeedback');
+            feedback.style.opacity = '1';
+            setTimeout(() => { feedback.style.opacity = '0'; }, 2000);
+        } catch (err) {
+            showNotification('Failed to copy text.', 'error');
+        }
+        document.body.removeChild(textarea);
+    }
+
+    // Mobile Drawer visibility modifier
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobileMenu');
+        menu.classList.toggle('hidden');
+    }
+
+    // Persistent bookmarks system
+    function loadSavedBookmarks() {
+        const stored = localStorage.getItem('quran_explorer_bookmarks');
+        if (stored) {
+            bookmarks = JSON.parse(stored);
+        }
+        renderBookmarksTray();
+    }
+
+    function toggleBookmark() {
+        const bookmarkKey = `${currentSurah}:${currentAyat}`;
+        const index = bookmarks.indexOf(bookmarkKey);
+        
+        if (index === -1) {
+            bookmarks.push(bookmarkKey);
+            showNotification('Ayat successfully bookmarked!', 'success');
+        } else {
+            bookmarks.splice(index, 1);
+            showNotification('Bookmark removed.', 'info');
+        }
+        
+        localStorage.setItem('quran_explorer_bookmarks', JSON.stringify(bookmarks));
+        updateBookmarkButtonUI();
+        renderBookmarksTray();
+    }
+
+    function updateBookmarkButtonUI() {
+        const bookmarkKey = `${currentSurah}:${currentAyat}`;
+        const hasBookmark = bookmarks.includes(bookmarkKey);
+        const icon = document.getElementById('bookmarkIcon');
+        
+        if (hasBookmark) {
+            icon.textContent = '★';
+            icon.classList.add('text-amber-400');
+            icon.classList.remove('text-zinc-500');
+        } else {
+            icon.textContent = '☆';
+            icon.classList.add('text-zinc-500');
+            icon.classList.remove('text-amber-400');
+        }
+    }
+
+    function renderBookmarksTray() {
+        const container = document.getElementById('bookmarksList');
+        container.innerHTML = '';
+        
+        if (bookmarks.length === 0) {
+            container.innerHTML = '<p class="text-zinc-500 italic">No bookmarked verses saved yet.</p>';
+            return;
+        }
+
+        bookmarks.forEach(key => {
+            const [surahNum, ayatNum] = key.split(':');
+            const surahMeta = surahs.find(s => s.number === parseInt(surahNum));
+            if (!surahMeta) return;
+            
+            const badge = document.createElement('button');
+            badge.className = "px-3 py-1.5 bg-[#111116] hover:bg-amber-500/10 text-amber-400 border border-zinc-800 hover:border-amber-500/30 rounded-lg transition text-[11px] font-semibold";
+            badge.textContent = `${surahMeta.name} (${surahNum}:${ayatNum})`;
+            badge.onclick = () => {
+                currentSurah = parseInt(surahNum);
+                currentAyat = parseInt(ayatNum);
+                autoPlayAudioOnLoad = false; // Reset continuous playback on click
+                updateSelectionSelectorsAndReload();
+            };
+            container.appendChild(badge);
+        });
+    }
+
+    // Custom Notification helper to replace alerts
+    function showNotification(message, type) {
+        const toast = document.createElement('div');
+        toast.className = `fixed bottom-6 right-6 px-5 py-3 rounded-xl shadow-2xl text-xs font-bold tracking-wide transition-all transform translate-y-10 opacity-0 z-50 flex items-center gap-2 ${
+            type === 'error' ? 'bg-red-500/10 text-red-400 border border-red-500/20' : 
+            type === 'success' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 
+            'bg-zinc-800 text-zinc-300 border border-zinc-700'
+        }`;
+        toast.innerHTML = `<span>🔔</span> ${message}`;
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.classList.replace('translate-y-10', 'translate-y-0');
+            toast.classList.replace('opacity-0', 'opacity-100');
+        },
