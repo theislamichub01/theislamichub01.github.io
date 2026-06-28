@@ -3,256 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Islamic Hub - Your Complete Islamic Resource</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Islamic Hub - Knowledge & Spirituality</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            background: #0a0a0a;
+            color: #e0e0e0;
             overflow-x: hidden;
         }
 
-        /* ANIMATED BACKGROUND WITH GEOMETRIC PATTERNS */
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
-            background-size: 400% 400%;
-            animation: gradientFlow 20s ease infinite;
-            z-index: -2;
-        }
-
-        @keyframes gradientFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* FLOATING GEOMETRIC SHAPES */
-        .bg-shapes {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .shape {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 50%;
-            animation: float 20s infinite ease-in-out;
-        }
-
-        .shape.square {
-            border-radius: 20px;
-            transform: rotate(45deg);
-        }
-
-        .shape:nth-child(1) {
-            width: 300px;
-            height: 300px;
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-            animation-duration: 25s;
-        }
-
-        .shape:nth-child(2) {
-            width: 200px;
-            height: 200px;
-            top: 60%;
-            right: 15%;
-            animation-delay: 2s;
-            animation-duration: 30s;
-        }
-
-        .shape:nth-child(3) {
-            width: 400px;
-            height: 400px;
-            bottom: 10%;
-            left: 50%;
-            animation-delay: 4s;
-            animation-duration: 35s;
-        }
-
-        .shape:nth-child(4) {
-            width: 150px;
-            height: 150px;
-            top: 30%;
-            right: 30%;
-            animation-delay: 6s;
-            animation-duration: 22s;
-        }
-
-        .shape:nth-child(5) {
-            width: 250px;
-            height: 250px;
-            bottom: 30%;
-            left: 20%;
-            animation-delay: 8s;
-            animation-duration: 28s;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) translateX(0) rotate(0deg);
-            }
-            25% {
-                transform: translateY(-50px) translateX(50px) rotate(90deg);
-            }
-            50% {
-                transform: translateY(-100px) translateX(0) rotate(180deg);
-            }
-            75% {
-                transform: translateY(-50px) translateX(-50px) rotate(270deg);
-            }
-        }
-
-        /* PARTICLES */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.6;
-            animation: rise 15s infinite ease-in;
-        }
-
-        @keyframes rise {
-            0% {
-                transform: translateY(100vh) scale(0);
-                opacity: 0;
-            }
-            50% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(-100vh) scale(1);
-                opacity: 0;
-            }
-        }
-
-        /* HEADER WITH GLASSMORPHISM */
+        /* HEADER */
         header {
-            background: rgba(102, 126, 234, 0.85);
+            background: rgba(15, 15, 15, 0.95);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-            color: white;
+            border-bottom: 2px solid #d4af37;
             padding: 1rem 0;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.15);
         }
 
         nav {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
-        }
-
-        .nav-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
         }
 
         .logo {
             font-size: 2rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: glow 3s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-            0%, 100% {
-                text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 10px rgba(255,255,255,0.3);
-            }
-            50% {
-                text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.6);
-            }
-        }
-
-        .menu-toggle {
-            display: none;
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem 1rem;
-            border-radius: 10px;
-            transition: all 0.3s;
-        }
-
-        .menu-toggle:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
+            font-weight: 800;
+            background: linear-gradient(135deg, #d4af37, #f0e68c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 1rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
             justify-content: center;
         }
 
         .nav-links a {
-            color: white;
+            color: #e0e0e0;
             text-decoration: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 12px;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
             transition: all 0.3s;
-            font-size: 0.95rem;
             font-weight: 500;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #d4af37;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-links a:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            color: #d4af37;
         }
 
-        /* HERO SECTION - STUNNING! */
+        /* HERO */
         .hero {
-            text-align: center;
-            padding: 8rem 2rem;
-            color: white;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
             position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
         }
 
         .hero::before {
@@ -262,252 +102,108 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 70%);
-            pointer-events: none;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
         }
 
         .hero h1 {
-            font-size: 5rem;
-            margin-bottom: 1.5rem;
-            text-shadow: 4px 4px 8px rgba(0,0,0,0.4);
-            animation: fadeInDown 1s ease-out;
-            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 50%, #ffffff 100%);
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #d4af37, #ffd700, #d4af37);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-weight: 900;
-            letter-spacing: 2px;
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            letter-spacing: 1px;
+            line-height: 1.2;
         }
 
         .hero p {
-            font-size: 2rem;
-            margin-bottom: 3rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: fadeInUp 1s ease-out 0.3s both;
+            font-size: 1.3rem;
+            color: #c0c0c0;
+            margin-bottom: 2.5rem;
             font-weight: 300;
-            letter-spacing: 1px;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            letter-spacing: 0.5px;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 1.5rem 4rem;
-            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
-            color: #667eea;
+            padding: 1.2rem 3.5rem;
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            color: #0a0a0a;
             text-decoration: none;
             border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.4rem;
-            transition: all 0.4s;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            animation: fadeInUp 1s ease-out 0.6s both;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: all 0.5s;
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+            border: none;
+            cursor: pointer;
+            letter-spacing: 1px;
         }
 
         .cta-button:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.5);
         }
 
-        .container {
-            max-width: 1200px;
+        /* FEATURES */
+        .features {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 2rem;
         }
 
         .section-title {
             text-align: center;
-            color: white;
-            font-size: 3.5rem;
-            margin-bottom: 4rem;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-weight: 800;
-            position: relative;
-            animation: fadeIn 1s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 150px;
-            height: 5px;
-            background: linear-gradient(90deg, transparent, white, transparent);
-            margin: 1rem auto 0;
-            border-radius: 10px;
-        }
-
-        /* STATS SECTION - GLASSMORPHISM BEAUTY */
-        .stats-section {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            padding: 5rem 3rem;
-            border-radius: 40px;
-            margin: 5rem auto;
+        .section-subtitle {
             text-align: center;
-            box-shadow: 0 15px 60px rgba(0,0,0,0.3);
-            position: relative;
-            overflow: hidden;
+            font-size: 1rem;
+            color: #888;
+            margin-bottom: 4rem;
+            letter-spacing: 1px;
         }
 
-        .stats-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(102, 126, 234, 0.05), transparent);
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-
-        .stats-section h2 {
-            color: #667eea;
-            font-size: 3.5rem;
-            margin-bottom: 3rem;
-            font-weight: 900;
-            position: relative;
-            z-index: 1;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-top: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .stat-item {
-            padding: 2.5rem 1.5rem;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 25px;
-            border: 2px solid rgba(102, 126, 234, 0.2);
-            transition: all 0.4s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-            transform: translateY(100%);
-            transition: transform 0.4s;
-        }
-
-        .stat-item:hover::before {
-            transform: translateY(0);
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
-            border-color: #667eea;
-        }
-
-        .stat-number {
-            font-size: 4.5rem;
-            color: #667eea;
-            font-weight: 900;
-            display: block;
-            animation: countUp 2s ease-out;
-            position: relative;
-            z-index: 1;
-        }
-
-        @keyframes countUp {
-            from {
-                opacity: 0;
-                transform: scale(0.3) rotate(-10deg);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) rotate(0deg);
-            }
-        }
-
-        .stat-label {
-            color: #666;
-            font-size: 1.3rem;
-            margin-top: 0.5rem;
-            font-weight: 700;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* FEATURES GRID - ULTIMATE BEAUTY */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            padding: 3rem;
-            border-radius: 30px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: rgba(212, 175, 55, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            padding: 2.5rem;
+            border-radius: 12px;
             text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
             position: relative;
             overflow: hidden;
         }
@@ -518,710 +214,260 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 6px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s;
-        }
-
-        .feature-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .feature-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), transparent);
             opacity: 0;
-            transition: opacity 0.5s;
-            pointer-events: none;
-        }
-
-        .feature-card:hover::after {
-            opacity: 1;
+            transition: opacity 0.3s;
         }
 
         .feature-card:hover {
-            transform: translateY(-20px) scale(1.03);
-            box-shadow: 0 30px 80px rgba(102, 126, 234, 0.5);
+            border-color: #d4af37;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
         }
 
         .feature-icon {
-            font-size: 6rem;
-            margin-bottom: 2rem;
-            animation: float 4s ease-in-out infinite;
-            display: inline-block;
-            filter: drop-shadow(0 10px 20px rgba(102, 126, 234, 0.3));
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
 
-        @keyframes float {
-            0%, 100% { 
-                transform: translateY(0) rotate(0deg); 
-            }
-            50% { 
-                transform: translateY(-15px) rotate(5deg); 
-            }
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #d4af37;
+            margin-bottom: 0.8rem;
         }
 
-        .feature-card h3 {
-            color: #667eea;
-            margin-bottom: 1.5rem;
-            font-size: 2rem;
+        .feature-desc {
+            color: #999;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* STATS */
+        .stats {
+            padding: 4rem 2rem;
+            background: rgba(212, 175, 55, 0.05);
+            border-top: 2px solid #d4af37;
+            border-bottom: 2px solid #d4af37;
+            margin: 3rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: #d4af37;
             font-weight: 800;
+            margin-bottom: 0.5rem;
         }
 
-        .feature-card p {
-            color: #666;
-            margin-bottom: 2rem;
-            line-height: 1.9;
-            font-size: 1.1rem;
+        .stat-item p {
+            color: #999;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
         }
 
-        .feature-card a {
-            display: inline-block;
-            padding: 1.2rem 2.5rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 15px;
-            transition: all 0.4s;
-            font-weight: 700;
-            font-size: 1.05rem;
-            position: relative;
-            overflow: hidden;
+        /* CALL TO ACTION */
+        .cta-section {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(212, 175, 55, 0.02));
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            max-width: 900px;
+            margin: 4rem auto;
         }
 
-        .feature-card a::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .feature-card a:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .feature-card a:hover {
-            transform: scale(1.08);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.6);
-        }
-
-        /* SUPPORT BUTTON - FLOATING */
-        .support-button {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
-            z-index: 1000;
-            transition: all 0.4s;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
-            }
-            50% {
-                box-shadow: 0 8px 50px rgba(102, 126, 234, 0.9);
-            }
-        }
-
-        .support-button:hover {
-            transform: scale(1.2) rotate(360deg);
-            box-shadow: 0 12px 50px rgba(102, 126, 234, 0.9);
-        }
-
-        /* MODAL - GLASSMORPHISM */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(10px);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            animation: fadeIn 0.3s;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            padding: 3rem;
-            border-radius: 30px;
-            max-width: 750px;
-            width: 90%;
-            max-height: 85vh;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 20px 80px rgba(0,0,0,0.3);
-            animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-50px) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-            font-size: 2rem;
-            cursor: pointer;
-            color: white;
-            transition: all 0.3s;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        .modal-close:hover {
-            transform: rotate(90deg) scale(1.1);
-            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
-        }
-
-        .modal-tabs {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            border-bottom: 3px solid rgba(102, 126, 234, 0.2);
-            flex-wrap: wrap;
-        }
-
-        .tab-button {
-            padding: 1.2rem 2.5rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-            color: #666;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s;
-            font-weight: 700;
-            position: relative;
-        }
-
-        .tab-button::before {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            transition: width 0.3s;
-        }
-
-        .tab-button.active::before {
-            width: 100%;
-        }
-
-        .tab-button.active {
-            color: #667eea;
-        }
-
-        .tab-button:hover {
-            color: #667eea;
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.4s;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .tab-content h3 {
-            color: #667eea;
-            margin-bottom: 2rem;
+        .cta-section h2 {
             font-size: 2.2rem;
+            color: #d4af37;
+            margin-bottom: 1rem;
             font-weight: 800;
         }
 
-        .tab-content p {
-            margin-bottom: 1.8rem;
-            line-height: 2;
+        .cta-section p {
             font-size: 1.1rem;
-            color: #444;
-        }
-
-        .tab-content strong {
-            color: #667eea;
-            font-weight: 700;
-        }
-
-        .tab-content a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s;
-        }
-
-        .tab-content a:hover {
-            color: #764ba2;
-            text-decoration: underline;
+            color: #bbb;
+            margin-bottom: 2rem;
+            line-height: 1.8;
         }
 
         /* FOOTER */
         footer {
-            background: rgba(102, 126, 234, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(255, 255, 255, 0.18);
-            color: white;
+            background: #000;
+            border-top: 2px solid #d4af37;
+            padding: 3rem 2rem;
             text-align: center;
-            padding: 4rem;
-            margin-top: 6rem;
-            box-shadow: 0 -8px 30px rgba(0,0,0,0.2);
-            position: relative;
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, transparent, rgba(255,255,255,0.05), transparent);
-            pointer-events: none;
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 4rem;
         }
 
         footer p {
-            font-size: 1.1rem;
-            margin: 0.5rem 0;
-            position: relative;
-            z-index: 1;
+            margin-bottom: 0.5rem;
         }
 
-        footer a {
-            color: white;
+        .footer-links {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #d4af37;
             text-decoration: none;
-            font-weight: 700;
             transition: all 0.3s;
         }
 
-        footer a:hover {
-            text-decoration: underline;
-            text-shadow: 0 0 10px rgba(255,255,255,0.8);
+        .footer-links a:hover {
+            color: #ffd700;
         }
 
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                margin-top: 1rem;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .hero p {
-                font-size: 1.5rem;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stat-number {
-                font-size: 3.5rem;
-            }
-
-            .feature-icon {
-                font-size: 4rem;
-            }
-        }
-
-        /* SCROLLBAR STYLING */
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(102, 126, 234, 0.1);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1rem; }
+            .section-title { font-size: 2rem; }
+            .nav-links { gap: 0.8rem; font-size: 0.85rem; }
         }
     </style>
 </head>
 <body>
-    <div class="animated-bg"></div>
+
+<header>
+    <nav>
+        <div class="logo">☪ ISLAMIC HUB</div>
+        <ul class="nav-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li><a href="prayer-tools.html">🕌 Prayer</a></li>
+            <li><a href="quran.html">📕 Quran</a></li>
+            <li><a href="halal-games.html">🎮 Games</a></li>
+            <li><a href="kids-stories.html">👶 Kids</a></li>
+            <li><a href="community.html">💬 Chat</a></li>
+            <li><a href="islamic-library.html">📚 Library</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Discover Islamic Wisdom</h1>
+        <p>Explore authentic Islamic knowledge, connect with community, and grow spiritually</p>
+        <button class="cta-button" onclick="document.querySelector('.features').scrollIntoView({behavior: 'smooth'})">Explore Now</button>
+    </div>
+</section>
+
+<section class="features">
+    <h2 class="section-title">Our Premium Features</h2>
+    <p class="section-subtitle">CAREFULLY CURATED ISLAMIC RESOURCES</p>
     
-    <!-- GEOMETRIC SHAPES -->
-    <div class="bg-shapes">
-        <div class="shape"></div>
-        <div class="shape square"></div>
-        <div class="shape"></div>
-        <div class="shape square"></div>
-        <div class="shape"></div>
-    </div>
-
-    <!-- PARTICLES -->
-    <div class="particles" id="particles"></div>
-
-    <header>
-        <nav>
-            <div class="nav-top">
-                <div class="logo">☪ Islamic Hub</div>
-                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-            </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">🏠 Home</a></li>
-                <li><a href="prayer-tools.html">🕌 Prayer</a></li>
-                <li><a href="quran.html">📕 Quran</a></li>
-                <li><a href="daily-hadith.html">📖 Hadith</a></li>
-                <li><a href="ayah-of-the-day.html">🌟 Ayah</a></li>
-                <li><a href="dua-of-the-day.html">🤲 Dua</a></li>
-                <li><a href="calendar.html">📅 Calendar</a></li>
-                <li><a href="zakat-calculator.html">💰 Zakat</a></li>
-                <li><a href="kids-stories.html">👶 Kids</a></li>
-                <li><a href="dawah.html">📢 Dawah</a></li>
-                <li><a href="community.html">💬 Community</a></li>
-                <li><a href="halal-games.html">🎮 Games</a></li>
-                <li><a href="islamic-library.html">📚 Library</a></li>
-                <li><a href="islamic-courses.html">🎓 Courses</a></li>
-                <li><a href="chat.html">💬 Chat</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <h1>Welcome to Islamic Hub</h1>
-        <p>Your Complete Islamic Resource Platform</p>
-        <a href="#features" class="cta-button">Explore Now ✨</a>
-    </section>
-
-    <div class="container">
-        <h2 class="section-title">📊 Platform Statistics</h2>
-        <div class="stats-section">
-            <h2>Serving the Ummah Worldwide 🌍</h2>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-number">15</span>
-                    <span class="stat-label">Complete Features</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">75+</span>
-                    <span class="stat-label">Kids Stories</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">195</span>
-                    <span class="stat-label">Countries</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">16</span>
-                    <span class="stat-label">Authentic Books</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">15</span>
-                    <span class="stat-label">Islamic Courses</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Free Forever</span>
-                </div>
-            </div>
+    <div class="features-grid">
+        <div class="feature-card" onclick="location.href='prayer-tools.html'">
+            <div class="feature-icon">🕌</div>
+            <div class="feature-title">Prayer Tools</div>
+            <div class="feature-desc">Prayer times, Qibla direction, and guided prayers for daily spiritual practice</div>
         </div>
 
-        <h2 class="section-title" id="features">🌟 Our Features</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🕌</div>
-                <h3>Prayer Tools</h3>
-                <p>Accurate prayer times, Qibla direction, and Islamic calendar for your location worldwide.</p>
-                <a href="prayer-tools.html">Access Tools →</a>
-            </div>
+        <div class="feature-card" onclick="location.href='quran.html'">
+            <div class="feature-icon">📕</div>
+            <div class="feature-title">Quran Explorer</div>
+            <div class="feature-desc">Complete Quran with translations, tafsir, and beautiful recitations</div>
+        </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">📕</div>
-                <h3>Quran Reader</h3>
-                <p>Read the Holy Quran with translations and tafsir. Beautiful interface, multiple reciters.</p>
-                <a href="quran.html">Read Quran →</a>
-            </div>
+        <div class="feature-card" onclick="location.href='halal-games.html'">
+            <div class="feature-icon">🎮</div>
+            <div class="feature-title">Halal Games</div>
+            <div class="feature-desc">Educational Islamic games to test and expand your knowledge while earning coins</div>
+        </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">📖</div>
-                <h3>Daily Hadith</h3>
-                <p>Discover authentic Hadith from Sahih collections. Learn the Sunnah of the Prophet ﷺ daily.</p>
-                <a href="daily-hadith.html">Read Hadith →</a>
-            </div>
+        <div class="feature-card" onclick="location.href='kids-stories.html'">
+            <div class="feature-icon">👶</div>
+            <div class="feature-title">Kids Stories</div>
+            <div class="feature-desc">Authentic Islamic stories for children featuring prophets and moral lessons</div>
+        </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">🌟</div>
-                <h3>Ayah of the Day</h3>
-                <p>Daily Quranic verses with beautiful meanings and reflections to inspire your spiritual journey.</p>
-                <a href="ayah-of-the-day.html">View Ayah →</a>
-            </div>
+        <div class="feature-card" onclick="location.href='community.html'">
+            <div class="feature-icon">💬</div>
+            <div class="feature-title">Community Chat</div>
+            <div class="feature-desc">Connect with Muslims worldwide and chat with our AI Islamic assistant</div>
+        </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">🤲</div>
-                <h3>Dua of the Day</h3>
-                <p>Learn and memorize authentic daily supplications from the Quran and Sunnah.</p>
-                <a href="dua-of-the-day.html">View Dua →</a>
-            </div>
+        <div class="feature-card" onclick="location.href='islamic-library.html'">
+            <div class="feature-icon">📚</div>
+            <div class="feature-title">Islamic Library</div>
+            <div class="feature-desc">Access authentic Hadith collections and Islamic scholarly resources</div>
+        </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">📅</div>
-                <h3>Islamic Calendar</h3>
-                <p>Track Islamic dates, important events, Ramadan, Eid, and Hijri calendar conversions.</p>
-                <a href="calendar.html">View Calendar →</a>
-            </div>
+        <div class="feature-card" onclick="location.href='daily-hadith.html'">
+            <div class="feature-icon">📖</div>
+            <div class="feature-title">Daily Hadith</div>
+            <div class="feature-desc">Receive daily wisdom from authentic hadith of Prophet Muhammad (PBUH)</div>
+        </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">💰</div>
-                <h3>Zakat Calculator</h3>
-                <p>Calculate your Zakat accurately in 180+ currencies. Simple, professional, precise.</p>
-                <a href="zakat-calculator.html">Calculate Zakat →</a>
-            </div>
+        <div class="feature-card" onclick="location.href='zakat-calculator.html'">
+            <div class="feature-icon">💰</div>
+            <div class="feature-title">Zakat Calculator</div>
+            <div class="feature-desc">Calculate your Zakat obligations with our precise and easy-to-use calculator</div>
+        </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">👶</div>
-                <h3>Kids Stories</h3>
-                <p>75+ beautiful Islamic stories for children. Teach values and faith through engaging tales.</p>
-                <a href="kids-stories.html">Read Stories →</a>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">📢</div>
-                <h3>Dawah Resources</h3>
-                <p>Comprehensive materials and guides for sharing Islam. Answer common questions effectively.</p>
-                <a href="dawah.html">Explore Dawah →</a>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">💬</div>
-                <h3>Community</h3>
-                <p>100+ Islamic reminders, connect with Muslims worldwide. Share knowledge and inspiration.</p>
-                <a href="community.html">Join Community →</a>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">🎮</div>
-                <h3>Halal Games</h3>
-                <p>Play Islamic quizzes, Virtual Hajj journey, build houses, earn coins! 195 countries, 50+ questions each!</p>
-                <a href="halal-games.html">Play Games →</a>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">📚</div>
-                <h3>Islamic Library</h3>
-                <p>Access 16 authentic Hadith collections from Sunnah.com. The six books and more!</p>
-                <a href="islamic-library.html">Browse Library →</a>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">🎓</div>
-                <h3>Islamic Courses</h3>
-                <p>15 comprehensive courses on Quran, Hadith, Fiqh, Arabic, and Seerah from top scholars.</p>
-                <a href="islamic-courses.html">Browse Courses →</a>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">💬</div>
-                <h3>Chat & Messaging</h3>
-                <p>Instagram-style messaging! Direct chats, group chats, real-time messaging with Muslims worldwide.</p>
-                <a href="chat.html">Start Chatting →</a>
-            </div>
+        <div class="feature-card" onclick="location.href='calendar.html'">
+            <div class="feature-icon">📅</div>
+            <div class="feature-title">Islamic Calendar</div>
+            <div class="feature-desc">Track Islamic dates, holidays, and important occasions throughout the year</div>
         </div>
     </div>
 
-    <div class="support-button" onclick="openModal()">
-        <i class="fas fa-question-circle"></i>
-    </div>
-
-    <div class="modal" id="supportModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">×</button>
-            <div class="modal-tabs">
-                <button class="tab-button active" onclick="switchTab('faq')">FAQ</button>
-                <button class="tab-button" onclick="switchTab('contact')">Contact</button>
-                <button class="tab-button" onclick="switchTab('about')">About</button>
+    <div class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>75+</h3>
+                <p>Islamic Stories</p>
             </div>
-
-            <div class="tab-content active" id="faqTab">
-                <h3>Frequently Asked Questions</h3>
-                <p><strong>Q: Is this website free?</strong><br>
-                A: Yes! Islamic Hub is 100% free and will always remain free. No subscriptions, no hidden costs.</p>
-
-                <p><strong>Q: Are the prayer times accurate?</strong><br>
-                A: Yes, we use verified calculation methods and your location to provide accurate prayer times.</p>
-
-                <p><strong>Q: Where do you get Hadith from?</strong><br>
-                A: All Hadith are from authentic collections like Sahih Bukhari, Sahih Muslim from Sunnah.com.</p>
-
-                <p><strong>Q: Can I use the chat feature?</strong><br>
-                A: Yes! Our Instagram-style chat lets you message Muslims worldwide. Create groups, send direct messages!</p>
-
-                <p><strong>Q: How do I earn coins in games?</strong><br>
-                A: Welcome bonus (50 coins), daily login (20-50 coins), quizzes (1-4 coins), all working perfectly!</p>
-
-                <p><strong>Q: How many stories are there for kids?</strong><br>
-                A: We have 75+ beautiful Islamic stories covering Prophets, Companions, Moral Lessons, and Quran Stories!</p>
+            <div class="stat-item">
+                <h3>1000+</h3>
+                <p>Quiz Questions</p>
             </div>
-
-            <div class="tab-content" id="contactTab">
-                <h3>Get in Touch</h3>
-                <p>We'd love to hear from you! Reach out through any of these channels:</p>
-                <p>📧 Email: <a href="mailto:lutrumputrumss@gmail.com">lutrumputrumss@gmail.com</a></p>
-                <p>📱 Instagram: <a href="https://instagram.com/theofficial.islamichub01" target="_blank">@theofficial.islamichub01</a></p>
-                <p><br>💡 Suggestions? Found a bug? Have feedback? We're always listening!</p>
+            <div class="stat-item">
+                <h3>24/7</h3>
+                <p>AI Support</p>
             </div>
-
-            <div class="tab-content" id="aboutTab">
-                <h3>About Islamic Hub</h3>
-                <p>Islamic Hub is the most comprehensive Islamic resource platform designed to make learning and practicing Islam easier and more accessible for everyone.</p>
-                
-                <p><strong>Our Mission:</strong><br>
-                To provide authentic Islamic knowledge and resources to Muslims worldwide, completely free of charge.</p>
-
-                <p><strong>What We Offer:</strong></p>
-                <p>• 15 complete features including Chat & Messaging<br>
-                • 75+ educational kids stories<br>
-                • 195 countries with 2000+ cities in Hajj Journey<br>
-                • 16 authentic Hadith books from Sunnah.com<br>
-                • 15 structured Islamic courses from top scholars<br>
-                • 100+ Islamic reminders<br>
-                • Real-time messaging with direct & group chats<br>
-                • Active community platform<br>
-                • 180+ currencies in Zakat calculator<br>
-                • 100% FREE forever!</p>
-
-                <p><strong>Our Values:</strong><br>
-                Authenticity • Accessibility • Community • Free Knowledge</p>
-
-                <p>Built with ❤️ for the Muslim Ummah 🌍</p>
+            <div class="stat-item">
+                <h3>∞</h3>
+                <p>Community</p>
             </div>
         </div>
     </div>
+</section>
 
-    <footer>
-        <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
-        <p>📧 <a href="mailto:lutrumputrumss@gmail.com">lutrumputrumss@gmail.com</a> | 
-           📱 <a href="https://instagram.com/theofficial.islamichub01" target="_blank">@theofficial.islamichub01</a></p>
-        <p style="margin-top: 1.5rem; font-size: 1.1rem;">May Allah accept our efforts and guide us all. Ameen 🤲</p>
-    </footer>
+<section class="cta-section">
+    <h2>Join the Islamic Hub Community</h2>
+    <p>Unlock premium features, earn coins, bookmark stories, and connect with thousands of Muslims worldwide</p>
+    <button class="cta-button" onclick="location.href='community.html'">Create Your Account</button>
+</section>
 
-    <script>
-        function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
-        }
+<footer>
+    <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
+    <p>Knowledge • Spirituality • Community</p>
+    <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="dawah.html">Dawah</a>
+        <a href="mailto:lutrumputrumss@gmail.com">Contact</a>
+        <a href="islamic-library.html">Library</a>
+    </div>
+</footer>
 
-        function openModal() {
-            document.getElementById('supportModal').classList.add('active');
-        }
-
-        function closeModal() {
-            document.getElementById('supportModal').classList.remove('active');
-        }
-
-        function switchTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.querySelectorAll('.tab-button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            document.getElementById(tabName + 'Tab').classList.add('active');
-            event.target.classList.add('active');
-        }
-
-        // Close modal when clicking outside
-        document.getElementById('supportModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
-
-        // CREATE PARTICLES
-        function createParticles() {
-            const container = document.getElementById('particles');
-            const particleCount = 50;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                container.appendChild(particle);
-            }
-        }
-
-        createParticles();
-    </script>
 </body>
 </html>
