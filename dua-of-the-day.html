@@ -5,551 +5,738 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dua of the Day - Islamic Hub</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg:        #0d0d0d;
+            --surface:   #1a1a1a;
+            --surface2:  #222222;
+            --border:    #2e2e2e;
+            --gold:      #c9a84c;
+            --gold-dim:  #7a6027;
+            --green:     #1a6b3a;
+            --green-lit: #23954f;
+            --text:      #e8e8e8;
+            --muted:     #888;
+            --danger:    #c0392b;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
             line-height: 1.6;
-            color: #333;
         }
 
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 25%, #4a7c59 50%, #6b9c7d 75%, #8bbca0 100%);
-            background-size: 400% 400%;
-            animation: gradientFlow 20s ease infinite;
-            z-index: -1;
-        }
-
-        @keyframes gradientFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
+        /* ── HEADER / NAV ───────────────────────────────────── */
         header {
-            background: rgba(26, 77, 46, 0.95);
-            backdrop-filter: blur(15px);
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+            background: #111111;
+            border-bottom: 2px solid var(--gold-dim);
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.6);
         }
 
         nav {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .nav-top {
+            padding: 0 1.5rem;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            justify-content: space-between;
+            height: 62px;
         }
 
         .logo {
-            font-size: 2rem;
-            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: 1px;
+            white-space: nowrap;
+            text-decoration: none;
         }
 
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
+        .logo span { color: #fff; font-weight: 400; }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
+            gap: 0.15rem;
+            flex-wrap: nowrap;
+            align-items: center;
         }
 
         .nav-links a {
-            color: white;
+            color: #ccc;
             text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: all 0.3s;
+            padding: 0.4rem 0.7rem;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            white-space: nowrap;
         }
 
-        .nav-links a:hover {
-            background: rgba(255,255,255,0.2);
+        .nav-links a:hover { background: rgba(201,168,76,0.12); color: var(--gold); }
+        .nav-links a.active { color: var(--gold); background: rgba(201,168,76,0.1); }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: 1px solid var(--gold-dim);
+            color: var(--gold);
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
         }
 
+        /* ── LAYOUT ─────────────────────────────────────────── */
         .container {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 0 2rem;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
         }
 
         .page-title {
             text-align: center;
-            color: white;
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0.3rem;
+            letter-spacing: 0.5px;
         }
 
-        .dua-card {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+        .page-sub {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.92rem;
             margin-bottom: 2rem;
+        }
+
+        /* ── DUA CARD ───────────────────────────────────────── */
+        .dua-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.4);
         }
 
         .dua-header {
             text-align: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 3px solid #1a4d2e;
+            margin-bottom: 1.8rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 2px solid var(--gold-dim);
         }
 
         .dua-title {
-            color: #1a4d2e;
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
+            color: var(--gold);
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
         }
 
         .dua-category {
-            color: #666;
-            font-size: 1.1rem;
+            color: var(--muted);
+            font-size: 0.95rem;
             font-style: italic;
         }
 
         .dua-arabic {
-            font-size: 2.5rem;
-            line-height: 3.2;
+            font-size: 2.2rem;
+            line-height: 3;
             text-align: right;
             direction: rtl;
-            color: #1a4d2e;
-            margin: 2.5rem 0;
-            padding: 3rem;
-            background: linear-gradient(135deg, #f9f9f9 0%, #f0f7f0 100%);
-            border-radius: 15px;
-            border-right: 6px solid #1a4d2e;
+            color: var(--gold);
+            margin: 1.8rem 0;
+            padding: 2rem 2.5rem;
+            background: #141a10;
+            border-radius: 12px;
+            border-right: 5px solid var(--gold);
             font-family: 'Traditional Arabic', 'Times New Roman', serif;
         }
 
         .dua-transliteration {
-            font-size: 1.3rem;
-            line-height: 2.2;
-            color: #555;
-            margin: 2rem 0;
-            padding: 2rem;
-            background: #fef9e7;
-            border-radius: 12px;
-            border-left: 5px solid #f39c12;
+            font-size: 1.05rem;
+            line-height: 2;
+            color: #bbb;
+            margin: 1.2rem 0;
+            padding: 1.2rem 1.5rem;
+            background: var(--surface2);
+            border-radius: 10px;
+            border-left: 4px solid #6b5a20;
             font-style: italic;
         }
 
         .dua-translation {
-            font-size: 1.4rem;
-            line-height: 2.2;
-            color: #333;
-            margin: 2rem 0;
-            padding: 2.5rem;
-            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-            border-radius: 15px;
-            border-left: 6px solid #1a4d2e;
+            font-size: 1.15rem;
+            line-height: 2;
+            color: var(--text);
+            margin: 1.2rem 0;
+            padding: 1.4rem 1.8rem;
+            background: #111f16;
+            border-radius: 12px;
+            border-left: 5px solid var(--green);
             font-weight: 500;
         }
 
         .dua-benefit {
-            margin: 2rem 0;
-            padding: 2rem;
-            background: #fff9e6;
-            border-radius: 12px;
-            border-left: 5px solid #ff9800;
+            margin: 1.2rem 0;
+            padding: 1.2rem 1.5rem;
+            background: #1a1400;
+            border-radius: 10px;
+            border-left: 4px solid var(--gold-dim);
         }
 
-        .dua-benefit h4 {
-            color: #e65100;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .dua-benefit p {
-            color: #666;
-            line-height: 1.9;
-        }
+        .dua-benefit h4 { color: var(--gold); margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .dua-benefit p  { color: #aaa; line-height: 1.8; font-size: 0.95rem; }
 
         .dua-reference {
             text-align: center;
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 2px solid #ddd;
-            color: #666;
-            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.9rem;
         }
 
         .dua-actions {
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem;
             justify-content: center;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             flex-wrap: wrap;
         }
 
         .btn {
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 100%);
-            color: white;
+            padding: 0.75rem 1.8rem;
+            background: linear-gradient(135deg, var(--green) 0%, var(--green-lit) 100%);
+            color: #fff;
             border: none;
-            border-radius: 10px;
-            font-size: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
             cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 500;
+            font-weight: 600;
+            transition: all 0.2s;
+            letter-spacing: 0.3px;
         }
 
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(26, 77, 46, 0.5);
+        .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(26,107,58,0.5); }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #7a6027 0%, var(--gold) 100%);
+            color: #111;
         }
 
-        .btn-secondary {
-            background: linear-gradient(135deg, #666 0%, #444 100%);
-        }
+        .btn-gold:hover { box-shadow: 0 4px 16px rgba(201,168,76,0.4); }
 
         .loading {
             text-align: center;
-            color: #666;
-            padding: 4rem;
+            color: var(--muted);
+            padding: 3rem;
             font-style: italic;
-            font-size: 1.3rem;
         }
 
-        .info-section {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-            margin-bottom: 2rem;
+        /* ── COMMUNITY DUA BOARD ────────────────────────────── */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 2.5rem 0 1.5rem;
         }
 
-        .info-section h3 {
-            color: #1a4d2e;
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .section-divider h2 {
+            font-size: 1rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .board-intro {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.4rem 1.8rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.93rem;
+            color: #bbb;
+            line-height: 1.8;
+        }
+
+        .board-intro strong { color: var(--gold); }
+
+        /* submit box */
+        .submit-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.8rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .submit-box h3 {
+            color: var(--text);
+            font-size: 1rem;
             margin-bottom: 1rem;
+            font-weight: 600;
         }
 
+        .dua-input-wrap {
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .dua-input {
+            flex: 1;
+            min-width: 220px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            color: var(--text);
+            font-size: 0.95rem;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 70px;
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        .dua-input:focus { border-color: var(--gold-dim); }
+        .dua-input::placeholder { color: #555; }
+
+        .char-count {
+            font-size: 0.78rem;
+            color: var(--muted);
+            text-align: right;
+            margin-top: 0.3rem;
+        }
+
+        /* dua posts feed */
+        .feed { display: flex; flex-direction: column; gap: 1rem; }
+
+        .dua-post {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.3rem 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            animation: fadeIn 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dua-post::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--gold-dim);
+        }
+
+        @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+
+        .post-body { flex: 1; }
+
+        .post-text {
+            color: var(--text);
+            font-size: 0.97rem;
+            line-height: 1.7;
+            margin-bottom: 0.6rem;
+        }
+
+        .post-meta {
+            font-size: 0.78rem;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .post-timer {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .timer-bar-wrap {
+            width: 80px;
+            height: 4px;
+            background: #2a2a2a;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .timer-bar {
+            height: 100%;
+            background: var(--gold);
+            border-radius: 2px;
+            transition: width 1s linear;
+        }
+
+        /* like button */
+        .like-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.6rem 0.9rem;
+            cursor: pointer;
+            color: var(--muted);
+            font-size: 0.78rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            min-width: 54px;
+            white-space: nowrap;
+        }
+
+        .like-btn:hover:not(:disabled) {
+            border-color: var(--gold-dim);
+            color: var(--gold);
+            background: rgba(201,168,76,0.06);
+        }
+
+        .like-btn.liked {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(201,168,76,0.1);
+            cursor: default;
+        }
+
+        .like-btn .hands { font-size: 1.3rem; line-height: 1; }
+        .like-btn .count { font-size: 0.8rem; }
+
+        .empty-feed {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            color: var(--muted);
+            font-size: 0.92rem;
+            border: 1px dashed var(--border);
+            border-radius: 12px;
+        }
+
+        .empty-feed .big { font-size: 2rem; margin-bottom: 0.5rem; }
+
+        /* ── FOOTER ─────────────────────────────────────────── */
         footer {
-            background: rgba(26, 77, 46, 0.95);
-            backdrop-filter: blur(15px);
-            color: white;
+            background: #111;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
             text-align: center;
             padding: 2rem;
-            margin-top: 4rem;
+            font-size: 0.85rem;
         }
 
-        @media (max-width: 968px) {
+        footer p { margin-bottom: 0.3rem; }
+
+        /* ── RESPONSIVE ─────────────────────────────────────── */
+        @media (max-width: 900px) {
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 62px; left: 0; right: 0; background: #111; border-bottom: 2px solid var(--gold-dim); padding: 1rem; gap: 0.3rem; }
+            .nav-links.open { display: flex; }
+            .nav-links a { font-size: 0.9rem; padding: 0.5rem 1rem; }
             .menu-toggle { display: block; }
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                margin-top: 1rem;
-            }
-            .nav-links.active { display: flex; }
-            .dua-arabic { font-size: 1.8rem; }
-            .dua-translation { font-size: 1.2rem; }
+            .dua-arabic { font-size: 1.6rem; padding: 1.5rem; }
+        }
+
+        @media (max-width: 500px) {
+            .dua-card { padding: 1.5rem 1.2rem; }
+            .submit-box { padding: 1.2rem; }
+            .dua-post { flex-direction: column; }
+            .like-btn { flex-direction: row; align-items: center; width: 100%; justify-content: center; }
         }
     </style>
 </head>
 <body>
-    <div class="animated-bg"></div>
 
-    <header>
-        <nav>
-            <div class="nav-top">
-                <div class="logo">☪ Islamic Hub</div>
-                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+<!-- ══ HEADER ══════════════════════════════════════════════════ -->
+<header>
+    <nav>
+        <a class="logo" href="index.html">
+            ☪ ISLAMIC <span>HUB</span>
+        </a>
+        <button class="menu-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li><a href="prayer-tools.html">🕌 Prayer</a></li>
+            <li><a href="quran.html">📕 Quran</a></li>
+            <li><a href="daily-hadith.html">📖 Hadith</a></li>
+            <li><a href="ayah-of-the-day.html">🌟 Ayah</a></li>
+            <li><a href="dua-of-the-day.html" class="active">🤲 Dua</a></li>
+            <li><a href="calendar.html">📅 Calendar</a></li>
+            <li><a href="zakat-calculator.html">💰 Zakat</a></li>
+            <li><a href="kids-stories.html">👶 Kids</a></li>
+            <li><a href="halal-games.html">🎮 Games</a></li>
+            <li><a href="community.html">💬 Community</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- ══ MAIN ════════════════════════════════════════════════════ -->
+<div class="container">
+
+    <h1 class="page-title">🤲 Dua of the Day</h1>
+    <p class="page-sub">Supplications from the Quran & authentic Sunnah</p>
+
+    <!-- Daily Dua -->
+    <div id="duaContainer">
+        <div class="loading">Loading today's Dua…</div>
+    </div>
+
+    <!-- ── COMMUNITY DUA BOARD ──────────────────────────────── -->
+    <div class="section-divider"><h2>🌙 Community Dua Board</h2></div>
+
+    <div class="board-intro">
+        Share a dua request with the community. Others can click <strong>🤲 I Made Dua</strong> — each person once — to show you they prayed for you.<br>
+        Duas <strong>expire after 12 hours</strong> and are quietly archived. May Allah accept every supplication. 🤲
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-box">
+        <h3>✍️ Share a Dua Request</h3>
+        <div class="dua-input-wrap">
+            <div style="flex:1; min-width:220px;">
+                <textarea
+                    class="dua-input"
+                    id="duaInput"
+                    placeholder="e.g. Health for my dad, Peace in my family, Success in exams…"
+                    maxlength="200"
+                    oninput="updateChar()"
+                ></textarea>
+                <div class="char-count"><span id="charCount">0</span> / 200</div>
             </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">🏠 Home</a></li>
-                <li><a href="prayer-tools.html">🕌 Prayer</a></li>
-                <li><a href="quran.html">📕 Quran</a></li>
-                <li><a href="daily-hadith.html">📖 Hadith</a></li>
-                <li><a href="ayah-of-the-day.html">🌟 Ayah</a></li>
-                <li><a href="dua-of-the-day.html">🤲 Dua</a></li>
-                <li><a href="calendar.html">📅 Calendar</a></li>
-                <li><a href="zakat-calculator.html">💰 Zakat</a></li>
-                <li><a href="kids-stories.html">👶 Kids</a></li>
-                <li><a href="dawah.html">📢 Dawah</a></li>
-                <li><a href="community.html">💬 Community</a></li>
-                <li><a href="halal-games.html">🎮 Games</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="container">
-        <h1 class="page-title">🤲 Dua of the Day</h1>
-
-        <div class="info-section">
-            <h3>About Daily Duas</h3>
-            <p>
-                Learn essential duas (supplications) from the Quran and authentic Hadith. Make dua a part of your daily routine 
-                and strengthen your connection with Allah.
-            </p>
-        </div>
-
-        <div id="duaContainer">
-            <div class="loading">Loading today's Dua...</div>
+            <button class="btn btn-gold" onclick="submitDua()">🤲 Post Dua</button>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
-        <p>May Allah accept all our duas 🤲</p>
-    </footer>
+    <!-- Feed -->
+    <div id="duaFeed">
+        <div class="empty-feed">
+            <div class="big">🤲</div>
+            Be the first to share a dua request today.
+        </div>
+    </div>
 
-    <script>
-        function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
-        }
+</div>
 
-        // Essential duas from Quran and Sunnah
-        const duas = [
-            {
-                title: "Dua for Guidance",
-                category: "Daily Essential",
-                arabic: "رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِن لَّدُنكَ رَحْمَةً ۚ إِنَّكَ أَنتَ الْوَهَّابُ",
-                transliteration: "Rabbana la tuzigh quloobana ba'da idh hadaytana wa hab lana mil ladunka rahmah, innaka antal Wahhab",
-                translation: "Our Lord! Let not our hearts deviate after You have guided us, and grant us mercy from You. Truly, You are the Bestower.",
-                benefit: "This dua protects your heart from straying and asks Allah for His mercy and guidance.",
-                reference: "Quran 3:8"
-            },
-            {
-                title: "Dua for Forgiveness",
-                category: "Seeking Forgiveness",
-                arabic: "رَبَّنَا ظَلَمْنَا أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ",
-                transliteration: "Rabbana dhalamna anfusana wa il-lam taghfir lana wa tarhamna lana koonanna minal-khasireen",
-                translation: "Our Lord! We have wronged ourselves. If You forgive us not, and bestow not upon us Your Mercy, we shall certainly be of the losers.",
-                benefit: "A powerful dua for seeking Allah's forgiveness and mercy for our shortcomings.",
-                reference: "Quran 7:23"
-            },
-            {
-                title: "Dua for Ease",
-                category: "In Times of Difficulty",
-                arabic: "رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي",
-                transliteration: "Rabbi ishrah li sadri wa yassir li amri",
-                translation: "My Lord! Expand my chest for me, and ease my task for me.",
-                benefit: "Ask Allah to expand your chest (heart) and make your affairs easy.",
-                reference: "Quran 20:25-26"
-            },
-            {
-                title: "Dua for Knowledge",
-                category: "For Learning",
-                arabic: "رَّبِّ زِدْنِي عِلْمًا",
-                transliteration: "Rabbi zidni 'ilma",
-                translation: "My Lord! Increase me in knowledge.",
-                benefit: "A short but powerful dua to ask Allah to increase your knowledge and understanding.",
-                reference: "Quran 20:114"
-            },
-            {
-                title: "Dua for Parents",
-                category: "For Family",
-                arabic: "رَّبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا",
-                transliteration: "Rabbi irhamhuma kama rabbayani sagheera",
-                translation: "My Lord! Bestow on them Your Mercy as they raised me when I was young.",
-                benefit: "Ask Allah's mercy for your parents who cared for you in your childhood.",
-                reference: "Quran 17:24"
-            },
-            {
-                title: "Dua for Patience",
-                category: "For Strength",
-                arabic: "رَبَّنَا أَفْرِغْ عَلَيْنَا صَبْرًا وَثَبِّتْ أَقْدَامَنَا",
-                transliteration: "Rabbana afrigh 'alayna sabran wa thabbit aqdamana",
-                translation: "Our Lord! Pour upon us patience, and make our steps firm.",
-                benefit: "Ask Allah for patience and steadfastness in facing life's challenges.",
-                reference: "Quran 2:250"
-            },
-            {
-                title: "Morning Dua",
-                category: "Morning & Evening",
-                arabic: "أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ",
-                transliteration: "Asbahna wa asbahal-mulku lillah, walhamdu lillah",
-                translation: "We have entered morning and the dominion belongs to Allah, and all praise is for Allah.",
-                benefit: "Start your day by acknowledging that all power belongs to Allah alone.",
-                reference: "Muslim"
-            },
-            {
-                title: "Dua Before Eating",
-                category: "Daily Essential",
-                arabic: "بِسْمِ اللَّهِ",
-                transliteration: "Bismillah",
-                translation: "In the name of Allah.",
-                benefit: "Begin eating with Allah's name for blessings in your food.",
-                reference: "Abu Dawud & Tirmidhi"
-            },
-            {
-                title: "Dua After Eating",
-                category: "Daily Essential",
-                arabic: "الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا وَجَعَلَنَا مُسْلِمِينَ",
-                transliteration: "Alhamdu lillahil-ladhi at'amana wa saqana wa ja'alana muslimeen",
-                translation: "All praise is due to Allah who has fed us and given us drink and made us Muslims.",
-                benefit: "Thank Allah for His provision and blessing of Islam after eating.",
-                reference: "Abu Dawud & Tirmidhi"
-            },
-            {
-                title: "Dua Before Sleep",
-                category: "Morning & Evening",
-                arabic: "بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا",
-                transliteration: "Bismika Allahumma amootu wa ahya",
-                translation: "In Your name, O Allah, I die and I live.",
-                benefit: "Surrender yourself to Allah before sleep, acknowledging His control over life and death.",
-                reference: "Bukhari"
-            },
-            {
-                title: "Dua for Protection",
-                category: "For Protection",
-                arabic: "أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ",
-                transliteration: "A'udhu bikalimatillahit-tammati min sharri ma khalaq",
-                translation: "I seek refuge in the perfect words of Allah from the evil of what He has created.",
-                benefit: "Seek Allah's protection from all evil and harm.",
-                reference: "Muslim"
-            },
-            {
-                title: "Dua for Good Character",
-                category: "Self-Improvement",
-                arabic: "اللَّهُمَّ اهْدِنِي لِأَحْسَنِ الْأَخْلَاقِ",
-                transliteration: "Allahumma ihdini li-ahsanil-akhlaq",
-                translation: "O Allah, guide me to the best of characters.",
-                benefit: "Ask Allah to beautify your character and behavior.",
-                reference: "Muslim"
-            },
-            {
-                title: "Dua for Good End",
-                category: "For the Hereafter",
-                arabic: "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
-                transliteration: "Rabbana atina fid-dunya hasanatan wa fil-akhirati hasanatan wa qina 'adhabannar",
-                translation: "Our Lord! Give us good in this world and good in the Hereafter, and save us from the punishment of the Fire.",
-                benefit: "The most comprehensive dua, asking for goodness in both worlds.",
-                reference: "Quran 2:201"
-            },
-            {
-                title: "Dua When Distressed",
-                category: "In Times of Difficulty",
-                arabic: "لَا إِلَٰهَ إِلَّا أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ",
-                transliteration: "La ilaha illa anta subhanaka inni kuntu minaz-dhalimeen",
-                translation: "There is no deity except You; exalted are You. Indeed, I have been of the wrongdoers.",
-                benefit: "The dua of Prophet Yunus (AS) when in distress. Allah answers all who call with this.",
-                reference: "Quran 21:87"
-            },
-            {
-                title: "Dua for Righteous Spouse",
-                category: "For Family",
-                arabic: "رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ",
-                transliteration: "Rabbana hab lana min azwajina wa dhurriyyatina qurrata a'yun",
-                translation: "Our Lord! Grant us from our spouses and offspring comfort to our eyes.",
-                benefit: "Ask Allah for righteous spouses and children who are the coolness of your eyes.",
-                reference: "Quran 25:74"
-            }
-        ];
+<!-- ══ FOOTER ══════════════════════════════════════════════════ -->
+<footer>
+    <p>☪ Islamic Hub &copy; 2026 — All rights reserved.</p>
+    <p>May Allah accept all our duas 🤲</p>
+</footer>
 
-        window.onload = function() {
-            loadDailyDua();
-        };
+<script>
+/* ════════════════════════════════════════════════════════════════
+   DAILY DUA DATA
+════════════════════════════════════════════════════════════════ */
+const duas = [
+    { title:"Dua for Guidance", category:"Daily Essential", arabic:"رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِن لَّدُنكَ رَحْمَةً ۚ إِنَّكَ أَنتَ الْوَهَّابُ", transliteration:"Rabbana la tuzigh quloobana ba'da idh hadaytana wa hab lana mil ladunka rahmah, innaka antal Wahhab", translation:"Our Lord! Let not our hearts deviate after You have guided us, and grant us mercy from You. Truly, You are the Bestower.", benefit:"Protects your heart from straying and asks Allah for His mercy and guidance.", reference:"Quran 3:8" },
+    { title:"Dua for Forgiveness", category:"Seeking Forgiveness", arabic:"رَبَّنَا ظَلَمْنَا أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ", transliteration:"Rabbana dhalamna anfusana wa il-lam taghfir lana wa tarhamna lana koonanna minal-khasireen", translation:"Our Lord! We have wronged ourselves. If You forgive us not, and bestow not upon us Your Mercy, we shall certainly be of the losers.", benefit:"A powerful dua for seeking Allah's forgiveness and mercy for our shortcomings.", reference:"Quran 7:23" },
+    { title:"Dua for Ease", category:"In Times of Difficulty", arabic:"رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي", transliteration:"Rabbi ishrah li sadri wa yassir li amri", translation:"My Lord! Expand my chest for me, and ease my task for me.", benefit:"Ask Allah to expand your heart and make your affairs easy.", reference:"Quran 20:25-26" },
+    { title:"Dua for Knowledge", category:"For Learning", arabic:"رَّبِّ زِدْنِي عِلْمًا", transliteration:"Rabbi zidni 'ilma", translation:"My Lord! Increase me in knowledge.", benefit:"A short but powerful dua to ask Allah to increase your knowledge.", reference:"Quran 20:114" },
+    { title:"Dua for Parents", category:"For Family", arabic:"رَّبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا", transliteration:"Rabbi irhamhuma kama rabbayani sagheera", translation:"My Lord! Bestow on them Your Mercy as they raised me when I was young.", benefit:"Ask Allah's mercy for your parents who cared for you in your childhood.", reference:"Quran 17:24" },
+    { title:"Dua for Patience", category:"For Strength", arabic:"رَبَّنَا أَفْرِغْ عَلَيْنَا صَبْرًا وَثَبِّتْ أَقْدَامَنَا", transliteration:"Rabbana afrigh 'alayna sabran wa thabbit aqdamana", translation:"Our Lord! Pour upon us patience, and make our steps firm.", benefit:"Ask Allah for patience and steadfastness in facing life's challenges.", reference:"Quran 2:250" },
+    { title:"Morning Dua", category:"Morning & Evening", arabic:"أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ", transliteration:"Asbahna wa asbahal-mulku lillah, walhamdu lillah", translation:"We have entered morning and the dominion belongs to Allah, and all praise is for Allah.", benefit:"Start your day by acknowledging that all power belongs to Allah alone.", reference:"Muslim" },
+    { title:"Dua Before Eating", category:"Daily Essential", arabic:"بِسْمِ اللَّهِ", transliteration:"Bismillah", translation:"In the name of Allah.", benefit:"Begin eating with Allah's name for blessings in your food.", reference:"Abu Dawud & Tirmidhi" },
+    { title:"Dua After Eating", category:"Daily Essential", arabic:"الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا وَجَعَلَنَا مُسْلِمِينَ", transliteration:"Alhamdu lillahil-ladhi at'amana wa saqana wa ja'alana muslimeen", translation:"All praise is due to Allah who has fed us and given us drink and made us Muslims.", benefit:"Thank Allah for His provision and blessing of Islam after eating.", reference:"Abu Dawud & Tirmidhi" },
+    { title:"Dua Before Sleep", category:"Morning & Evening", arabic:"بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا", transliteration:"Bismika Allahumma amootu wa ahya", translation:"In Your name, O Allah, I die and I live.", benefit:"Surrender yourself to Allah before sleep, acknowledging His control over life and death.", reference:"Bukhari" },
+    { title:"Dua for Protection", category:"For Protection", arabic:"أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ", transliteration:"A'udhu bikalimatillahit-tammati min sharri ma khalaq", translation:"I seek refuge in the perfect words of Allah from the evil of what He has created.", benefit:"Seek Allah's protection from all evil and harm.", reference:"Muslim" },
+    { title:"Dua for Good Character", category:"Self-Improvement", arabic:"اللَّهُمَّ اهْدِنِي لِأَحْسَنِ الْأَخْلَاقِ", transliteration:"Allahumma ihdini li-ahsanil-akhlaq", translation:"O Allah, guide me to the best of characters.", benefit:"Ask Allah to beautify your character and behavior.", reference:"Muslim" },
+    { title:"Dua for Good End", category:"For the Hereafter", arabic:"رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ", transliteration:"Rabbana atina fid-dunya hasanatan wa fil-akhirati hasanatan wa qina 'adhabannar", translation:"Our Lord! Give us good in this world and good in the Hereafter, and save us from the punishment of the Fire.", benefit:"The most comprehensive dua, asking for goodness in both worlds.", reference:"Quran 2:201" },
+    { title:"Dua When Distressed", category:"In Times of Difficulty", arabic:"لَا إِلَٰهَ إِلَّا أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ", transliteration:"La ilaha illa anta subhanaka inni kuntu minaz-dhalimeen", translation:"There is no deity except You; exalted are You. Indeed, I have been of the wrongdoers.", benefit:"The dua of Prophet Yunus (AS) when in distress. Allah answers all who call with this.", reference:"Quran 21:87" },
+    { title:"Dua for Righteous Family", category:"For Family", arabic:"رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ", transliteration:"Rabbana hab lana min azwajina wa dhurriyyatina qurrata a'yun", translation:"Our Lord! Grant us from our spouses and offspring comfort to our eyes.", benefit:"Ask Allah for righteous spouses and children who are the coolness of your eyes.", reference:"Quran 25:74" }
+];
 
-        function getDailyDuaIndex() {
-            const today = new Date();
-            const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
-            return dayOfYear % duas.length;
-        }
+/* ════════════════════════════════════════════════════════════════
+   DAILY DUA DISPLAY
+════════════════════════════════════════════════════════════════ */
+function getDailyIndex() {
+    const today = new Date();
+    const day = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+    return day % duas.length;
+}
 
-        function loadDailyDua() {
-            const index = getDailyDuaIndex();
-            displayDua(duas[index]);
-        }
+function displayDua(dua) {
+    document.getElementById('duaContainer').innerHTML = `
+        <div class="dua-card">
+            <div class="dua-header">
+                <div class="dua-title">🤲 ${dua.title}</div>
+                <div class="dua-category">${dua.category}</div>
+            </div>
+            <div class="dua-arabic">${dua.arabic}</div>
+            <div class="dua-transliteration"><strong>Transliteration:</strong><br>${dua.transliteration}</div>
+            <div class="dua-translation"><strong>Translation:</strong><br>${dua.translation}</div>
+            <div class="dua-benefit">
+                <h4>💡 Benefit</h4>
+                <p>${dua.benefit}</p>
+            </div>
+            <div class="dua-reference">📚 Reference: ${dua.reference}</div>
+            <div class="dua-actions">
+                <button class="btn" onclick="displayDua(duas[Math.floor(Math.random()*duas.length)])">🔄 Another Dua</button>
+                <button class="btn btn-gold" onclick="shareDua(${JSON.stringify(dua).split('"').join('&quot;')})">📤 Share</button>
+            </div>
+        </div>`;
+}
 
-        function loadRandomDua() {
-            const index = Math.floor(Math.random() * duas.length);
-            displayDua(duas[index]);
-        }
+function shareDua(dua) {
+    const text = `${dua.title}\n\n${dua.arabic}\n\n${dua.transliteration}\n\n${dua.translation}\n\n📚 ${dua.reference}\n\n🌐 Islamic Hub`;
+    if (navigator.share) { navigator.share({ title:'Dua of the Day', text }).catch(()=>{}); }
+    else { navigator.clipboard.writeText(text).then(()=>alert('✅ Dua copied!')).catch(()=>{}); }
+}
 
-        function displayDua(dua) {
-            const container = document.getElementById('duaContainer');
-            
-            container.innerHTML = `
-                <div class="dua-card">
-                    <div class="dua-header">
-                        <div class="dua-title">🤲 ${dua.title}</div>
-                        <div class="dua-category">${dua.category}</div>
-                    </div>
-                    
-                    <div class="dua-arabic">${dua.arabic}</div>
-                    
-                    <div class="dua-transliteration">
-                        <strong>Transliteration:</strong><br>
-                        ${dua.transliteration}
-                    </div>
-                    
-                    <div class="dua-translation">
-                        <strong>Translation:</strong><br>
-                        ${dua.translation}
-                    </div>
-                    
-                    <div class="dua-benefit">
-                        <h4>💡 Benefit:</h4>
-                        <p>${dua.benefit}</p>
-                    </div>
-                    
-                    <div class="dua-reference">
-                        📚 Reference: ${dua.reference}
-                    </div>
-                    
-                    <div class="dua-actions">
-                        <button class="btn" onclick="loadRandomDua()">
-                            🔄 Get Another Dua
-                        </button>
-                        <button class="btn btn-secondary" onclick="shareDua()">
-                            📤 Share Dua
-                        </button>
-                    </div>
+/* ════════════════════════════════════════════════════════════════
+   COMMUNITY DUA BOARD
+   Storage: localStorage keys
+     communityDuas   → array of post objects
+     likedDuas       → set of post IDs this device liked
+════════════════════════════════════════════════════════════════ */
+const EXPIRY_MS    = 12 * 60 * 60 * 1000;   // 12 hours
+const STORAGE_KEY  = 'islamicHubCommunityDuas';
+const LIKED_KEY    = 'islamicHubLikedDuas';
+
+function loadPosts() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { return []; }
+}
+
+function savePosts(posts) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
+}
+
+function loadLiked() {
+    try { return new Set(JSON.parse(localStorage.getItem(LIKED_KEY) || '[]')); } catch { return new Set(); }
+}
+
+function saveLiked(set) {
+    localStorage.setItem(LIKED_KEY, JSON.stringify([...set]));
+}
+
+function purgExpired(posts) {
+    const now = Date.now();
+    return posts.filter(p => (now - p.ts) < EXPIRY_MS);
+}
+
+function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+
+/* ── SUBMIT ─────────────────────────────────────────── */
+function updateChar() {
+    const v = document.getElementById('duaInput').value.length;
+    document.getElementById('charCount').textContent = v;
+}
+
+function submitDua() {
+    const input = document.getElementById('duaInput');
+    const text  = input.value.trim();
+    if (!text) { input.focus(); return; }
+
+    const posts = purgExpired(loadPosts());
+    const post  = { id: genId(), text, ts: Date.now(), likes: 0 };
+    posts.unshift(post);
+    savePosts(posts);
+
+    input.value = '';
+    updateChar();
+    renderFeed();
+}
+
+/* ── LIKE ───────────────────────────────────────────── */
+function likeDua(id) {
+    const liked = loadLiked();
+    if (liked.has(id)) return;
+
+    let posts = purgExpired(loadPosts());
+    const p   = posts.find(x => x.id === id);
+    if (!p) return;
+
+    p.likes++;
+    liked.add(id);
+    savePosts(posts);
+    saveLiked(liked);
+    renderFeed();
+}
+
+/* ── RENDER ─────────────────────────────────────────── */
+function renderFeed() {
+    const feed  = document.getElementById('duaFeed');
+    const liked = loadLiked();
+    const posts = purgExpired(loadPosts());
+    savePosts(posts); // persist purge
+
+    if (!posts.length) {
+        feed.innerHTML = `<div class="empty-feed"><div class="big">🤲</div>Be the first to share a dua request today.</div>`;
+        return;
+    }
+
+    feed.innerHTML = `<div class="feed">${posts.map(p => {
+        const msLeft   = EXPIRY_MS - (Date.now() - p.ts);
+        const pct      = Math.max(0, Math.min(100, (msLeft / EXPIRY_MS) * 100));
+        const hLeft    = Math.floor(msLeft / 3600000);
+        const mLeft    = Math.floor((msLeft % 3600000) / 60000);
+        const timeStr  = hLeft > 0 ? `${hLeft}h ${mLeft}m` : `${mLeft}m`;
+        const isLiked  = liked.has(p.id);
+
+        return `<div class="dua-post" id="post-${p.id}">
+            <div class="post-body">
+                <div class="post-text">${escHtml(p.text)}</div>
+                <div class="post-meta">
+                    <span class="post-timer">
+                        ⏳ ${timeStr} left &nbsp;
+                        <span class="timer-bar-wrap"><span class="timer-bar" style="width:${pct}%"></span></span>
+                    </span>
                 </div>
-            `;
-        }
+            </div>
+            <button
+                class="like-btn${isLiked ? ' liked' : ''}"
+                onclick="likeDua('${p.id}')"
+                ${isLiked ? 'disabled' : ''}
+                title="${isLiked ? 'You made dua' : 'I made dua for this'}"
+            >
+                <span class="hands">🤲</span>
+                <span class="count">${p.likes > 0 ? p.likes : ''} ${p.likes === 1 ? 'dua' : p.likes > 1 ? 'duas' : 'I made dua'}</span>
+            </button>
+        </div>`;
+    }).join('')}</div>`;
+}
 
-        function shareDua() {
-            const title = document.querySelector('.dua-title')?.textContent || '';
-            const arabic = document.querySelector('.dua-arabic')?.textContent || '';
-            const transliteration = document.querySelector('.dua-transliteration')?.textContent || '';
-            const translation = document.querySelector('.dua-translation')?.textContent || '';
-            const reference = document.querySelector('.dua-reference')?.textContent || '';
-            
-            const shareText = `${title}\n\n${arabic}\n\n${transliteration}\n\n${translation}\n\n${reference}\n\n🌐 Islamic Hub: https://theislamichub04.github.io`;
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Dua of the Day',
-                    text: shareText
-                }).catch(() => {});
-            } else {
-                navigator.clipboard.writeText(shareText).then(() => {
-                    alert('✅ Dua copied to clipboard!');
-                }).catch(() => {});
-            }
-        }
-    </script>
+function escHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ── AUTO-REFRESH every 60 s (timer bars + purge) ────── */
+setInterval(renderFeed, 60000);
+
+/* ════════════════════════════════════════════════════════════════
+   INIT
+════════════════════════════════════════════════════════════════ */
+window.addEventListener('DOMContentLoaded', () => {
+    displayDua(duas[getDailyIndex()]);
+    renderFeed();
+});
+</script>
 </body>
 </html>
