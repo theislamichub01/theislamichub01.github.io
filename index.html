@@ -626,4 +626,94 @@
 
 <footer>
     <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
- 
+    <p>Knowledge • Spirituality • Community</p>
+    <div class="footer-links">
+        <a href="mailto:lutrumputrumss@gmail.com">✉️ lutrumputrumss@gmail.com</a>
+        <a href="https://instagram.com/theofficial.islamichub01" target="_blank">📷 @theofficial.islamichub01</a>
+    </div>
+</footer>
+
+<!-- ══ FLOATING HELP BUTTON ══════════════════════════════ -->
+<button class="help-fab" onclick="document.getElementById('helpOverlay').classList.add('open')" aria-label="Help">?</button>
+
+<div class="help-overlay" id="helpOverlay" onclick="closeOnOverlay(event)">
+    <div class="help-panel">
+        <div class="help-panel-header">
+            <h3>☪ Help & Info</h3>
+            <button class="help-close" onclick="closeHelp()">✕</button>
+        </div>
+
+        <div class="help-tabs">
+            <button class="help-tab active" onclick="switchTab('faq', this)">FAQs</button>
+            <button class="help-tab" onclick="switchTab('about', this)">About Us</button>
+            <button class="help-tab" onclick="switchTab('contact', this)">Contact</button>
+        </div>
+
+        <div class="help-body">
+            <div class="help-panel-content active" id="tab-faq">
+                <div class="faq-item">
+                    <div class="faq-q">Is Islamic Hub free to use?</div>
+                    <div class="faq-a">Yes. Core features are free. Some games and extras use an in-app coin system you earn through quizzes and activity.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">How do I earn and use coins?</div>
+                    <div class="faq-a">Coins are earned by completing quizzes and daily activities, and can be spent unlocking games in the Halal Games section.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Where do the Quran translations come from?</div>
+                    <div class="faq-a">From established, authentic sources via our Quran Explorer, with reliable backup sources used if one is temporarily unavailable.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Can I bookmark stories or verses?</div>
+                    <div class="faq-a">Yes, use the star icon to bookmark your favorite Quran ayahs and stories for quick access later.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Is the community chat moderated?</div>
+                    <div class="faq-a">Yes, posts follow community guidelines to keep the space respectful and beneficial for everyone.</div>
+                </div>
+            </div>
+
+            <div class="help-panel-content" id="tab-about">
+                <p class="about-text">
+                    Islamic Hub is a free educational platform built to make authentic Islamic knowledge accessible to everyone. 
+                    From Quran exploration and prayer tools to kids' stories and a Muslim community space, our goal is to combine 
+                    reliable Islamic resources with a modern, easy-to-use experience.
+                    <br><br>
+                    We're community-driven and always improving — built by Muslims, for Muslims, with knowledge, spirituality, 
+                    and community at the heart of everything we make.
+                </p>
+            </div>
+
+            <div class="help-panel-content" id="tab-contact">
+                <a class="contact-row" href="mailto:lutrumputrumss@gmail.com?subject=Islamic%20Hub%20Inquiry&body=Hi%20Islamic%20Hub%20team%2C%0A%0A">
+                    <span class="contact-icon">✉️</span>
+                    <span>lutrumputrumss@gmail.com</span>
+                </a>
+                <a class="contact-row" href="https://instagram.com/theislamic.hub01" target="_blank" rel="noopener">
+                    <span class="contact-icon">📷</span>
+                    <span>@theislamic.hub01</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function switchTab(tab, btn) {
+        document.querySelectorAll('.help-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.help-panel-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + tab).classList.add('active');
+    }
+
+    function closeHelp() {
+        document.getElementById('helpOverlay').classList.remove('open');
+    }
+
+    function closeOnOverlay(event) {
+        if (event.target.id === 'helpOverlay') closeHelp();
+    }
+</script>
+
+</body>
+</html>
