@@ -5,72 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dawah Resources - Islamic Hub</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            overflow-x: hidden;
         }
 
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 25%, #4a7c59 50%, #6b9c7d 75%, #8bbca0 100%);
-            background-size: 400% 400%;
-            animation: gradientFlow 20s ease infinite;
-            z-index: -1;
-        }
-
-        @keyframes gradientFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
+        /* HEADER (matches homepage exactly) */
         header {
-            background: rgba(26, 77, 46, 0.95);
-            backdrop-filter: blur(15px);
-            color: white;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid #d4af37;
             padding: 1rem 0;
-            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.15);
         }
 
         nav {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
-        }
-
-        .nav-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
         }
 
         .logo {
             font-size: 2rem;
-            font-weight: bold;
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
+            font-weight: 800;
+            background: linear-gradient(135deg, #d4af37, #f0e68c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
         }
 
         .nav-links {
@@ -82,50 +54,104 @@
         }
 
         .nav-links a {
-            color: white;
+            color: #e0e0e0;
             text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
             transition: all 0.3s;
+            font-weight: 500;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #d4af37;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-links a:hover {
-            background: rgba(255,255,255,0.2);
+            color: #d4af37;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { gap: 0.8rem; font-size: 0.85rem; }
+        }
+
+        /* PAGE BACKGROUND (homepage dark gradient, replacing old green animated bg) */
+        .page-bg {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            position: relative;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .page-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
         }
 
         .container {
+            position: relative;
+            z-index: 1;
             max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
+            margin: 0 auto;
+            padding: 3rem 2rem;
         }
 
         .page-title {
             text-align: center;
-            color: white;
             margin-bottom: 2rem;
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .intro-section {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(212, 175, 55, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.2);
             padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            border-radius: 12px;
             margin-bottom: 2rem;
             text-align: center;
         }
 
         .intro-section h2 {
-            color: #1a4d2e;
+            color: #d4af37;
             margin-bottom: 1rem;
+            font-size: 1.6rem;
         }
 
         .intro-section p {
-            color: #666;
+            color: #bbb;
             line-height: 1.9;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
         }
 
         .resources-grid {
@@ -136,18 +162,24 @@
         }
 
         .resource-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(212, 175, 55, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.2);
             padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .resource-card:hover {
+            border-color: #d4af37;
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.15);
         }
 
         .resource-card h3 {
-            color: #1a4d2e;
-            font-size: 1.8rem;
+            color: #d4af37;
+            font-size: 1.6rem;
             margin-bottom: 1.5rem;
             text-align: center;
+            font-weight: 700;
         }
 
         .resource-card ul {
@@ -158,102 +190,184 @@
         .resource-card li {
             padding: 1rem;
             margin: 0.8rem 0;
-            background: #f9f9f9;
+            background: rgba(255,255,255,0.03);
             border-radius: 10px;
-            border-left: 4px solid #1a4d2e;
-            color: #555;
+            border-left: 4px solid #d4af37;
+            color: #bbb;
             line-height: 1.7;
         }
 
         .resource-card li strong {
-            color: #1a4d2e;
+            color: #d4af37;
             display: block;
             margin-bottom: 0.3rem;
         }
 
         .tips-section {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(212, 175, 55, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.2);
             padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            border-radius: 12px;
             margin-bottom: 2rem;
         }
 
         .tips-section h3 {
-            color: #1a4d2e;
+            color: #d4af37;
             font-size: 1.8rem;
             margin-bottom: 1.5rem;
             text-align: center;
+            font-weight: 700;
         }
 
         .tip-item {
             padding: 1.5rem;
             margin: 1.5rem 0;
-            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.03));
             border-radius: 12px;
-            border-left: 5px solid #1a4d2e;
+            border-left: 5px solid #d4af37;
         }
 
         .tip-item h4 {
-            color: #1a4d2e;
+            color: #d4af37;
             margin-bottom: 0.8rem;
             font-size: 1.3rem;
         }
 
         .tip-item p {
-            color: #555;
+            color: #bbb;
             line-height: 1.8;
         }
 
+        /* FOOTER (matches homepage) */
         footer {
-            background: rgba(26, 77, 46, 0.95);
-            backdrop-filter: blur(15px);
-            color: white;
+            background: #000;
+            border-top: 2px solid #d4af37;
+            padding: 3rem 2rem;
             text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
         }
 
         @media (max-width: 968px) {
-            .menu-toggle { display: block; }
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                margin-top: 1rem;
-            }
-            .nav-links.active { display: flex; }
             .resources-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ══ COMING SOON: TEXT AN ISLAMIC PERSON ══════════════ */
+        .soon-section {
+            margin-bottom: 2rem;
+        }
+
+        .soon-card {
+            position: relative;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(212, 175, 55, 0.02));
+            border: 2px solid #d4af37;
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.25);
+            animation: cardGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes cardGlow {
+            0%, 100% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.2); }
+            50% { box-shadow: 0 0 55px rgba(212, 175, 55, 0.45); }
+        }
+
+        .soon-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                60deg,
+                transparent 40%,
+                rgba(255, 215, 0, 0.18) 50%,
+                transparent 60%
+            );
+            animation: shimmer 3.5s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-30%) translateY(-30%) rotate(0deg); }
+            100% { transform: translateX(30%) translateY(30%) rotate(0deg); }
+        }
+
+        .soon-badge {
+            position: relative;
+            z-index: 2;
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            color: #0a0a0a;
+            font-weight: 800;
+            font-size: 0.8rem;
+            letter-spacing: 1.5px;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            margin-bottom: 1.2rem;
+            text-transform: uppercase;
+            animation: badgePulse 1.8s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        .soon-icon {
+            position: relative;
+            z-index: 2;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .soon-card h3 {
+            position: relative;
+            z-index: 2;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #d4af37, #ffd700, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .soon-card p {
+            position: relative;
+            z-index: 2;
+            color: #ccc;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            max-width: 650px;
+            margin: 0 auto;
         }
     </style>
 </head>
 <body>
-    <div class="animated-bg"></div>
 
-    <header>
-        <nav>
-            <div class="nav-top">
-                <div class="logo">☪ Islamic Hub</div>
-                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-            </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">🏠 Home</a></li>
-                <li><a href="prayer-tools.html">🕌 Prayer</a></li>
-                <li><a href="quran.html">📕 Quran</a></li>
-                <li><a href="daily-hadith.html">📖 Hadith</a></li>
-                <li><a href="ayah-of-the-day.html">🌟 Ayah</a></li>
-                <li><a href="dua-of-the-day.html">🤲 Dua</a></li>
-                <li><a href="calendar.html">📅 Calendar</a></li>
-                <li><a href="zakat-calculator.html">💰 Zakat</a></li>
-                <li><a href="kids-stories.html">👶 Kids</a></li>
-                <li><a href="dawah.html">📢 Dawah</a></li>
-                <li><a href="community.html">💬 Community</a></li>
-                <li><a href="halal-games.html">🎮 Games</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <nav>
+        <div class="logo">☪ ISLAMIC HUB</div>
+        <ul class="nav-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li><a href="prayer-tools.html">🕌 Prayer</a></li>
+            <li><a href="quran.html">📕 Quran</a></li>
+            <li><a href="halal-games.html">🎮 Games</a></li>
+            <li><a href="kids-stories.html">👶 Kids</a></li>
+            <li><a href="community.html">💬 Chat</a></li>
+            <li><a href="islamic-library.html">📚 Library</a></li>
+        </ul>
+    </nav>
+</header>
 
+<div class="page-bg">
     <div class="container">
         <h1 class="page-title">📢 Dawah Resources</h1>
 
@@ -404,17 +518,26 @@
                 </p>
             </div>
         </div>
+
+        <div class="soon-section">
+            <div class="soon-card">
+                <span class="soon-badge">✨ Coming Soon</span>
+                <div class="soon-icon">💬🕌</div>
+                <h3>Text an Islamic Person</h3>
+                <p>
+                    Got a question about Islam and want a real answer from a real, knowledgeable Muslim — not just an article? 
+                    Soon you'll be able to text directly with an Islamic person for guidance, advice, and authentic answers. Stay tuned!
+                </p>
+            </div>
+        </div>
     </div>
+</div>
 
-    <footer>
-        <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
-        <p>May Allah guide us in sharing His message 🤲</p>
-    </footer>
+<footer>
+    <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
+    <p>May Allah guide us in sharing His message 🤲</p>
+    <p>✉️ <a href="mailto:lutrumputrumss@gmail.com" style="color:#d4af37; text-decoration:none;">lutrumputrumss@gmail.com</a></p>
+</footer>
 
-    <script>
-        function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
-        }
-    </script>
 </body>
 </html>
