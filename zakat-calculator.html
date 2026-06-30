@@ -14,84 +14,77 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-        }
-
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #2d5016 0%, #3d6b1f 25%, #4d7c2f 50%, #5d8d3f 75%, #6d9e4f 100%);
-            background-size: 400% 400%;
-            animation: gradientFlow 20s ease infinite;
-            z-index: -1;
-        }
-
-        @keyframes gradientFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            color: #e0e0e0;
+            background: #0a0a0a;
+            overflow-x: hidden;
         }
 
         header {
-            background: rgba(45, 80, 22, 0.95);
-            backdrop-filter: blur(15px);
-            color: white;
-            padding: 0.8rem 0;
-            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid #d4af37;
+            padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.15);
         }
 
         nav {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
-        }
-
-        .nav-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.8rem;
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #d4af37, #f0e68c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 1.2rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
             justify-content: center;
         }
 
         .nav-links a {
-            color: white;
+            color: #e0e0e0;
             text-decoration: none;
-            padding: 0.4rem 0.8rem;
-            border-radius: 5px;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
             transition: all 0.3s;
-            font-size: 0.95rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #d4af37;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-links a:hover {
-            background: rgba(255,255,255,0.2);
+            color: #d4af37;
         }
 
         .container {
@@ -267,14 +260,7 @@
         }
 
         @media (max-width: 968px) {
-            .menu-toggle { display: block; }
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                margin-top: 1rem;
-            }
-            .nav-links.active { display: flex; }
+            .nav-links { gap: 0.8rem; font-size: 0.85rem; }
             .page-title { font-size: 2rem; }
             .calculator-card { padding: 2rem 1.5rem; }
             .zakat-amount { font-size: 2.5rem; }
@@ -282,29 +268,17 @@
     </style>
 </head>
 <body>
-    <div class="animated-bg"></div>
-
     <header>
         <nav>
-            <div class="nav-top">
-                <div class="logo">☪ Islamic Hub</div>
-                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-            </div>
-            <ul class="nav-links" id="navLinks">
+            <div class="logo">☪ ISLAMIC HUB</div>
+            <ul class="nav-links">
                 <li><a href="index.html">🏠 Home</a></li>
                 <li><a href="prayer-tools.html">🕌 Prayer</a></li>
                 <li><a href="quran.html">📕 Quran</a></li>
-                <li><a href="daily-hadith.html">📖 Hadith</a></li>
-                <li><a href="ayah-of-the-day.html">🌟 Ayah</a></li>
-                <li><a href="dua-of-the-day.html">🤲 Dua</a></li>
-                <li><a href="calendar.html">📅 Calendar</a></li>
-                <li><a href="zakat-calculator.html">💰 Zakat</a></li>
-                <li><a href="kids-stories.html">👶 Kids</a></li>
-                <li><a href="dawah.html">📢 Dawah</a></li>
-                <li><a href="community.html">💬 Community</a></li>
                 <li><a href="halal-games.html">🎮 Games</a></li>
+                <li><a href="kids-stories.html">👶 Kids</a></li>
+                <li><a href="community.html">💬 Chat</a></li>
                 <li><a href="islamic-library.html">📚 Library</a></li>
-                <li><a href="islamic-courses.html">🎓 Courses</a></li>
             </ul>
         </nav>
     </header>
@@ -392,10 +366,6 @@
     </footer>
 
     <script>
-        function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
-        }
-
         // ALL 180+ WORLD CURRENCIES
         const currencies = {
             "USD": { name: "US Dollar", symbol: "$", country: "United States" },
@@ -509,110 +479,4 @@
             "NAD": { name: "Namibian Dollar", symbol: "N$", country: "Namibia" },
             "AOA": { name: "Angolan Kwanza", symbol: "Kz", country: "Angola" },
             "MZN": { name: "Mozambican Metical", symbol: "MT", country: "Mozambique" },
-            "STN": { name: "São Tomé Dobra", symbol: "Db", country: "São Tomé" },
-            "CVE": { name: "Cape Verdean Escudo", symbol: "$", country: "Cape Verde" },
-            "GMD": { name: "Gambian Dalasi", symbol: "D", country: "Gambia" },
-            "GNF": { name: "Guinean Franc", symbol: "FG", country: "Guinea" },
-            "SLL": { name: "Sierra Leonean Leone", symbol: "Le", country: "Sierra Leone" },
-            "LRD": { name: "Liberian Dollar", symbol: "L$", country: "Liberia" },
-            "XOF": { name: "West African CFA Franc", symbol: "CFA", country: "West Africa" },
-            "XAF": { name: "Central African CFA Franc", symbol: "FCFA", country: "Central Africa" },
-            "BIF": { name: "Burundian Franc", symbol: "FBu", country: "Burundi" },
-            "RWF": { name: "Rwandan Franc", symbol: "RF", country: "Rwanda" },
-            "DJF": { name: "Djiboutian Franc", symbol: "Fdj", country: "Djibouti" },
-            "ERN": { name: "Eritrean Nakfa", symbol: "Nfk", country: "Eritrea" },
-            "CDF": { name: "Congolese Franc", symbol: "FC", country: "DR Congo" },
-            "XPF": { name: "CFP Franc", symbol: "₣", country: "French Pacific" },
-            "ANG": { name: "Netherlands Antillean Guilder", symbol: "ƒ", country: "Curaçao" },
-            "AWG": { name: "Aruban Florin", symbol: "ƒ", country: "Aruba" },
-            "BBD": { name: "Barbadian Dollar", symbol: "Bds$", country: "Barbados" },
-            "BMD": { name: "Bermudian Dollar", symbol: "$", country: "Bermuda" },
-            "BSD": { name: "Bahamian Dollar", symbol: "B$", country: "Bahamas" },
-            "BZD": { name: "Belize Dollar", symbol: "BZ$", country: "Belize" },
-            "CRC": { name: "Costa Rican Colón", symbol: "₡", country: "Costa Rica" },
-            "CUP": { name: "Cuban Peso", symbol: "$", country: "Cuba" },
-            "DOP": { name: "Dominican Peso", symbol: "RD$", country: "Dominican Republic" },
-            "GTQ": { name: "Guatemalan Quetzal", symbol: "Q", country: "Guatemala" },
-            "HNL": { name: "Honduran Lempira", symbol: "L", country: "Honduras" },
-            "HTG": { name: "Haitian Gourde", symbol: "G", country: "Haiti" },
-            "JMD": { name: "Jamaican Dollar", symbol: "J$", country: "Jamaica" },
-            "NIO": { name: "Nicaraguan Córdoba", symbol: "C$", country: "Nicaragua" },
-            "PAB": { name: "Panamanian Balboa", symbol: "B/.", country: "Panama" },
-            "PYG": { name: "Paraguayan Guaraní", symbol: "₲", country: "Paraguay" },
-            "SRD": { name: "Surinamese Dollar", symbol: "$", country: "Suriname" },
-            "TTD": { name: "Trinidad Dollar", symbol: "TT$", country: "Trinidad" },
-            "UYU": { name: "Uruguayan Peso", symbol: "$U", country: "Uruguay" },
-            "BOB": { name: "Bolivian Boliviano", symbol: "Bs", country: "Bolivia" },
-            "GYD": { name: "Guyanese Dollar", symbol: "G$", country: "Guyana" }
-        };
-
-        let selectedSymbol = "$";
-
-        // Initialize
-        window.onload = function() {
-            populateCurrencies();
-        };
-
-        function populateCurrencies() {
-            const select = document.getElementById('currencySelect');
-            
-            // Sort by country name
-            const sorted = Object.entries(currencies).sort((a, b) => 
-                a[1].country.localeCompare(b[1].country)
-            );
-
-            sorted.forEach(([code, data]) => {
-                const option = document.createElement('option');
-                option.value = code;
-                option.textContent = `${data.country} - ${data.name} (${code})`;
-                select.appendChild(option);
-            });
-
-            // Default to USD
-            select.value = 'USD';
-            updateCurrency();
-        }
-
-        function updateCurrency() {
-            const code = document.getElementById('currencySelect').value;
-            if (!code) return;
-
-            selectedSymbol = currencies[code].symbol;
-
-            // Update all symbols
-            for (let i = 1; i <= 6; i++) {
-                document.getElementById(`symbol${i}`).textContent = selectedSymbol;
-            }
-        }
-
-        function calculateZakat() {
-            // Get values
-            const cash = parseFloat(document.getElementById('cash').value) || 0;
-            const gold = parseFloat(document.getElementById('gold').value) || 0;
-            const business = parseFloat(document.getElementById('business').value) || 0;
-            const investments = parseFloat(document.getElementById('investments').value) || 0;
-            const other = parseFloat(document.getElementById('other').value) || 0;
-            const liabilities = parseFloat(document.getElementById('liabilities').value) || 0;
-
-            // Calculate total
-            const totalWealth = cash + gold + business + investments + other - liabilities;
-
-            // Calculate Zakat (2.5%)
-            const zakatAmount = totalWealth * 0.025;
-
-            // Display results
-            document.getElementById('zakatAmount').textContent = 
-                `${selectedSymbol}${zakatAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-            
-            document.getElementById('totalWealth').textContent = 
-                `${selectedSymbol}${totalWealth.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-
-            // Show result
-            document.getElementById('resultCard').classList.add('show');
-
-            // Scroll to result
-            document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-    </script>
-</body>
-</html>
+            "STN": { name: "São Tomé
