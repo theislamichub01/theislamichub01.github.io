@@ -457,6 +457,19 @@
             return dayOfYear % 300 + 1;
         }
 
+        async function fetchWithTimeout(url, ms = 6000) {
+            const controller = new AbortController();
+            const id = setTimeout(() => controller.abort(), ms);
+            try {
+                const res = await fetch(url, { signal: controller.signal });
+                clearTimeout(id);
+                return res;
+            } catch (e) {
+                clearTimeout(id);
+                throw e;
+            }
+        }
+
         async function loadDailyHadith() {
             const container = document.getElementById('hadithContainer');
             container.innerHTML = '<div class="loading">Loading today\'s Hadith...</div>';
@@ -466,21 +479,23 @@
                 const collectionIndex = new Date().getDate() % 2;
                 const collection = hadithCollections[collectionIndex];
                 
-                const response = await fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions/eng-${collection}/${hadithNumber}.json`);
+                const [engResult, araResult] = await Promise.allSettled([
+                    fetchWithTimeout(`https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions/eng-${collection}/${hadithNumber}.json`),
+                    fetchWithTimeout(`https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions/ara-${collection}/${hadithNumber}.json`)
+                ]);
                 
-                if (!response.ok) throw new Error('Failed to load hadith');
+                if (engResult.status !== 'fulfilled' || !engResult.value.ok) throw new Error('Failed to load hadith');
                 
-                const data = await response.json();
+                const data = await engResult.value.json();
                 const hadith = data.hadiths[0];
                 
                 let arabicText = '';
-                try {
-                    const arabicResponse = await fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions/ara-${collection}/${hadithNumber}.json`);
-                    if (arabicResponse.ok) {
-                        const arabicData = await arabicResponse.json();
+                if (araResult.status === 'fulfilled' && araResult.value.ok) {
+                    try {
+                        const arabicData = await araResult.value.json();
                         arabicText = arabicData.hadiths[0].text;
-                    }
-                } catch (e) {}
+                    } catch (e) {}
+                }
                 
                 displayHadith(hadith, arabicText, collection);
                 
@@ -505,21 +520,23 @@
                 const randomCollection = hadithCollections[Math.floor(Math.random() * 2)];
                 const randomNumber = Math.floor(Math.random() * 300) + 1;
                 
-                const response = await fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions/eng-${randomCollection}/${randomNumber}.json`);
+                const [engResult, araResult] = await Promise.allSettled([
+                    fetchWithTimeout(`https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions/eng-${randomCollection}/${randomNumber}.json`),
+                    fetchWithTimeout(`https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions/ara-${randomCollection}/${randomNumber}.json`)
+                ]);
                 
-                if (!response.ok) throw new Error('Failed');
+                if (engResult.status !== 'fulfilled' || !engResult.value.ok) throw new Error('Failed');
                 
-                const data = await response.json();
+                const data = await engResult.value.json();
                 const hadith = data.hadiths[0];
                 
                 let arabicText = '';
-                try {
-                    const arabicResponse = await fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions/ara-${randomCollection}/${randomNumber}.json`);
-                    if (arabicResponse.ok) {
-                        const arabicData = await arabicResponse.json();
+                if (araResult.status === 'fulfilled' && araResult.value.ok) {
+                    try {
+                        const arabicData = await araResult.value.json();
                         arabicText = arabicData.hadiths[0].text;
-                    }
-                } catch (e) {}
+                    } catch (e) {}
+                }
                 
                 displayHadith(hadith, arabicText, randomCollection);
                 
@@ -569,4 +586,29 @@
                         <button class="btn btn-secondary" onclick="shareHadith()">
                             📤 Share Hadith
                         </button>
-    
+                    </div>
+                </div>
+            `;
+        }
+
+        function shareHadith() {
+            const hadithText = document.querySelector('.hadith-english')?.textContent || '';
+            const hadithRef = document.querySelector('.reference-title')?.nextElementSibling?.textContent || '';
+            const shareText = `📖 Daily Hadith from Islamic Hub:\n\n${hadithText}\n\n${hadithRef}\n\n✅ Verify at: https://sunnah.com\n🌐 Visit: https://theislamichub04.github.io`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Daily Hadith - Islamic Hub',
+                    text: shareText
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('✅ Hadith copied to clipboard! You can now paste and share it.');
+                }).catch(() => {
+                    alert('Unable to copy. Please select and copy the text manually.');
+                });
+            }
+        }
+    </script>
+</body>
+</html>
