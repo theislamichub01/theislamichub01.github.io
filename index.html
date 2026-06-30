@@ -343,6 +343,148 @@
             .section-title { font-size: 2rem; }
             .nav-links { gap: 0.8rem; font-size: 0.85rem; }
         }
+
+        /* ══ FLOATING HELP BUTTON ══════════════════════════ */
+        .help-fab {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            color: #0a0a0a;
+            border: none;
+            font-size: 1.6rem;
+            font-weight: 800;
+            cursor: pointer;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 24px rgba(212, 175, 55, 0.5), 0 0 0 0 rgba(212, 175, 55, 0.6);
+            animation: pulseGlow 2.4s ease-in-out infinite;
+            transition: transform 0.25s;
+        }
+
+        .help-fab:hover { transform: scale(1.1) rotate(-6deg); }
+
+        @keyframes pulseGlow {
+            0%   { box-shadow: 0 6px 24px rgba(212,175,55,0.5), 0 0 0 0 rgba(212,175,55,0.45); }
+            70%  { box-shadow: 0 6px 24px rgba(212,175,55,0.5), 0 0 0 14px rgba(212,175,55,0); }
+            100% { box-shadow: 0 6px 24px rgba(212,175,55,0.5), 0 0 0 0 rgba(212,175,55,0); }
+        }
+
+        /* overlay + panel */
+        .help-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2500;
+            padding: 1.5rem;
+        }
+
+        .help-overlay.open { display: flex; }
+
+        .help-panel {
+            background: #111111;
+            border: 2px solid #d4af37;
+            border-radius: 16px;
+            max-width: 560px;
+            width: 100%;
+            max-height: 82vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        }
+
+        .help-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.3rem 1.6rem;
+            border-bottom: 1px solid rgba(212,175,55,0.3);
+            position: sticky;
+            top: 0;
+            background: #111111;
+        }
+
+        .help-panel-header h3 {
+            color: #d4af37;
+            font-size: 1.3rem;
+        }
+
+        .help-close {
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 1.4rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .help-close:hover { color: #d4af37; }
+
+        .help-tabs {
+            display: flex;
+            gap: 0.5rem;
+            padding: 1rem 1.6rem 0;
+        }
+
+        .help-tab {
+            flex: 1;
+            background: rgba(212,175,55,0.06);
+            border: 1px solid rgba(212,175,55,0.25);
+            color: #ccc;
+            padding: 0.55rem 0.5rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+        }
+
+        .help-tab.active, .help-tab:hover {
+            background: #d4af37;
+            color: #0a0a0a;
+            border-color: #d4af37;
+        }
+
+        .help-body { padding: 1.4rem 1.6rem 1.8rem; }
+
+        .help-panel-content { display: none; }
+        .help-panel-content.active { display: block; }
+
+        .faq-item { margin-bottom: 1.1rem; }
+        .faq-q { color: #d4af37; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.3rem; }
+        .faq-a { color: #aaa; font-size: 0.88rem; line-height: 1.7; }
+
+        .about-text { color: #bbb; font-size: 0.92rem; line-height: 1.85; }
+
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            background: rgba(212,175,55,0.06);
+            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 10px;
+            padding: 0.9rem 1.1rem;
+            margin-bottom: 0.8rem;
+            text-decoration: none;
+            color: #e0e0e0;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .contact-row:hover { border-color: #d4af37; background: rgba(212,175,55,0.12); }
+        .contact-icon { font-size: 1.3rem; }
+
+        @media (max-width: 480px) {
+            .help-fab { bottom: 18px; right: 18px; width: 52px; height: 52px; font-size: 1.4rem; }
+        }
     </style>
 </head>
 <body>
@@ -468,12 +610,652 @@
     <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
     <p>Knowledge • Spirituality • Community</p>
     <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="dawah.html">Dawah</a>
-        <a href="mailto:lutrumputrumss@gmail.com">Contact</a>
-        <a href="islamic-library.html">Library</a>
+        <a href="mailto:lutrumputrumss@gmail.com">✉️ lutrumputrumss@gmail.com</a>
+        <a href="https://instagram.com/theofficial.islamichub01" target="_blank">📷 @theofficial.islamichub01</a>
     </div>
 </footer>
 
-</body>
-</html>
+<!-- ══ FLOATING HELP BUTTON ══════════════════════════════ -->
+<button class="help-fab" onclick="document.getElementById('helpOverlay').classList.add('open')" aria-label="Help">?</button>
+
+<div class="help-overlay" id="helpOverlay" onclick="closeOnOverlay(event)">
+    <div class="help-panel">
+        <div class="help-panel-header">
+            <h3>☪ Help & Info</h3>
+            <button class="help-close" onclick="closeHelp()">✕</button>
+        </div>
+
+        <div class="help-tabs">
+            <button class="help-tab active" onclick="switchTab('faq', this)">FAQs</button>
+            <button class="help-tab" onclick="switchTab('about', this)">About Us</button>
+            <button class<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Hub - Knowledge & Spirituality</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+        header {
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid #d4af37;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.15);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #d4af37, #f0e68c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-weight: 500;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #d4af37;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #d4af37;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #d4af37, #ffd700, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #c0c0c0;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3.5rem;
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            color: #0a0a0a;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+            border: none;
+            cursor: pointer;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.5);
+        }
+
+        /* FEATURES */
+        .features {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1rem;
+            color: #888;
+            margin-bottom: 4rem;
+            letter-spacing: 1px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background: rgba(212, 175, 55, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: #d4af37;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #d4af37;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-desc {
+            color: #999;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* STATS */
+        .stats {
+            padding: 4rem 2rem;
+            background: rgba(212, 175, 55, 0.05);
+            border-top: 2px solid #d4af37;
+            border-bottom: 2px solid #d4af37;
+            margin: 3rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: #d4af37;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            color: #999;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* CALL TO ACTION */
+        .cta-section {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(212, 175, 55, 0.02));
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            max-width: 900px;
+            margin: 4rem auto;
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            color: #d4af37;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            color: #bbb;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #000;
+            border-top: 2px solid #d4af37;
+            padding: 3rem 2rem;
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #d4af37;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ffd700;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1rem; }
+            .section-title { font-size: 2rem; }
+            .nav-links { gap: 0.8rem; font-size: 0.85rem; }
+        }
+
+        /* ══ FLOATING HELP BUTTON ══════════════════════════ */
+        .help-fab {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            color: #0a0a0a;
+            border: none;
+            font-size: 1.6rem;
+            font-weight: 800;
+            cursor: pointer;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 24px rgba(212, 175, 55, 0.5), 0 0 0 0 rgba(212, 175, 55, 0.6);
+            animation: pulseGlow 2.4s ease-in-out infinite;
+            transition: transform 0.25s;
+        }
+
+        .help-fab:hover { transform: scale(1.1) rotate(-6deg); }
+
+        @keyframes pulseGlow {
+            0%   { box-shadow: 0 6px 24px rgba(212,175,55,0.5), 0 0 0 0 rgba(212,175,55,0.45); }
+            70%  { box-shadow: 0 6px 24px rgba(212,175,55,0.5), 0 0 0 14px rgba(212,175,55,0); }
+            100% { box-shadow: 0 6px 24px rgba(212,175,55,0.5), 0 0 0 0 rgba(212,175,55,0); }
+        }
+
+        /* overlay + panel */
+        .help-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2500;
+            padding: 1.5rem;
+        }
+
+        .help-overlay.open { display: flex; }
+
+        .help-panel {
+            background: #111111;
+            border: 2px solid #d4af37;
+            border-radius: 16px;
+            max-width: 560px;
+            width: 100%;
+            max-height: 82vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        }
+
+        .help-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.3rem 1.6rem;
+            border-bottom: 1px solid rgba(212,175,55,0.3);
+            position: sticky;
+            top: 0;
+            background: #111111;
+        }
+
+        .help-panel-header h3 {
+            color: #d4af37;
+            font-size: 1.3rem;
+        }
+
+        .help-close {
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 1.4rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .help-close:hover { color: #d4af37; }
+
+        .help-tabs {
+            display: flex;
+            gap: 0.5rem;
+            padding: 1rem 1.6rem 0;
+        }
+
+        .help-tab {
+            flex: 1;
+            background: rgba(212,175,55,0.06);
+            border: 1px solid rgba(212,175,55,0.25);
+            color: #ccc;
+            padding: 0.55rem 0.5rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+        }
+
+        .help-tab.active, .help-tab:hover {
+            background: #d4af37;
+            color: #0a0a0a;
+            border-color: #d4af37;
+        }
+
+        .help-body { padding: 1.4rem 1.6rem 1.8rem; }
+
+        .help-panel-content { display: none; }
+        .help-panel-content.active { display: block; }
+
+        .faq-item { margin-bottom: 1.1rem; }
+        .faq-q { color: #d4af37; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.3rem; }
+        .faq-a { color: #aaa; font-size: 0.88rem; line-height: 1.7; }
+
+        .about-text { color: #bbb; font-size: 0.92rem; line-height: 1.85; }
+
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            background: rgba(212,175,55,0.06);
+            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 10px;
+            padding: 0.9rem 1.1rem;
+            margin-bottom: 0.8rem;
+            text-decoration: none;
+            color: #e0e0e0;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .contact-row:hover { border-color: #d4af37; background: rgba(212,175,55,0.12); }
+        .contact-icon { font-size: 1.3rem; }
+
+        @media (max-width: 480px) {
+            .help-fab { bottom: 18px; right: 18px; width: 52px; height: 52px; font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">☪ ISLAMIC HUB</div>
+        <ul class="nav-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li><a href="prayer-tools.html">🕌 Prayer</a></li>
+            <li><a href="quran.html">📕 Quran</a></li>
+            <li><a href="halal-games.html">🎮 Games</a></li>
+            <li><a href="kids-stories.html">👶 Kids</a></li>
+            <li><a href="community.html">💬 Chat</a></li>
+            <li><a href="islamic-library.html">📚 Library</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Discover Islamic Wisdom</h1>
+        <p>Explore authentic Islamic knowledge, connect with community, and grow spiritually</p>
+        <button class="cta-button" onclick="document.querySelector('.features').scrollIntoView({behavior: 'smooth'})">Explore Now</button>
+    </div>
+</section>
+
+<section class="features">
+    <h2 class="section-title">Our Premium Features</h2>
+    <p class="section-subtitle">CAREFULLY CURATED ISLAMIC RESOURCES</p>
+    
+    <div class="features-grid">
+        <div class="feature-card" onclick="location.href='prayer-tools.html'">
+            <div class="feature-icon">🕌</div>
+            <div class="feature-title">Prayer Tools</div>
+            <div class="feature-desc">Prayer times, Qibla direction, and guided prayers for daily spiritual practice</div>
+        </div>
+
+        <div class="feature-card" onclick="location.href='quran.html'">
+            <div class="feature-icon">📕</div>
+            <div class="feature-title">Quran Explorer</div>
+            <div class="feature-desc">Complete Quran with translations, tafsir, and beautiful recitations</div>
+        </div>
+
+        <div class="feature-card" onclick="location.href='halal-games.html'">
+            <div class="feature-icon">🎮</div>
+            <div class="feature-title">Halal Games</div>
+            <div class="feature-desc">Educational Islamic games to test and expand your knowledge while earning coins</div>
+        </div>
+
+        <div class="feature-card" onclick="location.href='kids-stories.html'">
+            <div class="feature-icon">👶</div>
+            <div class="feature-title">Kids Stories</div>
+            <div class="feature-desc">Authentic Islamic stories for children featuring prophets and moral lessons</div>
+        </div>
+
+        <div class="feature-card" onclick="location.href='community.html'">
+            <div class="feature-icon">💬</div>
+            <div class="feature-title">Community Chat</div>
+            <div class="feature-desc">Connect with Muslims worldwide and chat with our AI Islamic assistant</div>
+        </div>
+
+        <div class="feature-card" onclick="location.href='islamic-library.html'">
+            <div class="feature-icon">📚</div>
+            <div class="feature-title">Islamic Library</div>
+            <div class="feature-desc">Access authentic Hadith collections and Islamic scholarly resources</div>
+        </div>
+
+        <div class="feature-card" onclick="location.href='daily-hadith.html'">
+            <div class="feature-icon">📖</div>
+            <div class="feature-title">Daily Hadith</div>
+            <div class="feature-desc">Receive daily wisdom from authentic hadith of Prophet Muhammad (PBUH)</div>
+        </div>
+
+        <div class="feature-card" onclick="location.href='zakat-calculator.html'">
+            <div class="feature-icon">💰</div>
+            <div class="feature-title">Zakat Calculator</div>
+            <div class="feature-desc">Calculate your Zakat obligations with our precise and easy-to-use calculator</div>
+        </div>
+
+        <div class="feature-card" onclick="location.href='calendar.html'">
+            <div class="feature-icon">📅</div>
+            <div class="feature-title">Islamic Calendar</div>
+            <div class="feature-desc">Track Islamic dates, holidays, and important occasions throughout the year</div>
+        </div>
+
+        <div class="feature-card" onclick="location.href='dua-of-the-day.html'">
+            <div class="feature-icon">🤲</div>
+            <div class="feature-title">Dua of the Day</div>
+            <div class="feature-desc">Daily supplications from Quran & Sunnah, plus a live community dua board where others pray for you</div>
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>75+</h3>
+                <p>Islamic Stories</p>
+            </div>
+            <div class="stat-item">
+                <h3>1000+</h3>
+                <p>Quiz Questions</p>
+            </div>
+            <div class="stat-item">
+                <h3>24/7</3>
+                <p>AI Support</p>
+            </div>
+            <div class="stat-item">
+                <h3>∞</h3>
+                <p>Community</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <h2>Join the Islamic Hub Community</h2>
+    <p>Unlock premium features, earn coins, bookmark stories, and connect with thousands of Muslims worldwide</p>
+    <button class="cta-button" onclick="location.href='community.html'">Create Your Account</button>
+</section>
+
+<footer>
+    <p>&copy; 2026 Islamic Hub. All rights reserved.</p>
+    <p>Knowledge • Spirituality • Community</p>
+    <div class="footer-links">
+        <a href="mailto:lutrumputrumss@gmail.com">✉️ lutrumputrumss@gmail.com</a>
+        <a href="https://instagram.com/theofficial.islamichub01" target="_blank">📷 @theofficial.islamichub01</a>
+    </div>
+</footer>
+
+<!-- ══ FLOATING HELP BUTTON ══════════════════════════════ -->
+<button class="help-fab" onclick="document.getElementById('helpOverlay').classList.add('open')" aria-label="Help">?</button>
+
+<div class="help-overlay" id="helpOverlay" onclick="closeOnOverlay(event)">
+    <div class="help-panel">
+        <div class="help-panel-header">
+            <h3>☪ Help & Info</h3>
+            <button class="help-close" onclick="closeHelp()">✕</button>
+        </div>
+
+        <div class="help-tabs">
+            <button class="help-tab active" onclick="switchTab('faq', this)">FAQs</button>
+            <button class="help-tab" onclick="switchTab('about', this)">About Us</button>
+            <button class
