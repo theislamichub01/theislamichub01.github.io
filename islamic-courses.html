@@ -584,4 +584,204 @@
                 instructor: "Ustadh Nouman Ali Khan",
                 category: "Arabic",
                 icon: "🔤",
-                description: "Learn Arabic alpha
+                description: "Learn Arabic alphabet, basic grammar, and simple conversations.",
+                lessons: 30,
+                duration: "10 weeks",
+                level: "Beginner",
+                topics: [
+                    "Arabic Alphabet & Sounds",
+                    "Connecting Letters",
+                    "Short & Long Vowels",
+                    "Basic Vocabulary (500 words)",
+                    "Simple Sentence Structure",
+                    "Present & Past Tense",
+                    "Common Greetings",
+                    "Reading Simple Texts"
+                ],
+                links: [
+                    { text: "Arabic Beginner", url: "https://www.youtube.com/results?search_query=arabic+for+beginners+complete" },
+                    { text: "Bayyinah Institute", url: "https://www.youtube.com/c/BayyinahInstitute" }
+                ]
+            },
+            {
+                title: "Quranic Arabic",
+                instructor: "Dr. Abdur Rahim",
+                category: "Arabic",
+                icon: "📜",
+                description: "Understand Quranic Arabic grammar and vocabulary to read Quran with understanding.",
+                lessons: 50,
+                duration: "16 weeks",
+                level: "Intermediate",
+                topics: [
+                    "Quranic Grammar Basics",
+                    "Verb Forms (Sarf)",
+                    "Sentence Structure (Nahw)",
+                    "Common Quranic Patterns",
+                    "Root Words & Derivatives",
+                    "Understanding Ayahs Directly",
+                    "1000+ Quranic Vocabulary",
+                    "Tafsir Through Grammar"
+                ],
+                links: [
+                    { text: "Quranic Arabic", url: "https://www.youtube.com/results?search_query=quranic+arabic+grammar" },
+                    { text: "Learn Quranic", url: "https://www.youtube.com/c/BayyinahInstitute" }
+                ]
+            },
+            {
+                title: "Advanced Arabic Grammar",
+                instructor: "Sheikh Yasir Qadhi",
+                category: "Arabic",
+                icon: "🎯",
+                description: "Master Nahw and Sarf with classical Arabic grammar texts.",
+                lessons: 60,
+                duration: "20 weeks",
+                level: "Advanced",
+                topics: [
+                    "Al-Ajrumiyyah Study",
+                    "Al-Alfiyyah of Ibn Malik",
+                    "Advanced Nahw Rules",
+                    "Advanced Sarf Patterns",
+                    "Classical Poetry Analysis",
+                    "Arabic Rhetoric (Balagha)",
+                    "Reading Classical Texts",
+                    "Arabic Linguistics"
+                ],
+                links: [
+                    { text: "Advanced Grammar", url: "https://www.youtube.com/results?search_query=advanced+arabic+grammar+nahw" },
+                    { text: "Classical Texts", url: "https://www.youtube.com/results?search_query=ajrumiyyah+explained" }
+                ]
+            },
+            {
+                title: "Life of Prophet Muhammad ﷺ",
+                instructor: "Dr. Yasir Qadhi",
+                category: "Seerah",
+                icon: "⭐",
+                description: "Complete biography of Prophet Muhammad ﷺ from birth to passing.",
+                lessons: 100,
+                duration: "24 weeks",
+                level: "All Levels",
+                topics: [
+                    "Birth & Early Life",
+                    "Revelation & Prophethood",
+                    "Meccan Period - Persecution",
+                    "Migration to Madinah",
+                    "Battle of Badr",
+                    "Battle of Uhud",
+                    "Conquest of Makkah",
+                    "Farewell Sermon & Passing"
+                ],
+                links: [
+                    { text: "Yasir Qadhi Seerah", url: "https://www.youtube.com/results?search_query=yasir+qadhi+seerah+complete" },
+                    { text: "Prophet's Life", url: "https://www.youtube.com/results?search_query=life+of+prophet+muhammad" }
+                ]
+            },
+            {
+                title: "Stories of the Prophets",
+                instructor: "Mufti Ismail Menk",
+                category: "Seerah",
+                icon: "👥",
+                description: "Learn from the lives of all Prophets mentioned in Quran and Hadith.",
+                lessons: 30,
+                duration: "10 weeks",
+                level: "Beginner",
+                topics: [
+                    "Prophet Adam (AS)",
+                    "Prophet Nuh (AS)",
+                    "Prophet Ibrahim (AS)",
+                    "Prophet Musa (AS)",
+                    "Prophet Isa (AS)",
+                    "Prophet Yusuf (AS)",
+                    "Prophet Sulayman (AS)",
+                    "Lessons from Each Prophet"
+                ],
+                links: [
+                    { text: "Stories of Prophets", url: "https://www.youtube.com/results?search_query=mufti+menk+stories+prophets" },
+                    { text: "Prophets in Quran", url: "https://www.youtube.com/results?search_query=stories+of+prophets+complete" }
+                ]
+            },
+            {
+                title: "Companions of the Prophet",
+                instructor: "Sheikh Omar Suleiman",
+                category: "Seerah",
+                icon: "🤝",
+                description: "Inspiring stories and lessons from Sahabah (Companions).",
+                lessons: 40,
+                duration: "12 weeks",
+                level: "Intermediate",
+                topics: [
+                    "Abu Bakr As-Siddiq (RA)",
+                    "Umar ibn Al-Khattab (RA)",
+                    "Uthman ibn Affan (RA)",
+                    "Ali ibn Abi Talib (RA)",
+                    "Khadijah (RA)",
+                    "Aisha (RA)",
+                    "Bilal ibn Rabah (RA)",
+                    "Lessons from the Sahabah"
+                ],
+                links: [
+                    { text: "Omar Suleiman Series", url: "https://www.youtube.com/results?search_query=omar+suleiman+companions" },
+                    { text: "Companions Stories", url: "https://www.youtube.com/results?search_query=sahabah+stories" }
+                ]
+            }
+        ];
+
+        let currentCategory = 'all';
+
+        function displayCourses() {
+            const grid = document.getElementById('coursesGrid');
+            
+            const filtered = courses.filter(course => {
+                return currentCategory === 'all' || course.category === currentCategory;
+            });
+
+            grid.innerHTML = filtered.map(course => `
+                <div class="course-card">
+                    <div class="course-icon">${course.icon}</div>
+                    <div class="course-badge">${course.category}</div>
+                    <div class="course-title">${course.title}</div>
+                    <div class="course-instructor">by ${course.instructor}</div>
+                    <div class="course-description">${course.description}</div>
+                    
+                    <div class="course-topics">
+                        <h4>📚 What You'll Learn:</h4>
+                        <ul>
+                            ${course.topics.slice(0, 5).map(topic => `<li>${topic}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="course-info">
+                        <div class="info-item">
+                            <span class="info-label">${course.lessons}</span>
+                            <span>Lessons</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">${course.duration}</span>
+                            <span>Duration</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">${course.level}</span>
+                            <span>Level</span>
+                        </div>
+                    </div>
+
+                    <div class="course-links">
+                        ${course.links.map(link => `
+                            <a href="${link.url}" target="_blank" class="btn">${link.text} →</a>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterCategory(category) {
+            currentCategory = category;
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            displayCourses();
+        }
+
+        // Initialize
+        displayCourses();
+    </script>
+</body>
+</html>
