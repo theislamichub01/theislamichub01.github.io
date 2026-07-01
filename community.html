@@ -14,84 +14,77 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-        }
-
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #2d5016 0%, #3d6b1f 25%, #4d7c2f 50%, #5d8d3f 75%, #6d9e4f 100%);
-            background-size: 400% 400%;
-            animation: gradientFlow 20s ease infinite;
-            z-index: -1;
-        }
-
-        @keyframes gradientFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            color: #e0e0e0;
+            background: #0a0a0a;
+            overflow-x: hidden;
         }
 
         header {
-            background: rgba(45, 80, 22, 0.95);
-            backdrop-filter: blur(15px);
-            color: white;
-            padding: 0.8rem 0;
-            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid #d4af37;
+            padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.15);
         }
 
         nav {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
-        }
-
-        .nav-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.8rem;
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #d4af37, #f0e68c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 1.2rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
             justify-content: center;
         }
 
         .nav-links a {
-            color: white;
+            color: #e0e0e0;
             text-decoration: none;
-            padding: 0.4rem 0.8rem;
-            border-radius: 5px;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
             transition: all 0.3s;
-            font-size: 0.95rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #d4af37;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-links a:hover {
-            background: rgba(255,255,255,0.2);
+            color: #d4af37;
         }
 
         .container {
@@ -102,10 +95,20 @@
 
         .page-title {
             text-align: center;
-            color: white;
-            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
             font-size: 2.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: 800;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
         }
 
         .tabs {
@@ -118,19 +121,20 @@
 
         .tab-btn {
             padding: 1rem 2rem;
-            background: rgba(255, 255, 255, 0.95);
-            border: 2px solid #2d5016;
+            background: rgba(212, 175, 55, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.3);
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 600;
-            color: #2d5016;
+            color: #d4af37;
         }
 
         .tab-btn:hover, .tab-btn.active {
-            background: #2d5016;
-            color: white;
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            color: #0a0a0a;
+            border-color: #d4af37;
             transform: scale(1.05);
         }
 
@@ -142,203 +146,382 @@
             display: block;
         }
 
-        .reminder-section {
-            background: rgba(255, 255, 255, 0.98);
+        .card {
+            background: rgba(212, 175, 55, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.2);
             backdrop-filter: blur(10px);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
             margin-bottom: 2rem;
-            text-align: center;
         }
 
-        .reminder-text {
+        .card h3 {
+            color: #d4af37;
+            margin-bottom: 1.2rem;
             font-size: 1.5rem;
-            line-height: 2;
-            color: #2d5016;
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            padding: 2rem;
-            background: rgba(45, 80, 22, 0.05);
-            border-radius: 15px;
-            border-left: 5px solid #2d5016;
         }
 
-        .reminder-source {
-            color: #666;
-            font-size: 1.1rem;
-            font-weight: 600;
+        .field-row {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
         }
 
-        .btn {
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, #2d5016 0%, #4d7c2f 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
-            margin-top: 1.5rem;
-        }
-
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(45, 80, 22, 0.5);
-        }
-
-        .post-section {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-            margin-bottom: 2rem;
-        }
-
-        .post-section h3 {
-            color: #2d5016;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-        }
-
-        .post-form {
-            margin-bottom: 2rem;
-        }
-
-        .post-form textarea {
+        input[type="text"], textarea {
             width: 100%;
-            padding: 1rem;
-            border: 2px solid #2d5016;
+            padding: 0.9rem;
+            background: rgba(255,255,255,0.04);
+            border: 2px solid rgba(212, 175, 55, 0.3);
             border-radius: 10px;
             font-size: 1rem;
             font-family: inherit;
+            color: #e0e0e0;
             resize: vertical;
-            min-height: 100px;
         }
 
-        .post-form textarea:focus {
+        input[type="text"]::placeholder, textarea::placeholder {
+            color: #777;
+        }
+
+        input[type="text"]:focus, textarea:focus {
             outline: none;
-            border-color: #4d7c2f;
+            border-color: #d4af37;
         }
 
+        .btn {
+            padding: 0.9rem 2rem;
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            color: #0a0a0a;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 700;
+            margin-top: 0.8rem;
+        }
+
+        .btn:hover {
+            transform: scale(1.04);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1.1rem;
+            font-size: 0.85rem;
+            margin-top: 0;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #d4af37;
+            color: #d4af37;
+        }
+
+        .limit-note {
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 0.5rem;
+        }
+
+        /* GROUPS */
+        .groups-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .group-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 12px;
+            padding: 1.3rem;
+        }
+
+        .group-card h4 {
+            color: #d4af37;
+            margin-bottom: 0.4rem;
+            font-size: 1.15rem;
+        }
+
+        .group-topic {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.15);
+            color: #d4af37;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            margin-bottom: 0.6rem;
+        }
+
+        .group-desc {
+            color: #bbb;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .group-meta {
+            color: #777;
+            font-size: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .group-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .group-announcements {
+            margin-top: 0.9rem;
+            padding-top: 0.9rem;
+            border-top: 1px solid rgba(212,175,55,0.15);
+        }
+
+        .announcement {
+            font-size: 0.85rem;
+            color: #ccc;
+            margin-bottom: 0.4rem;
+            padding-left: 0.6rem;
+            border-left: 2px solid #d4af37;
+        }
+
+        .notify-banner {
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 10px;
+            padding: 0.9rem 1.2rem;
+            margin-bottom: 1.2rem;
+            font-size: 0.88rem;
+            color: #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        /* DAILY POSTS */
         .posts-container {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1.2rem;
         }
 
         .post {
-            background: rgba(45, 80, 22, 0.05);
-            padding: 1.5rem;
-            border-radius: 15px;
-            border-left: 4px solid #2d5016;
+            background: rgba(255,255,255,0.03);
+            padding: 1.3rem;
+            border-radius: 14px;
+            border-left: 4px solid #d4af37;
         }
 
         .post-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.7rem;
         }
 
         .post-author {
-            font-weight: 600;
-            color: #2d5016;
+            font-weight: 700;
+            color: #d4af37;
         }
 
         .post-time {
-            color: #666;
-            font-size: 0.9rem;
+            color: #888;
+            font-size: 0.82rem;
         }
 
         .post-content {
-            color: #333;
-            line-height: 1.8;
+            color: #e0e0e0;
+            line-height: 1.7;
+            margin-bottom: 0.6rem;
+            white-space: pre-wrap;
+        }
+
+        .post-image {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 0.6rem;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.6rem;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .action-btn:hover, .action-btn.liked {
+            color: #d4af37;
+        }
+
+        .comments-list {
+            margin-top: 0.9rem;
+            padding-top: 0.9rem;
+            border-top: 1px solid rgba(212,175,55,0.15);
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .comment {
+            background: rgba(255,255,255,0.02);
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.88rem;
+        }
+
+        .comment-author {
+            color: #d4af37;
+            font-weight: 600;
+            margin-right: 0.4rem;
+        }
+
+        .comment-actions {
+            margin-top: 0.3rem;
+        }
+
+        .comment-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.8rem;
+        }
+
+        .comment-form input {
+            flex: 1;
+        }
+
+        /* QUESTIONS */
+        .question-card {
+            background: rgba(255,255,255,0.03);
+            padding: 1.3rem;
+            border-radius: 14px;
+            border-left: 4px solid #d4af37;
+            margin-bottom: 1.2rem;
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            color: #f0e68c;
+            margin-bottom: 0.4rem;
         }
 
         footer {
-            background: rgba(45, 80, 22, 0.95);
-            backdrop-filter: blur(15px);
-            color: white;
+            background: #000;
+            border-top: 2px solid #d4af37;
+            color: #888;
             text-align: center;
             padding: 2rem;
             margin-top: 4rem;
         }
 
         @media (max-width: 968px) {
-            .menu-toggle { display: block; }
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                margin-top: 1rem;
-            }
-            .nav-links.active { display: flex; }
+            .nav-links { gap: 0.8rem; font-size: 0.85rem; }
             .page-title { font-size: 2rem; }
-            .reminder-text { font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
-    <div class="animated-bg"></div>
-
     <header>
         <nav>
-            <div class="nav-top">
-                <div class="logo">☪ Islamic Hub</div>
-                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-            </div>
-            <ul class="nav-links" id="navLinks">
+            <div class="logo">☪ ISLAMIC HUB</div>
+            <ul class="nav-links">
                 <li><a href="index.html">🏠 Home</a></li>
                 <li><a href="prayer-tools.html">🕌 Prayer</a></li>
                 <li><a href="quran.html">📕 Quran</a></li>
-                <li><a href="daily-hadith.html">📖 Hadith</a></li>
-                <li><a href="ayah-of-the-day.html">🌟 Ayah</a></li>
-                <li><a href="dua-of-the-day.html">🤲 Dua</a></li>
-                <li><a href="calendar.html">📅 Calendar</a></li>
-                <li><a href="zakat-calculator.html">💰 Zakat</a></li>
-                <li><a href="kids-stories.html">👶 Kids</a></li>
-                <li><a href="dawah.html">📢 Dawah</a></li>
-                <li><a href="community.html">💬 Community</a></li>
                 <li><a href="halal-games.html">🎮 Games</a></li>
+                <li><a href="kids-stories.html">👶 Kids</a></li>
+                <li><a href="community.html">💬 Chat</a></li>
                 <li><a href="islamic-library.html">📚 Library</a></li>
-                <li><a href="islamic-courses.html">🎓 Courses</a></li>
             </ul>
         </nav>
     </header>
 
     <div class="container">
         <h1 class="page-title">💬 Community</h1>
+        <p class="page-subtitle">Connect, share, and grow together</p>
 
-        <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('reminders')">🌟 Islamic Reminders</button>
-            <button class="tab-btn" onclick="switchTab('posts')">💭 Community Posts</button>
+        <div class="notify-banner">
+            <span id="notifyStatusText">🔔 Get notified about group activity, even when this tab isn't focused.</span>
+            <button class="btn btn-small btn-outline" id="notifyBtn" onclick="enableNotifications()">Enable Notifications</button>
         </div>
 
-        <!-- ISLAMIC REMINDERS TAB -->
-        <div class="tab-content active" id="reminders">
-            <div class="reminder-section">
-                <div class="reminder-text" id="reminderText"></div>
-                <div class="reminder-source" id="reminderSource"></div>
-                <button class="btn" onclick="getNewReminder()">🔄 Get Another Reminder</button>
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('groups')">🤝 Groups</button>
+            <button class="tab-btn" onclick="switchTab('dailyposts')">📸 Daily Posts</button>
+            <button class="tab-btn" onclick="switchTab('questions')">❓ Daily Questions</button>
+        </div>
+
+        <!-- GROUPS TAB -->
+        <div class="tab-content active" id="groups">
+            <div class="card">
+                <h3>Start a Group</h3>
+                <div class="field-row">
+                    <input type="text" id="groupName" placeholder="Group name (e.g. Fajr Accountability Circle)">
+                </div>
+                <div class="field-row">
+                    <input type="text" id="groupTopic" placeholder="Topic (e.g. Studying, Tafsir, Arabic, General Talk)">
+                </div>
+                <textarea id="groupDesc" placeholder="What's this group about?" rows="2"></textarea>
+                <button class="btn" onclick="createGroup()">➕ Create Group</button>
+            </div>
+
+            <div class="card">
+                <h3>Active Groups</h3>
+                <div class="groups-grid" id="groupsContainer">
+                    <p style="color:#888;">Loading groups...</p>
+                </div>
             </div>
         </div>
 
-        <!-- COMMUNITY POSTS TAB -->
-        <div class="tab-content" id="posts">
-            <div class="post-section">
-                <h3>Share with the Community</h3>
-                <div class="post-form">
-                    <textarea id="postInput" placeholder="Share Islamic knowledge, ask questions, or inspire others..."></textarea>
-                    <button class="btn" onclick="createPost()">📝 Post to Community</button>
+        <!-- DAILY POSTS TAB -->
+        <div class="tab-content" id="dailyposts">
+            <div class="card">
+                <h3>Share Your Moment</h3>
+                <p class="limit-note" style="margin-top:0;margin-bottom:0.8rem;">One post per day. Posts disappear after 10 hours.</p>
+                <textarea id="postInput" placeholder="Share a funny moment, a thought, anything halal..." rows="3"></textarea>
+                <div class="field-row" style="margin-top:0.8rem;">
+                    <input type="text" id="postImageUrl" placeholder="Optional image URL">
                 </div>
+                <button class="btn" id="postBtn" onclick="createDailyPost()">📤 Post</button>
+            </div>
 
-                <h3 style="margin-top: 2rem;">Recent Posts</h3>
-                <div class="posts-container" id="postsContainer">
-                    <!-- Posts will be loaded here -->
-                </div>
+            <div class="card">
+                <h3>Recent Posts</h3>
+                <div class="posts-container" id="postsContainer"></div>
+            </div>
+        </div>
+
+        <!-- QUESTIONS TAB -->
+        <div class="tab-content" id="questions">
+            <div class="card">
+                <h3>Ask a Question</h3>
+                <p class="limit-note" style="margin-top:0;margin-bottom:0.8rem;">One question per day. Up to 100 answers per question.</p>
+                <textarea id="questionInput" placeholder="Ask the community something..." rows="2"></textarea>
+                <button class="btn" id="questionBtn" onclick="createQuestion()">❓ Post Question</button>
+            </div>
+
+            <div class="card">
+                <h3>Community Questions</h3>
+                <div id="questionsContainer"></div>
             </div>
         </div>
     </div>
@@ -352,166 +535,6 @@
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
 
     <script>
-        function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
-        }
-
-        function switchTab(tabName) {
-            // Hide all tabs
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            // Show selected tab
-            document.getElementById(tabName).classList.add('active');
-            event.target.classList.add('active');
-
-            if (tabName === 'posts') {
-                loadPosts();
-            }
-        }
-
-        // 100+ ISLAMIC REMINDERS!
-        const reminders = [
-            { text: "Indeed, with hardship comes ease.", source: "Quran 94:6" },
-            { text: "Remember Allah in times of ease, and He will remember you in times of difficulty.", source: "Hadith" },
-            { text: "The best among you are those who have the best manners and character.", source: "Sahih Bukhari" },
-            { text: "Verily, in the remembrance of Allah do hearts find rest.", source: "Quran 13:28" },
-            { text: "Allah does not burden a soul beyond that it can bear.", source: "Quran 2:286" },
-            { text: "The strong person is not the one who can overpower others, but the one who controls themselves when angry.", source: "Sahih Bukhari" },
-            { text: "Seek knowledge from the cradle to the grave.", source: "Hadith" },
-            { text: "The believer's shade on the Day of Resurrection will be their charity.", source: "Tirmidhi" },
-            { text: "The most beloved deeds to Allah are those done consistently, even if they are small.", source: "Sahih Bukhari" },
-            { text: "Whoever believes in Allah and the Last Day should speak good or remain silent.", source: "Sahih Bukhari" },
-            
-            { text: "And He is with you wherever you are.", source: "Quran 57:4" },
-            { text: "Do not lose hope, nor be sad.", source: "Quran 3:139" },
-            { text: "Prayer is the key to Paradise.", source: "Hadith" },
-            { text: "A good word is charity.", source: "Sahih Bukhari" },
-            { text: "The best of people are those who are most beneficial to others.", source: "Hadith" },
-            { text: "Your Lord has not forsaken you, nor is He displeased.", source: "Quran 93:3" },
-            { text: "Kindness is a mark of faith, and whoever is not kind has no faith.", source: "Sahih Muslim" },
-            { text: "The most complete believer in faith is the one whose character is finest.", source: "Tirmidhi" },
-            { text: "Patience is half of faith.", source: "Hadith" },
-            { text: "The tongue is a small thing, but what enormous damage it can do.", source: "Islamic Wisdom" },
-            
-            { text: "So remember Me; I will remember you.", source: "Quran 2:152" },
-            { text: "Whoever is grateful, they are grateful for their own soul.", source: "Quran 31:12" },
-            { text: "The best wealth is the wealth of the soul.", source: "Hadith" },
-            { text: "Make things easy and do not make them difficult.", source: "Sahih Bukhari" },
-            { text: "The world is a prison for the believer and paradise for the disbeliever.", source: "Sahih Muslim" },
-            { text: "Take account of yourselves before you are taken to account.", source: "Umar ibn Al-Khattab" },
-            { text: "Lower your gaze and guard your modesty.", source: "Quran 24:30" },
-            { text: "The one who guides others to good is like the one who does it.", source: "Sahih Muslim" },
-            { text: "Paradise lies at the feet of your mother.", source: "Hadith" },
-            { text: "Smiling in the face of your brother is charity.", source: "Tirmidhi" },
-            
-            { text: "And whoever puts their trust in Allah, then He will suffice them.", source: "Quran 65:3" },
-            { text: "No fatigue, disease, sorrow, sadness, hurt, or distress befalls a Muslim - even the prick of a thorn - except that Allah expiates some of their sins.", source: "Sahih Bukhari" },
-            { text: "The best provision is Taqwa (God-consciousness).", source: "Quran 2:197" },
-            { text: "When you see a person who has been given more than you in wealth and beauty, look to those who have been given less.", source: "Sahih Muslim" },
-            { text: "He who has in his heart the weight of a mustard seed of pride shall not enter Paradise.", source: "Sahih Muslim" },
-            { text: "The merciful will be shown mercy by the Most Merciful. Be merciful to those on earth and the One in heaven will have mercy upon you.", source: "Tirmidhi" },
-            { text: "Make use of five before five: your youth before old age, your health before sickness, your wealth before poverty, your free time before being busy, and your life before death.", source: "Hadith" },
-            { text: "The reward of deeds depends upon intentions.", source: "Sahih Bukhari" },
-            { text: "None of you truly believes until he loves for his brother what he loves for himself.", source: "Sahih Bukhari" },
-            { text: "If you love Allah, follow me; Allah will love you and forgive you your sins.", source: "Quran 3:31" },
-            
-            { text: "Wealth is not in having many possessions, but true wealth is being content with what one has.", source: "Sahih Bukhari" },
-            { text: "The believer does not slander, curse, or speak in an obscene or foul manner.", source: "Tirmidhi" },
-            { text: "Give charity without delay, for it stands in the way of calamity.", source: "Tirmidhi" },
-            { text: "A Muslim is the one from whose tongue and hands the Muslims are safe.", source: "Sahih Bukhari" },
-            { text: "The example of the believers in their affection, mercy, and compassion for each other is that of a body. When any limb aches, the whole body reacts with sleeplessness and fever.", source: "Sahih Bukhari" },
-            { text: "Visit the sick, feed the hungry, and set free the captives.", source: "Sahih Bukhari" },
-            { text: "Fear Allah wherever you are, and follow up a bad deed with a good one and it will wipe it out, and behave well towards people.", source: "Tirmidhi" },
-            { text: "Whoever relieves a believer's distress, Allah will relieve his distress on the Day of Resurrection.", source: "Sahih Muslim" },
-            { text: "Keep your tongue moist with the remembrance of Allah.", source: "Tirmidhi" },
-            { text: "Actions are judged by intentions, so each person will have what they intended.", source: "Sahih Bukhari" },
-            
-            { text: "The seeking of knowledge is obligatory for every Muslim.", source: "Ibn Majah" },
-            { text: "A word of truth in front of a tyrant ruler is the best form of jihad.", source: "Hadith" },
-            { text: "The best among you is the one who learns the Quran and teaches it.", source: "Sahih Bukhari" },
-            { text: "Do not be people without minds of your own, saying that if others treat you well you will treat them well. Instead, decide to treat people well if they treat you well, and to be just if they treat you poorly.", source: "Tirmidhi" },
-            { text: "If you guarantee me six things, I guarantee you Paradise: speak the truth, fulfill your promises, do not betray the trust, protect your chastity, lower your gaze, and restrain your hands from injustice.", source: "Hadith" },
-            { text: "Allah is more pleased with the repentance of His servant than one of you would be if you were riding your mount in the wilderness and it escaped from you with your food and drink, and you despaired of getting it back, but then came to a tree and lay down in its shade, having despaired of ever seeing it again. Whilst you are like that, suddenly it is standing before you. You seize its reins, then, out of intense joy, you say: 'O Allah, You are my servant and I am Your Lord!' You make a mistake because of your intense joy.", source: "Sahih Muslim" },
-            { text: "Richness is not having many possessions, but richness is being content with oneself.", source: "Sahih Bukhari" },
-            { text: "Two traits are not combined in a believer: miserliness and bad character.", source: "Tirmidhi" },
-            { text: "Every act of kindness is charity.", source: "Sahih Bukhari" },
-            { text: "Be in this world as if you were a stranger or a traveler passing through.", source: "Sahih Bukhari" },
-            
-            { text: "The comparison of this world with the hereafter is like one of you dipping his finger in the sea and then looking at what has stuck to it.", source: "Sahih Muslim" },
-            { text: "There is no disease that Allah has created, except that He also has created its treatment.", source: "Sahih Bukhari" },
-            { text: "Perform Hajj and Umrah consecutively, for they remove poverty and sins as the bellows remove impurity from iron.", source: "Tirmidhi" },
-            { text: "Whoever prays Fajr in congregation, then sits remembering Allah until the sun rises, then prays two Rak'ah, will have a reward like that of Hajj and Umrah - complete, complete, complete.", source: "Tirmidhi" },
-            { text: "The supplication of a Muslim for his brother in his absence will certainly be answered. Every time he makes a supplication for good for his brother, the angel appointed for this particular task says: 'Ameen! May it be for you, too.'", source: "Sahih Muslim" },
-            { text: "Faith has over seventy branches, the highest of which is saying 'La ilaha illa Allah' (There is no god but Allah), and the lowest of which is removing something harmful from the road.", source: "Sahih Muslim" },
-            { text: "When the son of Adam dies, his deeds come to an end except for three: ongoing charity, knowledge that is benefited from, and a righteous child who prays for him.", source: "Sahih Muslim" },
-            { text: "Verily, Allah is gentle and He loves gentleness. He gives for gentleness what He does not give for harshness.", source: "Sahih Muslim" },
-            { text: "The gates of Paradise are opened on Mondays and Thursdays, and every servant who associates nothing with Allah will be forgiven, except for the man who has a grudge against his brother.", source: "Sahih Muslim" },
-            { text: "Allah does not look at your forms and possessions, but He looks at your hearts and your deeds.", source: "Sahih Muslim" },
-            
-            { text: "A time will come when the best property of a Muslim will be sheep which he will take to the tops of mountains and the places where rain falls, fleeing with his religion from afflictions.", source: "Sahih Bukhari" },
-            { text: "By Him in Whose Hand is my soul, none of you believes until I am dearer to him than his father, his children, and all of mankind.", source: "Sahih Bukhari" },
-            { text: "The Muslim is a unique Ummah among the whole of mankind: their Book is the best Book, their Prophet is the best Prophet, their Qiblah is the best Qiblah.", source: "Islamic Wisdom" },
-            { text: "The world is sweet and green, and verily Allah is going to install you as successors upon it, to see how you act.", source: "Sahih Muslim" },
-            { text: "Among the signs of a person's good practice of Islam is leaving alone that which does not concern him.", source: "Tirmidhi" },
-            { text: "Let not any Muslim despise another Muslim, for every Muslim is sacred to another Muslim.", source: "Hadith" },
-            { text: "The parable of those who spend their wealth in the way of Allah is that of a grain of corn that sprouts seven ears, and in every ear there are a hundred grains.", source: "Quran 2:261" },
-            { text: "Help your brother, whether he is an oppressor or he is oppressed. They asked: 'O Messenger of Allah, we help the one who is oppressed, but how can we help the oppressor?' He said: 'By preventing him from oppression.'", source: "Sahih Bukhari" },
-            { text: "Do not envy one another, do not hate one another, do not turn your backs on one another, and be servants of Allah as brothers.", source: "Sahih Muslim" },
-            { text: "Whoever has three daughters and is patient with them, clothing them from his wealth, they will be a shield for him from the Fire.", source: "Hadith" },
-            
-            { text: "Allah will not punish the general masses for the sins of specific people until they see evil being committed before them and they are able to denounce it but do not.", source: "Ahmad" },
-            { text: "The best of your leaders are those whom you love and who love you, who pray for you and you pray for them.", source: "Sahih Muslim" },
-            { text: "Indeed, Allah loves those who act justly.", source: "Quran 49:9" },
-            { text: "The Muslim who mixes with people and bears their annoyance with patience will have a greater reward than the Muslim who does not mix with people and does not put up with their annoyance.", source: "Ibn Majah" },
-            { text: "The first matter that will be decided among people on the Day of Judgment is bloodshed.", source: "Sahih Bukhari" },
-            { text: "When Allah wants good for someone, He tries them with hardships.", source: "Sahih Bukhari" },
-            { text: "Beware of suspicion, for suspicion is the worst of false tales.", source: "Sahih Bukhari" },
-            { text: "If anyone constantly seeks pardon from Allah, Allah will appoint for him a way out of every distress and a relief from every anxiety, and will provide sustenance for him from where he expects not.", source: "Abu Dawud" },
-            { text: "Whoever removes a worldly hardship from a believer, Allah will remove one of the hardships of the Day of Judgment from him.", source: "Sahih Muslim" },
-            { text: "The prayer of a person in the depths of the night is witnessed, and it is a voluntary prayer.", source: "Sahih Muslim" },
-            
-            { text: "If you invoke Allah with a sincere heart, He will respond to you.", source: "Hadith" },
-            { text: "The best days to worship Allah are the first ten days of Dhul-Hijjah.", source: "Sahih Bukhari" },
-            { text: "The Friday prayer is obligatory upon every Muslim who has reached puberty.", source: "Hadith" },
-            { text: "Fasting and the Quran will intercede for the servant on the Day of Resurrection.", source: "Ahmad" },
-            { text: "There is no prayer more beloved to Allah than Fajr.", source: "Hadith" },
-            { text: "The Night of Decree (Laylatul Qadr) is better than a thousand months.", source: "Quran 97:3" },
-            { text: "Give in charity and do not withhold, or Allah will withhold from you.", source: "Sahih Bukhari" },
-            { text: "Sadaqah extinguishes sin as water extinguishes fire.", source: "Tirmidhi" },
-            { text: "Whoever performs Wudu properly, his sins will depart from his body, even from beneath his nails.", source: "Sahih Muslim" },
-            { text: "The prayer in congregation is twenty-seven times more superior to prayer alone.", source: "Sahih Bukhari" },
-            
-            { text: "Whoever recites Ayatul Kursi after every prayer, nothing prevents him from entering Paradise except death.", source: "Nasa'i" },
-            { text: "The Messenger of Allah never criticized food. If he liked it, he ate it, and if he disliked it, he left it.", source: "Sahih Bukhari" },
-            { text: "There is no servant who prays for his brother behind his back but the angels say: 'And for you the same.'", source: "Sahih Muslim" },
-            { text: "Make your houses lively with prayers and do not turn them into graves.", source: "Hadith" },
-            { text: "The Angels send blessings upon one of you so long as he remains in his place of prayer.", source: "Sahih Bukhari" },
-            { text: "When you go to bed, perform ablution as you do for prayer, then lie down on your right side.", source: "Sahih Bukhari" },
-            { text: "The strong believer is better and more beloved to Allah than the weak believer, although both are good.", source: "Sahih Muslim" },
-            { text: "Allah's mercy prevails over His wrath.", source: "Sahih Bukhari" },
-            { text: "Do not wish to be like anyone, except in two cases: a person whom Allah has given wealth and he spends it in the right way, and a person whom Allah has given wisdom and he acts according to it and teaches it to others.", source: "Sahih Bukhari" },
-            { text: "Every new day is a new blessing from Allah. Use it wisely.", source: "Islamic Wisdom" },
-            
-            { text: "Your body has a right over you, your eyes have a right over you, and your spouse has a right over you.", source: "Sahih Bukhari" },
-            { text: "Do not betray those who betray you.", source: "Abu Dawud" },
-            { text: "Shall I not tell you of something that is better in rank than fasting, prayer and charity? Reconciling people.", source: "Abu Dawud" },
-            { text: "Allah loves that when any of you does something, he does it perfectly.", source: "Bayhaqi" },
-            { text: "The best du'a is du'a on the day of Arafah.", source: "Tirmidhi" },
-            { text: "Trials continue to befall the believing man and woman in their body, family, and property, until they meet Allah burdened with no sins.", source: "Tirmidhi" },
-            { text: "Whoever builds a mosque for Allah, Allah will build for him a house in Paradise.", source: "Sahih Bukhari" },
-            { text: "The person who severs the ties of kinship will not enter Paradise.", source: "Sahih Bukhari" },
-            { text: "There is a piece of flesh in the body; if it is sound, the whole body is sound, and if it is corrupt, the whole body is corrupt. It is the heart.", source: "Sahih Bukhari" },
-            { text: "Your smile to your brother is a charity.", source: "Tirmidhi" }
-        ];
-
-        let currentReminderIndex = 0;
-
-        // Initialize Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyDqVwW8YMxW_2fJ5dOmJKxH2JKl_9mHs9I",
             authDomain: "islamic-hub-community.firebaseapp.com",
@@ -525,92 +548,438 @@
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
 
-        // Show random reminder on page load
-        window.onload = function() {
-            getNewReminder();
-        };
+        const TEN_HOURS_MS = 10 * 60 * 60 * 1000;
 
-        function getNewReminder() {
-            // Get random reminder
-            currentReminderIndex = Math.floor(Math.random() * reminders.length);
-            const reminder = reminders[currentReminderIndex];
-            
-            document.getElementById('reminderText').textContent = `"${reminder.text}"`;
-            document.getElementById('reminderSource').textContent = `— ${reminder.source}`;
-        }
-
-        // Community Posts Functions
-        function createPost() {
-            const postInput = document.getElementById('postInput');
-            const content = postInput.value.trim();
-
-            if (!content) {
-                alert('Please write something before posting!');
-                return;
+        // ── Local identity (no login system on this static site) ──
+        function getUid() {
+            let uid = localStorage.getItem('ih_uid');
+            if (!uid) {
+                uid = 'u_' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+                localStorage.setItem('ih_uid', uid);
             }
-
-            const post = {
-                content: content,
-                author: 'theislamichub01.github.io',
-                timestamp: Date.now()
-            };
-
-            database.ref('posts').push(post)
-                .then(() => {
-                    postInput.value = '';
-                    loadPosts();
-                })
-                .catch(error => {
-                    console.error('Error posting:', error);
-                    alert('Error posting. Please try again.');
-                });
+            return uid;
         }
 
-        function loadPosts() {
-            database.ref('posts').orderByChild('timestamp').limitToLast(20).once('value')
-                .then(snapshot => {
-                    const postsContainer = document.getElementById('postsContainer');
-                    postsContainer.innerHTML = '';
+        function getDisplayName() {
+            let name = localStorage.getItem('ih_name');
+            if (!name) {
+                name = prompt('Pick a display name for the community:', 'Guest' + Math.floor(Math.random() * 9999)) || ('Guest' + Math.floor(Math.random() * 9999));
+                localStorage.setItem('ih_name', name);
+            }
+            return name;
+        }
 
-                    const posts = [];
-                    snapshot.forEach(child => {
-                        posts.push(child.val());
-                    });
+        const myUid = getUid();
+        const myName = getDisplayName();
 
-                    posts.reverse().forEach(post => {
-                        const postDiv = document.createElement('div');
-                        postDiv.className = 'post';
-                        
-                        const timeAgo = getTimeAgo(post.timestamp);
-                        
-                        postDiv.innerHTML = `
-                            <div class="post-header">
-                                <span class="post-author">${post.author}</span>
-                                <span class="post-time">${timeAgo}</span>
-                            </div>
-                            <div class="post-content">${post.content}</div>
-                        `;
-                        
-                        postsContainer.appendChild(postDiv);
-                    });
-
-                    if (posts.length === 0) {
-                        postsContainer.innerHTML = '<p style="text-align: center; color: #666;">No posts yet. Be the first to share!</p>';
-                    }
-                })
-                .catch(error => {
-                    console.error('Error loading posts:', error);
-                });
+        function todayStr() {
+            return new Date().toISOString().slice(0, 10);
         }
 
         function getTimeAgo(timestamp) {
             const seconds = Math.floor((Date.now() - timestamp) / 1000);
-            
             if (seconds < 60) return 'Just now';
             if (seconds < 3600) return Math.floor(seconds / 60) + ' minutes ago';
             if (seconds < 86400) return Math.floor(seconds / 3600) + ' hours ago';
             return Math.floor(seconds / 86400) + ' days ago';
         }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // ══════════════ NOTIFICATIONS ══════════════
+        // NOTE: This delivers real notifications any time your browser is running
+        // (including backgrounded/minimized tabs), via the Notification API + a
+        // Service Worker. Genuine delivery while the browser/device is fully OFF
+        // requires a server-triggered push (e.g. Firebase Cloud Messaging with a
+        // backend) — a static site alone cannot do that, so this is the honest,
+        // best-effort version: as long as you have this site open somewhere (even
+        // in the background), you'll get notified the instant something happens.
+        let swRegistration = null;
+
+        async function enableNotifications() {
+            if (!('Notification' in window)) {
+                alert('Notifications are not supported on this browser.');
+                return;
+            }
+            const permission = await Notification.requestPermission();
+            const statusText = document.getElementById('notifyStatusText');
+            const btn = document.getElementById('notifyBtn');
+            if (permission === 'granted') {
+                if ('serviceWorker' in navigator) {
+                    try {
+                        swRegistration = await navigator.serviceWorker.register('sw.js');
+                    } catch (e) { console.warn('Service worker registration failed', e); }
+                }
+                statusText.textContent = '✅ Notifications enabled — you\'ll be alerted to new group activity while your browser is open.';
+                btn.style.display = 'none';
+                localStorage.setItem('ih_notify', 'on');
+            } else {
+                statusText.textContent = '🔕 Notifications blocked. Enable them in your browser settings to get alerts.';
+            }
+        }
+
+        function fireNotification(title, body) {
+            if (Notification.permission !== 'granted') return;
+            if (swRegistration) {
+                swRegistration.showNotification(title, { body, icon: '☪️' });
+            } else {
+                new Notification(title, { body });
+            }
+        }
+
+        if (localStorage.getItem('ih_notify') === 'on' && Notification.permission === 'granted') {
+            document.getElementById('notifyStatusText').textContent = '✅ Notifications enabled — you\'ll be alerted to new group activity while your browser is open.';
+            document.getElementById('notifyBtn').style.display = 'none';
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js').then(reg => swRegistration = reg);
+            }
+        }
+
+        // ══════════════ GROUPS ══════════════
+        function createGroup() {
+            const name = document.getElementById('groupName').value.trim();
+            const topic = document.getElementById('groupTopic').value.trim();
+            const desc = document.getElementById('groupDesc').value.trim();
+
+            if (!name || !topic) {
+                alert('Please add a group name and topic.');
+                return;
+            }
+
+            const group = {
+                name, topic, description: desc || 'No description yet.',
+                createdBy: myName,
+                createdAt: Date.now(),
+                members: { [myUid]: true }
+            };
+
+            database.ref('groups').push(group).then(() => {
+                document.getElementById('groupName').value = '';
+                document.getElementById('groupTopic').value = '';
+                document.getElementById('groupDesc').value = '';
+                loadGroups();
+            }).catch(err => {
+                console.error(err);
+                alert('Could not create group. Try again.');
+            });
+        }
+
+        function joinGroup(groupId) {
+            database.ref(`groups/${groupId}/members/${myUid}`).set(true).then(loadGroups);
+        }
+
+        function announceToGroup(groupId, groupName) {
+            const text = prompt(`Send an announcement to "${groupName}" (e.g. "Study session starting in 10 mins"):`);
+            if (!text) return;
+            database.ref(`groups/${groupId}/announcements`).push({
+                text, author: myName, timestamp: Date.now()
+            }).then(loadGroups);
+        }
+
+        function loadGroups() {
+            database.ref('groups').limitToLast(50).once('value').then(snapshot => {
+                const container = document.getElementById('groupsContainer');
+                container.innerHTML = '';
+                const groups = [];
+                snapshot.forEach(child => groups.push({ id: child.key, ...child.val() }));
+
+                if (groups.length === 0) {
+                    container.innerHTML = '<p style="color:#888;">No groups yet. Start the first one!</p>';
+                    return;
+                }
+
+                groups.reverse().forEach(group => {
+                    const isMember = group.members && group.members[myUid];
+                    const memberCount = group.members ? Object.keys(group.members).length : 0;
+                    const announcements = group.announcements ? Object.values(group.announcements).slice(-3).reverse() : [];
+
+                    const div = document.createElement('div');
+                    div.className = 'group-card';
+                    div.innerHTML = `
+                        <span class="group-topic">${group.topic}</span>
+                        <h4>${group.name}</h4>
+                        <div class="group-desc">${group.description}</div>
+                        <div class="group-meta">${memberCount} member${memberCount === 1 ? '' : 's'} · started by ${group.createdBy}</div>
+                        <div class="group-actions">
+                            ${isMember
+                                ? `<button class="btn btn-small" onclick="announceToGroup('${group.id}', '${group.name.replace(/'/g, "\\'")}')">📣 Announce</button>`
+                                : `<button class="btn btn-small btn-outline" onclick="joinGroup('${group.id}')">Join Group</button>`}
+                        </div>
+                        ${announcements.length ? `
+                        <div class="group-announcements">
+                            ${announcements.map(a => `<div class="announcement"><strong>${a.author}:</strong> ${a.text}</div>`).join('')}
+                        </div>` : ''}
+                    `;
+                    container.appendChild(div);
+                });
+            }).catch(err => console.error('Error loading groups:', err));
+        }
+
+        // Listen live for new announcements on groups I've joined, fire a notification
+        database.ref('groups').on('child_changed', snapshot => {
+            const group = snapshot.val();
+            if (!group.members || !group.members[myUid]) return;
+            if (!group.announcements) return;
+            const all = Object.entries(group.announcements);
+            const [, latest] = all[all.length - 1] || [];
+            if (latest && latest.author !== myName && Date.now() - latest.timestamp < 15000) {
+                fireNotification(`📣 ${group.name}`, `${latest.author}: ${latest.text}`);
+            }
+            loadGroups();
+        });
+
+        // ══════════════ DAILY POSTS ══════════════
+        function canPostToday() {
+            return localStorage.getItem('ih_lastPostDate') !== todayStr();
+        }
+
+        function createDailyPost() {
+            if (!canPostToday()) {
+                alert('You can only post once per day. Come back tomorrow!');
+                return;
+            }
+            const content = document.getElementById('postInput').value.trim();
+            const imageUrl = document.getElementById('postImageUrl').value.trim();
+
+            if (!content && !imageUrl) {
+                alert('Write something or add an image first!');
+                return;
+            }
+
+            const post = {
+                authorId: myUid,
+                author: myName,
+                content,
+                imageUrl: imageUrl || null,
+                timestamp: Date.now(),
+                expiresAt: Date.now() + TEN_HOURS_MS,
+                likes: {},
+                comments: {}
+            };
+
+            database.ref('dailyPosts').push(post).then(() => {
+                localStorage.setItem('ih_lastPostDate', todayStr());
+                document.getElementById('postInput').value = '';
+                document.getElementById('postImageUrl').value = '';
+                updatePostButtonState();
+                loadDailyPosts();
+            }).catch(err => {
+                console.error(err);
+                alert('Error posting. Please try again.');
+            });
+        }
+
+        function toggleLikePost(postId, alreadyLiked) {
+            const ref = database.ref(`dailyPosts/${postId}/likes/${myUid}`);
+            if (alreadyLiked) ref.remove(); else ref.set(true);
+            setTimeout(loadDailyPosts, 200);
+        }
+
+        function addComment(postId) {
+            const input = document.getElementById(`commentInput_${postId}`);
+            const text = input.value.trim();
+            if (!text) return;
+            database.ref(`dailyPosts/${postId}/comments`).push({
+                authorId: myUid, author: myName, text, timestamp: Date.now(), likes: {}
+            }).then(() => {
+                input.value = '';
+                loadDailyPosts();
+            });
+        }
+
+        function toggleLikeComment(postId, commentId, alreadyLiked) {
+            const ref = database.ref(`dailyPosts/${postId}/comments/${commentId}/likes/${myUid}`);
+            if (alreadyLiked) ref.remove(); else ref.set(true);
+            setTimeout(loadDailyPosts, 200);
+        }
+
+        function updatePostButtonState() {
+            const btn = document.getElementById('postBtn');
+            if (!canPostToday()) {
+                btn.disabled = true;
+                btn.textContent = '✅ Posted today — come back tomorrow';
+            } else {
+                btn.disabled = false;
+                btn.textContent = '📤 Post';
+            }
+        }
+
+        function loadDailyPosts() {
+            database.ref('dailyPosts').orderByChild('timestamp').limitToLast(50).once('value').then(snapshot => {
+                const container = document.getElementById('postsContainer');
+                container.innerHTML = '';
+                const posts = [];
+                snapshot.forEach(child => posts.push({ id: child.key, ...child.val() }));
+
+                const now = Date.now();
+                posts.forEach(post => {
+                    if (post.expiresAt && post.expiresAt < now) {
+                        database.ref(`dailyPosts/${post.id}`).remove();
+                    }
+                });
+
+                const live = posts.filter(p => !p.expiresAt || p.expiresAt >= now).reverse();
+
+                if (live.length === 0) {
+                    container.innerHTML = '<p style="text-align:center;color:#888;">No posts right now. Be the first to share today!</p>';
+                    return;
+                }
+
+                live.forEach(post => {
+                    const likes = post.likes || {};
+                    const likeCount = Object.keys(likes).length;
+                    const iLiked = !!likes[myUid];
+                    const comments = post.comments ? Object.entries(post.comments) : [];
+
+                    const div = document.createElement('div');
+                    div.className = 'post';
+                    div.innerHTML = `
+                        <div class="post-header">
+                            <span class="post-author">${post.author}</span>
+                            <span class="post-time">${getTimeAgo(post.timestamp)}</span>
+                        </div>
+                        ${post.content ? `<div class="post-content">${post.content}</div>` : ''}
+                        ${post.imageUrl ? `<img class="post-image" src="${post.imageUrl}" onerror="this.style.display='none'">` : ''}
+                        <div class="post-actions">
+                            <button class="action-btn ${iLiked ? 'liked' : ''}" onclick="toggleLikePost('${post.id}', ${iLiked})">❤️ ${likeCount}</button>
+                            <span style="color:#777;font-size:0.85rem;">💬 ${comments.length}</span>
+                        </div>
+                        <div class="comments-list">
+                            ${comments.map(([cid, c]) => {
+                                const cLikes = c.likes || {};
+                                const cLikeCount = Object.keys(cLikes).length;
+                                const cLiked = !!cLikes[myUid];
+                                return `<div class="comment">
+                                    <span class="comment-author">${c.author}</span>${c.text}
+                                    <div class="comment-actions">
+                                        <button class="action-btn ${cLiked ? 'liked' : ''}" onclick="toggleLikeComment('${post.id}', '${cid}', ${cLiked})" style="font-size:0.78rem;">❤️ ${cLikeCount}</button>
+                                    </div>
+                                </div>`;
+                            }).join('')}
+                        </div>
+                        <div class="comment-form">
+                            <input type="text" id="commentInput_${post.id}" placeholder="Write a comment...">
+                            <button class="btn btn-small" onclick="addComment('${post.id}')">Send</button>
+                        </div>
+                    `;
+                    container.appendChild(div);
+                });
+            }).catch(err => console.error('Error loading posts:', err));
+        }
+
+        // ══════════════ DAILY QUESTIONS ══════════════
+        const MAX_ANSWERS = 100;
+
+        function canAskToday() {
+            return localStorage.getItem('ih_lastQuestionDate') !== todayStr();
+        }
+
+        function createQuestion() {
+            if (!canAskToday()) {
+                alert('You can only ask one question per day. Come back tomorrow!');
+                return;
+            }
+            const question = document.getElementById('questionInput').value.trim();
+            if (!question) {
+                alert('Write a question first!');
+                return;
+            }
+            database.ref('dailyQuestions').push({
+                authorId: myUid, author: myName, question, timestamp: Date.now(), comments: {}
+            }).then(() => {
+                localStorage.setItem('ih_lastQuestionDate', todayStr());
+                document.getElementById('questionInput').value = '';
+                updateQuestionButtonState();
+                loadQuestions();
+            }).catch(err => {
+                console.error(err);
+                alert('Error posting question. Please try again.');
+            });
+        }
+
+        function addAnswer(questionId) {
+            const input = document.getElementById(`answerInput_${questionId}`);
+            const text = input.value.trim();
+            if (!text) return;
+            database.ref(`dailyQuestions/${questionId}/comments`).once('value').then(snap => {
+                const count = snap.exists() ? Object.keys(snap.val()).length : 0;
+                if (count >= MAX_ANSWERS) {
+                    alert('This question has reached the 100-answer limit.');
+                    return;
+                }
+                database.ref(`dailyQuestions/${questionId}/comments`).push({
+                    authorId: myUid, author: myName, text, timestamp: Date.now()
+                }).then(() => {
+                    input.value = '';
+                    loadQuestions();
+                });
+            });
+        }
+
+        function updateQuestionButtonState() {
+            const btn = document.getElementById('questionBtn');
+            if (!canAskToday()) {
+                btn.disabled = true;
+                btn.textContent = '✅ Asked today — come back tomorrow';
+            } else {
+                btn.disabled = false;
+                btn.textContent = '❓ Post Question';
+            }
+        }
+
+        function loadQuestions() {
+            database.ref('dailyQuestions').orderByChild('timestamp').limitToLast(30).once('value').then(snapshot => {
+                const container = document.getElementById('questionsContainer');
+                container.innerHTML = '';
+                const questions = [];
+                snapshot.forEach(child => questions.push({ id: child.key, ...child.val() }));
+
+                if (questions.length === 0) {
+                    container.innerHTML = '<p style="color:#888;">No questions yet. Ask the first one!</p>';
+                    return;
+                }
+
+                questions.reverse().forEach(q => {
+                    const comments = q.comments ? Object.values(q.comments) : [];
+                    const atLimit = comments.length >= MAX_ANSWERS;
+
+                    const div = document.createElement('div');
+                    div.className = 'question-card';
+                    div.innerHTML = `
+                        <div class="post-header">
+                            <span class="post-author">${q.author}</span>
+                            <span class="post-time">${getTimeAgo(q.timestamp)}</span>
+                        </div>
+                        <div class="question-text">${q.question}</div>
+                        <span style="color:#777;font-size:0.85rem;">💬 ${comments.length}/${MAX_ANSWERS} answers</span>
+                        <div class="comments-list">
+                            ${comments.map(c => `<div class="comment"><span class="comment-author">${c.author}</span>${c.text}</div>`).join('')}
+                        </div>
+                        ${atLimit
+                            ? `<p class="limit-note">This question has reached the 100-answer limit.</p>`
+                            : `<div class="comment-form">
+                                <input type="text" id="answerInput_${q.id}" placeholder="Write an answer...">
+                                <button class="btn btn-small" onclick="addAnswer('${q.id}')">Send</button>
+                               </div>`}
+                    `;
+                    container.appendChild(div);
+                });
+            }).catch(err => console.error('Error loading questions:', err));
+        }
+
+        // ══════════════ INIT ══════════════
+        window.onload = function() {
+            loadGroups();
+            loadDailyPosts();
+            loadQuestions();
+            updatePostButtonState();
+            updateQuestionButtonState();
+        };
     </script>
 </body>
 </html>
